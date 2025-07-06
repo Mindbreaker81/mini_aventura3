@@ -13,5 +13,6 @@
   "teach_mode": true,
   "language": "es",
   "friendly_mode": true,
-  "update_related_files_on_structure_change": true
+  "update_related_files_on_structure_change": true,
+  "propagate_structure_changes_project_wide": true
 }
