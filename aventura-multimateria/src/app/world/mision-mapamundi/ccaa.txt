@@ -1,0 +1,16 @@
+Galicia = 12
+Asturias = 03
+Cantabria = 06
+Castilla-Leon = 07
+Pais Vasco = 16
+La Rioja = 17
+Navarra = 15
+Aragón = 02
+Cataluña = 09
+Valencia = 10
+Baleares = 04
+Casilla-La Mancha = 08
+Madrid = 13
+Extremadura = 11
+Murcia = 14
+Andalucía = 01 
