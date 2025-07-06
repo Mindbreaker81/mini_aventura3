@@ -19,6 +19,7 @@ Este repositorio contiene el proyecto **Aventura Multimateria**, una aplicación
 - [Supabase](https://supabase.com/) (scripts disponibles)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [react-leaflet](https://react-leaflet.js.org/) (mapas interactivos)
+- [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) (drag and drop para React)
 
 ## Instalación y uso
 
@@ -50,6 +51,16 @@ Este repositorio contiene el proyecto **Aventura Multimateria**, una aplicación
 - `npm run db:push` — Aplica migraciones a la base de datos
 - `npm run types:generate` — Genera tipos TypeScript desde Supabase
 - `npm test` — Ejecuta los tests con Jest y React Testing Library
+
+## Despliegue en Vercel
+
+Puedes desplegar este proyecto fácilmente en [Vercel](https://vercel.com/):
+
+1. Haz push de tu rama principal a GitHub.
+2. Conecta tu repositorio en Vercel y selecciona la carpeta `aventura-multimateria` como raíz del proyecto si es necesario.
+3. Vercel instalará automáticamente las dependencias y ejecutará el build.
+
+Si ves errores de dependencias, asegúrate de que todas estén listadas en `package.json` y subidas a tu repositorio.
 
 ## Licencia
 
