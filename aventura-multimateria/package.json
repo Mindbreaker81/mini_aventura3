@@ -1,0 +1,46 @@
+{
+  "name": "aventura-multimateria",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:push": "supabase db push",
+    "types:generate": "supabase gen types typescript --project-id rsbregvlipetcvrakbgy --schema public > src/types/supabase.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "blockly": "^12.1.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.525.0",
+    "next": "15.3.4",
+    "next-i18next": "^15.4.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "react-player": "^3.1.0",
+    "react-simple-maps": "^3.0.0",
+    "topojson-client": "^3.1.0",
+    "zustand": "^5.0.6"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "supabase": "^2.30.4",
+    "tailwindcss": "^4",
+    "typescript": "5.8.3"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

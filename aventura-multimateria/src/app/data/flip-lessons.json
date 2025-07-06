@@ -1,0 +1,434 @@
+[
+  {
+    "id": "agua-estados",
+    "title": "Los estados del agua",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/agua-estados.vtt",
+    "questions": [
+      {
+        "q": "¿A qué temperatura hierve el agua al nivel del mar?",
+        "options": ["90 °C", "100 °C", "120 °C"],
+        "answer": 1,
+        "explanation": "En condiciones normales, el agua hierve a 100 °C."
+      },
+      {
+        "q": "¿Cómo se llama el cambio de sólido a líquido?",
+        "options": ["Condensación", "Fusión", "Solidificación"],
+        "answer": 1,
+        "explanation": "El hielo se funde al convertirse en agua líquida."
+      },
+      {
+        "q": "¿Qué estado tiene el agua en las nubes?",
+        "options": ["Gas", "Líquido", "Sólido"],
+        "answer": 0,
+        "explanation": "El vapor de agua (estado gaseoso) forma las nubes."
+      }
+    ],
+    "thumbnail": "/img/agua-estados.jpg"
+  },
+  {
+    "id": "fotosintesis",
+    "title": "La fotosíntesis en las plantas",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/fotosintesis.vtt",
+    "questions": [
+      {
+        "q": "¿Qué gas producen las plantas durante la fotosíntesis?",
+        "options": ["Dióxido de carbono", "Oxígeno", "Nitrógeno"],
+        "answer": 1,
+        "explanation": "Las plantas liberan oxígeno como subproducto de la fotosíntesis."
+      },
+      {
+        "q": "¿Qué necesitan las plantas para hacer la fotosíntesis?",
+        "options": ["Luz solar, agua y CO₂", "Solo agua", "Solo luz solar"],
+        "answer": 0,
+        "explanation": "La fotosíntesis requiere luz solar, agua y dióxido de carbono."
+      },
+      {
+        "q": "¿En qué parte de la planta ocurre principalmente la fotosíntesis?",
+        "options": ["Raíces", "Hojas", "Flores"],
+        "answer": 1,
+        "explanation": "Las hojas contienen clorofila, donde ocurre la fotosíntesis."
+      }
+    ],
+    "thumbnail": "/img/fotosintesis.jpg"
+  },
+  {
+    "id": "cadena-alimentaria",
+    "title": "La cadena alimentaria",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/cadena-alimentaria.vtt",
+    "questions": [
+      {
+        "q": "¿Cuál es el primer eslabón de la cadena alimentaria?",
+        "options": ["Carnívoros", "Productores", "Descomponedores"],
+        "answer": 1,
+        "explanation": "Los productores (plantas) son la base de toda cadena alimentaria."
+      },
+      {
+        "q": "¿Qué son los herbívoros?",
+        "options": ["Animales que comen carne", "Animales que comen plantas", "Animales que comen de todo"],
+        "answer": 1,
+        "explanation": "Los herbívoros se alimentan exclusivamente de plantas."
+      },
+      {
+        "q": "¿Cuál es la función de los descomponedores?",
+        "options": ["Cazar otros animales", "Reciclar nutrientes", "Producir energía"],
+        "answer": 1,
+        "explanation": "Los descomponedores devuelven los nutrientes al suelo."
+      }
+    ],
+    "thumbnail": "/img/cadena-alimentaria.jpg"
+  },
+  {
+    "id": "sistema-solar",
+    "title": "Nuestro sistema solar",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/sistema-solar.vtt",
+    "questions": [
+      {
+        "q": "¿Cuál es el planeta más cercano al Sol?",
+        "options": ["Venus", "Mercurio", "Tierra"],
+        "answer": 1,
+        "explanation": "Mercurio es el planeta más próximo a nuestra estrella."
+      },
+      {
+        "q": "¿Cuántos planetas hay en nuestro sistema solar?",
+        "options": ["7", "8", "9"],
+        "answer": 1,
+        "explanation": "Actualmente se reconocen 8 planetas en el sistema solar."
+      },
+      {
+        "q": "¿Cuál es el planeta más grande?",
+        "options": ["Saturno", "Júpiter", "Neptuno"],
+        "answer": 1,
+        "explanation": "Júpiter es el planeta gigante de nuestro sistema solar."
+      }
+    ],
+    "thumbnail": "/img/sistema-solar.jpg"
+  },
+  {
+    "id": "magnetismo",
+    "title": "Los materiales magnéticos",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/magnetismo.vtt",
+    "questions": [
+      {
+        "q": "¿Cuál de estos materiales es magnético?",
+        "options": ["Madera", "Hierro", "Plástico"],
+        "answer": 1,
+        "explanation": "El hierro es un material ferromagnético que se atrae a los imanes."
+      },
+      {
+        "q": "¿Cómo se llaman los extremos de un imán?",
+        "options": ["Polos norte y sur", "Lados positivo y negativo", "Extremos alfa y beta"],
+        "answer": 0,
+        "explanation": "Los imanes tienen un polo norte y un polo sur."
+      },
+      {
+        "q": "¿Qué ocurre cuando acercas dos polos iguales?",
+        "options": ["Se atraen", "Se repelen", "No pasa nada"],
+        "answer": 1,
+        "explanation": "Los polos iguales se repelen, los opuestos se atraen."
+      }
+    ],
+    "thumbnail": "/img/magnetismo.jpg"
+  },
+  {
+    "id": "corazon-humano",
+    "title": "El corazón y la circulación",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/corazon-humano.vtt",
+    "questions": [
+      {
+        "q": "¿Cuántas cavidades tiene el corazón humano?",
+        "options": ["2", "4", "6"],
+        "answer": 1,
+        "explanation": "El corazón tiene cuatro cavidades: dos aurículas y dos ventrículos."
+      },
+      {
+        "q": "¿Qué transporta la sangre por todo el cuerpo?",
+        "options": ["Solo oxígeno", "Oxígeno y nutrientes", "Solo nutrientes"],
+        "answer": 1,
+        "explanation": "La sangre lleva oxígeno y nutrientes a todas las células."
+      },
+      {
+        "q": "¿Cuál es la función principal del corazón?",
+        "options": ["Respirar", "Bombear sangre", "Digerir alimentos"],
+        "answer": 1,
+        "explanation": "El corazón bombea sangre a través del sistema circulatorio."
+      }
+    ],
+    "thumbnail": "/img/corazon-humano.jpg"
+  },
+  {
+    "id": "respiracion",
+    "title": "El sistema respiratorio",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/respiracion.vtt",
+    "questions": [
+      {
+        "q": "¿Qué gas tomamos del aire al respirar?",
+        "options": ["Dióxido de carbono", "Oxígeno", "Nitrógeno"],
+        "answer": 1,
+        "explanation": "Al inspirar, nuestros pulmones toman oxígeno del aire."
+      },
+      {
+        "q": "¿Dónde ocurre el intercambio de gases?",
+        "options": ["En los alvéolos", "En la tráquea", "En los bronquios"],
+        "answer": 0,
+        "explanation": "Los alvéolos pulmonares son donde se intercambian O₂ y CO₂."
+      },
+      {
+        "q": "¿Qué expulsamos al exhalar?",
+        "options": ["Oxígeno", "Dióxido de carbono", "Vapor de agua"],
+        "answer": 1,
+        "explanation": "Al exhalar eliminamos el CO₂ producido por las células."
+      }
+    ],
+    "thumbnail": "/img/respiracion.jpg"
+  },
+  {
+    "id": "digestion",
+    "title": "El proceso de la digestión",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/digestion.vtt",
+    "questions": [
+      {
+        "q": "¿Dónde comienza la digestión?",
+        "options": ["En el estómago", "En la boca", "En el intestino"],
+        "answer": 1,
+        "explanation": "La digestión empieza en la boca con la masticación y la saliva."
+      },
+      {
+        "q": "¿Cuál es la función del estómago?",
+        "options": ["Absorber nutrientes", "Descomponer alimentos", "Eliminar desechos"],
+        "answer": 1,
+        "explanation": "El estómago produce ácidos que descomponen los alimentos."
+      },
+      {
+        "q": "¿Dónde se absorben principalmente los nutrientes?",
+        "options": ["Intestino delgado", "Intestino grueso", "Estómago"],
+        "answer": 0,
+        "explanation": "El intestino delgado es donde se absorben la mayoría de nutrientes."
+      }
+    ],
+    "thumbnail": "/img/digestion.jpg"
+  },
+  {
+    "id": "densidad",
+    "title": "La densidad de los materiales",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/densidad.vtt",
+    "questions": [
+      {
+        "q": "¿Por qué flota el hielo en el agua?",
+        "options": ["Es más pesado", "Es menos denso", "Tiene aire"],
+        "answer": 1,
+        "explanation": "El hielo es menos denso que el agua líquida, por eso flota."
+      },
+      {
+        "q": "¿Qué material es más denso?",
+        "options": ["Madera", "Hierro", "Corcho"],
+        "answer": 1,
+        "explanation": "El hierro tiene mayor densidad que la madera y el corcho."
+      },
+      {
+        "q": "¿Cómo se calcula la densidad?",
+        "options": ["Masa ÷ Volumen", "Volumen ÷ Masa", "Masa × Volumen"],
+        "answer": 0,
+        "explanation": "Densidad = Masa dividida entre Volumen (D = m/V)."
+      }
+    ],
+    "thumbnail": "/img/densidad.jpg"
+  },
+  {
+    "id": "electricidad",
+    "title": "La electricidad estática",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/electricidad.vtt",
+    "questions": [
+      {
+        "q": "¿Qué sucede cuando frotas un globo en tu cabello?",
+        "options": ["Se carga eléctricamente", "Se calienta", "Cambia de color"],
+        "answer": 0,
+        "explanation": "El frotamiento genera electricidad estática en el globo."
+      },
+      {
+        "q": "¿Qué tipo de cargas se atraen?",
+        "options": ["Iguales", "Opuestas", "Neutras"],
+        "answer": 1,
+        "explanation": "Las cargas opuestas (+ y -) se atraen entre sí."
+      },
+      {
+        "q": "¿Cuál es un buen conductor de electricidad?",
+        "options": ["Madera", "Metal", "Goma"],
+        "answer": 1,
+        "explanation": "Los metales son excelentes conductores eléctricos."
+      }
+    ],
+    "thumbnail": "/img/electricidad.jpg"
+  },
+  {
+    "id": "ecosistemas",
+    "title": "Los ecosistemas terrestres",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/ecosistemas.vtt",
+    "questions": [
+      {
+        "q": "¿Qué es un ecosistema?",
+        "options": ["Solo animales", "Solo plantas", "Seres vivos y su ambiente"],
+        "answer": 2,
+        "explanation": "Un ecosistema incluye todos los seres vivos y su entorno físico."
+      },
+      {
+        "q": "¿Cuál es el ecosistema más biodiverso?",
+        "options": ["Desierto", "Selva tropical", "Tundra"],
+        "answer": 1,
+        "explanation": "Las selvas tropicales albergan la mayor diversidad de especies."
+      },
+      {
+        "q": "¿Qué factores componen el medio abiótico?",
+        "options": ["Solo temperatura", "Agua, suelo, clima", "Solo animales"],
+        "answer": 1,
+        "explanation": "El medio abiótico incluye agua, suelo, temperatura y clima."
+      }
+    ],
+    "thumbnail": "/img/ecosistemas.jpg"
+  },
+  {
+    "id": "volcanes",
+    "title": "Los volcanes y terremotos",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/volcanes.vtt",
+    "questions": [
+      {
+        "q": "¿Cómo se llama la roca fundida dentro del volcán?",
+        "options": ["Lava", "Magma", "Ceniza"],
+        "answer": 1,
+        "explanation": "El magma es la roca fundida bajo tierra; lava es cuando sale."
+      },
+      {
+        "q": "¿Qué causa los terremotos?",
+        "options": ["Movimiento de placas", "Lluvia intensa", "Viento fuerte"],
+        "answer": 0,
+        "explanation": "Los terremotos se deben al movimiento de las placas tectónicas."
+      },
+      {
+        "q": "¿Dónde se forman la mayoría de volcanes?",
+        "options": ["Centro de continentes", "Bordes de placas", "Bajo el mar"],
+        "answer": 1,
+        "explanation": "Los volcanes se forman principalmente en los bordes de placas."
+      }
+    ],
+    "thumbnail": "/img/volcanes.jpg"
+  },
+  {
+    "id": "energia-solar",
+    "title": "La energía del Sol",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/energia-solar.vtt",
+    "questions": [
+      {
+        "q": "¿Cómo llega la energía del Sol a la Tierra?",
+        "options": ["Por radiación", "Por conducción", "Por convección"],
+        "answer": 0,
+        "explanation": "La energía solar viaja como radiación electromagnética."
+      },
+      {
+        "q": "¿Qué es una fuente de energía renovable?",
+        "options": ["Petróleo", "Energía solar", "Carbón"],
+        "answer": 1,
+        "explanation": "La energía solar es renovable porque el Sol no se agota."
+      },
+      {
+        "q": "¿Para qué usan las plantas la energía solar?",
+        "options": ["Para crecer", "Para hacer fotosíntesis", "Para reproducirse"],
+        "answer": 1,
+        "explanation": "Las plantas usan energía solar para realizar la fotosíntesis."
+      }
+    ],
+    "thumbnail": "/img/energia-solar.jpg"
+  },
+  {
+    "id": "ciclo-agua",
+    "title": "El ciclo del agua",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/ciclo-agua.vtt",
+    "questions": [
+      {
+        "q": "¿Cómo se llama cuando el agua se convierte en vapor?",
+        "options": ["Condensación", "Evaporación", "Precipitación"],
+        "answer": 1,
+        "explanation": "La evaporación es el paso de líquido a gas por el calor solar."
+      },
+      {
+        "q": "¿Dónde se forma principalmente la lluvia?",
+        "options": ["En las montañas", "En las nubes", "En los océanos"],
+        "answer": 1,
+        "explanation": "La lluvia se forma en las nubes por condensación del vapor."
+      },
+      {
+        "q": "¿Qué impulsa principalmente el ciclo del agua?",
+        "options": ["El viento", "La energía solar", "La gravedad"],
+        "answer": 1,
+        "explanation": "El Sol proporciona la energía que mueve el ciclo del agua."
+      }
+    ],
+    "thumbnail": "/img/ciclo-agua.jpg"
+  },
+  {
+    "id": "huesos-musculos",
+    "title": "Huesos y músculos",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/huesos-musculos.vtt",
+    "questions": [
+      {
+        "q": "¿Cuántos huesos tiene aproximadamente un adulto?",
+        "options": ["150", "206", "300"],
+        "answer": 1,
+        "explanation": "Un adulto tiene aproximadamente 206 huesos en su esqueleto."
+      },
+      {
+        "q": "¿Cuál es la función principal de los músculos?",
+        "options": ["Proteger órganos", "Producir movimiento", "Almacenar energía"],
+        "answer": 1,
+        "explanation": "Los músculos se contraen para producir movimiento corporal."
+      },
+      {
+        "q": "¿Cómo se llama el hueso más largo del cuerpo?",
+        "options": ["Húmero", "Fémur", "Tibia"],
+        "answer": 1,
+        "explanation": "El fémur (hueso del muslo) es el más largo del cuerpo humano."
+      }
+    ],
+    "thumbnail": "/img/huesos-musculos.jpg"
+  },
+  {
+    "id": "mezclas-sustancias",
+    "title": "Mezclas y sustancias puras",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "captions": "/captions/mezclas-sustancias.vtt",
+    "questions": [
+      {
+        "q": "¿Cuál es un ejemplo de mezcla homogénea?",
+        "options": ["Agua con aceite", "Agua con sal disuelta", "Arena con piedras"],
+        "answer": 1,
+        "explanation": "El agua salada es homogénea porque la sal se disuelve completamente."
+      },
+      {
+        "q": "¿Cómo se puede separar la sal del agua?",
+        "options": ["Filtración", "Evaporación", "Decantación"],
+        "answer": 1,
+        "explanation": "Al evaporar el agua, la sal queda como residuo sólido."
+      },
+      {
+        "q": "¿Qué es una sustancia pura?",
+        "options": ["Una mezcla", "Un solo tipo de materia", "Varios materiales juntos"],
+        "answer": 1,
+        "explanation": "Una sustancia pura contiene un solo tipo de materia."
+      }
+    ],
+    "thumbnail": "/img/mezclas-sustancias.jpg"
+  }
+]

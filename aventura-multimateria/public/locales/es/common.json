@@ -1,0 +1,20 @@
+{
+  "bosc": {
+    "completed": "¡Has completado el Bosque de Lectura!",
+    "failed": "Te has quedado sin energía. ¿Quieres volver a intentarlo?",
+    "retry": "Reintentar",
+    "badge": "Guardabosques Experto",
+    "heart": "corazón",
+    "next": "Siguiente",
+    "check": "Comprobar",
+    "true": "Verdadero",
+    "false": "Falso"
+  },
+  "exit": "Salir",
+  "correct": "¡Correcto!",
+  "bosc-lectura": {
+    "id": "bosc-lectura",
+    "name": "Bosque de Lectura",
+    "description": "Lee textos y responde preguntas para iluminar el bosque!"
+  }
+}

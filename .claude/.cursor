@@ -1,0 +1,15 @@
+{
+  "explain_every_change": true,
+  "prevent_deleting_code": true,
+  "require_tests_for_changes": true,
+  "prefer_simple_language": true,
+  "ask_before_applying_changes": true,
+  "limit_changes_to_current_file": false,
+  "avoid_experimental_features": true,
+  "enforce_code_style": "prettier",
+  "avoid_adding_dependencies": true,
+  "teach_mode": true,
+  "language": "es",
+  "friendly_mode": true,
+  "update_related_files_on_structure_change": true
+}

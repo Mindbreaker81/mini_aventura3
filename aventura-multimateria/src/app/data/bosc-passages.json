@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "El gos i l’os",
+    "paragraph": "Un gos petit trobà un os de mel al bosc. L’os el mirà amb curiositat, però el gos, en comptes d’espantar-se, li oferí compartir la seva galeta...",
+    "questions": [
+      {
+        "q": "Quin animal troba el gos?",
+        "type": "single",
+        "options": ["Un gat", "Un os", "Una guineu"],
+        "answer": 1,
+        "explanation": "El text diu: 'L’os el mirà amb curiositat'."
+      },
+      {
+        "q": "El gos s’espanta quan veu l’os.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El text indica que no s’espanta, sinó que li ofereix una galeta."
+      }
+    ]
+  }
+]

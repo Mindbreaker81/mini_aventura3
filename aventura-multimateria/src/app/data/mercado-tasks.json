@@ -1,0 +1,722 @@
+[
+  {
+    "id": 101,
+    "type": "PAGO",
+    "statement": "Paga exactamente €3,65 por una barra de pan y un zumo.",
+    "amount": 3.65,
+    "explanation": "3 € (billete) + 50 c + 10 c + 5 c."
+  },
+  {
+    "id": 102,
+    "type": "PAGO",
+    "statement": "Compra leche por €1,85. ¿Cómo puedes pagarlo?",
+    "amount": 1.85,
+    "explanation": "1 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 103,
+    "type": "PAGO",
+    "statement": "El precio de unas manzanas es €2,40.",
+    "amount": 2.40,
+    "explanation": "2 € + 20 c + 20 c."
+  },
+  {
+    "id": 104,
+    "type": "PAGO",
+    "statement": "Paga €5,20 por un bocadillo.",
+    "amount": 5.20,
+    "explanation": "5 € + 20 c."
+  },
+  {
+    "id": 105,
+    "type": "PAGO",
+    "statement": "Una botella de agua cuesta €0,75.",
+    "amount": 0.75,
+    "explanation": "50 c + 20 c + 5 c."
+  },
+  {
+    "id": 106,
+    "type": "PAGO",
+    "statement": "Compra chocolate por €4,15.",
+    "amount": 4.15,
+    "explanation": "2 € + 2 € + 10 c + 5 c."
+  },
+  {
+    "id": 107,
+    "type": "PAGO",
+    "statement": "El yogur cuesta €1,20.",
+    "amount": 1.20,
+    "explanation": "1 € + 20 c."
+  },
+  {
+    "id": 108,
+    "type": "PAGO",
+    "statement": "Paga €6,50 por queso.",
+    "amount": 6.50,
+    "explanation": "5 € + 1 € + 50 c."
+  },
+  {
+    "id": 109,
+    "type": "PAGO",
+    "statement": "Las galletas cuestan €2,95.",
+    "amount": 2.95,
+    "explanation": "2 € + 50 c + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 110,
+    "type": "PAGO",
+    "statement": "Compra fruta por €3,30.",
+    "amount": 3.30,
+    "explanation": "2 € + 1 € + 20 c + 10 c."
+  },
+  {
+    "id": 111,
+    "type": "PAGO",
+    "statement": "El jamón cuesta €7,85.",
+    "amount": 7.85,
+    "explanation": "5 € + 2 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 112,
+    "type": "PAGO",
+    "statement": "Paga €1,55 por caramelos.",
+    "amount": 1.55,
+    "explanation": "1 € + 50 c + 5 c."
+  },
+  {
+    "id": 113,
+    "type": "PAGO",
+    "statement": "Las patatas cuestan €2,10.",
+    "amount": 2.10,
+    "explanation": "2 € + 10 c."
+  },
+  {
+    "id": 114,
+    "type": "PAGO",
+    "statement": "Compra aceite por €4,75.",
+    "amount": 4.75,
+    "explanation": "2 € + 2 € + 50 c + 20 c + 5 c."
+  },
+  {
+    "id": 115,
+    "type": "PAGO",
+    "statement": "El arroz cuesta €1,35.",
+    "amount": 1.35,
+    "explanation": "1 € + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 116,
+    "type": "PAGO",
+    "statement": "Paga €8,25 por carne.",
+    "amount": 8.25,
+    "explanation": "5 € + 2 € + 1 € + 20 c + 5 c."
+  },
+  {
+    "id": 117,
+    "type": "PAGO",
+    "statement": "Las cerezas cuestan €3,05.",
+    "amount": 3.05,
+    "explanation": "2 € + 1 € + 5 c."
+  },
+  {
+    "id": 118,
+    "type": "PAGO",
+    "statement": "Compra pasta por €1,90.",
+    "amount": 1.90,
+    "explanation": "1 € + 50 c + 20 c + 20 c."
+  },
+  {
+    "id": 202,
+    "type": "HORA",
+    "statement": "Son las 17:10 y la tienda cierra a las 18:00. ¿Cuánto falta?",
+    "options": ["50 min", "40 min", "1 h"],
+    "answer": 0,
+    "explanation": "De 17:10 a 18:00 hay 50 min."
+  },
+  {
+    "id": 203,
+    "type": "HORA",
+    "statement": "Son las 15:30 y cierran a las 17:00. ¿Cuánto tiempo queda?",
+    "options": ["1 h 30 min", "2 h", "1 h"],
+    "answer": 0,
+    "explanation": "De 15:30 a 17:00 hay 1 hora y 30 minutos."
+  },
+  {
+    "id": 204,
+    "type": "HORA",
+    "statement": "Son las 16:45 y la tienda cierra a las 18:30. ¿Cuánto falta?",
+    "options": ["1 h 45 min", "2 h 15 min", "1 h 15 min"],
+    "answer": 0,
+    "explanation": "De 16:45 a 18:30 hay 1 hora y 45 minutos."
+  },
+  {
+    "id": 205,
+    "type": "HORA",
+    "statement": "Son las 14:20 y cierran a las 16:00. ¿Cuánto tiempo queda?",
+    "options": ["1 h 40 min", "2 h 20 min", "1 h 20 min"],
+    "answer": 0,
+    "explanation": "De 14:20 a 16:00 hay 1 hora y 40 minutos."
+  },
+  {
+    "id": 206,
+    "type": "HORA",
+    "statement": "Son las 17:25 y la tienda cierra a las 18:15. ¿Cuánto falta?",
+    "options": ["50 min", "45 min", "1 h 10 min"],
+    "answer": 0,
+    "explanation": "De 17:25 a 18:15 hay 50 minutos."
+  },
+  {
+    "id": 207,
+    "type": "HORA",
+    "statement": "Son las 16:10 y cierran a las 17:30. ¿Cuánto tiempo queda?",
+    "options": ["1 h 20 min", "1 h 40 min", "1 h 10 min"],
+    "answer": 0,
+    "explanation": "De 16:10 a 17:30 hay 1 hora y 20 minutos."
+  },
+  {
+    "id": 208,
+    "type": "HORA",
+    "statement": "Son las 15:15 y la tienda cierra a las 17:45. ¿Cuánto falta?",
+    "options": ["2 h 30 min", "2 h 15 min", "2 h 45 min"],
+    "answer": 0,
+    "explanation": "De 15:15 a 17:45 hay 2 horas y 30 minutos."
+  },
+  {
+    "id": 209,
+    "type": "HORA",
+    "statement": "Son las 16:35 y cierran a las 18:00. ¿Cuánto tiempo queda?",
+    "options": ["1 h 25 min", "1 h 35 min", "1 h 15 min"],
+    "answer": 0,
+    "explanation": "De 16:35 a 18:00 hay 1 hora y 25 minutos."
+  },
+  {
+    "id": 210,
+    "type": "HORA",
+    "statement": "Son las 17:05 y la tienda cierra a las 18:20. ¿Cuánto falta?",
+    "options": ["1 h 15 min", "1 h 25 min", "1 h 5 min"],
+    "answer": 0,
+    "explanation": "De 17:05 a 18:20 hay 1 hora y 15 minutos."
+  },
+  {
+    "id": 211,
+    "type": "HORA",
+    "statement": "Son las 14:50 y cierran a las 16:30. ¿Cuánto tiempo queda?",
+    "options": ["1 h 40 min", "1 h 30 min", "1 h 50 min"],
+    "answer": 0,
+    "explanation": "De 14:50 a 16:30 hay 1 hora y 40 minutos."
+  },
+  {
+    "id": 212,
+    "type": "HORA",
+    "statement": "Son las 15:45 y la tienda cierra a las 17:15. ¿Cuánto falta?",
+    "options": ["1 h 30 min", "1 h 15 min", "1 h 45 min"],
+    "answer": 0,
+    "explanation": "De 15:45 a 17:15 hay 1 hora y 30 minutos."
+  },
+  {
+    "id": 213,
+    "type": "HORA",
+    "statement": "Son las 16:20 y cierran a las 18:45. ¿Cuánto tiempo queda?",
+    "options": ["2 h 25 min", "2 h 15 min", "2 h 35 min"],
+    "answer": 0,
+    "explanation": "De 16:20 a 18:45 hay 2 horas y 25 minutos."
+  },
+  {
+    "id": 214,
+    "type": "HORA",
+    "statement": "Son las 17:30 y la tienda cierra a las 18:15. ¿Cuánto falta?",
+    "options": ["45 min", "30 min", "1 h"],
+    "answer": 0,
+    "explanation": "De 17:30 a 18:15 hay 45 minutos."
+  },
+  {
+    "id": 215,
+    "type": "HORA",
+    "statement": "Son las 14:15 y cierran a las 16:45. ¿Cuánto tiempo queda?",
+    "options": ["2 h 30 min", "2 h 15 min", "2 h 45 min"],
+    "answer": 0,
+    "explanation": "De 14:15 a 16:45 hay 2 horas y 30 minutos."
+  },
+  {
+    "id": 216,
+    "type": "HORA",
+    "statement": "Son las 15:55 y la tienda cierra a las 17:10. ¿Cuánto falta?",
+    "options": ["1 h 15 min", "1 h 5 min", "1 h 25 min"],
+    "answer": 0,
+    "explanation": "De 15:55 a 17:10 hay 1 hora y 15 minutos."
+  },
+  {
+    "id": 217,
+    "type": "HORA",
+    "statement": "Son las 16:40 y cierran a las 18:25. ¿Cuánto tiempo queda?",
+    "options": ["1 h 45 min", "1 h 25 min", "1 h 55 min"],
+    "answer": 0,
+    "explanation": "De 16:40 a 18:25 hay 1 hora y 45 minutos."
+  },
+  {
+    "id": 303,
+    "type": "FRACCION",
+    "statement": "Necesitas 3/4 kg de azúcar. Si cada bolsa pesa 1/4 kg, ¿cuántas bolsas compras?",
+    "answer": 3,
+    "explanation": "3 bolsas de 1/4 kg suman 3/4 kg."
+  },
+  {
+    "id": 304,
+    "type": "FRACCION",
+    "statement": "Quieres comprar 1/2 kg de harina. Las bolsas son de 1/4 kg. ¿Cuántas necesitas?",
+    "answer": 2,
+    "explanation": "2 bolsas de 1/4 kg suman 1/2 kg."
+  },
+  {
+    "id": 305,
+    "type": "FRACCION",
+    "statement": "Una pizza se divide en 8 trozos iguales. Te comes 3 trozos. ¿Qué fracción comiste?",
+    "options": ["3/8", "1/4", "1/2"],
+    "answer": 0,
+    "explanation": "3 trozos de 8 es 3/8 de la pizza."
+  },
+  {
+    "id": 306,
+    "type": "FRACCION",
+    "statement": "Necesitas 1 kg de arroz. Las bolsas son de 1/2 kg. ¿Cuántas bolsas compras?",
+    "answer": 2,
+    "explanation": "2 bolsas de 1/2 kg suman 1 kg completo."
+  },
+  {
+    "id": 307,
+    "type": "FRACCION",
+    "statement": "Un pastel se corta en 4 partes iguales. Te comes 1 parte. ¿Qué fracción queda?",
+    "options": ["3/4", "1/4", "1/2"],
+    "answer": 0,
+    "explanation": "Si comes 1/4, quedan 3/4 del pastel."
+  },
+  {
+    "id": 308,
+    "type": "FRACCION",
+    "statement": "Quieres 3/8 kg de queso. Las porciones son de 1/8 kg. ¿Cuántas porciones necesitas?",
+    "answer": 3,
+    "explanation": "3 porciones de 1/8 kg suman 3/8 kg."
+  },
+  {
+    "id": 309,
+    "type": "FRACCION",
+    "statement": "Una chocolatina tiene 8 cuadraditos. Te comes la mitad. ¿Cuántos cuadraditos comiste?",
+    "answer": 4,
+    "explanation": "La mitad de 8 cuadraditos son 4 cuadraditos."
+  },
+  {
+    "id": 310,
+    "type": "FRACCION",
+    "statement": "Necesitas 1/4 kg de jamón. Las lonchas pesan 1/8 kg cada una. ¿Cuántas lonchas compras?",
+    "answer": 2,
+    "explanation": "2 lonchas de 1/8 kg suman 1/4 kg."
+  },
+  {
+    "id": 311,
+    "type": "FRACCION",
+    "statement": "Una tableta de chocolate tiene 12 trozos. Te comes 1/4 de la tableta. ¿Cuántos trozos comiste?",
+    "answer": 3,
+    "explanation": "1/4 de 12 trozos son 3 trozos."
+  },
+  {
+    "id": 312,
+    "type": "FRACCION",
+    "statement": "Compras 1/2 docena de huevos. ¿Cuántos huevos son?",
+    "answer": 6,
+    "explanation": "1/2 de 12 huevos (una docena) son 6 huevos."
+  },
+  {
+    "id": 313,
+    "type": "FRACCION",
+    "statement": "Una barra de pan se corta en 8 rebanadas. Usas 1/2 de la barra. ¿Cuántas rebanadas usaste?",
+    "answer": 4,
+    "explanation": "1/2 de 8 rebanadas son 4 rebanadas."
+  },
+  {
+    "id": 314,
+    "type": "FRACCION",
+    "statement": "Quieres 5/8 kg de carne. Las porciones son de 1/8 kg. ¿Cuántas porciones necesitas?",
+    "answer": 5,
+    "explanation": "5 porciones de 1/8 kg suman 5/8 kg."
+  },
+  {
+    "id": 315,
+    "type": "FRACCION",
+    "statement": "Una pizza grande se divide en 8 trozos. Compartes 3/4 de la pizza. ¿Cuántos trozos compartes?",
+    "answer": 6,
+    "explanation": "3/4 de 8 trozos son 6 trozos."
+  },
+  {
+    "id": 316,
+    "type": "FRACCION",
+    "statement": "Necesitas 7/8 kg de verduras. Las bolsas son de 1/8 kg. ¿Cuántas bolsas compras?",
+    "answer": 7,
+    "explanation": "7 bolsas de 1/8 kg suman 7/8 kg."
+  },
+  {
+    "id": 317,
+    "type": "FRACCION",
+    "statement": "Un bizcocho se corta en 6 porciones iguales. Te comes 1/3 del bizcocho. ¿Cuántas porciones comiste?",
+    "answer": 2,
+    "explanation": "1/3 de 6 porciones son 2 porciones."
+  },
+  {
+    "id": 119,
+    "type": "PAGO",
+    "statement": "Compra sardinas por €5,75.",
+    "amount": 5.75,
+    "explanation": "5 € + 50 c + 20 c + 5 c."
+  },
+  {
+    "id": 120,
+    "type": "PAGO",
+    "statement": "El atún cuesta €6,90.",
+    "amount": 6.90,
+    "explanation": "5 € + 1 € + 50 c + 20 c + 20 c."
+  },
+  {
+    "id": 121,
+    "type": "PAGO",
+    "statement": "Paga €4,05 por tomates.",
+    "amount": 4.05,
+    "explanation": "2 € + 2 € + 5 c."
+  },
+  {
+    "id": 122,
+    "type": "PAGO",
+    "statement": "Las peras cuestan €3,80.",
+    "amount": 3.80,
+    "explanation": "2 € + 1 € + 50 c + 20 c + 10 c."
+  },
+  {
+    "id": 123,
+    "type": "PAGO",
+    "statement": "Compra lechuga por €1,45.",
+    "amount": 1.45,
+    "explanation": "1 € + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 124,
+    "type": "PAGO",
+    "statement": "El salmón cuesta €9,15.",
+    "amount": 9.15,
+    "explanation": "5 € + 2 € + 2 € + 10 c + 5 c."
+  },
+  {
+    "id": 125,
+    "type": "PAGO",
+    "statement": "Paga €2,65 por zanahorias.",
+    "amount": 2.65,
+    "explanation": "2 € + 50 c + 10 c + 5 c."
+  },
+  {
+    "id": 126,
+    "type": "PAGO",
+    "statement": "Las naranjas cuestan €4,20.",
+    "amount": 4.20,
+    "explanation": "2 € + 2 € + 20 c."
+  },
+  {
+    "id": 127,
+    "type": "PAGO",
+    "statement": "Compra merluza por €7,35.",
+    "amount": 7.35,
+    "explanation": "5 € + 2 € + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 128,
+    "type": "PAGO",
+    "statement": "El apio cuesta €1,25.",
+    "amount": 1.25,
+    "explanation": "1 € + 20 c + 5 c."
+  },
+  {
+    "id": 129,
+    "type": "PAGO",
+    "statement": "Paga €5,60 por pollo.",
+    "amount": 5.60,
+    "explanation": "5 € + 50 c + 10 c."
+  },
+  {
+    "id": 130,
+    "type": "PAGO",
+    "statement": "Las cebollas cuestan €0,95.",
+    "amount": 0.95,
+    "explanation": "50 c + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 131,
+    "type": "PAGO",
+    "statement": "Compra plátanos por €2,85.",
+    "amount": 2.85,
+    "explanation": "2 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 132,
+    "type": "PAGO",
+    "statement": "El bacalao cuesta €8,70.",
+    "amount": 8.70,
+    "explanation": "5 € + 2 € + 1 € + 50 c + 20 c."
+  },
+  {
+    "id": 133,
+    "type": "PAGO",
+    "statement": "Paga €3,15 por pepinos.",
+    "amount": 3.15,
+    "explanation": "2 € + 1 € + 10 c + 5 c."
+  },
+  {
+    "id": 134,
+    "type": "PAGO",
+    "statement": "Las uvas cuestan €6,45.",
+    "amount": 6.45,
+    "explanation": "5 € + 1 € + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 218,
+    "type": "HORA",
+    "statement": "Son las 14:40 y la tienda cierra a las 16:20. ¿Cuánto falta?",
+    "options": ["1 h 40 min", "1 h 20 min", "2 h"],
+    "answer": 0,
+    "explanation": "De 14:40 a 16:20 hay 1 hora y 40 minutos."
+  },
+  {
+    "id": 219,
+    "type": "HORA",
+    "statement": "Son las 15:25 y cierran a las 17:50. ¿Cuánto tiempo queda?",
+    "options": ["2 h 25 min", "2 h 35 min", "2 h 15 min"],
+    "answer": 0,
+    "explanation": "De 15:25 a 17:50 hay 2 horas y 25 minutos."
+  },
+  {
+    "id": 220,
+    "type": "HORA",
+    "statement": "Son las 16:15 y la tienda cierra a las 17:00. ¿Cuánto falta?",
+    "options": ["45 min", "1 h 15 min", "30 min"],
+    "answer": 0,
+    "explanation": "De 16:15 a 17:00 hay 45 minutos."
+  },
+  {
+    "id": 221,
+    "type": "HORA",
+    "statement": "Son las 17:20 y cierran a las 18:35. ¿Cuánto tiempo queda?",
+    "options": ["1 h 15 min", "1 h 25 min", "1 h 5 min"],
+    "answer": 0,
+    "explanation": "De 17:20 a 18:35 hay 1 hora y 15 minutos."
+  },
+  {
+    "id": 222,
+    "type": "HORA",
+    "statement": "Son las 14:35 y la tienda cierra a las 16:10. ¿Cuánto falta?",
+    "options": ["1 h 35 min", "1 h 25 min", "1 h 45 min"],
+    "answer": 0,
+    "explanation": "De 14:35 a 16:10 hay 1 hora y 35 minutos."
+  },
+  {
+    "id": 223,
+    "type": "HORA",
+    "statement": "Son las 15:50 y cierran a las 18:05. ¿Cuánto tiempo queda?",
+    "options": ["2 h 15 min", "2 h 25 min", "2 h 5 min"],
+    "answer": 0,
+    "explanation": "De 15:50 a 18:05 hay 2 horas y 15 minutos."
+  },
+  {
+    "id": 224,
+    "type": "HORA",
+    "statement": "Son las 16:25 y la tienda cierra a las 17:40. ¿Cuánto falta?",
+    "options": ["1 h 15 min", "1 h 25 min", "1 h 5 min"],
+    "answer": 0,
+    "explanation": "De 16:25 a 17:40 hay 1 hora y 15 minutos."
+  },
+  {
+    "id": 225,
+    "type": "HORA",
+    "statement": "Son las 17:15 y cierran a las 18:50. ¿Cuánto tiempo queda?",
+    "options": ["1 h 35 min", "1 h 25 min", "1 h 45 min"],
+    "answer": 0,
+    "explanation": "De 17:15 a 18:50 hay 1 hora y 35 minutos."
+  },
+  {
+    "id": 226,
+    "type": "HORA",
+    "statement": "Son las 14:25 y la tienda cierra a las 16:55. ¿Cuánto falta?",
+    "options": ["2 h 30 min", "2 h 20 min", "2 h 40 min"],
+    "answer": 0,
+    "explanation": "De 14:25 a 16:55 hay 2 horas y 30 minutos."
+  },
+  {
+    "id": 227,
+    "type": "HORA",
+    "statement": "Son las 15:05 y cierran a las 17:25. ¿Cuánto tiempo queda?",
+    "options": ["2 h 20 min", "2 h 10 min", "2 h 30 min"],
+    "answer": 0,
+    "explanation": "De 15:05 a 17:25 hay 2 horas y 20 minutos."
+  },
+  {
+    "id": 228,
+    "type": "HORA",
+    "statement": "Son las 16:50 y la tienda cierra a las 18:10. ¿Cuánto falta?",
+    "options": ["1 h 20 min", "1 h 10 min", "1 h 30 min"],
+    "answer": 0,
+    "explanation": "De 16:50 a 18:10 hay 1 hora y 20 minutos."
+  },
+  {
+    "id": 229,
+    "type": "HORA",
+    "statement": "Son las 17:35 y cierran a las 18:45. ¿Cuánto tiempo queda?",
+    "options": ["1 h 10 min", "1 h 20 min", "1 h"],
+    "answer": 0,
+    "explanation": "De 17:35 a 18:45 hay 1 hora y 10 minutos."
+  },
+  {
+    "id": 230,
+    "type": "HORA",
+    "statement": "Son las 14:45 y la tienda cierra a las 17:15. ¿Cuánto falta?",
+    "options": ["2 h 30 min", "2 h 20 min", "2 h 40 min"],
+    "answer": 0,
+    "explanation": "De 14:45 a 17:15 hay 2 horas y 30 minutos."
+  },
+  {
+    "id": 231,
+    "type": "HORA",
+    "statement": "Son las 15:35 y cierran a las 18:20. ¿Cuánto tiempo queda?",
+    "options": ["2 h 45 min", "2 h 35 min", "2 h 55 min"],
+    "answer": 0,
+    "explanation": "De 15:35 a 18:20 hay 2 horas y 45 minutos."
+  },
+  {
+    "id": 232,
+    "type": "HORA",
+    "statement": "Son las 16:05 y la tienda cierra a las 17:30. ¿Cuánto falta?",
+    "options": ["1 h 25 min", "1 h 15 min", "1 h 35 min"],
+    "answer": 0,
+    "explanation": "De 16:05 a 17:30 hay 1 hora y 25 minutos."
+  },
+  {
+    "id": 233,
+    "type": "HORA",
+    "statement": "Son las 17:00 y cierran a las 18:40. ¿Cuánto tiempo queda?",
+    "options": ["1 h 40 min", "1 h 30 min", "1 h 50 min"],
+    "answer": 0,
+    "explanation": "De 17:00 a 18:40 hay 1 hora y 40 minutos."
+  },
+  {
+    "id": 318,
+    "type": "FRACCION",
+    "statement": "Una tarta se divide en 10 porciones. Te comes 3/10 de la tarta. ¿Cuántas porciones comiste?",
+    "answer": 3,
+    "explanation": "3/10 de 10 porciones son 3 porciones."
+  },
+  {
+    "id": 319,
+    "type": "FRACCION",
+    "statement": "Necesitas 2/3 kg de pescado. Las porciones son de 1/3 kg. ¿Cuántas porciones compras?",
+    "answer": 2,
+    "explanation": "2 porciones de 1/3 kg suman 2/3 kg."
+  },
+  {
+    "id": 320,
+    "type": "FRACCION",
+    "statement": "Una sandía se corta en 16 trozos. Te comes 1/4 de la sandía. ¿Cuántos trozos comiste?",
+    "answer": 4,
+    "explanation": "1/4 de 16 trozos son 4 trozos."
+  },
+  {
+    "id": 321,
+    "type": "FRACCION",
+    "statement": "Quieres 5/6 kg de verduras. Las bolsas son de 1/6 kg. ¿Cuántas bolsas necesitas?",
+    "answer": 5,
+    "explanation": "5 bolsas de 1/6 kg suman 5/6 kg."
+  },
+  {
+    "id": 322,
+    "type": "FRACCION",
+    "statement": "Un melón se divide en 8 gajos. Te comes 3/8 del melón. ¿Cuántos gajos comiste?",
+    "answer": 3,
+    "explanation": "3/8 de 8 gajos son 3 gajos."
+  },
+  {
+    "id": 323,
+    "type": "FRACCION",
+    "statement": "Necesitas 3/5 kg de carne. Las porciones son de 1/5 kg. ¿Cuántas porciones compras?",
+    "answer": 3,
+    "explanation": "3 porciones de 1/5 kg suman 3/5 kg."
+  },
+  {
+    "id": 324,
+    "type": "FRACCION",
+    "statement": "Una barra de chocolate tiene 20 cuadraditos. Te comes 1/5 de la barra. ¿Cuántos cuadraditos comiste?",
+    "answer": 4,
+    "explanation": "1/5 de 20 cuadraditos son 4 cuadraditos."
+  },
+  {
+    "id": 325,
+    "type": "FRACCION",
+    "statement": "Quieres 4/5 kg de manzanas. Las bolsas son de 1/5 kg. ¿Cuántas bolsas necesitas?",
+    "answer": 4,
+    "explanation": "4 bolsas de 1/5 kg suman 4/5 kg."
+  },
+  {
+    "id": 326,
+    "type": "FRACCION",
+    "statement": "Una empanada se corta en 12 porciones. Te comes 1/3 de la empanada. ¿Cuántas porciones comiste?",
+    "answer": 4,
+    "explanation": "1/3 de 12 porciones son 4 porciones."
+  },
+  {
+    "id": 327,
+    "type": "FRACCION",
+    "statement": "Necesitas 7/10 kg de patatas. Las bolsas son de 1/10 kg. ¿Cuántas bolsas compras?",
+    "answer": 7,
+    "explanation": "7 bolsas de 1/10 kg suman 7/10 kg."
+  },
+  {
+    "id": 328,
+    "type": "FRACCION",
+    "statement": "Un pastel se divide en 14 trozos. Te comes 1/7 del pastel. ¿Cuántos trozos comiste?",
+    "answer": 2,
+    "explanation": "1/7 de 14 trozos son 2 trozos."
+  },
+  {
+    "id": 329,
+    "type": "FRACCION",
+    "statement": "Quieres 6/7 kg de arroz. Las bolsas son de 1/7 kg. ¿Cuántas bolsas necesitas?",
+    "answer": 6,
+    "explanation": "6 bolsas de 1/7 kg suman 6/7 kg."
+  },
+  {
+    "id": 330,
+    "type": "FRACCION",
+    "statement": "Una pizza familiar se corta en 18 trozos. Te comes 1/6 de la pizza. ¿Cuántos trozos comiste?",
+    "answer": 3,
+    "explanation": "1/6 de 18 trozos son 3 trozos."
+  },
+  {
+    "id": 331,
+    "type": "FRACCION",
+    "statement": "Necesitas 8/9 kg de harina. Las bolsas son de 1/9 kg. ¿Cuántas bolsas compras?",
+    "answer": 8,
+    "explanation": "8 bolsas de 1/9 kg suman 8/9 kg."
+  },
+  {
+    "id": 332,
+    "type": "FRACCION",
+    "statement": "Un queso se corta en 15 lonchas. Te comes 1/5 del queso. ¿Cuántas lonchas comiste?",
+    "answer": 3,
+    "explanation": "1/5 de 15 lonchas son 3 lonchas."
+  },
+  {
+    "id": 333,
+    "type": "FRACCION",
+    "statement": "Quieres 9/10 kg de azúcar. Las bolsas son de 1/10 kg. ¿Cuántas bolsas necesitas?",
+    "answer": 9,
+    "explanation": "9 bolsas de 1/10 kg suman 9/10 kg."
+  },
+  {
+    "id": 334,
+    "type": "FRACCION",
+    "statement": "Una tortilla se corta en 16 porciones. Te comes 3/8 de la tortilla. ¿Cuántas porciones comiste?",
+    "answer": 6,
+    "explanation": "3/8 de 16 porciones son 6 porciones."
+  }
+]

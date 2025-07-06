@@ -1,0 +1,72 @@
+[
+  {
+    "game_code": "puerto-palabras",
+    "subject": "lengua",
+    "type": "DragDrop",
+    "title_key": "minigame.puerto_palabras.title",
+    "difficulty": 1,
+    "content": {
+      "description_key": "minigame.puerto_palabras.description",
+      "levels": [
+        {
+          "level_id": 1,
+          "instructions_key": "minigame.puerto_palabras.level1.instructions",
+          "target_sentence_template_key": "minigame.puerto_palabras.level1.sentence_template",
+          "target_sentence_placeholder": "___",
+          "options": [
+            {"text_key": "minigame.puerto_palabras.level1.option1_text", "is_correct": true},
+            {"text_key": "minigame.puerto_palabras.level1.option2_text", "is_correct": false},
+            {"text_key": "minigame.puerto_palabras.level1.option3_text", "is_correct": false}
+          ],
+          "feedback_correct_key": "feedback.correct",
+          "feedback_incorrect_key": "feedback.incorrect"
+        },
+        {
+          "level_id": 2,
+          "instructions_key": "minigame.puerto_palabras.level2.instructions",
+          "target_sentence_template_key": "minigame.puerto_palabras.level2.sentence_template",
+          "target_sentence_placeholder": "___",
+          "options": [
+            {"text_key": "minigame.puerto_palabras.level2.option1_text", "is_correct": false},
+            {"text_key": "minigame.puerto_palabras.level2.option2_text", "is_correct": true},
+            {"text_key": "minigame.puerto_palabras.level2.option3_text", "is_correct": false}
+          ],
+          "feedback_correct_key": "feedback.correct",
+          "feedback_incorrect_key": "feedback.incorrect"
+        }
+      ]
+    }
+  },
+  {
+    "game_code": "bosque-lectores",
+    "subject": "comprension",
+    "type": "Quiz",
+    "title_key": "minigame.bosque_lectores.title",
+    "difficulty": 1,
+    "content": {
+      "description_key": "minigame.bosque_lectores.description",
+      "stories": [
+        {
+          "story_id": 1,
+          "text_key": "minigame.bosque_lectores.story1.text",
+          "questions": [
+            {
+              "question_id": 1,
+              "question_text_key": "minigame.bosque_lectores.story1.question1_text",
+              "options": [
+                {"text_key": "minigame.bosque_lectores.story1.q1.option1_text", "is_correct": true},
+                {"text_key": "minigame.bosque_lectores.story1.q1.option2_text", "is_correct": false}
+              ],
+              "feedback_correct_key": "feedback.correct",
+              "feedback_incorrect_key": "feedback.incorrect"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bosc-lectura",
+    "name": "Guardabosc Expert"
+  }
+]

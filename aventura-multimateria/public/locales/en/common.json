@@ -1,0 +1,19 @@
+{
+  "bosc": {
+    "completed": "You have completed the Reading Forest!",
+    "failed": "You ran out of energy. Try again?",
+    "retry": "Retry",
+    "badge": "Expert Ranger",
+    "heart": "heart",
+    "next": "Next",
+    "check": "Check",
+    "true": "True",
+    "false": "False"
+  },
+  "exit": "Exit",
+  "correct": "Correct!",
+  "bosc-lectura": {
+    "id": "bosc-lectura",
+    "name": "Reading Forest"
+  }
+}

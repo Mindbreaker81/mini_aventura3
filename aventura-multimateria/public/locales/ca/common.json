@@ -1,0 +1,19 @@
+{
+  "bosc": {
+    "completed": "Has completat el Bosc de Lectura!",
+    "failed": "T'has quedat sense energia. Vols tornar-ho a intentar?",
+    "retry": "Torna-ho a intentar",
+    "badge": "Guardabosc Expert",
+    "heart": "cor",
+    "next": "Següent",
+    "check": "Comprova",
+    "true": "Cert",
+    "false": "Fals"
+  },
+  "exit": "Sortir",
+  "correct": "Correcte!",
+  "bosc-lectura": {
+    "id": "bosc-lectura",
+    "name": "Bosc de Lectura"
+  }
+}
