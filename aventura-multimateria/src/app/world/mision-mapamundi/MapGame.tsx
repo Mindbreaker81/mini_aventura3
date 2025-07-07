@@ -31,7 +31,9 @@ export const MapGame: React.FC = () => {
   } = useMisionMapamundiStore();
 
   const [ccaaGeo, setCcaaGeo] = React.useState<any | null>(null);
+  const [ccaaHandleSubmit, setCcaaHandleSubmit] = React.useState<(() => void) | null>(null);
   const task = tasks[currentTask];
+  console.log('[MapGame] Render, selectedRegion:', selectedRegion);
   if (!task) {
     return (
       <div className="text-center">
@@ -50,6 +52,7 @@ export const MapGame: React.FC = () => {
   }, [task?.type]);
 
   const handleRegionClick = (regionId: string) => {
+    console.log('[MapGame] handleRegionClick llamado con:', regionId, 'task.type:', task.type);
     if (task.type === "CONTINENT") {
       selectContinent(regionId);
     } else if (task.type === "OCEAN") {
@@ -99,7 +102,6 @@ export const MapGame: React.FC = () => {
             task={task}
             selectedRegion={selectedRegion}
             onRegionClick={handleRegionClick}
-            selectedCCAAName={selectedCCAAName}
             onResult={({ correct, message }) => {
               if (correct) {
                 completeStamp();
@@ -110,6 +112,7 @@ export const MapGame: React.FC = () => {
                 showFeedback(false, message);
               }
             }}
+            exposeHandleSubmit={setCcaaHandleSubmit}
           />
         ) : task.type === "OCEAN" ? (
           <MapamundiOcean
@@ -158,11 +161,11 @@ export const MapGame: React.FC = () => {
         )}
         
         <button
-          onClick={handleSubmit}
-          disabled={!selectedRegion}
+          onClick={task.type === "CCAA" ? () => ccaaHandleSubmit && ccaaHandleSubmit() : handleSubmit}
+          disabled={selectedRegion == null || selectedRegion === ""}
           className={`
             px-8 py-3 rounded-lg font-bold text-white text-lg transition-colors
-            ${!selectedRegion
+            ${(selectedRegion == null || selectedRegion === "")
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-indigo-600 hover:bg-indigo-700"
             }

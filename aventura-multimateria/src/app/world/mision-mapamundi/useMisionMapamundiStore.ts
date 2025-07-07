@@ -61,6 +61,7 @@ export const useMisionMapamundiStore = create<MisionMapamundiState>((set, get) =
 
   // Selección para CCAA y países
   selectRegion: (regionId: string) => {
+    console.log('[Store] selectRegion llamado con:', regionId);
     set({ selectedRegion: regionId });
   },
 

@@ -1,5 +1,13 @@
 // Tipos para el minijuego Misión Mapamundi
 
+import {
+  CCAA_NUM_TO_NAME,
+  CCAA_CODE_TO_NAME,
+  CCAA_NUM_TO_CODE,
+  CCAA_CODE_TO_NUM,
+  getCCAAInfo
+} from "./ccaaData";
+
 export type TaskType = "CONTINENT" | "OCEAN" | "CCAA";
 
 export interface MapamundiTask {
@@ -60,27 +68,6 @@ export const OCEAN_IDS = {
   ANTARCTIC: "ANT"
 };
 
-// IDs de Comunidades Autónomas de España
-export const SPAIN_CCAA_IDS = {
-  ANDALUCIA: "AN",
-  ARAGON: "AR", 
-  ASTURIAS: "AS",
-  BALEARES: "IB",
-  CANARIAS: "CN",
-  CANTABRIA: "CB",
-  CASTILLA_LA_MANCHA: "CM",
-  CASTILLA_LEON: "CL",
-  CATALUNA: "CT",
-  EXTREMADURA: "EX",
-  GALICIA: "GA",
-  LA_RIOJA: "RI",
-  MADRID: "MD",
-  MURCIA: "MC",
-  NAVARRA: "NC",
-  PAIS_VASCO: "PV",
-  VALENCIA: "VC"
-};
-
 export const CONTINENT_ID_TO_NAME = {
   "002": "Africa",
   "142": "Asia",
@@ -105,9 +92,9 @@ export const COUNTRY_TO_CONTINENT_ID: Record<string, string> = {
   // África
   DZ: "002", AO: "002", BJ: "002", BW: "002", BF: "002", BI: "002", CM: "002", CV: "002", CF: "002", TD: "002", KM: "002", CG: "002", CD: "002", CI: "002", DJ: "002", EG: "002", GQ: "002", ER: "002", SZ: "002", ET: "002", GA: "002", GM: "002", GH: "002", GN: "002", GW: "002", KE: "002", LS: "002", LR: "002", LY: "002", MG: "002", MW: "002", ML: "002", MR: "002", MU: "002", MA: "002", MZ: "002", NA: "002", NE: "002", NG: "002", RW: "002", ST: "002", SN: "002", SC: "002", SL: "002", SO: "002", ZA: "002", SS: "002", SD: "002", TZ: "002", TG: "002", TN: "002", UG: "002", EH: "002", ZM: "002", ZW: "002",
   // Asia
-  CN: "142", IN: "142", ID: "142", PK: "142", BD: "142", JP: "142", PH: "142", VN: "142", TR: "142", IR: "142", TH: "142", MM: "142", KR: "142", IQ: "142", SA: "142", UZ: "142", MY: "142", YE: "142", NP: "142", AF: "142", KZ: "142", SY: "142", KH: "142", JO: "142", AZ: "142", AE: "142", TJ: "142", IL: "142", LA: "142", KG: "142", TM: "142", OM: "142", KW: "142", GE: "142", MN: "142", AM: "142", QA: "142", BH: "142", LB: "142", SG: "142", HK: "142", MO: "142", PS: "142", BT: "142", MV: "142", BN: "142", TL: "142", CY: "142", SA: "142",
+  CN: "142", IN: "142", ID: "142", PK: "142", BD: "142", JP: "142", PH: "142", VN: "142", IR: "142", TH: "142", MM: "142", KR: "142", IQ: "142", SA: "142", UZ: "142", MY: "142", YE: "142",
   // Oceanía
-  AU: "009", NZ: "009", FJ: "009", PG: "009", SB: "009", VU: "009", WS: "009", TO: "009", KI: "009", TV: "009", NR: "009", FM: "009", MH: "009", PW: "009", CK: "009", NU: "009", TK: "009", AS: "009", GU: "009", MP: "009", NC: "009", PF: "009", WF: "009", KI: "009", TV: "009", NR: "009", FM: "009", MH: "009", PW: "009",
+  AU: "009", NZ: "009", FJ: "009", PG: "009", SB: "009", VU: "009", WS: "009", TO: "009", KI: "009", TV: "009", NR: "009", FM: "009", MH: "009", PW: "009", CK: "009", NU: "009", TK: "009", AS: "009", GU: "009", MP: "009", NC: "009", PF: "009", WF: "009",
   // Antártida
   AQ: "AQ",
   // Id numérico de España (con y sin ceros a la izquierda)
