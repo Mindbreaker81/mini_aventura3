@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useMisionMapamundiStore } from "./useMisionMapamundiStore";
 import MapView from './MapView';
-import tasksData from "../../data/mapamundi-tasks.json";
+import tasksData from "../../data/mapamundi-tasks-v1.json";
 import type { MapamundiTask } from "./types";
 import { MapPin, Heart, Home, Stamp } from "lucide-react";
 import { useNavigation } from "../../hooks/useNavigation";

@@ -6,7 +6,7 @@ Este repositorio contiene el proyecto **Aventura Multimateria**, una aplicación
 
 - `aventura-multimateria/`: Código fuente de la aplicación principal.
   - `src/app/world/puerto-palabras/`: Minijuego "Puerto Palabras" y utilidades relacionadas.
-  - `src/app/world/mision-mapamundi/`: Minijuego de mapa interactivo usando react-leaflet.
+  - `src/app/world/mision-mapamundi-v1/`: Minijuego de mapa interactivo usando react-leaflet (versión original).
   - `src/app/data/`: Archivos de configuración y datos de minijuegos.
   - `public/locales/`: Archivos de internacionalización (i18n) en varios idiomas.
   - Otros archivos de configuración y dependencias.

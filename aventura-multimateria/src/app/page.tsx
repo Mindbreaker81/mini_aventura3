@@ -26,11 +26,18 @@ const minigames = [
 		path: "/world/mercado-numeros",
 	},
 	{
-		code: "mision-mapamundi",
-		name: "Misión Mapamundi",
-		description: "Localiza continentes, océanos y comunidades autónomas en el mapa interactivo.",
+		code: "mision-mapamundi-v1",
+		name: "Misión Mapamundi (v1)",
+		description: "Localiza continentes, océanos y comunidades autónomas en el mapa interactivo (versión original).",
 		icon: <MapPin size={32} className="text-indigo-600" />,
-		path: "/world/mision-mapamundi",
+		path: "/world/mision-mapamundi-v1",
+	},
+	{
+		code: "mision-mapamundi-v2",
+		name: "Misión Mapamundi (v2)",
+		description: "Nueva versión con selector de modo: continentes, océanos o CCAA de España.",
+		icon: <MapPin size={32} className="text-blue-500" />,
+		path: "/world/mision-mapamundi-v2",
 	},
 	{
 		code: "desafio-steam",
