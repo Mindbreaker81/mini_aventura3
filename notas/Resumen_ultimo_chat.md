@@ -60,7 +60,15 @@
 - **Interfaz:** Limpia, sin pistas visuales, más desafiante
 
 ### **⏳ Pendiente de Prueba:**
-- **Modo Océanos:** Estructura creada, pendiente de verificación
+- **Modo Océanos:**
+  - El archivo `oceans_filtered.geojson` contiene correctamente 5 features (uno por océano principal).
+  - El código renderiza cada feature individualmente y permite la selección por feature.
+  - **Problema detectado:** Los polígonos de los océanos son tan grandes y se solapan tanto que, visualmente, parece que solo se puede seleccionar un océano (el más grande cubre a los demás).
+  - **Diagnóstico:** El problema es visual, no de datos ni de lógica. El click funciona por feature, pero el área de cada océano es inmensa y se pisan unos a otros.
+  - **Soluciones propuestas:**
+    - Usar centroides o puntos representativos para cada océano y que el usuario haga clic en esos puntos.
+    - Simplificar los polígonos para que no se solapen tanto.
+    - Otras soluciones visuales a definir según preferencia UX.
 - **Modo CCAA:** Estructura creada, pendiente de verificación
 
 ---
@@ -83,6 +91,7 @@ src/app/world/mision-mapamundi-v2/
 ### **Archivos de Datos:**
 - `mapamundi-tasks.json` - Datos del juego v2
 - `mapamundi-tasks-v1.json` - Datos del juego v1 (renombrado)
+- `oceans_filtered.geojson` - GeoJSON de océanos principales (5 features)
 
 ---
 
@@ -103,7 +112,7 @@ src/app/world/mision-mapamundi-v2/
 ## **Próximos Pasos Identificados**
 
 ### **Prioridad Alta:**
-1. Probar modo océanos
+1. Probar modo océanos y decidir solución visual para la selección de océanos (puntos, simplificación, etc.)
 2. Probar modo CCAA
 3. Implementar persistencia en localStorage
 4. Añadir feedback visual mejorado

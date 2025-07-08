@@ -69,14 +69,24 @@
 15. **⏳ Optimización PWA y precarga de datos/mapas** - Pendiente
 16. **⏳ Crear tests E2E para los tres modos** - Pendiente
 
-### 🧪 **Tareas de Prueba Pendientes:**
-17. **🧪 Probar modo océanos** - Pendiente
-    - Verificar que el mapa de océanos funciona correctamente
-    - Comprobar que los códigos de océanos se detectan
-    - Validar que el pasaporte se actualiza en modo océanos
-    - Confirmar que la pantalla de victoria aparece al completar
+### 🧭 **Tareas de Prueba y Diagnóstico:**
+17. **🧭 Probar modo océanos** - EN PROCESO
+    - El archivo `oceans_filtered.geojson` contiene 5 features (uno por océano principal).
+    - El código renderiza cada feature individualmente y permite la selección por feature.
+    - **Problema detectado:** Los polígonos de los océanos son tan grandes y se solapan tanto que, visualmente, parece que solo se puede seleccionar un océano (el más grande cubre a los demás).
+    - **Diagnóstico:** El problema es visual, no de datos ni de lógica. El click funciona por feature, pero el área de cada océano es inmensa y se pisan unos a otros.
+    - **Soluciones propuestas:**
+      - Usar centroides o puntos representativos para cada océano y que el usuario haga clic en esos puntos.
+      - Simplificar los polígonos para que no se solapen tanto.
+      - Otras soluciones visuales a definir según preferencia UX.
+    - **Tareas concretas:**
+      1. Decidir junto al equipo/cliente la solución visual preferida para la selección de océanos.
+      2. Implementar la solución elegida (puntos, simplificación, etc.).
+      3. Probar la UX y ajustar si es necesario.
+      4. Validar que el pasaporte se actualiza correctamente en modo océanos.
+      5. Confirmar que la pantalla de victoria aparece al completar.
 
-18. **🧪 Probar modo CCAA (Comunidades Autónomas)** - Pendiente
+18. **🧭 Probar modo CCAA (Comunidades Autónomas)** - Pendiente
     - Verificar que el mapa de España funciona correctamente
     - Comprobar que las CCAA se detectan y seleccionan
     - Validar que el pasaporte se actualiza en modo CCAA
@@ -149,13 +159,14 @@ src/app/world/mision-mapamundi-v2/
   - ✅ Sistema de sellos del pasaporte funcionando correctamente
   - ✅ Interfaz limpia y responsive
   - ✅ Modo continentes completamente probado y funcional
-  - ⏳ Modos océanos y CCAA pendientes de prueba
+  - ⏳ Modos océanos y CCAA pendientes de prueba y mejora visual
 
 ### **Próximos Pasos:**
 1. **Prioridad Alta:**
    - Implementar persistencia en localStorage
    - Añadir feedback visual mejorado (animaciones)
    - Optimizar rendimiento del mapa
+   - **Solucionar la selección visual de océanos (puntos, simplificación, etc.)**
 
 2. **Prioridad Media:**
    - Implementar modo de práctica
