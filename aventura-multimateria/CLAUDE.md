@@ -1,13 +1,13 @@
 # ExplorAventura 3: Minijuegos Educativos
 
 ## Descripción del Proyecto
-ExplorAventura 3 es una plataforma de minijuegos educativos desarrollada en Next.js 15 con React 19. El proyecto incluye 6 minijuegos interactivos que cubren diferentes materias: gramática, lectura comprensiva, matemáticas, geografía, programación y ciencias.
+ExplorAventura 3 es una plataforma de minijuegos educativos desarrollada en Next.js 15 con React 18. El proyecto incluye 6 minijuegos interactivos que cubren diferentes materias: gramática, lectura comprensiva, matemáticas, geografía, programación y ciencias.
 
 ## Arquitectura del Proyecto
 
 ### Stack Tecnológico
 - **Framework**: Next.js 15.3.4 con App Router
-- **Runtime**: React 19.0.0
+- **Runtime**: React 18.3.1
 - **Lenguaje**: TypeScript 5.8.3
 - **Estilos**: Tailwind CSS 4
 - **Estado**: Zustand 5.0.6 con persistencia en localStorage
@@ -165,7 +165,7 @@ npm run types:generate    # Generar tipos TypeScript
 - Internacionalización con next-i18next
 
 ### Dependencias Críticas
-- **React 19**: Usar `--legacy-peer-deps` para react-simple-maps
+- **React 18**: Usar `--legacy-peer-deps` para react-simple-maps
 - **Blockly**: Importar dinámicamente para evitar problemas de SSR
 - **ReactPlayer**: Importar con `dynamic` y `ssr: false`
 
@@ -208,7 +208,7 @@ npm run types:generate    # Generar tipos TypeScript
 - Lazy loading de componentes cuando sea apropiado
 
 ## Notas Técnicas
-- El proyecto usa React 19 y Next.js 15 (versiones más recientes)
+- El proyecto usa React 18 y Next.js 15 (versiones más recientes)
 - Algunas dependencias requieren `--legacy-peer-deps`
 - Los videos en Laboratorio Flip usan URLs de YouTube como placeholder
 - Los mapas usan topojson para datos geográficos

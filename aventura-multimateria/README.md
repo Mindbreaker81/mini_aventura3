@@ -43,7 +43,7 @@ ExplorAventura 3 es una plataforma educativa interactiva que presenta 6 minijueg
 ### Stack Tecnológico
 ```
 Frontend Framework: Next.js 15.3.4 (App Router)
-Runtime: React 19.0.0
+Runtime: React 18.3.1
 Language: TypeScript 5.8.3
 Styling: Tailwind CSS 4
 State Management: Zustand 5.0.6
