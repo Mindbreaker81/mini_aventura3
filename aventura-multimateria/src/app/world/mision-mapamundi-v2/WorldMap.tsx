@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 // @ts-ignore
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { MapComponentProps } from "./types";
+// Añadir import para cargar oceans.geojson
+// Quitar import estático de oceansData
+// import oceansData from "../../../../public/oceans.geojson";
 
 // URL del TopoJSON mundial
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -79,29 +82,41 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
   const [geography, setGeography] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  // Cargar datos del mapa
-  useEffect(() => {
-    fetch(geoUrl)
-      .then((res) => res.json())
-      .then((geoData) => {
-        setGeography(geoData);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error loading world map:", error);
-        setLoading(false);
-      });
-  }, []);
-
   // Determinar si es pregunta de continente o océano
   const isContinentQuestion = task.mode === "continent";
   const isOceanQuestion = task.mode === "ocean";
 
+  // Cargar datos del mapa
+  useEffect(() => {
+    if (isOceanQuestion) {
+      // Para océanos, usar el geojson filtrado
+      fetch("/oceans_filtered.geojson")
+        .then((res) => res.json())
+        .then((data) => {
+          setGeography(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error cargando oceans_filtered.geojson:", error);
+          setLoading(false);
+        });
+    } else {
+      fetch(geoUrl)
+        .then((res) => res.json())
+        .then((geoData) => {
+          setGeography(geoData);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error loading world map:", error);
+          setLoading(false);
+        });
+    }
+  }, [isOceanQuestion]);
+
   // Función para manejar clic en región
   const handleRegionClick = (geo: any) => {
     if (!geo || !geo.properties) return;
-
-    console.log("Geo properties:", geo.properties); // Debug completo
 
     let regionId = "";
     
@@ -109,18 +124,23 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
       // Para continentes, mapear país a continente
       const countryName = geo.properties.name;
       regionId = COUNTRY_TO_CONTINENT[countryName];
-      console.log("Country clicked:", countryName, "-> Continent:", regionId); // Debug
     } else if (isOceanQuestion) {
-      // Para océanos, usar directamente el código del océano
-      regionId = geo.properties.OCEAN || geo.properties.ocean || geo.properties.OCEAN_ID;
-      console.log("Ocean clicked, raw code:", regionId); // Debug
+      // Para océanos, usar el nombre o código del geojson
+      // oceans.geojson no tiene OCEAN_ID, así que usar 'name' o 'NAME' y mapear a código
+      const oceanName = geo.properties.name || geo.properties.NAME;
+      // Mapeo de nombre a código
+      const OCEAN_NAME_TO_CODE: { [key: string]: string } = {
+        "Atlantic Ocean": "ATL",
+        "Pacific Ocean": "PAC",
+        "Indian Ocean": "IND",
+        "Arctic Ocean": "ARC",
+        "Southern Ocean": "ANT"
+      };
+      regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
     }
 
     if (regionId) {
-      console.log("Calling onRegionClick with:", regionId); // Debug
       onRegionClick(regionId);
-    } else {
-      console.log("No regionId found for:", geo.properties); // Debug
     }
   };
 
@@ -134,7 +154,15 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
       const countryName = geo.properties.name;
       regionId = COUNTRY_TO_CONTINENT[countryName];
     } else if (isOceanQuestion) {
-      regionId = geo.properties.OCEAN || geo.properties.ocean || geo.properties.OCEAN_ID;
+      const oceanName = geo.properties.name || geo.properties.NAME;
+      const OCEAN_NAME_TO_CODE: { [key: string]: string } = {
+        "Atlantic Ocean": "ATL",
+        "Pacific Ocean": "PAC",
+        "Indian Ocean": "IND",
+        "Arctic Ocean": "ARC",
+        "Southern Ocean": "ANT"
+      };
+      regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
     }
 
     const isSelected = selectedRegion === regionId;
@@ -142,16 +170,16 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
     return {
       default: {
         fill: isSelected 
-          ? "#3B82F6" 
-          : "#E5E7EB",
+          ? (isOceanQuestion ? "#06b6d4" : "#3B82F6")
+          : (isOceanQuestion ? "#bae6fd" : "#E5E7EB"),
         stroke: "#FFFFFF",
         strokeWidth: 0.5,
         outline: "none"
       },
       hover: {
         fill: isSelected 
-          ? "#2563EB" 
-          : "#D1D5DB",
+          ? (isOceanQuestion ? "#0891b2" : "#2563EB")
+          : (isOceanQuestion ? "#67e8f9" : "#D1D5DB"),
         stroke: "#FFFFFF",
         strokeWidth: 0.5,
         outline: "none",
@@ -159,8 +187,8 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
       },
       pressed: {
         fill: isSelected 
-          ? "#1D4ED8" 
-          : "#9CA3AF",
+          ? (isOceanQuestion ? "#155e75" : "#1D4ED8")
+          : (isOceanQuestion ? "#38bdf8" : "#9CA3AF"),
         stroke: "#FFFFFF",
         strokeWidth: 0.5,
         outline: "none"
@@ -217,7 +245,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
                     geography={geo}
                     onClick={() => handleRegionClick(geo)}
                     style={getRegionStyle(geo)}
-                    title={geo.properties?.NAME || geo.properties?.name || "Región"}
+                    title={isOceanQuestion ? (geo.properties.name || geo.properties.NAME) : (geo.properties?.NAME || geo.properties?.name || "Región")}
                   />
                 ))
               }
