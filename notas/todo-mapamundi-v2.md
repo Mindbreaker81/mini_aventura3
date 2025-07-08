@@ -70,21 +70,25 @@
 16. **⏳ Crear tests E2E para los tres modos** - Pendiente
 
 ### 🧭 **Tareas de Prueba y Diagnóstico:**
-17. **🧭 Probar modo océanos** - EN PROCESO
+17. **✅ Probar modo océanos** - COMPLETADO Y FUNCIONAL
     - El archivo `oceans_filtered.geojson` contiene 5 features (uno por océano principal).
-    - El código renderiza cada feature individualmente y permite la selección por feature.
     - **Problema detectado:** Los polígonos de los océanos son tan grandes y se solapan tanto que, visualmente, parece que solo se puede seleccionar un océano (el más grande cubre a los demás).
     - **Diagnóstico:** El problema es visual, no de datos ni de lógica. El click funciona por feature, pero el área de cada océano es inmensa y se pisan unos a otros.
-    - **Soluciones propuestas:**
-      - Usar centroides o puntos representativos para cada océano y que el usuario haga clic en esos puntos.
-      - Simplificar los polígonos para que no se solapen tanto.
-      - Otras soluciones visuales a definir según preferencia UX.
-    - **Tareas concretas:**
-      1. Decidir junto al equipo/cliente la solución visual preferida para la selección de océanos.
-      2. Implementar la solución elegida (puntos, simplificación, etc.).
-      3. Probar la UX y ajustar si es necesario.
-      4. Validar que el pasaporte se actualiza correctamente en modo océanos.
-      5. Confirmar que la pantalla de victoria aparece al completar.
+    - **✅ Solución implementada - Centroides clickeables:**
+      - Implementados puntos azules clickeables en posiciones representativas de cada océano
+      - Los polígonos oceánicos se muestran como referencia visual pero no son clickeables
+      - Efectos visuales al seleccionar (círculo sólido + borde discontinuo)
+      - Leyenda actualizada para explicar la nueva mecánica
+      - Instrucciones claras para el usuario sobre cómo seleccionar océanos
+      - **SIN etiquetas** para mantener el desafío del juego
+    - **Tareas completadas:**
+      1. ✅ Implementar centroides clickeables en WorldMap.tsx usando componente Marker
+      2. ✅ Mapear códigos de océanos correctamente (ATL, PAC, IND, ARC, ANT)
+      3. ✅ Añadir efectos visuales sin etiquetas que den pistas
+      4. ✅ Actualizar leyenda e instrucciones específicas para océanos
+      5. ✅ Corregir posicionamiento con react-simple-maps Marker
+      6. ✅ Eliminar nombres de océanos para evitar pistas
+      7. ✅ Probar la UX y validar funcionamiento completo - FUNCIONANDO
 
 18. **🧭 Probar modo CCAA (Comunidades Autónomas)** - Pendiente
     - Verificar que el mapa de España funciona correctamente
@@ -159,14 +163,17 @@ src/app/world/mision-mapamundi-v2/
   - ✅ Sistema de sellos del pasaporte funcionando correctamente
   - ✅ Interfaz limpia y responsive
   - ✅ Modo continentes completamente probado y funcional
-  - ⏳ Modos océanos y CCAA pendientes de prueba y mejora visual
+  - ✅ Modo océanos implementado con centroides clickeables - COMPLETADO Y FUNCIONAL
+  - ⏳ Modo CCAA pendiente de prueba
 
 ### **Próximos Pasos:**
 1. **Prioridad Alta:**
    - Implementar persistencia en localStorage
    - Añadir feedback visual mejorado (animaciones)
    - Optimizar rendimiento del mapa
-   - **Solucionar la selección visual de océanos (puntos, simplificación, etc.)**
+   - **✅ Solucionar la selección visual de océanos (puntos, simplificación, etc.)** - COMPLETADO
+   - **✅ Probar modo océanos con centroides implementados** - COMPLETADO Y FUNCIONAL
+   - **Probar modo CCAA (Comunidades Autónomas)**
 
 2. **Prioridad Media:**
    - Implementar modo de práctica

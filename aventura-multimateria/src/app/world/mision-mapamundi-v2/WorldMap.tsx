@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 // @ts-ignore
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from "react-simple-maps";
 import { MapComponentProps } from "./types";
 // Añadir import para cargar oceans.geojson
 // Quitar import estático de oceansData
@@ -78,6 +78,24 @@ const OCEAN_CODES: { [key: string]: string } = {
   "ANT": "ANT"  // Antártico
 };
 
+// Centroides de océanos para selección clickeable
+const OCEAN_CENTROIDS: { [key: string]: [number, number] } = {
+  "ATL": [-30, 20],    // Océano Atlántico - entre América y Europa-África
+  "PAC": [-140, 0],    // Océano Pacífico - entre América y Asia
+  "IND": [70, -20],    // Océano Índico - entre África, Asia y Oceanía
+  "ARC": [0, 75],      // Océano Ártico - Polo Norte
+  "ANT": [0, -60]      // Océano Antártico - alrededor de Antártida
+};
+
+// Nombres de océanos para mostrar
+const OCEAN_NAMES: { [key: string]: string } = {
+  "ATL": "Océano Atlántico",
+  "PAC": "Océano Pacífico", 
+  "IND": "Océano Índico",
+  "ARC": "Océano Ártico",
+  "ANT": "Océano Antártico"
+};
+
 export default function WorldMap({ task, selectedRegion, onRegionClick, onResult }: MapComponentProps) {
   const [geography, setGeography] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -141,6 +159,13 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
 
     if (regionId) {
       onRegionClick(regionId);
+    }
+  };
+
+  // Función para manejar clic en centroides de océanos
+  const handleOceanCentroidClick = (oceanCode: string) => {
+    if (isOceanQuestion) {
+      onRegionClick(oceanCode);
     }
   };
 
@@ -243,13 +268,51 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    onClick={() => handleRegionClick(geo)}
-                    style={getRegionStyle(geo)}
+                    onClick={isOceanQuestion ? undefined : () => handleRegionClick(geo)}
+                    style={isOceanQuestion ? {
+                      default: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" },
+                      hover: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" },
+                      pressed: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" }
+                    } : getRegionStyle(geo)}
                     title={isOceanQuestion ? (geo.properties.name || geo.properties.NAME) : (geo.properties?.NAME || geo.properties?.name || "Región")}
                   />
                 ))
               }
             </Geographies>
+            
+            {/* Centroides clickeables para océanos */}
+            {isOceanQuestion && (
+              <>
+                {Object.entries(OCEAN_CENTROIDS).map(([oceanCode, [lng, lat]]) => (
+                  <Marker key={oceanCode} coordinates={[lng, lat]}>
+                    <g>
+                      {/* Círculo principal */}
+                      <circle
+                        r="12"
+                        fill={selectedRegion === oceanCode ? "#1e40af" : "#3b82f6"}
+                        stroke="#ffffff"
+                        strokeWidth="3"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleOceanCentroidClick(oceanCode)}
+                      />
+                      
+                      {/* Efecto hover */}
+                      <circle
+                        r="18"
+                        fill="transparent"
+                        stroke={selectedRegion === oceanCode ? "#1e40af" : "#3b82f6"}
+                        strokeWidth="2"
+                        strokeDasharray="4,4"
+                        opacity="0.5"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleOceanCentroidClick(oceanCode)}
+                      />
+                      
+                    </g>
+                  </Marker>
+                ))}
+              </>
+            )}
           </ZoomableGroup>
         </ComposableMap>
       </div>
@@ -257,21 +320,42 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
       {/* Leyenda */}
       <div className="mt-4 text-center text-sm text-gray-600">
         <div className="flex items-center justify-center space-x-4">
-          <div className="flex items-center space-x-1">
-            <div className="w-3 h-3 bg-gray-300 rounded"></div>
-            <span>Regiones</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <div className="w-3 h-3 bg-blue-500 rounded"></div>
-            <span>Seleccionado</span>
-          </div>
+          {isOceanQuestion ? (
+            <>
+              <div className="flex items-center space-x-1">
+                <div className="w-3 h-3 bg-sky-200 rounded"></div>
+                <span>Océanos</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span>Puntos clickeables</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="w-3 h-3 bg-blue-800 rounded-full"></div>
+                <span>Seleccionado</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center space-x-1">
+                <div className="w-3 h-3 bg-gray-300 rounded"></div>
+                <span>Regiones</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                <span>Seleccionado</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
       {/* Instrucciones */}
       <div className="mt-4 p-3 bg-blue-50 rounded-lg">
         <p className="text-sm text-blue-800 text-center">
-          <strong>Instrucciones:</strong> Haz clic en la región correcta del mapa y luego confirma tu selección.
+          <strong>Instrucciones:</strong> {isOceanQuestion 
+            ? "Haz clic en el punto azul del océano correcto para seleccionarlo." 
+            : "Haz clic en la región correcta del mapa y luego confirma tu selección."}
         </p>
       </div>
     </div>

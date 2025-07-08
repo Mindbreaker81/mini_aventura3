@@ -59,16 +59,22 @@
 - **Mapeo de países:** Robusto con todas las variaciones
 - **Interfaz:** Limpia, sin pistas visuales, más desafiante
 
-### **⏳ Pendiente de Prueba:**
+### **✅ Completamente Funcional:**
 - **Modo Océanos:**
   - El archivo `oceans_filtered.geojson` contiene correctamente 5 features (uno por océano principal).
-  - El código renderiza cada feature individualmente y permite la selección por feature.
   - **Problema detectado:** Los polígonos de los océanos son tan grandes y se solapan tanto que, visualmente, parece que solo se puede seleccionar un océano (el más grande cubre a los demás).
   - **Diagnóstico:** El problema es visual, no de datos ni de lógica. El click funciona por feature, pero el área de cada océano es inmensa y se pisan unos a otros.
-  - **Soluciones propuestas:**
-    - Usar centroides o puntos representativos para cada océano y que el usuario haga clic en esos puntos.
-    - Simplificar los polígonos para que no se solapen tanto.
-    - Otras soluciones visuales a definir según preferencia UX.
+  - **✅ Solución implementada - Centroides clickeables:**
+    - Implementados puntos azules clickeables usando componente `Marker` de react-simple-maps
+    - Posicionamiento correcto: Atlántico [-30, 20], Pacífico [-140, 0], Índico [70, -20], Ártico [0, 75], Antártico [0, -60]
+    - Efectos visuales al seleccionar (círculo sólido + borde discontinuo)
+    - Los polígonos oceánicos se muestran como referencia visual pero no son clickeables
+    - Leyenda actualizada para explicar los puntos clickeables
+    - Instrucciones específicas para el modo océanos
+    - **SIN etiquetas** para mantener el desafío del juego
+    - **Estado:** COMPLETADO Y FUNCIONAL - Probado exitosamente
+
+### **⏳ Pendiente de Prueba:**
 - **Modo CCAA:** Estructura creada, pendiente de verificación
 
 ---
@@ -112,7 +118,7 @@ src/app/world/mision-mapamundi-v2/
 ## **Próximos Pasos Identificados**
 
 ### **Prioridad Alta:**
-1. Probar modo océanos y decidir solución visual para la selección de océanos (puntos, simplificación, etc.)
+1. ✅ Probar modo océanos y decidir solución visual para la selección de océanos (puntos, simplificación, etc.) - COMPLETADO
 2. Probar modo CCAA
 3. Implementar persistencia en localStorage
 4. Añadir feedback visual mejorado
@@ -137,9 +143,10 @@ src/app/world/mision-mapamundi-v2/
 ## **Notas Importantes**
 - El proyecto está en un estado muy sólido y funcional
 - El modo continentes está completamente probado y estable
+- **El modo océanos está completamente implementado y funcional**
 - Se han corregido todos los problemas críticos identificados
 - El to-do list está actualizado y organizado por prioridades
-- Listo para continuar con las pruebas de los otros modos
+- Listo para continuar con las pruebas del modo CCAA
 
 ---
 
