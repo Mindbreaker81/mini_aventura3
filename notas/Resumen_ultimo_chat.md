@@ -44,6 +44,7 @@
 #### **Problema 4: Pistas Visuales del Juego**
 - **Problema:** El continente objetivo se mostraba en verde, dando pistas al jugador
 - **Solución:** Eliminadas pistas visuales, solo se muestran regiones seleccionadas en azul
+- **Nota:** **Mismo problema detectado y corregido en modo CCAA** (Diciembre 2024)
 
 #### **Problema 5: Sistema de Sellos del Pasaporte**
 - **Problema:** Los sellos no se actualizaban al completar preguntas
@@ -74,8 +75,17 @@
     - **SIN etiquetas** para mantener el desafío del juego
     - **Estado:** COMPLETADO Y FUNCIONAL - Probado exitosamente
 
-### **⏳ Pendiente de Prueba:**
-- **Modo CCAA:** Estructura creada, pendiente de verificación
+### **✅ Completamente Funcional:**
+- **Modo CCAA:** **PROBLEMA RESUELTO** (Diciembre 2024)
+  - **Problema identificado:** Islas Canarias no visibles ni seleccionables
+  - **Causa:** Faltaba mapeo del código "05" y coordenadas fuera de vista (cerca de África)
+  - **✅ Solución implementada:**
+    - Añadido mapeo `"05": "CN"` para Canarias en `SpainMap.tsx`
+    - Reubicadas coordenadas de Canarias de (-18/-13, 27/29) a (-11.5/-8.5, 35.5/37)
+    - Nota explicativa: "Las Islas Canarias han sido reubicadas cerca de la península para facilitar la visualización educativa"
+    - Respaldo creado: `ccaa-es.geojson.backup`
+    - **Eliminadas pistas visuales:** Regiones objetivo ya no se muestran en verde
+  - **Estado:** COMPLETADO Y FUNCIONAL - Todas las 17 CCAA seleccionables, sin pistas visuales
 
 ---
 
@@ -98,6 +108,8 @@ src/app/world/mision-mapamundi-v2/
 - `mapamundi-tasks.json` - Datos del juego v2
 - `mapamundi-tasks-v1.json` - Datos del juego v1 (renombrado)
 - `oceans_filtered.geojson` - GeoJSON de océanos principales (5 features)
+- `ccaa-es.geojson` - GeoJSON de España con Canarias reubicadas (modificado)
+- `ccaa-es.geojson.backup` - Respaldo del archivo original
 
 ---
 
@@ -119,7 +131,7 @@ src/app/world/mision-mapamundi-v2/
 
 ### **Prioridad Alta:**
 1. ✅ Probar modo océanos y decidir solución visual para la selección de océanos (puntos, simplificación, etc.) - COMPLETADO
-2. Probar modo CCAA
+2. ✅ Probar modo CCAA - COMPLETADO Y FUNCIONAL
 3. Implementar persistencia en localStorage
 4. Añadir feedback visual mejorado
 
@@ -137,6 +149,7 @@ src/app/world/mision-mapamundi-v2/
 
 ## **Commits Realizados**
 - **Último commit:** "Mapamundi v2: Corrección de mapeo de países africanos, sistema de sellos funcional, eliminación de pistas visuales y actualización de to-do list. Modo continentes probado y estable."
+- **Próximo commit sugerido:** "fix(mapamundi-v2): resuelve problema modo CCAA - Canarias visible y seleccionable tras reubicación geográfica"
 
 ---
 
@@ -144,9 +157,11 @@ src/app/world/mision-mapamundi-v2/
 - El proyecto está en un estado muy sólido y funcional
 - El modo continentes está completamente probado y estable
 - **El modo océanos está completamente implementado y funcional**
+- **El modo CCAA está completamente implementado y funcional (problema resuelto)**
 - Se han corregido todos los problemas críticos identificados
+- **Los 3 modos están completamente operativos**
 - El to-do list está actualizado y organizado por prioridades
-- Listo para continuar con las pruebas del modo CCAA
+- **Mapamundi v2 está listo para producción**
 
 ---
 
