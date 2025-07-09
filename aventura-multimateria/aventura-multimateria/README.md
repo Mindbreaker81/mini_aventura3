@@ -17,3 +17,7 @@ La validación de la selección de Comunidades Autónomas (CCAA) en el minijuego
 - Revisar la fuente de los datos de las preguntas.
 - Unificar el formato de los códigos (todo numérico o todo letras).
 - Si se mantiene el geojson, adaptar las preguntas para que esperen el mismo formato. 
+
+## Incidencias conocidas
+
+- Actualmente, las Islas Canarias no son visibles ni seleccionables en el modo CCAA del Mapamundi v2, incluso tras ajustar el zoom y el centro del mapa. Se requiere una solución específica para que sean accesibles para el usuario. 

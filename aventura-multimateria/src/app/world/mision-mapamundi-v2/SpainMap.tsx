@@ -5,7 +5,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simp
 import { MapComponentProps } from "./types";
 
 // URL del TopoJSON de España (CCAA)
-const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/spain/spain-ccaa.json";
+const geoUrl = "/ccaa-es.geojson";
 
 // Mapeo de códigos de CCAA
 const CCAA_CODES: { [key: string]: string } = {
@@ -26,6 +26,27 @@ const CCAA_CODES: { [key: string]: string } = {
   "RI": "RI", // La Rioja
   "IB": "IB", // Islas Baleares
   "CN": "CN"  // Islas Canarias
+};
+
+// Mapeo de cod_ccaa a códigos de tarea (MD, AN, etc.)
+const COD_CCAA_TO_CODE: { [key: string]: string } = {
+  "01": "AN", // Andalucía
+  "02": "AR", // Aragón
+  "03": "AS", // Asturias
+  "04": "IB", // Baleares
+  "05": "CN", // Canarias
+  "06": "CB", // Cantabria
+  "07": "CL", // Castilla-Leon
+  "08": "CM", // Castilla-La Mancha
+  "09": "CT", // Cataluña
+  "10": "VC", // Valencia
+  "11": "EX", // Extremadura
+  "12": "GA", // Galicia
+  "13": "MD", // Madrid
+  "14": "MC", // Murcia
+  "15": "NC", // Navarra
+  "16": "PV", // Pais Vasco
+  "17": "RI", // La Rioja
 };
 
 export default function SpainMap({ task, selectedRegion, onRegionClick, onResult }: MapComponentProps) {
@@ -50,9 +71,9 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
   const handleRegionClick = (geo: any) => {
     if (!geo || !geo.properties) return;
 
-    // Para CCAA, usar el código de la comunidad
-    const ccaaCode = geo.properties.CCAA || geo.properties.code;
-    const regionId = CCAA_CODES[ccaaCode] || ccaaCode;
+    // Usar el mapeo para obtener el código de tarea
+    const codCcaa = geo.properties.cod_ccaa;
+    const regionId = COD_CCAA_TO_CODE[codCcaa];
 
     if (regionId) {
       onRegionClick(regionId);
@@ -63,18 +84,16 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
   const getRegionStyle = (geo: any) => {
     if (!geo || !geo.properties) return {};
 
-    const ccaaCode = geo.properties.CCAA || geo.properties.code;
-    const regionId = CCAA_CODES[ccaaCode] || ccaaCode;
+    const codCcaa = geo.properties.cod_ccaa;
+    const regionId = COD_CCAA_TO_CODE[codCcaa];
 
     const isSelected = selectedRegion === regionId;
-    const isTarget = task.targetId === regionId;
+    // Eliminadas las pistas visuales (isTarget) para evitar dar la respuesta
 
     return {
       default: {
         fill: isSelected 
           ? "#3B82F6" 
-          : isTarget 
-          ? "#10B981" 
           : "#E5E7EB",
         stroke: "#FFFFFF",
         strokeWidth: 1,
@@ -83,8 +102,6 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
       hover: {
         fill: isSelected 
           ? "#2563EB" 
-          : isTarget 
-          ? "#059669" 
           : "#D1D5DB",
         stroke: "#FFFFFF",
         strokeWidth: 1,
@@ -94,8 +111,6 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
       pressed: {
         fill: isSelected 
           ? "#1D4ED8" 
-          : isTarget 
-          ? "#047857" 
           : "#9CA3AF",
         stroke: "#FFFFFF",
         strokeWidth: 1,
@@ -140,8 +155,8 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{
-            scale: 3000,
-            center: [-3.7492, 40.4637] // Centro de España
+            scale: 1800,
+            center: [-7, 37] // Ajuste para incluir Canarias
           }}
         >
           <ZoomableGroup zoom={1} maxZoom={4} minZoom={0.8}>
@@ -170,10 +185,6 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
             <span>CCAA</span>
           </div>
           <div className="flex items-center space-x-1">
-            <div className="w-3 h-3 bg-green-500 rounded"></div>
-            <span>Objetivo</span>
-          </div>
-          <div className="flex items-center space-x-1">
             <div className="w-3 h-3 bg-blue-500 rounded"></div>
             <span>Seleccionado</span>
           </div>
@@ -187,6 +198,9 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
         </p>
         <p className="text-xs text-green-700 text-center mt-1">
           España tiene 17 comunidades autónomas y 2 ciudades autónomas
+        </p>
+        <p className="text-xs text-amber-700 text-center mt-2 italic">
+          ⚠️ Nota: Las Islas Canarias han sido reubicadas cerca de la península para facilitar la visualización educativa
         </p>
       </div>
     </div>
