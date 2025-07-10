@@ -33,10 +33,17 @@ const minigames = [
 		path: "/world/mision-mapamundi-v2",
 	},
 	{
-		code: "desafio-steam",
-		name: "Desafío STEAM",
-		description: "Programa un robot explorador con bloques visuales para llegar a la meta.",
+		code: "desafio-steam-v1",
+		name: "Desafío STEAM v1",
+		description: "Programa un robot explorador con bloques visuales para llegar a la meta (versión original).",
 		icon: <Bot size={32} className="text-purple-600" />,
+		path: "/world/desafio-steam-v1",
+	},
+	{
+		code: "desafio-steam",
+		name: "Desafío STEAM v2",
+		description: "Nueva versión mejorada del robot explorador con bloques visuales y 6 LEDs.",
+		icon: <Bot size={32} className="text-indigo-600" />,
 		path: "/world/desafio-steam",
 	},
 	{
@@ -56,7 +63,7 @@ export default function Dashboard() {
 					<BookOpenCheck size={36} className="text-blue-700" />
 					ExplorAventura 3: Minijuegos
 				</h1>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 w-full max-w-7xl">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full max-w-7xl">
 					{minigames.map((game) => (
 						<Link
 							key={game.code}

@@ -1,107 +1,147 @@
-"use client";
+'use client';
 import React from 'react';
-import { Bot } from 'lucide-react';
-import { BOARD_SIZE, DIRECTION_ANGLES } from './types';
-import useDesafioSteamStore from './useDesafioSteamStore';
+import useSteamStore from './useSteamStore';
 
 const RobotBoard: React.FC = () => {
-  const { robotState, tasks, currentTask } = useDesafioSteamStore();
-  const task = tasks[currentTask];
+  const { tasks, currentTask, robot } = useSteamStore();
+  
+  const currentBoard = tasks[currentTask]?.board;
+  if (!currentBoard) return null;
 
-  const renderCell = (x: number, y: number) => {
-    const isRobot = robotState.position.x === x && robotState.position.y === y;
-    const isStart = task.board.start[0] === x && task.board.start[1] === y;
-    const isGoal = task.board.goal[0] === x && task.board.goal[1] === y;
-    const isWall = task.board.walls.some(([wallX, wallY]) => wallX === x && wallY === y);
+  const { start, goal, walls } = currentBoard;
 
-    // Células responsivas: más pequeñas en móviles, más grandes en desktop
-    let cellClass = "w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 border border-gray-300 flex items-center justify-center relative transition-all duration-200";
-    
-    if (isWall) {
-      cellClass += " bg-gray-800";
-    } else if (isGoal) {
-      cellClass += " bg-yellow-300 shadow-inner";
-    } else if (isStart && !isRobot) {
-      cellClass += " bg-green-200";
-    } else {
-      cellClass += " bg-white hover:bg-gray-50";
-    }
-
-    return (
-      <div key={`${x}-${y}`} className={cellClass}>
-        {isRobot && (
-          <Bot 
-            className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-blue-600 transition-all duration-300"
-            style={{
-              transform: `rotate(${DIRECTION_ANGLES[robotState.direction]}deg)`
-            }}
-          />
-        )}
-        {isGoal && !isRobot && (
-          <div className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-yellow-500 rounded-full border-2 border-yellow-600 animate-pulse"></div>
-        )}
-        {isStart && !isRobot && !isGoal && (
-          <div className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full"></div>
-        )}
-        {isWall && (
-          <div className="w-full h-full bg-gray-900 rounded-sm shadow-inner"></div>
-        )}
-      </div>
-    );
+  // Función para obtener el emoji del robot según su dirección
+  const getRobotEmoji = (direction: number) => {
+    const directions = ['⬆️', '➡️', '⬇️', '⬅️'];
+    return directions[direction];
   };
 
-  const renderBoard = () => {
-    const board = [];
-    for (let y = 0; y < BOARD_SIZE; y++) {
-      for (let x = 0; x < BOARD_SIZE; x++) {
-        board.push(renderCell(x, y));
+  // Función para determinar el tipo de celda
+  const getCellContent = (x: number, y: number) => {
+    // Posición del robot
+    if (robot.position.x === x && robot.position.y === y) {
+      return (
+        <div className="flex items-center justify-center w-full h-full">
+          <span className="text-2xl">{getRobotEmoji(robot.direction)}</span>
+        </div>
+      );
+    }
+    
+    // Posición de inicio
+    if (start[0] === x && start[1] === y) {
+      return (
+        <div className="flex items-center justify-center w-full h-full">
+          <span className="text-2xl">🏁</span>
+        </div>
+      );
+    }
+    
+    // Posición de meta
+    if (goal[0] === x && goal[1] === y) {
+      return (
+        <div className="flex items-center justify-center w-full h-full">
+          <span className="text-2xl">🎯</span>
+        </div>
+      );
+    }
+    
+    // Muros
+    if (walls.some(([wallX, wallY]) => wallX === x && wallY === y)) {
+      return (
+        <div className="flex items-center justify-center w-full h-full bg-gray-800">
+          <span className="text-2xl">🧱</span>
+        </div>
+      );
+    }
+    
+    // Celda vacía
+    return null;
+  };
+
+  // Función para obtener las clases CSS de cada celda
+  const getCellClasses = (x: number, y: number) => {
+    let baseClasses = "w-16 h-16 border-2 border-gray-300 flex items-center justify-center relative";
+    
+    // Robot
+    if (robot.position.x === x && robot.position.y === y) {
+      if (robot.crashed) {
+        baseClasses += " bg-red-200 animate-pulse";
+      } else if (robot.reached) {
+        baseClasses += " bg-green-200";
+      } else {
+        baseClasses += " bg-blue-200";
       }
     }
-    return board;
+    // Inicio
+    else if (start[0] === x && start[1] === y) {
+      baseClasses += " bg-green-100";
+    }
+    // Meta
+    else if (goal[0] === x && goal[1] === y) {
+      baseClasses += " bg-yellow-100";
+    }
+    // Muro
+    else if (walls.some(([wallX, wallY]) => wallX === x && wallY === y)) {
+      baseClasses += " bg-gray-800";
+    }
+    // Celda normal
+    else {
+      baseClasses += " bg-white hover:bg-gray-50";
+    }
+    
+    return baseClasses;
   };
 
   return (
-    <div className="bg-white rounded-lg p-2 sm:p-4 shadow-lg w-full">
-      <div className="mb-2 sm:mb-4">
-        <h3 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">
-          Desafío {currentTask + 1}: {task.name}
+    <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="mb-4">
+        <h3 className="text-xl font-bold text-gray-800 mb-2">
+          Nivel {currentTask + 1}: {tasks[currentTask]?.name}
         </h3>
-        <p className="text-xs sm:text-sm text-gray-600 mb-2">
-          💡 {task.hint}
+        <p className="text-sm text-gray-600 mb-2">
+          💡 {tasks[currentTask]?.hint}
         </p>
-        
-        {/* Leyenda responsive */}
-        <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm">
-          <span className="flex items-center gap-1">
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full flex-shrink-0"></div>
-            <span className="truncate">Inicio</span>
-          </span>
-          <span className="flex items-center gap-1">
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full flex-shrink-0"></div>
-            <span className="truncate">Meta</span>
-          </span>
-          <span className="flex items-center gap-1">
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gray-800 rounded-sm flex-shrink-0"></div>
-            <span className="truncate">Muro</span>
-          </span>
-          <span className="flex items-center gap-1">
-            <Bot size={12} className="sm:w-4 sm:h-4 text-blue-600 flex-shrink-0" />
-            <span className="truncate">Robot</span>
-          </span>
-        </div>
+        <p className="text-sm text-gray-500">
+          Máximo bloques: {tasks[currentTask]?.maxBlocks}
+        </p>
       </div>
       
-      {/* Tablero responsivo */}
-      <div className="flex justify-center mb-2 sm:mb-4">
-        <div 
-          className="grid grid-cols-6 gap-0.5 sm:gap-1 border-2 border-gray-400 p-1 sm:p-2 rounded-lg bg-gray-100 max-w-full"
-        >
-          {renderBoard()}
-        </div>
+      {/* Tablero 6x6 */}
+      <div className="grid grid-cols-6 gap-1 bg-gray-200 p-4 rounded-lg max-w-fit mx-auto">
+        {Array.from({ length: 6 }, (_, y) =>
+          Array.from({ length: 6 }, (_, x) => (
+            <div
+              key={`${x}-${y}`}
+              className={getCellClasses(x, y)}
+            >
+              {getCellContent(x, y)}
+              {/* Coordenadas para debug */}
+              <span className="absolute top-0 left-0 text-xs text-gray-400 opacity-50">
+                {x},{y}
+              </span>
+            </div>
+          ))
+        )}
       </div>
       
-      <div className="text-center text-xs sm:text-sm text-gray-600">
-        <span className="font-semibold">Máximo {task.maxBlocks} bloques</span>
+      {/* Leyenda */}
+      <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+        <div className="flex items-center gap-2">
+          <span>🏁</span>
+          <span>Inicio</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>🎯</span>
+          <span>Meta</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>🧱</span>
+          <span>Muro</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>🤖</span>
+          <span>Robot</span>
+        </div>
       </div>
     </div>
   );
