@@ -34,15 +34,28 @@ const BlocklyGame: React.FC = () => {
       if (typeof window === 'undefined') return;
       
       try {
-        const [blocklyModule, jsGeneratorModule] = await Promise.all([
-          import('blockly'),
-          import('blockly/javascript')
-        ]);
+        // Importar Blockly usando la sintaxis correcta para v12.1.0
+        const blocklyModule = await import('blockly');
+        const { javascriptGenerator } = await import('blockly/javascript');
         
-        setBlockly(blocklyModule.default);
-        setJavascriptGenerator(jsGeneratorModule.javascriptGenerator);
+        console.log('Blockly module loaded:', blocklyModule);
+        console.log('JavaScript generator loaded:', javascriptGenerator);
+        
+        // Verificar que los módulos se cargaron correctamente
+        if (!blocklyModule || !javascriptGenerator) {
+          throw new Error('Failed to load Blockly modules');
+        }
+        
+        setBlockly(blocklyModule);
+        setJavascriptGenerator(javascriptGenerator);
         
         console.log('Blockly loaded successfully');
+        console.log('Setting state - Blockly:', !!blocklyModule, 'Generator:', !!javascriptGenerator);
+        
+        // Verificar que el estado se actualizó correctamente
+        setTimeout(() => {
+          console.log('State after setting - Blockly:', !!blocklyModule, 'Generator:', !!javascriptGenerator);
+        }, 100);
         notifications.showSuccess('Editor cargado', 'Editor de bloques listo para usar');
       } catch (error) {
         console.error('Error loading Blockly:', error);
@@ -61,8 +74,17 @@ const BlocklyGame: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    console.log("Checking Blockly readiness:");
+    console.log("blocklyDiv.current:", blocklyDiv.current);
+    console.log("Blockly:", Blockly);
+    console.log("javascriptGenerator:", javascriptGenerator);
+    
     if (!blocklyDiv.current || !Blockly || !javascriptGenerator) {
-      console.log("Blockly not ready yet");
+      console.log("Blockly not ready yet - Missing:", {
+        blocklyDiv: !blocklyDiv.current,
+        Blockly: !Blockly,
+        javascriptGenerator: !javascriptGenerator
+      });
       return;
     }
     
