@@ -14,37 +14,37 @@ const RobotBoard: React.FC = () => {
     const isGoal = task.board.goal[0] === x && task.board.goal[1] === y;
     const isWall = task.board.walls.some(([wallX, wallY]) => wallX === x && wallY === y);
 
-    let cellClass = "w-12 h-12 border border-gray-300 flex items-center justify-center relative";
+    // Células responsivas: más pequeñas en móviles, más grandes en desktop
+    let cellClass = "w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 border border-gray-300 flex items-center justify-center relative transition-all duration-200";
     
     if (isWall) {
       cellClass += " bg-gray-800";
     } else if (isGoal) {
-      cellClass += " bg-yellow-300";
+      cellClass += " bg-yellow-300 shadow-inner";
     } else if (isStart && !isRobot) {
       cellClass += " bg-green-200";
     } else {
-      cellClass += " bg-white";
+      cellClass += " bg-white hover:bg-gray-50";
     }
 
     return (
       <div key={`${x}-${y}`} className={cellClass}>
         {isRobot && (
           <Bot 
-            size={32} 
-            className="text-blue-600 transition-transform duration-300"
+            className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-blue-600 transition-all duration-300"
             style={{
               transform: `rotate(${DIRECTION_ANGLES[robotState.direction]}deg)`
             }}
           />
         )}
         {isGoal && !isRobot && (
-          <div className="w-8 h-8 bg-yellow-500 rounded-full border-2 border-yellow-600"></div>
+          <div className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-yellow-500 rounded-full border-2 border-yellow-600 animate-pulse"></div>
         )}
         {isStart && !isRobot && !isGoal && (
-          <div className="w-6 h-6 bg-green-500 rounded-full"></div>
+          <div className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full"></div>
         )}
         {isWall && (
-          <div className="w-full h-full bg-gray-900 rounded-sm"></div>
+          <div className="w-full h-full bg-gray-900 rounded-sm shadow-inner"></div>
         )}
       </div>
     );
@@ -61,42 +61,47 @@ const RobotBoard: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg p-4 shadow-lg">
-      <div className="mb-4">
-        <h3 className="text-lg font-bold text-gray-800 mb-2">
+    <div className="bg-white rounded-lg p-2 sm:p-4 shadow-lg w-full">
+      <div className="mb-2 sm:mb-4">
+        <h3 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">
           Desafío {currentTask + 1}: {task.name}
         </h3>
-        <p className="text-sm text-gray-600 mb-2">
+        <p className="text-xs sm:text-sm text-gray-600 mb-2">
           💡 {task.hint}
         </p>
-        <div className="flex items-center gap-4 text-sm">
+        
+        {/* Leyenda responsive */}
+        <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm">
           <span className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            Inicio
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full flex-shrink-0"></div>
+            <span className="truncate">Inicio</span>
           </span>
           <span className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            Meta
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full flex-shrink-0"></div>
+            <span className="truncate">Meta</span>
           </span>
           <span className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-gray-800 rounded-sm"></div>
-            Muro
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gray-800 rounded-sm flex-shrink-0"></div>
+            <span className="truncate">Muro</span>
           </span>
           <span className="flex items-center gap-1">
-            <Bot size={16} className="text-blue-600" />
-            Robot
+            <Bot size={12} className="sm:w-4 sm:h-4 text-blue-600 flex-shrink-0" />
+            <span className="truncate">Robot</span>
           </span>
         </div>
       </div>
       
-      <div 
-        className="grid grid-cols-6 gap-1 mx-auto w-fit border-2 border-gray-400 p-2 rounded-lg bg-gray-100"
-      >
-        {renderBoard()}
+      {/* Tablero responsivo */}
+      <div className="flex justify-center mb-2 sm:mb-4">
+        <div 
+          className="grid grid-cols-6 gap-0.5 sm:gap-1 border-2 border-gray-400 p-1 sm:p-2 rounded-lg bg-gray-100 max-w-full"
+        >
+          {renderBoard()}
+        </div>
       </div>
       
-      <div className="mt-4 text-center text-sm text-gray-600">
-        Máximo {task.maxBlocks} bloques
+      <div className="text-center text-xs sm:text-sm text-gray-600">
+        <span className="font-semibold">Máximo {task.maxBlocks} bloques</span>
       </div>
     </div>
   );

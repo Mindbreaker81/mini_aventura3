@@ -4,7 +4,20 @@ import { ArrowLeft, Award, CheckCircle } from 'lucide-react';
 import { useNavigation } from '../../hooks/useNavigation';
 import useDesafioSteamStore from './useDesafioSteamStore';
 import RobotBoard from './RobotBoard';
-import BlocklyGame from './BlocklyGame';
+import dynamic from 'next/dynamic';
+
+// Importación dinámica para evitar problemas SSR con Blockly
+const BlocklyGame = dynamic(() => import('./BlocklyGameDynamic'), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-white rounded-lg p-6 shadow-lg">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p>Cargando editor de bloques...</p>
+      </div>
+    </div>
+  )
+});
 
 const DesafioSteam: React.FC = () => {
   const { goToDashboard } = useNavigation();
@@ -172,15 +185,18 @@ const DesafioSteam: React.FC = () => {
       </div>
 
       {/* Contenido principal */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
-        {/* Tablero del robot */}
-        <div>
-          <RobotBoard />
-        </div>
+      <div className="max-w-7xl mx-auto">
+        {/* Layout responsivo: vertical en móviles, horizontal en desktop */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-6">
+          {/* Tablero del robot */}
+          <div className="order-1 lg:order-1">
+            <RobotBoard />
+          </div>
 
-        {/* Editor de bloques */}
-        <div>
-          <BlocklyGame />
+          {/* Editor de bloques */}
+          <div className="order-2 lg:order-2">
+            <BlocklyGame />
+          </div>
         </div>
       </div>
 
