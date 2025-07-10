@@ -28,19 +28,33 @@ const BlocklyGame: React.FC = () => {
     let isMounted = true;
     
     const loadBlockly = async () => {
-      if (typeof window === 'undefined') return;
+      console.log('🔧 Iniciando carga de Blockly...');
+      if (typeof window === 'undefined') {
+        console.log('❌ window es undefined, cancelando carga');
+        return;
+      }
       
       try {
+        console.log('📦 Importando módulos de Blockly...');
         // Importar Blockly y el generador JavaScript
         const blocklyModule = await import('blockly');
         const { javascriptGenerator } = await import('blockly/javascript');
         
+        console.log('✅ Módulos importados:', {
+          blockly: !!blocklyModule,
+          generator: !!javascriptGenerator
+        });
+        
         if (isMounted) {
+          console.log('🔄 Actualizando estado...');
           setBlockly(blocklyModule);
           setJavascriptGenerator(javascriptGenerator);
+          console.log('✅ Estado actualizado correctamente');
+        } else {
+          console.log('❌ Componente no montado, cancelando actualización');
         }
       } catch (error) {
-        console.error('Error loading Blockly:', error);
+        console.error('❌ Error loading Blockly:', error);
       }
     };
     
@@ -50,21 +64,34 @@ const BlocklyGame: React.FC = () => {
 
   // Inicializar workspace de Blockly
   useEffect(() => {
+    console.log('🎯 Iniciando configuración de workspace...');
     const timer = setTimeout(() => {
+      console.log('⏰ Timer ejecutado, verificando condiciones...');
+      console.log('🔍 Estado actual:', {
+        blocklyDiv: !!blocklyDiv.current,
+        Blockly: !!Blockly,
+        javascriptGenerator: !!javascriptGenerator
+      });
+      
       if (!blocklyDiv.current || !Blockly || !javascriptGenerator) {
+        console.log('❌ Faltan dependencias, cancelando inicialización');
         return;
       }
 
       // Verificar dimensiones del div
       const rect = blocklyDiv.current.getBoundingClientRect();
+      console.log('📐 Dimensiones del div:', rect);
       if (rect.width === 0 || rect.height === 0) {
+        console.log('❌ Div sin dimensiones válidas, cancelando');
         return;
       }
 
       try {
+        console.log('🔧 Inicializando bloques personalizados...');
         // Inicializar bloques personalizados
-        initializeBlocks();
+        initializeBlocks(Blockly);
         initializeGenerators(javascriptGenerator);
+        console.log('✅ Bloques inicializados');
 
         // Limpiar workspace anterior
         if (workspaceRef.current) {
@@ -93,17 +120,21 @@ const BlocklyGame: React.FC = () => {
         });
 
         workspaceRef.current = workspace;
+        console.log('🎉 Workspace creado exitosamente');
         setBlocklyLoaded(true);
+        console.log('✅ BlocklyLoaded establecido a true');
 
         // Cargar código guardado
         if (typeof window !== 'undefined') {
           const savedCode = localStorage.getItem('steam-session');
           if (savedCode) {
             try {
+              console.log('📁 Cargando código guardado...');
               const xml = Blockly.utils.xml.textToDom(savedCode);
               Blockly.Xml.domToWorkspace(xml, workspace);
+              console.log('✅ Código guardado cargado');
             } catch (error) {
-              console.log('No se pudo cargar el código guardado');
+              console.log('⚠️ No se pudo cargar el código guardado:', error);
             }
           }
         }
@@ -122,7 +153,8 @@ const BlocklyGame: React.FC = () => {
         });
 
       } catch (error) {
-        console.error('Error inicializando Blockly:', error);
+        console.error('❌ Error inicializando Blockly:', error);
+        console.error('Stack trace:', error);
       }
     }, 100);
 

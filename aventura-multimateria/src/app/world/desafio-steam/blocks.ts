@@ -1,10 +1,17 @@
 // Definición de bloques personalizados para Blockly STEAM v2
-import * as Blockly from 'blockly/core';
 
 // Definir bloques personalizados
-export const initializeBlocks = () => {
+export const initializeBlocks = (Blockly: any) => {
+  console.log('🔧 Iniciando definición de bloques...');
+  
+  if (!Blockly || !Blockly.Blocks) {
+    console.error('❌ Blockly o Blockly.Blocks no está disponible');
+    return;
+  }
+  
   // Bloque: Avanzar
   if (!Blockly.Blocks['move_forward']) {
+    console.log('➕ Definiendo bloque move_forward');
     Blockly.Blocks['move_forward'] = {
       init: function() {
         this.appendDummyInput()
@@ -20,6 +27,7 @@ export const initializeBlocks = () => {
 
   // Bloque: Girar izquierda
   if (!Blockly.Blocks['turn_left']) {
+    console.log('➕ Definiendo bloque turn_left');
     Blockly.Blocks['turn_left'] = {
       init: function() {
         this.appendDummyInput()
@@ -35,6 +43,7 @@ export const initializeBlocks = () => {
 
   // Bloque: Girar derecha
   if (!Blockly.Blocks['turn_right']) {
+    console.log('➕ Definiendo bloque turn_right');
     Blockly.Blocks['turn_right'] = {
       init: function() {
         this.appendDummyInput()
@@ -47,24 +56,38 @@ export const initializeBlocks = () => {
       }
     };
   }
+  
+  console.log('✅ Todos los bloques definidos correctamente');
 };
 
 // Generadores JavaScript para los bloques
 export const initializeGenerators = (javascriptGenerator: any) => {
+  console.log('🔧 Iniciando definición de generadores...');
+  
+  if (!javascriptGenerator || !javascriptGenerator.forBlock) {
+    console.error('❌ javascriptGenerator no está disponible');
+    return;
+  }
+  
   // Generador para move_forward
+  console.log('➕ Definiendo generador move_forward');
   javascriptGenerator.forBlock['move_forward'] = function() {
     return 'move(1);\n';
   };
 
   // Generador para turn_left
+  console.log('➕ Definiendo generador turn_left');
   javascriptGenerator.forBlock['turn_left'] = function() {
     return 'turnLeft();\n';
   };
 
   // Generador para turn_right
+  console.log('➕ Definiendo generador turn_right');
   javascriptGenerator.forBlock['turn_right'] = function() {
     return 'turnRight();\n';
   };
+  
+  console.log('✅ Todos los generadores definidos correctamente');
 };
 
 // Configuración del toolbox
