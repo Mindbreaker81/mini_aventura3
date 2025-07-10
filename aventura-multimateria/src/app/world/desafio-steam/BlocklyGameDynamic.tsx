@@ -8,10 +8,10 @@ import { NotificationContainer, useNotifications } from './NotificationSystem';
 // Importación dinámica para evitar problemas SSR
 const BlocklyGame: React.FC = () => {
   const blocklyDiv = useRef<HTMLDivElement>(null);
-  const workspaceRef = useRef<any>(null);
+  const workspaceRef = useRef<import('blockly').WorkspaceSvg | null>(null);
   const [blocklyLoaded, setBlocklyLoaded] = useState(false);
-  const [Blockly, setBlockly] = useState<any>(null);
-  const [javascriptGenerator, setJavascriptGenerator] = useState<any>(null);
+  const [Blockly, setBlockly] = useState<typeof import('blockly') | null>(null);
+  const [javascriptGenerator, setJavascriptGenerator] = useState<typeof import('blockly/javascript').javascriptGenerator | null>(null);
   
   // Sistema de notificaciones
   const notifications = useNotifications();
@@ -30,191 +30,184 @@ const BlocklyGame: React.FC = () => {
 
   // Cargar Blockly solo en el cliente
   useEffect(() => {
+    let isMounted = true;
     const loadBlockly = async () => {
       if (typeof window === 'undefined') return;
-      
       try {
-        // Importar Blockly usando la sintaxis correcta para v12.1.0
         const blocklyModule = await import('blockly');
         const { javascriptGenerator } = await import('blockly/javascript');
-        
-        console.log('Blockly module loaded:', blocklyModule);
-        console.log('JavaScript generator loaded:', javascriptGenerator);
-        
-        // Verificar que los módulos se cargaron correctamente
         if (!blocklyModule || !javascriptGenerator) {
           throw new Error('Failed to load Blockly modules');
         }
-        
-        setBlockly(blocklyModule);
-        setJavascriptGenerator(javascriptGenerator);
-        
-        console.log('Blockly loaded successfully');
-        console.log('Setting state - Blockly:', !!blocklyModule, 'Generator:', !!javascriptGenerator);
-        
-        // Verificar que el estado se actualizó correctamente
-        setTimeout(() => {
-          console.log('State after setting - Blockly:', !!blocklyModule, 'Generator:', !!javascriptGenerator);
-        }, 100);
-        notifications.showSuccess('Editor cargado', 'Editor de bloques listo para usar');
+        if (isMounted) {
+          setBlockly(blocklyModule);
+          setJavascriptGenerator(javascriptGenerator);
+          notifications.showSuccess('Editor cargado', 'Editor de bloques listo para usar');
+        }
       } catch (error) {
         console.error('Error loading Blockly:', error);
-        notifications.showError(
-          'Error de carga', 
-          'No se pudo cargar el editor de bloques',
-          {
-            label: 'Reintentar',
-            onClick: () => window.location.reload()
-          }
-        );
+        if (isMounted) {
+          notifications.showError(
+            'Error de carga',
+            'No se pudo cargar el editor de bloques',
+            {
+              label: 'Reintentar',
+              onClick: () => window.location.reload()
+            }
+          );
+        }
       }
     };
-    
     loadBlockly();
-  }, []);
+    return () => { isMounted = false; };
+  }, [notifications]);
 
+  // Efecto separado para inicializar el workspace cuando el DOM y Blockly estén listos
   useEffect(() => {
-    console.log("Checking Blockly readiness:");
-    console.log("blocklyDiv.current:", blocklyDiv.current);
-    console.log("Blockly:", Blockly);
-    console.log("javascriptGenerator:", javascriptGenerator);
-    
-    if (!blocklyDiv.current || !Blockly || !javascriptGenerator) {
-      console.log("Blockly not ready yet - Missing:", {
-        blocklyDiv: !blocklyDiv.current,
-        Blockly: !Blockly,
-        javascriptGenerator: !javascriptGenerator
-      });
-      return;
-    }
-    
-    console.log("Inicializando Blockly...");
-    
-    // Definir bloques personalizados SIEMPRE antes de crear el workspace
-    if (!Blockly.Blocks['move_forward']) {
-      Blockly.Blocks['move_forward'] = {
-        init: function() {
-          this.appendDummyInput().appendField('avanzar');
-          this.setPreviousStatement(true, null);
-          this.setNextStatement(true, null);
-          this.setColour(120);
-          this.setTooltip('Mueve el robot hacia adelante');
-        }
-      };
-      javascriptGenerator.forBlock['move_forward'] = function() {
-        return 'moveForward();\n';
-      };
-    }
-    
-    if (!Blockly.Blocks['turn_left']) {
-      Blockly.Blocks['turn_left'] = {
-        init: function() {
-          this.appendDummyInput().appendField('girar izquierda');
-          this.setPreviousStatement(true, null);
-          this.setNextStatement(true, null);
-          this.setColour(160);
-          this.setTooltip('Gira el robot hacia la izquierda');
-        }
-      };
-      javascriptGenerator.forBlock['turn_left'] = function() {
-        return 'turnLeft();\n';
-      };
-    }
-    
-    if (!Blockly.Blocks['turn_right']) {
-      Blockly.Blocks['turn_right'] = {
-        init: function() {
-          this.appendDummyInput().appendField('girar derecha');
-          this.setPreviousStatement(true, null);
-          this.setNextStatement(true, null);
-          this.setColour(200);
-          this.setTooltip('Gira el robot hacia la derecha');
-        }
-      };
-      javascriptGenerator.forBlock['turn_right'] = function() {
-        return 'turnRight();\n';
-      };
-    }
-    
-    // Definir toolbox
-    const toolbox = {
-      kind: 'categoryToolbox',
-      contents: [
-        {
-          kind: 'category',
-          name: 'Movimiento',
-          colour: '#4CAF50',
-          contents: [
-            { kind: 'block', type: 'move_forward' },
-            { kind: 'block', type: 'turn_left' },
-            { kind: 'block', type: 'turn_right' }
-          ]
-        },
-        {
-          kind: 'category',
-          name: 'Bucles',
-          colour: '#FF9800',
-          contents: [
-            {
-              kind: 'block',
-              type: 'controls_repeat_ext',
-              inputs: {
-                TIMES: {
-                  block: {
-                    type: 'math_number',
-                    fields: { NUM: 3 }
+    // Esperar un tick para asegurar que el DOM esté renderizado
+    const timer = setTimeout(() => {
+      if (!blocklyDiv.current || !Blockly || !javascriptGenerator) {
+        console.log("Blockly not ready yet - Missing:", {
+          blocklyDiv: !blocklyDiv.current,
+          Blockly: !Blockly,
+          javascriptGenerator: !javascriptGenerator
+        });
+        return;
+      }
+
+      // --- INICIALIZACIÓN DE BLOCKLY ---
+      console.log("Inicializando Blockly...");
+      
+      // Verificar que el div tenga dimensiones
+      const rect = blocklyDiv.current.getBoundingClientRect();
+      console.log("Div dimensions:", rect);
+      
+      if (rect.width === 0 || rect.height === 0) {
+        console.warn("El div de Blockly no tiene dimensiones válidas, esperando...");
+        return;
+      }
+      
+      // Definir bloques personalizados SIEMPRE antes de crear el workspace
+      if (!Blockly.Blocks['move_forward']) {
+        Blockly.Blocks['move_forward'] = {
+          init: function() {
+            this.appendDummyInput().appendField('avanzar');
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(120);
+            this.setTooltip('Mueve el robot hacia adelante');
+          }
+        };
+        javascriptGenerator.forBlock['move_forward'] = function() {
+          return 'moveForward();\n';
+        };
+      }
+      if (!Blockly.Blocks['turn_left']) {
+        Blockly.Blocks['turn_left'] = {
+          init: function() {
+            this.appendDummyInput().appendField('girar izquierda');
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(160);
+            this.setTooltip('Gira el robot hacia la izquierda');
+          }
+        };
+        javascriptGenerator.forBlock['turn_left'] = function() {
+          return 'turnLeft();\n';
+        };
+      }
+      if (!Blockly.Blocks['turn_right']) {
+        Blockly.Blocks['turn_right'] = {
+          init: function() {
+            this.appendDummyInput().appendField('girar derecha');
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(200);
+            this.setTooltip('Gira el robot hacia la derecha');
+          }
+        };
+        javascriptGenerator.forBlock['turn_right'] = function() {
+          return 'turnRight();\n';
+        };
+      }
+      // Definir toolbox
+      const toolbox = {
+        kind: 'categoryToolbox',
+        contents: [
+          {
+            kind: 'category',
+            name: 'Movimiento',
+            colour: '#4CAF50',
+            contents: [
+              { kind: 'block', type: 'move_forward' },
+              { kind: 'block', type: 'turn_left' },
+              { kind: 'block', type: 'turn_right' }
+            ]
+          },
+          {
+            kind: 'category',
+            name: 'Bucles',
+            colour: '#FF9800',
+            contents: [
+              {
+                kind: 'block',
+                type: 'controls_repeat_ext',
+                inputs: {
+                  TIMES: {
+                    block: {
+                      type: 'math_number',
+                      fields: { NUM: 3 }
+                    }
                   }
                 }
               }
-            }
-          ]
-        }
-      ]
-    };
-    
-    // Limpiar workspace anterior si existe
-    if (workspaceRef.current) {
-      workspaceRef.current.dispose();
-      workspaceRef.current = null;
-    }
-    
-    // Crear workspace
-    console.log("Inyectando Blockly en el div", blocklyDiv.current);
-    const workspace = Blockly.inject(blocklyDiv.current, {
-      toolbox: toolbox,
-      grid: {
-        spacing: 20,
-        length: 3,
-        colour: '#ccc',
-        snap: true
-      },
-      zoom: {
-        controls: true,
-        wheel: true,
-        startScale: 1.0,
-        maxScale: 3,
-        minScale: 0.3,
-        scaleSpeed: 1.2
+            ]
+          }
+        ]
+      };
+      // Limpiar workspace anterior si existe
+      if (workspaceRef.current) {
+        workspaceRef.current.dispose();
+        workspaceRef.current = null;
       }
-    });
+      // Crear workspace
+      console.log("Inyectando Blockly en el div", blocklyDiv.current);
+      const workspace = Blockly.inject(blocklyDiv.current, {
+        toolbox: toolbox,
+        grid: {
+          spacing: 20,
+          length: 3,
+          colour: '#ccc',
+          snap: true
+        },
+        zoom: {
+          controls: true,
+          wheel: true,
+          startScale: 1.0,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2
+        }
+      });
+      workspaceRef.current = workspace;
+      setBlocklyLoaded(true);
+      console.log("Blockly cargado y workspace creado");
+      // Listener para cambios en el workspace
+      workspace.addChangeListener(() => {
+        const code = javascriptGenerator.workspaceToCode(workspace);
+        setBlocklyCode(code);
+      });
+    }, 100); // Esperar 100ms para que el DOM esté completamente renderizado
     
-    workspaceRef.current = workspace;
-    setBlocklyLoaded(true);
-    console.log("Blockly cargado y workspace creado");
-    
-    // Listener para cambios en el workspace
-    workspace.addChangeListener(() => {
-      const code = javascriptGenerator.workspaceToCode(workspace);
-      setBlocklyCode(code);
-    });
-    
+    // Cleanup al desmontar
     return () => {
+      clearTimeout(timer);
       if (workspaceRef.current) {
         workspaceRef.current.dispose();
         workspaceRef.current = null;
       }
     };
-  }, [Blockly, javascriptGenerator, blocklyDiv.current]);
+  }, [Blockly, javascriptGenerator, setBlocklyCode]);
 
   const executeCode = () => {
     if (!workspaceRef.current || !javascriptGenerator) {
@@ -342,9 +335,11 @@ const BlocklyGame: React.FC = () => {
             style={{ 
               width: '100%', 
               height: '300px',
-              minHeight: '250px'
+              minHeight: '250px',
+              display: 'block'
             }} 
             ref={blocklyDiv} 
+            className="border-2 border-gray-200"
           />
         </div>
 

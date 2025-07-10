@@ -31,7 +31,6 @@ const DesafioSteam: React.FC = () => {
     xp,
     badge,
     currentTask,
-    tasks,
   } = useDesafioSteamStore();
 
   useEffect(() => {
@@ -70,8 +69,8 @@ const DesafioSteam: React.FC = () => {
             <div className="bg-blue-50 p-4 rounded-lg">
               <h3 className="font-semibold text-blue-800 mb-2">🧩 Cómo jugar:</h3>
               <ul className="text-gray-700 space-y-1">
-                <li>• Arrastra bloques de "avanzar", "girar izquierda" y "girar derecha"</li>
-                <li>• Usa bucles "repetir" para optimizar tu código</li>
+                <li>• Arrastra bloques de &quot;avanzar&quot;, &quot;girar izquierda&quot; y &quot;girar derecha&quot;</li>
+                <li>• Usa bucles &quot;repetir&quot; para optimizar tu código</li>
                 <li>• Respeta el límite de bloques de cada nivel</li>
                 <li>• ¡El robot tiene 3 vidas por nivel!</li>
               </ul>

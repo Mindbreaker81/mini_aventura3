@@ -117,10 +117,15 @@ Todos los juegos implementan:
 **Ruta**: `/world/desafio-steam`
 **Materia**: Programación
 **Mecánica**: Programar robot con bloques visuales
-- **Componentes**: RobotBoard, BlocklyGame
+- **Componentes**: RobotBoard, BlocklyGameDynamic, NotificationSystem
 - **Datos**: 6 desafíos progresivos en tablero 6x6
 - **Store**: `useDesafioSteamStore`
 - **Dependencias**: blockly para programación visual
+- **Características especiales**: 
+  - Carga dinámica de Blockly para evitar problemas SSR
+  - Parser de código seguro sin eval()
+  - Sistema de notificaciones integrado
+  - Inicialización robusta con verificación de dimensiones DOM
 
 ### 6. Laboratorio Flip-Ciencia 🧪
 **Ruta**: `/world/laboratorio-flip`
@@ -166,7 +171,11 @@ npm run types:generate    # Generar tipos TypeScript
 
 ### Dependencias Críticas
 - **React 18**: Usar `--legacy-peer-deps` para react-simple-maps
-- **Blockly**: Importar dinámicamente para evitar problemas de SSR
+- **Blockly**: 
+  - Importar dinámicamente para evitar problemas de SSR
+  - Usar `setTimeout` para inicialización DOM-dependiente
+  - Verificar dimensiones del contenedor antes de inyectar
+  - Manejar cleanup adecuado en unmount
 - **ReactPlayer**: Importar con `dynamic` y `ssr: false`
 
 ### Persistencia
@@ -212,4 +221,9 @@ npm run types:generate    # Generar tipos TypeScript
 - Algunas dependencias requieren `--legacy-peer-deps`
 - Los videos en Laboratorio Flip usan URLs de YouTube como placeholder
 - Los mapas usan topojson para datos geográficos
-- Blockly se integra con evaluación segura de código JavaScript
+- **Blockly (STEAM)**: 
+  - Integración con evaluación segura de código JavaScript (sin eval())
+  - Inicialización robusta con verificación de timing DOM
+  - Sistema de notificaciones integrado para feedback de usuario
+  - Parser de código personalizado para comandos del robot
+  - Manejo de memoria mejorado con cleanup automático
