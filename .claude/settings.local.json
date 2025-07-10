@@ -11,7 +11,9 @@
       "Bash(node:*)",
       "Bash(rm:*)",
       "Bash(npm run dev:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(npm run lint:*)"
     ],
     "deny": []
   }
