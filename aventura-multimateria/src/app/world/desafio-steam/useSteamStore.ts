@@ -209,7 +209,4 @@ const useSteamStore = create<SteamState>()(
   )
 );
 
-// Inicializar el store al cargar la app
-useSteamStore.getState().initialize();
-
 export default useSteamStore;
