@@ -1,15 +1,19 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Play, RotateCcw, Trophy, Heart } from 'lucide-react';
 import useSteamStore from './useSteamStore';
 import { initializeBlocks, initializeGenerators, getToolboxConfig } from './blocks';
 
+// Define un tipo para el estado de Blockly
+type BlocklyState = {
+  Blockly: any;
+  javascriptGenerator: any;
+} | null;
+
 const BlocklyGame: React.FC = () => {
-  const blocklyDiv = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef<any>(null);
+  const [blocklyState, setBlocklyState] = useState<BlocklyState>(null);
   const [blocklyLoaded, setBlocklyLoaded] = useState(false);
-  const [Blockly, setBlockly] = useState<any>(null);
-  const [javascriptGenerator, setJavascriptGenerator] = useState<any>(null);
   
   const { 
     tasks,
@@ -29,32 +33,20 @@ const BlocklyGame: React.FC = () => {
     
     const loadBlockly = async () => {
       console.log('🔧 Iniciando carga de Blockly...');
-      if (typeof window === 'undefined') {
-        console.log('❌ window es undefined, cancelando carga');
-        return;
-      }
+      if (typeof window === 'undefined') return;
       
       try {
-        console.log('📦 Importando módulos de Blockly...');
-        // Importar Blockly y el generador JavaScript
-        const blocklyModule = await import('blockly');
-        const { javascriptGenerator } = await import('blockly/javascript');
-        
-        console.log('✅ Módulos importados:', {
-          blockly: !!blocklyModule,
-          generator: !!javascriptGenerator
-        });
+        const [blocklyModule, { javascriptGenerator }] = await Promise.all([
+          import('blockly'),
+          import('blockly/javascript')
+        ]);
         
         if (isMounted) {
-          console.log('🔄 Actualizando estado...');
-          setBlockly(blocklyModule);
-          setJavascriptGenerator(javascriptGenerator);
-          console.log('✅ Estado actualizado correctamente');
-        } else {
-          console.log('❌ Componente no montado, cancelando actualización');
+          console.log('✅ Módulos de Blockly importados');
+          setBlocklyState({ Blockly: blocklyModule, javascriptGenerator });
         }
       } catch (error) {
-        console.error('❌ Error loading Blockly:', error);
+        console.error('❌ Error cargando Blockly:', error);
       }
     };
     
@@ -63,122 +55,76 @@ const BlocklyGame: React.FC = () => {
   }, []);
 
   // Inicializar workspace de Blockly
-  useEffect(() => {
-    console.log('🎯 Iniciando configuración de workspace...');
-    const timer = setTimeout(() => {
-      console.log('⏰ Timer ejecutado, verificando condiciones...');
-      console.log('🔍 Estado actual:', {
-        blocklyDiv: !!blocklyDiv.current,
-        Blockly: !!Blockly,
-        javascriptGenerator: !!javascriptGenerator
-      });
+  const blocklyDivRef = useCallback((node: HTMLDivElement | null) => {
+    if (node && blocklyState && !workspaceRef.current) {
+      console.log('🚀 Inicializando workspace de Blockly...');
       
-      if (!blocklyDiv.current || !Blockly || !javascriptGenerator) {
-        console.log('❌ Faltan dependencias, cancelando inicialización');
-        return;
-      }
-
-      // Verificar dimensiones del div
-      const rect = blocklyDiv.current.getBoundingClientRect();
-      console.log('📐 Dimensiones del div:', rect);
-      if (rect.width === 0 || rect.height === 0) {
-        console.log('❌ Div sin dimensiones válidas, cancelando');
-        return;
-      }
+      const { Blockly, javascriptGenerator } = blocklyState;
 
       try {
-        console.log('🔧 Inicializando bloques personalizados...');
-        // Inicializar bloques personalizados
+        // Inicializar bloques y generadores
         initializeBlocks(Blockly);
         initializeGenerators(javascriptGenerator);
-        console.log('✅ Bloques inicializados');
 
-        // Limpiar workspace anterior
-        if (workspaceRef.current) {
-          workspaceRef.current.dispose();
-          workspaceRef.current = null;
-        }
-
-        // Crear nuevo workspace
-        const workspace = Blockly.inject(blocklyDiv.current, {
+        // Inyectar workspace
+        const workspace = Blockly.inject(node, {
           toolbox: getToolboxConfig(),
-          grid: {
-            spacing: 20,
-            length: 3,
-            colour: '#ccc',
-            snap: true
-          },
-          zoom: {
-            controls: true,
-            wheel: true,
-            startScale: 1.0,
-            maxScale: 3,
-            minScale: 0.3,
-            scaleSpeed: 1.2
-          },
+          grid: { spacing: 20, length: 3, colour: '#ccc', snap: true },
+          zoom: { controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2 },
           trashcan: true
         });
 
         workspaceRef.current = workspace;
         console.log('🎉 Workspace creado exitosamente');
         setBlocklyLoaded(true);
-        console.log('✅ BlocklyLoaded establecido a true');
 
-        // Cargar código guardado
-        if (typeof window !== 'undefined') {
-          const savedCode = localStorage.getItem('steam-session');
-          if (savedCode) {
-            try {
-              console.log('📁 Cargando código guardado...');
-              const xml = Blockly.utils.xml.textToDom(savedCode);
-              Blockly.Xml.domToWorkspace(xml, workspace);
-              console.log('✅ Código guardado cargado');
-            } catch (error) {
-              console.log('⚠️ No se pudo cargar el código guardado:', error);
-            }
+        // Cargar código guardado de localStorage
+        const savedCode = localStorage.getItem('steam-session');
+        if (savedCode) {
+          try {
+            const xml = Blockly.utils.xml.textToDom(savedCode);
+            Blockly.Xml.domToWorkspace(xml, workspace);
+            console.log('✅ Código guardado cargado');
+          } catch (e) {
+            console.warn('⚠️ No se pudo cargar el código guardado:', e);
           }
         }
 
-        // Listener para cambios en el workspace
+        // Listener para cambios
         workspace.addChangeListener(() => {
           const code = javascriptGenerator.workspaceToCode(workspace);
           setBlocklyCode(code);
           
-          // Guardar en localStorage
-          if (typeof window !== 'undefined') {
-            const xml = Blockly.Xml.workspaceToDom(workspace);
-            const xmlText = Blockly.utils.xml.domToText(xml);
-            localStorage.setItem('steam-session', xmlText);
-          }
+          const xml = Blockly.Xml.workspaceToDom(workspace);
+          const xmlText = Blockly.utils.xml.domToText(xml);
+          localStorage.setItem('steam-session', xmlText);
         });
 
       } catch (error) {
         console.error('❌ Error inicializando Blockly:', error);
-        console.error('Stack trace:', error);
       }
-    }, 100);
+    }
+  }, [blocklyState, setBlocklyCode]);
 
+  // Limpiar al desmontar
+  useEffect(() => {
     return () => {
-      clearTimeout(timer);
       if (workspaceRef.current) {
         workspaceRef.current.dispose();
         workspaceRef.current = null;
       }
     };
-  }, [Blockly, javascriptGenerator, setBlocklyCode]);
+  }, []);
 
   // Función para ejecutar el código
   const runCode = async () => {
-    if (!workspaceRef.current || !javascriptGenerator || isExecuting) {
-      return;
-    }
+    if (!workspaceRef.current || !blocklyState || isExecuting) return;
 
-    const code = javascriptGenerator.workspaceToCode(workspaceRef.current);
-    const blockCount = workspaceRef.current.getAllBlocks().length;
-    const maxBlocks = tasks[currentTask].maxBlocks;
+    const code = blocklyState.javascriptGenerator.workspaceToCode(workspaceRef.current);
+    const blockCount = workspaceRef.current.getAllBlocks(false).length;
+    const maxBlocks = tasks[currentTask]?.maxBlocks;
 
-    // Verificar límite de bloques
-    if (blockCount > maxBlocks) {
+    if (maxBlocks && blockCount > maxBlocks) {
       alert(`¡Usa máximo ${maxBlocks} bloques! Actualmente usas ${blockCount}.`);
       return;
     }
@@ -188,117 +134,70 @@ const BlocklyGame: React.FC = () => {
       return;
     }
 
-    // Parsear comandos del código
-    const commands = parseCodeToCommands(code);
-    
-    if (commands.length === 0) {
-      alert('No se encontraron comandos válidos en el código.');
-      return;
-    }
-
-    // Ejecutar comandos
-    await executeCode(commands);
-  };
-
-  // Función para parsear código a comandos
-  const parseCodeToCommands = (code: string): string[] => {
-    const commands: string[] = [];
-    
-    // Función para simular la ejecución y capturar comandos
-    const mockFunctions = {
-      move: (steps: number) => {
-        for (let i = 0; i < steps; i++) {
-          commands.push('move(1)');
-        }
-      },
-      turnLeft: () => commands.push('turnLeft()'),
-      turnRight: () => commands.push('turnRight()')
-    };
-
-    try {
-      // Crear contexto seguro para evaluación
-      const func = new Function('move', 'turnLeft', 'turnRight', code);
-      func(mockFunctions.move, mockFunctions.turnLeft, mockFunctions.turnRight);
-    } catch (error) {
-      console.error('Error parsing code:', error);
-    }
-
-    return commands;
+    await executeCode(code);
   };
 
   // Función para reiniciar
   const handleReset = () => {
     if (workspaceRef.current) {
       workspaceRef.current.clear();
+      // Restaurar bloques iniciales si es necesario
+      const initialXml = localStorage.getItem('steam-initial');
+      if (initialXml && blocklyState) {
+        const xml = blocklyState.Blockly.utils.xml.textToDom(initialXml);
+        blocklyState.Blockly.Xml.domToWorkspace(xml, workspaceRef.current);
+      }
     }
     resetCurrentTask();
   };
 
-  // Función para contar bloques
   const getBlockCount = (): number => {
     if (!workspaceRef.current) return 0;
-    return workspaceRef.current.getAllBlocks().length;
+    // `getAllBlocks(false)` cuenta los bloques de usuario, no los de la toolbox.
+    return workspaceRef.current.getAllBlocks(false).length;
   };
 
-  if (!blocklyLoaded) {
-    return (
-      <div className="bg-white rounded-lg p-6 shadow-lg">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p>Cargando editor de bloques...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      {/* Header con estadísticas */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4">
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 flex-shrink-0">
         <div className="flex justify-between items-center">
           <h2 className="text-xl font-bold">Editor de Bloques</h2>
           <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-1">
-              <Trophy size={16} />
-              <span>{xp} XP</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Heart size={16} />
-              <span>{lives} vidas</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <span>💡</span>
-              <span>{leds}/6 LEDs</span>
-            </div>
+            <div className="flex items-center gap-1"><Trophy size={16} /><span>{xp} XP</span></div>
+            <div className="flex items-center gap-1"><Heart size={16} /><span>{lives} vidas</span></div>
+            <div className="flex items-center gap-1"><span>💡</span><span>{leds}/6 LEDs</span></div>
           </div>
         </div>
       </div>
 
       {/* Área de Blockly */}
-      <div className="relative">
+      <div className="relative flex-grow h-0">
+        {!blocklyLoaded && (
+          <div className="absolute inset-0 flex justify-center items-center bg-gray-100 z-10">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <p>Cargando editor de bloques...</p>
+            </div>
+          </div>
+        )}
         <div 
-          style={{ 
-            width: '100%', 
-            height: '400px',
-            minHeight: '350px',
-            display: 'block'
-          }} 
-          ref={blocklyDiv} 
-          className="border-2 border-gray-200"
+          ref={blocklyDivRef} 
+          className="w-full h-full"
         />
       </div>
 
       {/* Controles */}
-      <div className="p-4 bg-gray-50 border-t flex justify-between items-center">
+      <div className="p-4 bg-gray-50 border-t flex justify-between items-center flex-shrink-0">
         <div className="text-sm text-gray-600">
-          Bloques usados: <span className="font-semibold">{getBlockCount()}</span> / {tasks[currentTask]?.maxBlocks}
+          Bloques: <span className="font-semibold">{blocklyLoaded ? getBlockCount() : 0}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
         </div>
         
         <div className="flex gap-2">
           <button
             onClick={handleReset}
             disabled={isExecuting}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 transition-colors"
           >
             <RotateCcw size={16} />
             Reiniciar
@@ -306,8 +205,8 @@ const BlocklyGame: React.FC = () => {
           
           <button
             onClick={runCode}
-            disabled={isExecuting}
-            className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            disabled={isExecuting || !blocklyLoaded}
+            className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
           >
             <Play size={16} />
             {isExecuting ? 'Ejecutando...' : 'Ejecutar'}
