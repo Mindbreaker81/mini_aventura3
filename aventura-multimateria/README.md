@@ -1,29 +1,3 @@
-# Aventura Multimateria
-
-Aplicación web de minijuegos educativos desarrollada con Next.js, React 18, TypeScript y react-leaflet para mapas interactivos.
-
-## Minijuegos principales
-
-- **Puerto Palabras**: Arrastra palabras a su categoría y practica ortografía.
-- **Bosc de Lectura**: Comprensión lectora.
-- **Misión Mapamundi**: Mapa interactivo centrado en Barcelona usando react-leaflet.
-
-## Tecnologías
-- Next.js 15
-- React 18
-- TypeScript
-- Tailwind CSS
-- Supabase
-- react-leaflet
-
-## Instalación
-
-1. `npm install`
-2. `npm run dev`
-
-## Notas
-- El minijuego de mapa ahora usa react-leaflet, eliminando dependencias vulnerables.
-
 # ExplorAventura 3: Minijuegos Educativos
 
 ## 🎮 Descripción del Proyecto
@@ -68,7 +42,7 @@ aventura-multimateria/
 │   │   │   ├── puerto-words.json     # Palabras categorizadas
 │   │   │   ├── bosc-passages.json    # Textos y preguntas de lectura
 │   │   │   ├── mercado-tasks.json    # Problemas matemáticos
-│   │   │   ├── geography-tasks.json  # Ubicaciones geográficas
+│   │   │   ├── mapamundi-tasks.json  # Ubicaciones geográficas
 │   │   │   ├── steam-tasks.json      # Desafíos de programación
 │   │   │   └── flip-lessons.json     # Lecciones científicas
 │   │   ├── hooks/
@@ -77,7 +51,7 @@ aventura-multimateria/
 │   │   │   ├── puerto-palabras/      # Gramática (drag & drop)
 │   │   │   ├── bosc-lectura/         # Comprensión lectora
 │   │   │   ├── mercado-numeros/      # Matemáticas aplicadas
-│   │   │   ├── mision-mapamundi/     # Geografía interactiva
+│   │   │   ├── mision-mapamundi-v2/  # Geografía interactiva
 │   │   │   ├── desafio-steam/        # Programación con bloques
 │   │   │   └── laboratorio-flip/     # Ciencias con videos
 │   │   ├── globals.css
@@ -89,8 +63,8 @@ aventura-multimateria/
 │           ├── en/common.json        # Inglés
 │           └── es/common.json        # Español
 ├── package.json
-├── next.config.ts
-├── tailwind.config.ts
+├── next.config.js
+├── tailwind.config.js
 ├── tsconfig.json
 ├── CLAUDE.md                         # 🤖 Documentación para Claude
 └── README.md                         # 📖 Este archivo
@@ -116,32 +90,6 @@ aventura-multimateria/
 4. XP otorgado: 5 puntos por acierto
 5. Badge al completar 10 rondas correctas
 
-#### Componentes Técnicos:
-```typescript
-interface WordItem {
-  id: number;
-  word: string;
-  category: 'sustantivo' | 'verbo' | 'adjetivo';
-  placed?: boolean;
-}
-
-const usePuertoPalabrasStore = create<PuertoPalabrasStore>()(
-  persist(
-    (set, get) => ({
-      // Estado del juego
-      currentWords: [],
-      score: 0,
-      xp: 0,
-      // Funciones principales
-      selectRandomWords: () => {...},
-      dropWord: (wordId, category) => {...},
-      checkAnswer: (wordId, category) => {...}
-    }),
-    { name: 'puerto-palabras-storage' }
-  )
-);
-```
-
 ### 2. 🌳 Bosc de Lectura
 **Materia**: Comprensión lectora
 **Ruta**: `/world/bosc-lectura`
@@ -158,23 +106,6 @@ const usePuertoPalabrasStore = create<PuertoPalabrasStore>()(
 3. Retroalimentación con explicaciones
 4. Sistema de "LEDs" que se iluminan por acierto
 5. XP: 8 puntos por respuesta correcta
-
-#### Estructura de Datos:
-```json
-{
-  "id": "passage1",
-  "title": "El ciclo del agua",
-  "text": "El agua es esencial para la vida...",
-  "questions": [
-    {
-      "question": "¿Cuáles son las fases del ciclo del agua?",
-      "options": ["Evaporación, condensación, precipitación", "..."],
-      "correct": 0,
-      "explanation": "El ciclo del agua incluye..."
-    }
-  ]
-}
-```
 
 ### 3. 🛒 Mercado de Números
 **Materia**: Matemáticas aplicadas
@@ -193,939 +124,134 @@ const usePuertoPalabrasStore = create<PuertoPalabrasStore>()(
 2. **HORA**: Duración entre horas, conversiones de tiempo
 3. **FRACCION**: Comparar, sumar, simplificar fracciones
 
-#### Estructura Técnica:
-```typescript
-interface MercadoTask {
-  id: number;
-  type: 'PAGO' | 'HORA' | 'FRACCION';
-  question: string;
-  options: string[];
-  answer: number;
-  explanation: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-}
-
-// Componentes especializados por tipo
-const PaymentChallenge: React.FC<{task: MercadoTask}> = ({task}) => {
-  // Renderizado específico para problemas de dinero
-  // Incluye iconos de monedas, calculadora visual
-};
-```
-
 ### 4. 🗺️ Misión Mapamundi
 **Materia**: Geografía
-**Ruta**: `/world/mision-mapamundi`
-**Mecánica**: Localizar lugares en mapas interactivos
+**Ruta**: `/world/mision-mapamundi-v2`
+**Mecánica**: Ubicar países, continentes y CCAA en mapas interactivos
 
 #### Archivos Clave:
-- `useMisionMapamundiStore.ts` - Estado geográfico
-- `WorldMap.tsx` - Mapa mundial con react-simple-maps
-- `SpainMap.tsx` - Mapa de España con comunidades autónomas
-- `geography-tasks.json` - 60+ ubicaciones
+- `useMapamundiV2Store.ts` - Gestión de mapas y ubicaciones
+- `WorldMap.tsx` - Mapa mundial interactivo
+- `SpainMap.tsx` - Mapa de España con CCAA
+- `Passport.tsx` - Sistema de pasaporte virtual
+- `mapamundi-tasks.json` - Datos geográficos
 
-#### Características Técnicas:
-```typescript
-// Integración con react-simple-maps
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-
-const WorldMap: React.FC = () => {
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
-  
-  return (
-    <ComposableMap>
-      <Geographies geography={geoUrl}>
-        {({ geographies }) =>
-          geographies.map(geo => (
-            <Geography
-              key={geo.rsmKey}
-              geography={geo}
-              onClick={() => handleCountryClick(geo.properties.NAME)}
-              style={{
-                default: { fill: "#D6D6DA" },
-                hover: { fill: "#F53" },
-                pressed: { fill: "#E42" }
-              }}
-            />
-          ))
-        }
-      </Geographies>
-    </ComposableMap>
-  );
-};
-```
-
-#### Tipos de Ubicaciones:
-1. **Continentes**: África, Asia, Europa, América del Norte, América del Sur, Oceanía, Antártida
-2. **Océanos**: Pacífico, Atlántico, Índico, Ártico, Antártico
-3. **Comunidades Autónomas**: Andalucía, Cataluña, Madrid, etc.
+#### Modos de Juego:
+1. **CONTINENTES**: Identificar continentes en el mapa mundial
+2. **OCEANOS**: Ubicar océanos principales
+3. **CCAA**: Identificar Comunidades Autónomas de España
 
 ### 5. 🤖 Desafío STEAM
 **Materia**: Programación y pensamiento computacional
 **Ruta**: `/world/desafio-steam`
-**Mecánica**: Programar robot con bloques visuales para navegar tablero
+**Mecánica**: Programar un robot con bloques visuales
 
 #### Archivos Clave:
-- `useDesafioSteamStore.ts` - Lógica del robot y ejecución
-- `RobotBoard.tsx` - Tablero 6x6 con visualización
-- `BlocklyGame.tsx` - Editor de bloques Blockly
-- `steam-tasks.json` - 6 desafíos progresivos
+- `useSteamStore.ts` - Lógica del robot y ejecución
+- `BlocklyGame.client.tsx` - Editor de bloques visuales
+- `RobotBoard.tsx` - Tablero de juego del robot
+- `blocks.ts` - Definición de bloques personalizados
+- `steam-tasks.json` - 6 niveles de dificultad creciente
 
-#### Integración Blockly:
-```typescript
-// Carga dinámica para evitar problemas SSR
-const BlocklyGame: React.FC = () => {
-  const [blocklyLoaded, setBlocklyLoaded] = useState(false);
-  
-  useEffect(() => {
-    const loadBlockly = async () => {
-      if (typeof window !== 'undefined' && !window.Blockly) {
-        const Blockly = await import('blockly');
-        window.Blockly = Blockly;
-        initializeBlockly();
-        setBlocklyLoaded(true);
-      }
-    };
-    loadBlockly();
-  }, []);
-
-  // Definición de bloques personalizados
-  const initializeBlockly = () => {
-    window.Blockly.Blocks['move_forward'] = {
-      init: function() {
-        this.appendDummyInput().appendField('avanzar');
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(120);
-      }
-    };
-  };
-};
-```
-
-#### Sistema de Ejecución:
-1. **Compilación**: Blockly → JavaScript → Array de comandos
-2. **Ejecución**: Secuencial con delays para visualización
-3. **Validación**: Detección de colisiones, límites del tablero
-4. **Feedback**: Animaciones del robot, mensajes de error/éxito
+#### Características Técnicas:
+- **Editor de Bloques**: Basado en Google Blockly
+- **Ejecución en Tiempo Real**: El robot se mueve según el código
+- **Sistema de Vidas**: 3 vidas por nivel
+- **LEDs Coleccionables**: 6 LEDs por completar
+- **Límite de Bloques**: Optimización de código
 
 ### 6. 🧪 Laboratorio Flip-Ciencia
-**Materia**: Ciencias naturales
+**Materia**: Ciencias
 **Ruta**: `/world/laboratorio-flip`
 **Mecánica**: Ver videos educativos y responder quiz
 
 #### Archivos Clave:
-- `useLaboratorioFlipStore.ts` - Control de videos y quiz
-- `VideoCard.tsx` - Reproductor con react-player
-- `Quiz.tsx` - Preguntas post-video
-- `flip-lessons.json` - 16 lecciones científicas
+- `useLaboratorioFlipStore.ts` - Gestión de lecciones
+- `VideoCard.tsx` - Reproductor de videos
+- `Quiz.tsx` - Sistema de preguntas
+- `flip-lessons.json` - Lecciones científicas
 
-#### Integración React-Player:
-```typescript
-// Importación dinámica para SSR
-const ReactPlayer = dynamic(() => import('react-player'), {
-  ssr: false,
-  loading: () => <div className="w-full h-64 bg-gray-200 animate-pulse rounded-lg" />
-});
+#### Flujo del Juego:
+1. Selección de lección científica
+2. Visualización de video educativo
+3. Quiz de comprensión
+4. Feedback detallado con explicaciones
+5. Sistema de progreso por materia
 
-const VideoCard: React.FC = () => {
-  const [playing, setPlaying] = useState(false);
-  
-  const handleProgress = (progress: { played: number }) => {
-    // Considerar video visto al 80%
-    if (progress.played >= 0.8 && !videoWatched) {
-      finishVideo();
-    }
-  };
+## 🚀 Instalación y Desarrollo
 
-  return (
-    <ReactPlayer
-      url={lesson.videoUrl}
-      playing={playing}
-      onProgress={handleProgress}
-      controls={true}
-    />
-  );
-};
-```
+### Prerrequisitos
+- Node.js 20.x o superior
+- npm o yarn
 
-#### Mecánica de Experimento Virtual:
-1. **Video**: Observar contenido científico (~90 segundos)
-2. **Quiz**: 3 preguntas sobre el video
-3. **Piezas**: Obtener componentes del experimento por aciertos
-4. **Reacción**: Al completar 4 lecciones, "experimento reacciona"
-5. **Badge**: "Científico Novato" al finalizar
+### Pasos de instalación
 
-## 🔧 Configuración y Desarrollo
+1. **Instala las dependencias**:
+   ```bash
+   npm install
+   ```
 
-### Instalación
-```bash
-# Clonar repositorio
-git clone [URL_DEL_REPO]
-cd aventura-multimateria
+2. **Inicia el servidor de desarrollo**:
+   ```bash
+   npm run dev
+   ```
 
-# Instalar dependencias
-npm install
+3. **Abre tu navegador** en [http://localhost:3000](http://localhost:3000)
 
-# Si hay conflictos (React 19 vs dependencias más antiguas)
-npm install --legacy-peer-deps
-```
+## 📜 Scripts Disponibles
 
-### Comandos de Desarrollo
-```bash
-# Desarrollo local
-npm run dev                    # http://localhost:3000
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Inicia el entorno de desarrollo |
+| `npm run build` | Compila para producción |
+| `npm run start` | Inicia en modo producción |
+| `npm run lint` | Ejecuta el linter de código |
+| `npm run supabase:start` | Inicia Supabase local |
+| `npm run supabase:stop` | Detiene Supabase local |
+| `npm run db:reset` | Resetea la base de datos |
+| `npm run db:push` | Aplica migraciones |
+| `npm run types:generate` | Genera tipos TypeScript |
 
-# Producción
-npm run build                  # Build optimizado
-npm run start                  # Servidor de producción
+## 🌐 Despliegue en Vercel
 
-# Calidad de código
-npm run lint                   # ESLint
+El proyecto está optimizado para despliegue automático en Vercel:
 
-# Base de datos (Supabase - opcional)
-npm run supabase:start         # Instancia local
-npm run supabase:stop          # Detener instancia
-npm run db:reset               # Reset completo
-npm run types:generate         # Generar tipos TS
-```
+1. **Conecta tu repositorio** en [Vercel](https://vercel.com/)
+2. **Selecciona la carpeta** `aventura-multimateria` como raíz del proyecto
+3. **Vercel detectará automáticamente** la configuración de Next.js
+4. **El despliegue se ejecutará** automáticamente en cada push a la rama principal
 
-### Variables de Entorno (Opcional)
-```bash
-# .env.local
+### Configuración de Vercel
+- **Framework Preset**: Next.js
+- **Root Directory**: `aventura-multimateria`
+- **Build Command**: `npm run build`
+- **Output Directory**: `.next`
+
+## 🎯 Características Principales
+
+- **Responsive Design**: Optimizado para móviles y tablets
+- **Internacionalización**: Soporte multiidioma (ES, EN, CA)
+- **Editor de Bloques**: Programación visual con Blockly
+- **Mapas Interactivos**: Geografía con react-leaflet
+- **Drag & Drop**: Interacciones intuitivas
+- **Gestión de Estado**: Zustand para estado global
+- **Optimización**: Lazy loading y code splitting
+
+## 🔧 Configuración del Entorno
+
+### Variables de Entorno
+Crea un archivo `.env.local` en la raíz del proyecto:
+
+```env
+# Supabase (opcional)
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
 ```
 
-## 🧩 Patrones de Desarrollo
+## 📝 Licencia
 
-### Store de Zustand (Patrón Consistente)
-Todos los stores siguen esta estructura:
-```typescript
-interface GameStore extends BaseGameState {
-  // Estado específico del juego
-  currentLevel: number;
-  score: number;
-  xp: number;
-  
-  // Funciones comunes
-  initializeGame: () => void;
-  showInstructionsScreen: () => void;
-  hideInstructionsScreen: () => void;
-  awardXP: (amount: number) => void;
-  showFeedback: (success: boolean, message: string) => void;
-  hideFeedback: () => void;
-  
-  // Funciones específicas del juego
-  specificGameAction: () => void;
-}
-
-const useGameStore = create<GameStore>()(
-  persist(
-    (set, get) => ({
-      // Estado inicial
-      currentLevel: 0,
-      score: 0,
-      xp: 0,
-      showInstructions: true,
-      
-      // Implementación de funciones
-      initializeGame: () => {
-        set({
-          currentLevel: 0,
-          score: 0,
-          gameStatus: 'playing'
-        });
-      },
-      
-      awardXP: (amount: number) => {
-        set(state => ({ xp: state.xp + amount }));
-      }
-    }),
-    {
-      name: 'game-storage',
-      partialize: (state) => ({
-        xp: state.xp,
-        score: state.score,
-        currentLevel: state.currentLevel
-      })
-    }
-  )
-);
-```
-
-### Componente de Página (Patrón Consistente)
-```typescript
-const GamePage: React.FC = () => {
-  const { goToDashboard } = useNavigation();
-  const {
-    initializeGame,
-    showInstructions,
-    hideInstructionsScreen,
-    // ... otros estados del store
-  } = useGameStore();
-
-  useEffect(() => {
-    initializeGame();
-  }, [initializeGame]);
-
-  // Pantalla de instrucciones
-  if (showInstructions) {
-    return (
-      <InstructionsScreen 
-        onStart={hideInstructionsScreen}
-        onBack={goToDashboard}
-      />
-    );
-  }
-
-  // Pantalla de juego completado
-  if (gameStatus === 'completed') {
-    return (
-      <CompletionScreen onBack={goToDashboard} />
-    );
-  }
-
-  // Pantalla principal del juego
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 p-4">
-      <Header onBack={goToDashboard} />
-      <GameContent />
-      <FeedbackModal />
-    </div>
-  );
-};
-```
-
-### Sistema de Feedback
-```typescript
-// Feedback consistente con animaciones
-const FeedbackModal: React.FC = () => {
-  const { feedback, hideFeedback } = useGameStore();
-  
-  if (!feedback) return null;
-  
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full">
-        <div className="text-center">
-          {feedback.success ? (
-            <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
-          ) : (
-            <XCircle size={48} className="text-red-500 mx-auto mb-4" />
-          )}
-          
-          <h3 className={`text-xl font-bold mb-2 ${
-            feedback.success ? 'text-green-800' : 'text-red-800'
-          }`}>
-            {feedback.success ? '¡Excelente!' : '¡Ups!'}
-          </h3>
-          
-          <p className="text-gray-700 mb-6">{feedback.message}</p>
-          
-          <button
-            onClick={hideFeedback}
-            className={`px-6 py-2 rounded-lg text-white font-semibold ${
-              feedback.success 
-                ? 'bg-green-600 hover:bg-green-700' 
-                : 'bg-red-600 hover:bg-red-700'
-            }`}
-          >
-            Continuar
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-```
-
-## 🎨 Sistema de Diseño
-
-### Colores por Minijuego
-```css
-/* Puerto de las Palabras - Azul */
-.puerto-theme { @apply from-blue-100 to-blue-300 text-blue-800; }
-
-/* Bosc de Lectura - Verde */
-.bosc-theme { @apply from-green-100 to-green-300 text-green-800; }
-
-/* Mercado de Números - Naranja */
-.mercado-theme { @apply from-orange-100 to-orange-300 text-orange-800; }
-
-/* Misión Mapamundi - Índigo */
-.mision-theme { @apply from-indigo-100 to-indigo-300 text-indigo-800; }
-
-/* Desafío STEAM - Púrpura */
-.steam-theme { @apply from-purple-100 to-purple-300 text-purple-800; }
-
-/* Laboratorio Flip - Teal */
-.flip-theme { @apply from-teal-100 to-teal-300 text-teal-800; }
-```
-
-### Componentes Reutilizables
-```typescript
-// Header consistente
-const GameHeader: React.FC<{title: string, progress?: string, xp?: number}> = ({
-  title, progress, xp
-}) => (
-  <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
-    <div className="flex justify-between items-center">
-      <div className="flex items-center gap-4">
-        <BackButton />
-        <h1 className="text-2xl font-bold">{title}</h1>
-      </div>
-      
-      <div className="flex items-center gap-4">
-        {progress && <span>{progress}</span>}
-        {xp && <XPDisplay value={xp} />}
-      </div>
-    </div>
-  </div>
-);
-
-// Botón de navegación estándar
-const BackButton: React.FC = () => {
-  const { goToDashboard } = useNavigation();
-  
-  return (
-    <button
-      onClick={goToDashboard}
-      className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
-    >
-      <ArrowLeft size={20} />
-      Dashboard
-    </button>
-  );
-};
-```
-
-## 🔄 Flujo de Datos
-
-### Persistencia con Zustand
-```typescript
-// Configuración de persistencia selectiva
-const persistConfig = {
-  name: 'game-storage',
-  partialize: (state: GameState) => ({
-    // Solo persistir datos importantes
-    xp: state.xp,
-    score: state.score,
-    completedLevels: state.completedLevels,
-    badge: state.badge,
-    // NO persistir estado temporal
-    // showInstructions: state.showInstructions,
-    // feedback: state.feedback,
-  }),
-};
-```
-
-### Navegación Centralizada
-```typescript
-// Hook reutilizable para navegación
-export const useNavigation = () => {
-  const router = useRouter();
-  
-  const goToDashboard = useCallback(() => {
-    router.push('/');
-  }, [router]);
-  
-  const goToGame = useCallback((gamePath: string) => {
-    router.push(gamePath);
-  }, [router]);
-  
-  return { goToDashboard, goToGame };
-};
-```
-
-## 🚀 Consideraciones de Rendimiento
-
-### Importaciones Dinámicas
-```typescript
-// Para librerías pesadas o que causan problemas SSR
-const ReactPlayer = dynamic(() => import('react-player'), {
-  ssr: false,
-  loading: () => <LoadingSpinner />
-});
-
-const BlocklyEditor = dynamic(() => import('./BlocklyEditor'), {
-  ssr: false
-});
-```
-
-### Optimización de Re-renders
-```typescript
-// Uso de useCallback para funciones estables
-const handleWordDrop = useCallback((wordId: number, category: string) => {
-  dropWord(wordId, category);
-}, [dropWord]);
-
-// Memo para componentes que no cambian frecuentemente
-const WordCard = React.memo<{word: WordItem, onDrop: Function}>(({
-  word, onDrop
-}) => {
-  // Componente optimizado
-});
-```
-
-### Lazy Loading de Datos
-```typescript
-// Cargar datos solo cuando se necesiten
-const useGameData = (gameType: string) => {
-  const [data, setData] = useState(null);
-  
-  useEffect(() => {
-    const loadData = async () => {
-      const gameData = await import(`../data/${gameType}-data.json`);
-      setData(gameData.default);
-    };
-    
-    loadData();
-  }, [gameType]);
-  
-  return data;
-};
-```
-
-## 🧪 Testing y Calidad
-
-### Estructura de Testing (Recomendada)
-```
-tests/
-├── __mocks__/           # Mocks para librerías externas
-├── components/          # Tests de componentes
-├── stores/             # Tests de stores Zustand
-├── utils/              # Tests de utilidades
-└── e2e/                # Tests end-to-end
-```
-
-### Ejemplo de Test para Store
-```typescript
-import { renderHook, act } from '@testing-library/react';
-import usePuertoPalabrasStore from '../usePuertoPalabrasStore';
-
-describe('Puerto Palabras Store', () => {
-  beforeEach(() => {
-    // Reset store state
-    usePuertoPalabrasStore.getState().initializeGame();
-  });
-
-  it('should initialize with correct default state', () => {
-    const { result } = renderHook(() => usePuertoPalabrasStore());
-    
-    expect(result.current.score).toBe(0);
-    expect(result.current.xp).toBe(0);
-    expect(result.current.currentWords).toHaveLength(12);
-  });
-
-  it('should award XP when word is correctly placed', () => {
-    const { result } = renderHook(() => usePuertoPalabrasStore());
-    
-    act(() => {
-      result.current.dropWord(1, 'sustantivo');
-    });
-    
-    expect(result.current.xp).toBeGreaterThan(0);
-  });
-});
-```
-
-## 🌐 Internacionalización
-
-### Estructura de Traducción
-```json
-// public/locales/es/common.json
-{
-  "dashboard": {
-    "title": "ExplorAventura 3: Minijuegos",
-    "games": {
-      "puerto": "Puerto de las Palabras",
-      "bosc": "Bosc de Lectura"
-    }
-  },
-  "common": {
-    "start": "Empezar",
-    "back": "Volver",
-    "continue": "Continuar",
-    "excellent": "¡Excelente!",
-    "tryAgain": "Inténtalo de nuevo"
-  }
-}
-```
-
-### Uso en Componentes
-```typescript
-import { useTranslation } from 'next-i18next';
-
-const GameComponent: React.FC = () => {
-  const { t } = useTranslation('common');
-  
-  return (
-    <div>
-      <h1>{t('dashboard.title')}</h1>
-      <button>{t('common.start')}</button>
-    </div>
-  );
-};
-```
-
-## 🔧 Extensibilidad
-
-### Crear Nuevo Minijuego
-Para añadir un nuevo minijuego al proyecto:
-
-#### 1. Estructura de Archivos
-```bash
-# Crear directorio del juego
-mkdir src/app/world/nuevo-juego
-
-# Archivos requeridos
-touch src/app/world/nuevo-juego/types.ts
-touch src/app/world/nuevo-juego/useNuevoJuegoStore.ts
-touch src/app/world/nuevo-juego/page.tsx
-touch src/app/data/nuevo-juego-data.json
-```
-
-#### 2. Definir Tipos
-```typescript
-// types.ts
-export interface NuevoJuegoTask {
-  id: number;
-  question: string;
-  answer: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-}
-
-export interface GameState {
-  currentTask: number;
-  score: number;
-  xp: number;
-  tasks: NuevoJuegoTask[];
-  gameStatus: 'instructions' | 'playing' | 'completed';
-  showInstructions: boolean;
-  feedback: FeedbackState | null;
-}
-```
-
-#### 3. Crear Store
-```typescript
-// useNuevoJuegoStore.ts
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { GameState } from './types';
-import gameData from '../../data/nuevo-juego-data.json';
-
-interface NuevoJuegoStore extends GameState {
-  initializeGame: () => void;
-  // ... otras funciones
-}
-
-const useNuevoJuegoStore = create<NuevoJuegoStore>()(
-  persist(
-    (set, get) => ({
-      // Estado inicial
-      currentTask: 0,
-      score: 0,
-      xp: 0,
-      tasks: gameData,
-      gameStatus: 'instructions',
-      showInstructions: true,
-      feedback: null,
-      
-      // Funciones
-      initializeGame: () => {
-        set({
-          currentTask: 0,
-          score: 0,
-          gameStatus: 'playing'
-        });
-      }
-    }),
-    {
-      name: 'nuevo-juego-storage',
-      partialize: (state) => ({
-        xp: state.xp,
-        score: state.score
-      })
-    }
-  )
-);
-
-export default useNuevoJuegoStore;
-```
-
-#### 4. Crear Página Principal
-```typescript
-// page.tsx
-"use client";
-import React, { useEffect } from 'react';
-import { useNavigation } from '../../hooks/useNavigation';
-import useNuevoJuegoStore from './useNuevoJuegoStore';
-
-const NuevoJuego: React.FC = () => {
-  const { goToDashboard } = useNavigation();
-  const {
-    initializeGame,
-    showInstructions,
-    hideInstructionsScreen,
-    gameStatus
-  } = useNuevoJuegoStore();
-
-  useEffect(() => {
-    initializeGame();
-  }, [initializeGame]);
-
-  if (showInstructions) {
-    return <InstructionsScreen />;
-  }
-
-  if (gameStatus === 'completed') {
-    return <CompletionScreen />;
-  }
-
-  return <GameScreen />;
-};
-
-export default NuevoJuego;
-```
-
-#### 5. Actualizar Dashboard
-```typescript
-// src/app/page.tsx
-const minigames = [
-  // ... juegos existentes
-  {
-    code: "nuevo-juego",
-    name: "Nuevo Juego",
-    description: "Descripción del nuevo juego",
-    icon: <NewIcon size={32} className="text-custom-600" />,
-    path: "/world/nuevo-juego",
-  },
-];
-```
-
-#### 6. Añadir Traducciones
-```json
-// public/locales/es/common.json
-{
-  "games": {
-    "nuevoJuego": "Nuevo Juego"
-  }
-}
-```
-
-## 🔒 Seguridad y Buenas Prácticas
-
-### Validación de Datos
-```typescript
-// Validar datos de entrada
-const validateGameInput = (input: unknown): input is GameInput => {
-  return (
-    typeof input === 'object' &&
-    input !== null &&
-    'level' in input &&
-    typeof input.level === 'number'
-  );
-};
-
-// Sanitizar datos del usuario
-const sanitizeUserInput = (input: string): string => {
-  return input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-};
-```
-
-### Prevención XSS
-```typescript
-// Usar dangerouslySetInnerHTML con cuidado
-const SafeHTMLContent: React.FC<{content: string}> = ({ content }) => {
-  const sanitizedContent = DOMPurify.sanitize(content);
-  
-  return (
-    <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
-  );
-};
-```
-
-### Control de Errores
-```typescript
-// Error Boundary para manejar errores de React
-class GameErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error('Game Error:', error, errorInfo);
-    // Enviar error a servicio de logging
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <ErrorFallback />;
-    }
-
-    return this.props.children;
-  }
-}
-```
-
-## 🚀 Deployment
-
-### Build de Producción
-```bash
-# Optimizar para producción
-npm run build
-
-# Verificar build localmente
-npm run start
-```
-
-### Variables de Entorno para Producción
-```bash
-# .env.production
-NEXT_PUBLIC_SUPABASE_URL=your_production_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_production_anon_key
-NEXT_PUBLIC_ANALYTICS_ID=your_analytics_id
-```
-
-### Optimizaciones de Next.js
-```typescript
-// next.config.ts
-const nextConfig = {
-  // Optimización de imágenes
-  images: {
-    formats: ['image/webp', 'image/avif'],
-  },
-  
-  // Compresión
-  compress: true,
-  
-  // PWA
-  pwa: {
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-  },
-  
-  // Análisis de bundle
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback.fs = false;
-    }
-    return config;
-  },
-};
-```
-
-## 🐛 Troubleshooting
-
-### Problemas Comunes
-
-#### 1. Error de Dependencias React 19
-```bash
-# Solución: Usar legacy peer deps
-npm install --legacy-peer-deps
-```
-
-#### 2. Error SSR con Blockly/ReactPlayer
-```typescript
-// Solución: Importación dinámica
-const BlocklyEditor = dynamic(() => import('./BlocklyEditor'), {
-  ssr: false
-});
-```
-
-#### 3. Error de Tipos con topojson-client
-```typescript
-// Solución: Declarar módulo
-declare module 'topojson-client' {
-  export function feature(topology: any, object: any): any;
-}
-```
-
-#### 4. Performance en Mapas
-```typescript
-// Solución: Memoización
-const MapComponent = React.memo(() => {
-  const [geoData, setGeoData] = useState(null);
-  
-  useEffect(() => {
-    // Cargar datos una sola vez
-    if (!geoData) {
-      loadGeoData().then(setGeoData);
-    }
-  }, [geoData]);
-  
-  return <Map data={geoData} />;
-});
-```
-
-## 📚 Recursos Adicionales
-
-### Documentación
-- [Next.js 15 Docs](https://nextjs.org/docs)
-- [React 19 Features](https://react.dev/blog/2024/04/25/react-19)
-- [Zustand Guide](https://zustand-demo.pmnd.rs/)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-- [Blockly Developer](https://developers.google.com/blockly)
-
-### Herramientas de Desarrollo
-```bash
-# Análisis de Bundle
-npm install -g @next/bundle-analyzer
-
-# Testing
-npm install -D @testing-library/react @testing-library/jest-dom
-
-# Linting adicional
-npm install -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
-```
-
-### Extensiones VSCode Recomendadas
-- ES7+ React/Redux/React-Native snippets
-- TypeScript Importer
-- Tailwind CSS IntelliSense
-- Auto Rename Tag
-- Prettier - Code formatter
+Este proyecto es de uso educativo y puede ser modificado según las necesidades del equipo.
 
 ---
 
-## 📞 Soporte
-
-Para preguntas sobre el código, arquitectura o implementación de nuevas características, consulta:
-
-1. **CLAUDE.md** - Documentación técnica detallada para Claude
-2. **Comentarios en código** - Explicaciones inline en componentes complejos
-3. **Tests** - Ejemplos de uso y comportamiento esperado
-4. **Estructura de tipos** - TypeScript interfaces como documentación viva
-
-El proyecto está diseñado para ser extensible y mantenible, siguiendo patrones consistentes que facilitan el desarrollo colaborativo y la implementación de nuevas características educativas.
-
----
-
-*ExplorAventura 3 - Educación interactiva con tecnología moderna* 🚀
-
-# Resumen de depuración Mapamundi CCAA
-
-## Problema
-La validación de la selección de Comunidades Autónomas (CCAA) en el minijuego Mapamundi no era fiable debido a diferencias entre los códigos usados en el geojson (números) y los esperados por el sistema de preguntas (códigos de dos letras).
-
-## Soluciones intentadas
-- Validación por nombre de comunidad (normalizado).
-- Validación por código de dos letras (mapeo numérico a letras).
-- Validación por código numérico (mapeo de letras a número).
-- Feedback siempre mostrando el valor numérico esperado.
-
-## Estado actual
-- La validación sigue fallando en algunos casos porque el sistema de preguntas espera letras y el geojson entrega números, y el mapeo no es 100% fiable para todos los casos.
-- Se recomienda unificar el formato de los códigos en todo el sistema (o en las preguntas) para evitar ambigüedades.
-
-## Recomendaciones
-- Revisar la fuente de los datos de las preguntas.
-- Unificar el formato de los códigos (todo numérico o todo letras).
-- Si se mantiene el geojson, adaptar las preguntas para que esperen el mismo formato.
+**Desarrollado con ❤️ para el aprendizaje interactivo**

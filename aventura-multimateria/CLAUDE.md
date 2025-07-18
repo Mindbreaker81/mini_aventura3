@@ -26,7 +26,7 @@ src/
 │   │   ├── bosc-passages.json   # Textos y preguntas para Bosc de Lectura
 │   │   ├── puerto-words.json    # Palabras para Puerto de las Palabras
 │   │   ├── mercado-tasks.json   # Tareas matemáticas para Mercado de Números
-│   │   ├── geography-tasks.json # Ubicaciones para Misión Mapamundi
+│   │   ├── mapamundi-tasks.json # Ubicaciones para Misión Mapamundi
 │   │   ├── steam-tasks.json     # Desafíos para Desafío STEAM
 │   │   └── flip-lessons.json    # Lecciones científicas para Laboratorio Flip
 │   ├── hooks/
@@ -35,7 +35,7 @@ src/
 │   │   ├── puerto-palabras/     # Minijuego de gramática
 │   │   ├── bosc-lectura/        # Minijuego de lectura comprensiva
 │   │   ├── mercado-numeros/     # Minijuego de matemáticas
-│   │   ├── mision-mapamundi/    # Minijuego de geografía
+│   │   ├── mision-mapamundi-v2/ # Minijuego de geografía
 │   │   ├── desafio-steam/       # Minijuego de programación
 │   │   └── laboratorio-flip/    # Minijuego de ciencias
 │   ├── globals.css              # Estilos globales
@@ -106,23 +106,23 @@ Todos los juegos implementan:
 - **Store**: `useMercadoNumerosStore`
 
 ### 4. Misión Mapamundi 🗺️
-**Ruta**: `/world/mision-mapamundi`
+**Ruta**: `/world/mision-mapamundi-v2`
 **Materia**: Geografía
 **Mecánica**: Localizar lugares en mapas interactivos
-- **Componentes**: WorldMap, SpainMap (react-simple-maps)
-- **Datos**: 60+ ubicaciones (continentes, océanos, comunidades autónomas)
-- **Store**: `useMisionMapamundiStore`
+- **Componentes**: WorldMap, SpainMap, Passport (react-simple-maps)
+- **Datos**: Ubicaciones (continentes, océanos, comunidades autónomas)
+- **Store**: `useMapamundiV2Store`
 
 ### 5. Desafío STEAM 🤖
 **Ruta**: `/world/desafio-steam`
 **Materia**: Programación
 **Mecánica**: Programar robot con bloques visuales
-- **Componentes**: RobotBoard, BlocklyGameDynamic, NotificationSystem
+- **Componentes**: RobotBoard, BlocklyGame.client.tsx, NotificationSystem
 - **Datos**: 6 desafíos progresivos en tablero 6x6
-- **Store**: `useDesafioSteamStore`
+- **Store**: `useSteamStore`
 - **Dependencias**: blockly para programación visual
 - **Características especiales**: 
-  - Carga dinámica de Blockly para evitar problemas SSR
+  - Renderizado solo en cliente para evitar problemas SSR
   - Parser de código seguro sin eval()
   - Sistema de notificaciones integrado
   - Inicialización robusta con verificación de dimensiones DOM
@@ -172,7 +172,7 @@ npm run types:generate    # Generar tipos TypeScript
 ### Dependencias Críticas
 - **React 18**: Usar `--legacy-peer-deps` para react-simple-maps
 - **Blockly**: 
-  - Importar dinámicamente para evitar problemas de SSR
+  - Renderizado solo en cliente (archivo .client.tsx)
   - Usar `setTimeout` para inicialización DOM-dependiente
   - Verificar dimensiones del contenedor antes de inyectar
   - Manejar cleanup adecuado en unmount
@@ -185,8 +185,8 @@ npm run types:generate    # Generar tipos TypeScript
   - `puerto-palabras-storage`
   - `bosc-lectura-storage`
   - `mercado-numeros-storage`
-  - `mision-mapamundi-storage`
-  - `desafio-steam-storage`
+  - `mision-mapamundi-v2-storage`
+  - `steam-storage`
   - `laboratorio-flip-storage`
 
 ## Extensibilidad
@@ -198,32 +198,19 @@ npm run types:generate    # Generar tipos TypeScript
    - `useNuevoJuegoStore.ts` - Store de Zustand
    - `page.tsx` - Página principal
    - Componentes específicos
-3. **Crear datos**: `/src/app/data/nuevo-juego.json`
-4. **Actualizar dashboard**: Añadir entrada en `src/app/page.tsx`
-5. **Seguir patrones**: Usar estructura consistente con otros juegos
+3. **Añadir datos**: Crear archivo JSON en `/src/app/data/`
+4. **Actualizar dashboard**: Modificar `/src/app/page.tsx`
+5. **Añadir traducciones**: Actualizar archivos en `/public/locales/`
 
-### Patrones Recomendados
-- **Pantalla de instrucciones**: Siempre incluir antes del juego
-- **Sistema de XP**: 8-10 XP por acierto, bonus al completar
-- **Feedback visual**: Modales con animaciones
-- **Navegación**: Botón "Dashboard" en header
-- **Responsive**: Diseño adaptable a móviles
-- **Accesibilidad**: ARIA labels y contraste de colores
+## Actualizaciones Recientes
 
-## Consideraciones de Rendimiento
-- Importaciones dinámicas para librerías pesadas
-- Persistencia selectiva en Zustand
-- Optimización de imágenes y assets
-- Lazy loading de componentes cuando sea apropiado
+### Limpieza del Proyecto
+- **Eliminación de STEAM v1**: Se removió la versión duplicada del juego STEAM
+- **Optimización de código**: Eliminación de archivos obsoletos y dependencias innecesarias
+- **Actualización de documentación**: README y CLAUDE.md actualizados
+- **Mejora de rendimiento**: Optimización de carga y renderizado
 
-## Notas Técnicas
-- El proyecto usa React 18 y Next.js 15 (versiones más recientes)
-- Algunas dependencias requieren `--legacy-peer-deps`
-- Los videos en Laboratorio Flip usan URLs de YouTube como placeholder
-- Los mapas usan topojson para datos geográficos
-- **Blockly (STEAM)**: 
-  - Integración con evaluación segura de código JavaScript (sin eval())
-  - Inicialización robusta con verificación de timing DOM
-  - Sistema de notificaciones integrado para feedback de usuario
-  - Parser de código personalizado para comandos del robot
-  - Manejo de memoria mejorado con cleanup automático
+### Cambios Técnicos
+- **Desafío STEAM**: Ahora usa `BlocklyGame.client.tsx` para evitar problemas SSR
+- **Estructura de archivos**: Actualizada para reflejar la nueva organización
+- **Documentación**: Completamente actualizada con información actual
