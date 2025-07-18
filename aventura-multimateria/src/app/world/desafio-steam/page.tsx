@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 'use client';
 import React, { useEffect } from 'react';
 import { ArrowLeft, Award, CheckCircle, Home } from 'lucide-react';

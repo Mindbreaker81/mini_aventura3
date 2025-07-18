@@ -5,6 +5,8 @@ import useSteamStore from './useSteamStore';
 const RobotBoard: React.FC = () => {
   const { tasks, currentTask, robot } = useSteamStore();
   
+  if (!tasks || !tasks[currentTask] || !robot) return null;
+
   const currentBoard = tasks[currentTask]?.board;
   if (!currentBoard) return null;
 
@@ -19,7 +21,7 @@ const RobotBoard: React.FC = () => {
   // Función para determinar el tipo de celda
   const getCellContent = (x: number, y: number) => {
     // Posición del robot
-    if (robot.position.x === x && robot.position.y === y) {
+    if (robot.position && robot.position.x === x && robot.position.y === y) {
       return (
         <div className="flex items-center justify-center w-full h-full">
           <span className="text-2xl">{getRobotEmoji(robot.direction)}</span>
@@ -63,7 +65,7 @@ const RobotBoard: React.FC = () => {
     let baseClasses = "w-16 h-16 border-2 border-gray-300 flex items-center justify-center relative";
     
     // Robot
-    if (robot.position.x === x && robot.position.y === y) {
+    if (robot.position && robot.position.x === x && robot.position.y === y) {
       if (robot.crashed) {
         baseClasses += " bg-red-200 animate-pulse";
       } else if (robot.reached) {
