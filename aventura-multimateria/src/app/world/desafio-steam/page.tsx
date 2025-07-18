@@ -36,7 +36,7 @@ const DesafioSteamV2: React.FC = () => {
               <span className="text-3xl">🤖</span>
             </div>
             <h1 className="text-3xl font-bold text-purple-800 mb-2">
-              ¡Bienvenido al Desafío STEAM v2!
+              ¡Bienvenido al Desafío STEAM!
             </h1>
             <p className="text-gray-600 text-lg">
               Programa un robot explorador con bloques visuales
@@ -100,7 +100,7 @@ const DesafioSteamV2: React.FC = () => {
               ¡Felicitaciones!
             </h1>
             <p className="text-gray-600 text-lg">
-              Has completado todos los desafíos STEAM v2
+              Has completado todos los desafíos STEAM
             </p>
           </div>
 
@@ -150,7 +150,7 @@ const DesafioSteamV2: React.FC = () => {
               Dashboard
             </button>
             <h1 className="text-2xl font-bold text-purple-800 flex items-center gap-2">
-              🤖 Desafío STEAM v2
+              🤖 Desafío STEAM
             </h1>
           </div>
           

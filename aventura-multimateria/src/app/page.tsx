@@ -33,16 +33,9 @@ const minigames = [
 		path: "/world/mision-mapamundi-v2",
 	},
 	{
-		code: "desafio-steam-v1",
-		name: "Desafío STEAM v1",
-		description: "Programa un robot explorador con bloques visuales para llegar a la meta (versión original).",
-		icon: <Bot size={32} className="text-purple-600" />,
-		path: "/world/desafio-steam-v1",
-	},
-	{
 		code: "desafio-steam",
-		name: "Desafío STEAM v2",
-		description: "Nueva versión mejorada del robot explorador con bloques visuales y 6 LEDs.",
+		name: "Desafío STEAM",
+		description: "Programa un robot explorador con bloques visuales y 6 LEDs.",
 		icon: <Bot size={32} className="text-indigo-600" />,
 		path: "/world/desafio-steam",
 	},

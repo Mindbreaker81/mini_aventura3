@@ -11,8 +11,7 @@
     "supabase:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:push": "supabase db push",
-    "types:generate": "supabase gen types typescript --project-id rsbregvlipetcvrakbgy --schema public > src/types/supabase.ts",
-    "test": "jest"
+    "types:generate": "supabase gen types typescript --project-id rsbregvlipetcvrakbgy --schema public > src/types/supabase.ts"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
