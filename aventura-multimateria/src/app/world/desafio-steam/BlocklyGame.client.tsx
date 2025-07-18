@@ -92,6 +92,15 @@ const BlocklyGame: React.FC = () => {
           console.log('[BlocklyGame] Workspace creado exitosamente');
           setBlocklyLoaded(true);
 
+          // Hack: forzar z-index de la papelera tras renderizado
+          setTimeout(() => {
+            const trashcan = node.querySelector('.blocklyTrash');
+            if (trashcan) {
+              (trashcan as HTMLElement).style.zIndex = '1000';
+              (trashcan as HTMLElement).style.pointerEvents = 'auto';
+            }
+          }, 500);
+
           // Cargar código guardado de localStorage
           const savedCode = localStorage.getItem('steam-session');
           if (savedCode) {
@@ -197,6 +206,7 @@ const BlocklyGame: React.FC = () => {
           <div 
             ref={blocklyDivRef} 
             className="w-full h-full"
+            style={{ minHeight: 500, height: '100%', position: 'relative', overflow: 'visible', zIndex: 1 }}
           />
         </div>
 
