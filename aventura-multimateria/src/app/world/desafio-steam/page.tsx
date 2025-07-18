@@ -1,5 +1,5 @@
-export const dynamic = 'force-dynamic';
 'use client';
+export const dynamic = 'force-dynamic';
 import React, { useEffect } from 'react';
 import { ArrowLeft, Award, CheckCircle, Home } from 'lucide-react';
 import { useNavigation } from '../../hooks/useNavigation';
