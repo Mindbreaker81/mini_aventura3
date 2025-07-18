@@ -36,14 +36,21 @@ interface SteamState {
   xp: number;
   isExecuting: boolean;
   blocklyCode: string;
+  showInstructions: boolean;
+  gameCompleted: boolean;
+  feedback: { show: boolean; type: 'success' | 'error'; message: string } | null;
+  badge: { name: string } | null;
   
   // Actions
   initialize: (taskId?: number) => void;
+  initializeGame: () => void;
   setBlocklyCode: (code: string) => void;
   executeCode: (code: string) => Promise<void>;
   resetCurrentTask: () => void;
   nextTask: () => void;
   loseLife: () => void;
+  hideInstructions: () => void;
+  hideFeedback: () => void;
 }
 
 // --- Store ---
@@ -64,6 +71,10 @@ const useSteamStore = create<SteamState>()(
       xp: 0,
       isExecuting: false,
       blocklyCode: '',
+      showInstructions: true,
+      gameCompleted: false,
+      feedback: null,
+      badge: null,
 
       // --- Actions ---
       initialize: (taskId) => {
@@ -195,6 +206,24 @@ const useSteamStore = create<SteamState>()(
           console.log("Game Over");
           // Lógica de Game Over
         }
+      },
+
+      initializeGame: () => {
+        if (typeof window !== 'undefined') {
+          get().initialize(0);
+        }
+      },
+
+      hideInstructions: () => {
+        set(state => {
+          state.showInstructions = false;
+        });
+      },
+
+      hideFeedback: () => {
+        set(state => {
+          state.feedback = null;
+        });
       },
     })),
     {

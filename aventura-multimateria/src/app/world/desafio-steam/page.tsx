@@ -22,7 +22,9 @@ const DesafioSteamV2: React.FC = () => {
   } = useSteamStore();
 
   useEffect(() => {
-    initializeGame();
+    if (typeof window !== 'undefined') {
+      initializeGame();
+    }
   }, [initializeGame]);
 
   // Pantalla de instrucciones

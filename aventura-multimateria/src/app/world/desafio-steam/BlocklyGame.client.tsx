@@ -65,11 +65,6 @@ const BlocklyGame: React.FC = () => {
       return () => { isMounted = false; };
     }, []);
 
-    // AÑADE ESTE USEEFFECT AQUÍ
-    useEffect(() => {
-      console.log('[BlocklyGame] Ejecutando useSteamStore.getState().initialize()');
-      useSteamStore.getState().initialize();
-    }, []);
     
     // Inicializar workspace de Blockly
     const blocklyDivRef = useCallback((node: HTMLDivElement | null) => {
