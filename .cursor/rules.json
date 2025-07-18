@@ -1,0 +1,35 @@
+{
+  // Transparencia y aprendizaje
+  "explain_every_change": true,
+  "list_code_changes_before_applying": true,
+  "prefer_simple_language": true,
+  "teach_mode": true,
+  "language": "es",
+  "friendly_mode": true,
+
+  // Confirmaciones y seguridad
+  "ask_before_applying_changes": true,          // ← ahora siempre confirma
+  "ask_before_structural_changes": true,
+  "ask_before_deleting_code": true,             // ← sustituye la prohibición absoluta
+  "ask_before_adding_dependency": true,         // ← nuevo
+
+  // Tests
+  "prefer_tests_for_changes": true,             // ← más flexible que “require”
+ 
+  // Alcance de cambios
+  "limit_changes_to_current_file": false,
+  "update_related_files_on_structure_change": true,
+  "propagate_structure_changes_project_wide": true,
+
+  // Estilo y estabilidad
+  "enforce_code_style": "prettier",
+  "avoid_experimental_features": true,
+
+  // Dependencias
+  "avoid_adding_dependencies": true,
+  "allowed_dependencies": [],                   // ← whitelist vacía
+  "explain_dependency_choice": true,            // ← justificación didáctica
+
+  // Otros
+  "prevent_deleting_code": false                // ← desactivado (ahora se pregunta)
+} 
