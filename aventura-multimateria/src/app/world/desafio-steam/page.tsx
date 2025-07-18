@@ -13,7 +13,6 @@ const DesafioSteamV2: React.FC = () => {
     showInstructions,
     gameCompleted,
     feedback,
-    leds,
     xp,
     badge,
     initializeGame,
@@ -113,7 +112,6 @@ const DesafioSteamV2: React.FC = () => {
                   <div className="text-gray-700">Insignia: {badge.name}</div>
                 )}
                 <div className="text-gray-700">XP total: {xp} puntos</div>
-                <div className="text-gray-700">LEDs encendidos: {leds}/6</div>
               </div>
             </div>
 
@@ -157,10 +155,6 @@ const DesafioSteamV2: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="text-right">
-              <div className="text-sm text-gray-600">LEDs encendidos</div>
-              <div className="font-semibold">{leds}/6</div>
-            </div>
             {badge && (
               <div className="flex items-center gap-1 text-yellow-600">
                 <Award size={20} />

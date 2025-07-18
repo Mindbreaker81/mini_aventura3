@@ -20,7 +20,6 @@ const BlocklyGame: React.FC = () => {
       tasks,
       currentTask,
       lives,
-      leds,
       xp,
       isExecuting,
       setBlocklyCode,
@@ -181,7 +180,6 @@ const BlocklyGame: React.FC = () => {
             <div className="flex items-center gap-4 text-sm">
               <div className="flex items-center gap-1"><Trophy size={16} /><span>{xp} XP</span></div>
               <div className="flex items-center gap-1"><Heart size={16} /><span>{lives} vidas</span></div>
-              <div className="flex items-center gap-1"><span>💡</span><span>{leds}/6 LEDs</span></div>
             </div>
           </div>
         </div>

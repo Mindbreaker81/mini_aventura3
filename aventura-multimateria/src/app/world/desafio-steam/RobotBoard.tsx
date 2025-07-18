@@ -7,24 +7,22 @@ const RobotBoard: React.FC = () => {
   
   if (!tasks || !tasks[currentTask] || !robot) return null;
 
-  const currentBoard = tasks[currentTask]?.board;
-  if (!currentBoard) return null;
-
-  const { start, goal, walls } = currentBoard;
+  const task = tasks[currentTask];
+  const { start, goal, walls } = task.board;
 
   // Función para obtener el emoji del robot según su dirección
-  const getRobotEmoji = (direction: number) => {
-    const directions = ['⬆️', '➡️', '⬇️', '⬅️'];
-    return directions[direction];
+  const getRobotEmoji = (direction: string) => {
+    const directions = { 'N': '⬆️', 'E': '➡️', 'S': '⬇️', 'W': '⬅️' };
+    return directions[direction as keyof typeof directions] || '🤖';
   };
 
   // Función para determinar el tipo de celda
   const getCellContent = (x: number, y: number) => {
     // Posición del robot
-    if (robot.position && robot.position.x === x && robot.position.y === y) {
+    if (robot.x === x && robot.y === y) {
       return (
         <div className="flex items-center justify-center w-full h-full">
-          <span className="text-2xl">{getRobotEmoji(robot.direction)}</span>
+          <span className="text-2xl">{getRobotEmoji(robot.dir)}</span>
         </div>
       );
     }
@@ -65,14 +63,8 @@ const RobotBoard: React.FC = () => {
     let baseClasses = "w-16 h-16 border-2 border-gray-300 flex items-center justify-center relative";
     
     // Robot
-    if (robot.position && robot.position.x === x && robot.position.y === y) {
-      if (robot.crashed) {
-        baseClasses += " bg-red-200 animate-pulse";
-      } else if (robot.reached) {
-        baseClasses += " bg-green-200";
-      } else {
-        baseClasses += " bg-blue-200";
-      }
+    if (robot.x === x && robot.y === y) {
+      baseClasses += " bg-blue-200";
     }
     // Inicio
     else if (start[0] === x && start[1] === y) {
@@ -98,13 +90,13 @@ const RobotBoard: React.FC = () => {
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="mb-4">
         <h3 className="text-xl font-bold text-gray-800 mb-2">
-          Nivel {currentTask + 1}: {tasks[currentTask]?.name}
+          Nivel {currentTask + 1}: {task.name}
         </h3>
         <p className="text-sm text-gray-600 mb-2">
-          💡 {tasks[currentTask]?.hint}
+          💡 {task.hint}
         </p>
         <p className="text-sm text-gray-500">
-          Máximo bloques: {tasks[currentTask]?.maxBlocks}
+          Máximo bloques: {task.maxBlocks}
         </p>
       </div>
       

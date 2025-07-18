@@ -13,25 +13,20 @@ interface RobotState {
 
 interface SteamTask {
   id: number;
-  description: string;
-  gridSize: [number, number];
-  start: RobotState;
-  goal: { x: number; y: number };
-  obstacles: { x: number; y: number }[];
+  name: string;
   maxBlocks: number;
-  ledsToCollect: { x: number; y: number }[];
+  board: {
+    start: [number, number];
+    goal: [number, number];
+    walls: [number, number][];
+  };
+  hint: string;
 }
 
 interface SteamState {
   tasks: SteamTask[];
   currentTask: number;
   robot: RobotState;
-  goal: { x: number; y: number };
-  gridSize: [number, number];
-  obstacles: { x: number; y: number }[];
-  leds: number;
-  ledsToCollect: { x: number; y: number }[];
-  collectedLeds: { x: number; y: number }[];
   lives: number;
   xp: number;
   isExecuting: boolean;
@@ -61,12 +56,6 @@ const useSteamStore = create<SteamState>()(
       tasks: steamTasksData as SteamTask[],
       currentTask: 0,
       robot: { x: 0, y: 0, dir: 'E' },
-      goal: { x: 0, y: 0 },
-      gridSize: [5, 5],
-      obstacles: [],
-      leds: 0,
-      ledsToCollect: [],
-      collectedLeds: [],
       lives: 3,
       xp: 0,
       isExecuting: false,
@@ -85,13 +74,11 @@ const useSteamStore = create<SteamState>()(
         if (task) {
           set(state => {
             state.currentTask = taskIndex;
-            state.robot = { ...task.start };
-            state.goal = { ...task.goal };
-            state.gridSize = [...task.gridSize];
-            state.obstacles = [...task.obstacles];
-            state.ledsToCollect = [...task.ledsToCollect];
-            state.collectedLeds = [];
-            state.leds = 0;
+            state.robot = { 
+              x: task.board.start[0], 
+              y: task.board.start[1], 
+              dir: 'E' 
+            };
           });
         }
       },
@@ -101,9 +88,14 @@ const useSteamStore = create<SteamState>()(
       executeCode: async (code) => {
         set({ isExecuting: true });
 
-        const { gridSize, obstacles, ledsToCollect } = get();
+        const { tasks, currentTask } = get();
+        const task = tasks[currentTask];
+        if (!task) {
+          set({ isExecuting: false });
+          return;
+        }
+
         let tempRobot = { ...get().robot };
-        let tempCollectedLeds = [...get().collectedLeds];
         let hasCrashed = false;
 
         const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
@@ -119,7 +111,14 @@ const useSteamStore = create<SteamState>()(
               if (tempRobot.dir === 'W') newX--;
               if (tempRobot.dir === 'E') newX++;
 
-              if (newX < 0 || newX >= gridSize[0] || newY < 0 || newY >= gridSize[1] || obstacles.some(o => o.x === newX && o.y === newY)) {
+              // Verificar límites del tablero (6x6)
+              if (newX < 0 || newX >= 6 || newY < 0 || newY >= 6) {
+                hasCrashed = true;
+                return;
+              }
+
+              // Verificar colisión con muros
+              if (task.board.walls.some(([wallX, wallY]) => wallX === newX && wallY === newY)) {
                 hasCrashed = true;
                 return;
               }
@@ -127,14 +126,6 @@ const useSteamStore = create<SteamState>()(
               tempRobot = { ...tempRobot, x: newX, y: newY };
               set({ robot: { ...tempRobot } });
               
-              const ledIndex = ledsToCollect.findIndex(l => l.x === tempRobot.x && l.y === tempRobot.y);
-              if (ledIndex > -1 && !tempCollectedLeds.some(l => l.x === tempRobot.x && l.y === tempRobot.y)) {
-                tempCollectedLeds.push(ledsToCollect[ledIndex]);
-                set(state => {
-                  state.collectedLeds = [...tempCollectedLeds];
-                  state.leds = tempCollectedLeds.length;
-                });
-              }
               await delay(200);
             }
           },
@@ -156,7 +147,6 @@ const useSteamStore = create<SteamState>()(
 
         // --- Ejecución segura del código ---
         try {
-          // `(async () => { ... })()` es un IIFE asíncrono
           const func = new Function('move', 'turnLeft', 'turnRight', `return (async () => { ${code} })();`);
           await func(api.move, api.turnLeft, api.turnRight);
         } catch (error) {
@@ -166,15 +156,36 @@ const useSteamStore = create<SteamState>()(
 
         // --- Verificación final ---
         if (hasCrashed) {
+          set(state => {
+            state.feedback = {
+              show: true,
+              type: 'error',
+              message: '¡El robot ha chocado! Intenta de nuevo.'
+            };
+          });
           get().loseLife();
         } else {
-          const { goal } = get();
-          const isSuccess = tempRobot.x === goal.x && tempRobot.y === goal.y && tempCollectedLeds.length === ledsToCollect.length;
+          const [goalX, goalY] = task.board.goal;
+          const isSuccess = tempRobot.x === goalX && tempRobot.y === goalY;
           
           if (isSuccess) {
-            set(state => { state.xp += 100; });
+            set(state => { 
+              state.xp += 100;
+              state.feedback = {
+                show: true,
+                type: 'success',
+                message: '¡Excelente! Has completado el nivel.'
+              };
+            });
             get().nextTask();
           } else {
+            set(state => {
+              state.feedback = {
+                show: true,
+                type: 'error',
+                message: '¡No has llegado a la meta! Intenta de nuevo.'
+              };
+            });
             get().loseLife();
           }
         }
