@@ -85,21 +85,35 @@ const BlocklyGame: React.FC = () => {
             toolbox: getToolboxConfig(),
             grid: { spacing: 20, length: 3, colour: '#ccc', snap: true },
             zoom: { controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2 },
-            trashcan: true
+            trashcan: true,
+            move: {
+              scrollbars: true,
+              drag: true,
+              wheel: true
+            },
+            sounds: false
           });
 
           workspaceRef.current = workspace;
           console.log('[BlocklyGame] Workspace creado exitosamente');
           setBlocklyLoaded(true);
 
-          // Hack: forzar z-index de la papelera tras renderizado
+          // Hack más robusto: forzar z-index y posición de la papelera
           setTimeout(() => {
             const trashcan = node.querySelector('.blocklyTrash');
             if (trashcan) {
-              (trashcan as HTMLElement).style.zIndex = '1000';
-              (trashcan as HTMLElement).style.pointerEvents = 'auto';
+              const trashElement = trashcan as HTMLElement;
+              trashElement.style.zIndex = '9999';
+              trashElement.style.position = 'absolute';
+              trashElement.style.bottom = '10px';
+              trashElement.style.right = '10px';
+              trashElement.style.pointerEvents = 'auto';
+              trashElement.style.cursor = 'pointer';
+              console.log('[BlocklyGame] Papelera configurada con z-index alto');
+            } else {
+              console.warn('[BlocklyGame] No se encontró la papelera');
             }
-          }, 500);
+          }, 1000);
 
           // Cargar código guardado de localStorage
           const savedCode = localStorage.getItem('steam-session');
@@ -206,7 +220,14 @@ const BlocklyGame: React.FC = () => {
           <div 
             ref={blocklyDivRef} 
             className="w-full h-full"
-            style={{ minHeight: 500, height: '100%', position: 'relative', overflow: 'visible', zIndex: 1 }}
+            style={{ 
+              minHeight: 600, 
+              height: '100%', 
+              position: 'relative', 
+              overflow: 'hidden',
+              zIndex: 1,
+              border: '1px solid #ccc'
+            }}
           />
         </div>
 

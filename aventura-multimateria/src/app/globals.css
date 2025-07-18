@@ -38,3 +38,43 @@ body {
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
 }
+
+/* Estilos específicos para Blockly */
+.blocklyWorkspace {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.blocklyBlock {
+  z-index: 100 !important;
+}
+
+.blocklyTrash {
+  z-index: 9999 !important;
+  position: absolute !important;
+  bottom: 10px !important;
+  right: 10px !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.blocklyToolbox {
+  z-index: 200 !important;
+}
+
+.blocklyFlyout {
+  z-index: 150 !important;
+}
+
+/* Asegurar que el contenedor de Blockly tenga suficiente espacio */
+.blocklyMainBackground {
+  position: relative !important;
+}
+
+.blocklyScrollbarVertical {
+  z-index: 300 !important;
+}
+
+.blocklyScrollbarHorizontal {
+  z-index: 300 !important;
+}
