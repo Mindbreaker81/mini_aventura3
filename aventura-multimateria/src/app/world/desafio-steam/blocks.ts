@@ -63,30 +63,36 @@ export const initializeBlocks = (Blockly: any) => {
 // Generadores JavaScript para los bloques
 export const initializeGenerators = (javascriptGenerator: any) => {
   console.log('🔧 Iniciando definición de generadores...');
-  
-  if (!javascriptGenerator || !javascriptGenerator.forBlock) {
-    console.error('❌ javascriptGenerator no está disponible');
-    return;
-  }
-  
+
+  // Compatibilidad: usar forBlock si existe, si no, asignar directamente
+  const assignGenerator = (name: string, fn: () => string) => {
+    if (javascriptGenerator.forBlock) {
+      javascriptGenerator.forBlock[name] = fn;
+      console.log(`✅ Generador asignado a forBlock['${name}']`);
+    } else {
+      javascriptGenerator[name] = fn;
+      console.log(`✅ Generador asignado a javascriptGenerator['${name}']`);
+    }
+  };
+
   // Generador para move_forward
   console.log('➕ Definiendo generador move_forward');
-  javascriptGenerator.forBlock['move_forward'] = function() {
+  assignGenerator('move_forward', function() {
     return 'move(1);\n';
-  };
+  });
 
   // Generador para turn_left
   console.log('➕ Definiendo generador turn_left');
-  javascriptGenerator.forBlock['turn_left'] = function() {
+  assignGenerator('turn_left', function() {
     return 'turnLeft();\n';
-  };
+  });
 
   // Generador para turn_right
   console.log('➕ Definiendo generador turn_right');
-  javascriptGenerator.forBlock['turn_right'] = function() {
+  assignGenerator('turn_right', function() {
     return 'turnRight();\n';
-  };
-  
+  });
+
   console.log('✅ Todos los generadores definidos correctamente');
 };
 
