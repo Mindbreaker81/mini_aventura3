@@ -1,21 +1,121 @@
 [
   {
     "id": 1,
-    "title": "El gos i l’os",
-    "paragraph": "Un gos petit trobà un os de mel al bosc. L’os el mirà amb curiositat, però el gos, en comptes d’espantar-se, li oferí compartir la seva galeta...",
+    "title": "El gos i l'os",
+    "paragraph": "Un gos petit trobà un os de mel al bosc. L'os el mirà amb curiositat, però el gos, en comptes d'espantar-se, li oferí compartir la seva galeta...",
     "questions": [
       {
         "q": "Quin animal troba el gos?",
         "type": "single",
         "options": ["Un gat", "Un os", "Una guineu"],
         "answer": 1,
-        "explanation": "El text diu: 'L’os el mirà amb curiositat'."
+        "explanation": "El text diu: 'L'os el mirà amb curiositat'."
       },
       {
-        "q": "El gos s’espanta quan veu l’os.",
+        "q": "El gos s'espanta quan veu l'os.",
         "type": "true_false",
         "answer": false,
-        "explanation": "El text indica que no s’espanta, sinó que li ofereix una galeta."
+        "explanation": "El text indica que no s'espanta, sinó que li ofereix una galeta."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "La formiga treballadora",
+    "paragraph": "Una formiga treballava tot el dia per acumular menjar per a l'hivern. Les altres formigues es reien d'ella, però quan arribà l'hivern, ella tenia prou menjar per sobreviure.",
+    "questions": [
+      {
+        "q": "Què feia la formiga durant el dia?",
+        "type": "single",
+        "options": ["Dormia", "Treballava per acumular menjar", "Jugava amb les altres"],
+        "answer": 1,
+        "explanation": "El text diu que 'treballava tot el dia per acumular menjar'."
+      },
+      {
+        "q": "Les altres formigues ajudaven la formiga treballadora.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El text diu que 'les altres formigues es reien d'ella'."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "El conill i la tortuga",
+    "paragraph": "Un conill molt ràpid desafià una tortuga a una cursa. El conill estava tan segur de guanyar que es va aturar a mig camí per descansar. La tortuga, lenta però constant, arribà primer a la meta.",
+    "questions": [
+      {
+        "q": "Quin animal era més ràpid?",
+        "type": "single",
+        "options": ["La tortuga", "El conill", "Els dos eren igual de ràpids"],
+        "answer": 1,
+        "explanation": "El text diu que el conill era 'molt ràpid'."
+      },
+      {
+        "q": "La tortuga guanyà la cursa perquè era més ràpida.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "La tortuga guanyà perquè era constant, no per ser més ràpida."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "El sol i el vent",
+    "paragraph": "El sol i el vent discutien sobre qui era més fort. Decidiren fer una prova: qui podria fer que un viatger es tregués l'abric. El vent bufà fort, però el viatger s'embolicà més amb l'abric. El sol brillà amb calor i el viatger es tregué l'abric.",
+    "questions": [
+      {
+        "q": "Què volien provar el sol i el vent?",
+        "type": "single",
+        "options": ["Qui era més fort", "Qui podia fer que un viatger es tregués l'abric", "Qui brillava més"],
+        "answer": 1,
+        "explanation": "El text diu que volen provar 'qui podria fer que un viatger es tregués l'abric'."
+      },
+      {
+        "q": "El vent aconseguí que el viatger es tregués l'abric.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El text diu que el viatger 's'embolicà més amb l'abric' quan el vent bufà."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "La llebre i el llebretó",
+    "paragraph": "Una llebre mare ensenyava al seu llebretó a saltar. El petit tenia por de saltar massa alt, però la mare l'animava amb paciència. Finalment, el llebretó va aprendre a saltar amb confiança.",
+    "questions": [
+      {
+        "q": "Què feia la llebre mare?",
+        "type": "single",
+        "options": ["Dormia", "Ensenyava al llebretó a saltar", "Cercava menjar"],
+        "answer": 1,
+        "explanation": "El text diu que 'ensenyava al seu llebretó a saltar'."
+      },
+      {
+        "q": "El llebretó tenia confiança des del principi.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El text diu que 'tenia por de saltar massa alt' al principi."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "El pardal i la cigonya",
+    "paragraph": "Un pardal petit veié una cigonya menjant-se una granota. El pardal volia menjar-se la granota també, però era massa gran per a ell. La cigonya li explicà que cada ocell té el seu propi menjar.",
+    "questions": [
+      {
+        "q": "Què menjava la cigonya?",
+        "type": "single",
+        "options": ["Una granota", "Un pardal", "Una cigonya"],
+        "answer": 0,
+        "explanation": "El text diu que la cigonya menjava 'una granota'."
+      },
+      {
+        "q": "El pardal aconseguí menjar-se la granota.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El text diu que la granota era 'massa gran per a ell'."
       }
     ]
   }
