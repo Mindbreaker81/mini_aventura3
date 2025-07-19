@@ -2,3 +2,7 @@ node_modules
 
 # Notas personales - no subir al repositorio
 notas-personales/
+
+# Cursor editor configuration
+.cursor/
+**/.cursor/
