@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Play, RotateCcw, Trophy, Heart } from 'lucide-react';
 import useSteamStore from './useSteamStore';
 import { initializeBlocks, initializeGenerators, getToolboxConfig } from './blocks';
+import { safeWorkspaceToCode, safeBlocklyOperation } from './blockly-utils';
 
 // Define un tipo para el estado de Blockly
 type BlocklyState = {
@@ -129,7 +130,7 @@ const BlocklyGame: React.FC = () => {
 
           // Listener para cambios
           workspace.addChangeListener(() => {
-            const code = javascriptGenerator.workspaceToCode(workspace);
+            const code = safeWorkspaceToCode(javascriptGenerator, workspace);
             setBlocklyCode(code);
             
             const xml = Blockly.Xml.workspaceToDom(workspace);
@@ -157,7 +158,7 @@ const BlocklyGame: React.FC = () => {
     const runCode = async () => {
       if (!workspaceRef.current || !blocklyState || isExecuting) return;
 
-      const code = blocklyState.javascriptGenerator.workspaceToCode(workspaceRef.current);
+      const code = safeWorkspaceToCode(blocklyState.javascriptGenerator, workspaceRef.current);
       const blockCount = workspaceRef.current.getAllBlocks(false).length;
       const maxBlocks = tasks[currentTask]?.maxBlocks;
 
