@@ -6,3 +6,4 @@ notas-personales/
 # Cursor editor configuration
 .cursor/
 **/.cursor/
+rules.json
