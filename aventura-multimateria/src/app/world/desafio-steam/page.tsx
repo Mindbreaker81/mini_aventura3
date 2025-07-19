@@ -1,24 +1,57 @@
 'use client';
 export const dynamic = 'force-dynamic';
-import React, { useEffect } from 'react';
-import { ArrowLeft, Award, CheckCircle, Home } from 'lucide-react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { ArrowLeft, Award, CheckCircle, Home, Play, RotateCcw } from 'lucide-react';
 import { useNavigation } from '../../hooks/useNavigation';
 import useSteamStore from './useSteamStore';
 import RobotBoard from './RobotBoard';
-import BlocklyGame from './BlocklyGame';
+import BlocklyGame, { BlocklyGameRef } from './BlocklyGame';
 
 const DesafioSteamV2: React.FC = () => {
   const { goToDashboard } = useNavigation();
+  const [blocklyFunctions, setBlocklyFunctions] = useState<BlocklyGameRef | null>(null);
+  const [blockCount, setBlockCount] = useState(0);
+  const [isBlocklyLoaded, setIsBlocklyLoaded] = useState(false);
+  const [forceUpdate, setForceUpdate] = useState(0);
+  
   const {
     showInstructions,
     gameCompleted,
     feedback,
     xp,
     badge,
+    tasks,
+    currentTask,
+    isExecuting,
     initializeGame,
     hideInstructions,
     hideFeedback
   } = useSteamStore();
+
+  // Callback para cuando BlocklyGame esté listo
+  const handleBlocklyReady = (functions: BlocklyGameRef) => {
+    setBlocklyFunctions(functions);
+    setIsBlocklyLoaded(functions.isLoaded());
+  };
+
+  // Verificar la referencia al montar
+  useEffect(() => {
+    console.log('[Page] Componente montado, verificando blocklyFunctions:', !!blocklyFunctions);
+  }, [blocklyFunctions]);
+
+  // Actualizar información del editor cada segundo
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (blocklyFunctions) {
+        const newBlockCount = blocklyFunctions.getBlockCount();
+        const newIsLoaded = blocklyFunctions.isLoaded();
+        setBlockCount(newBlockCount);
+        setIsBlocklyLoaded(newIsLoaded);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [blockCount, isBlocklyLoaded, blocklyFunctions]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -165,6 +198,43 @@ const DesafioSteamV2: React.FC = () => {
         </div>
       </div>
 
+      {/* Controles del Editor */}
+      <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
+        <div className="flex justify-between items-center">
+          <div className="text-sm text-gray-600">
+            Bloques: <span className="font-semibold">{blockCount}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
+          </div>
+          
+          <div className="flex gap-2">
+            <button
+              onClick={() => {
+                if (blocklyFunctions) {
+                  blocklyFunctions.handleReset();
+                }
+              }}
+              disabled={isExecuting}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 transition-colors"
+            >
+              <RotateCcw size={16} />
+              Reiniciar
+            </button>
+            
+            <button
+              onClick={() => {
+                if (blocklyFunctions) {
+                  blocklyFunctions.runCode();
+                }
+              }}
+              disabled={isExecuting || !isBlocklyLoaded}
+              className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
+            >
+              <Play size={16} />
+              {isExecuting ? 'Ejecutando...' : 'Ejecutar'}
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Contenido principal */}
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -175,7 +245,10 @@ const DesafioSteamV2: React.FC = () => {
 
           {/* Editor de bloques */}
           <div className="order-1 lg:order-2">
-            <BlocklyGame />
+            <BlocklyGame 
+              onReady={handleBlocklyReady} 
+              key={forceUpdate} // Forzar re-mount cuando forceUpdate cambie
+            />
           </div>
         </div>
       </div>

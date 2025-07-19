@@ -3,7 +3,7 @@ import React from 'react';
 import useSteamStore from './useSteamStore';
 
 const RobotBoard: React.FC = () => {
-  const { tasks, currentTask, robot } = useSteamStore();
+  const { tasks, currentTask, robot, isExecuting, hasCrashed, robotPath } = useSteamStore();
   
   if (!tasks || !tasks[currentTask] || !robot) return null;
 
@@ -21,8 +21,14 @@ const RobotBoard: React.FC = () => {
     // Posición del robot
     if (robot.x === x && robot.y === y) {
       return (
-        <div className="flex items-center justify-center w-full h-full">
-          <span className="text-2xl">{getRobotEmoji(robot.dir)}</span>
+        <div className={`flex items-center justify-center w-full h-full transition-all duration-200 ${
+          isExecuting ? 'animate-pulse' : ''
+        }`}>
+          <span className={`text-2xl transition-all duration-200 ${
+            isExecuting ? 'scale-110' : 'scale-100'
+          } ${hasCrashed ? 'animate-bounce text-red-500' : ''}`}>
+            {hasCrashed ? '💥' : getRobotEmoji(robot.dir)}
+          </span>
         </div>
       );
     }
@@ -40,7 +46,9 @@ const RobotBoard: React.FC = () => {
     if (goal[0] === x && goal[1] === y) {
       return (
         <div className="flex items-center justify-center w-full h-full">
-          <span className="text-2xl">🎯</span>
+          <span className={`text-2xl ${isExecuting ? 'animate-bounce' : ''}`}>
+            🎯
+          </span>
         </div>
       );
     }
@@ -60,11 +68,23 @@ const RobotBoard: React.FC = () => {
 
   // Función para obtener las clases CSS de cada celda
   const getCellClasses = (x: number, y: number) => {
-    let baseClasses = "w-16 h-16 border-2 border-gray-300 flex items-center justify-center relative";
+    let baseClasses = "w-16 h-16 border-2 border-gray-300 flex items-center justify-center relative transition-all duration-200";
     
     // Robot
     if (robot.x === x && robot.y === y) {
-      baseClasses += " bg-blue-200";
+      baseClasses += " bg-blue-200 shadow-lg";
+      if (isExecuting) {
+        baseClasses += " ring-2 ring-blue-400 ring-opacity-50";
+      }
+      if (hasCrashed) {
+        baseClasses += " bg-red-200 ring-2 ring-red-500 ring-opacity-75";
+      }
+    }
+    // Camino del robot (rastro)
+    else if (robotPath.some(([pathX, pathY]) => pathX === x && pathY === y)) {
+      baseClasses += " bg-blue-100";
+      // Agregar un indicador visual del camino
+      baseClasses += " before:content-[''] before:absolute before:inset-1 before:bg-blue-200 before:rounded before:opacity-30";
     }
     // Inicio
     else if (start[0] === x && start[1] === y) {
@@ -73,6 +93,9 @@ const RobotBoard: React.FC = () => {
     // Meta
     else if (goal[0] === x && goal[1] === y) {
       baseClasses += " bg-yellow-100";
+      if (isExecuting) {
+        baseClasses += " ring-2 ring-yellow-400 ring-opacity-50";
+      }
     }
     // Muro
     else if (walls.some(([wallX, wallY]) => wallX === x && wallY === y)) {
@@ -98,6 +121,18 @@ const RobotBoard: React.FC = () => {
         <p className="text-sm text-gray-500">
           Máximo bloques: {task.maxBlocks}
         </p>
+        {isExecuting && (
+          <div className="mt-2 flex items-center gap-2 text-blue-600">
+            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+            <span className="text-sm font-medium">Ejecutando código...</span>
+          </div>
+        )}
+        {hasCrashed && (
+          <div className="mt-2 flex items-center gap-2 text-red-600">
+            <span className="text-lg">💥</span>
+            <span className="text-sm font-medium">¡El robot ha chocado!</span>
+          </div>
+        )}
       </div>
       
       {/* Tablero 6x6 */}

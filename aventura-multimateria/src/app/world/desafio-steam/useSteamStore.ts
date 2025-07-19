@@ -30,6 +30,8 @@ interface SteamState {
   lives: number;
   xp: number;
   isExecuting: boolean;
+  hasCrashed: boolean;
+  robotPath: [number, number][]; // Rastro del camino del robot
   blocklyCode: string;
   showInstructions: boolean;
   gameCompleted: boolean;
@@ -59,6 +61,8 @@ const useSteamStore = create<SteamState>()(
       lives: 3,
       xp: 0,
       isExecuting: false,
+      hasCrashed: false,
+      robotPath: [], // Inicialmente vacío
       blocklyCode: '',
       showInstructions: true,
       gameCompleted: false,
@@ -79,6 +83,7 @@ const useSteamStore = create<SteamState>()(
               y: task.board.start[1], 
               dir: 'E' 
             };
+            state.robotPath = []; // Resetear el camino al iniciar un nuevo task
           });
         }
       },
@@ -86,7 +91,7 @@ const useSteamStore = create<SteamState>()(
       setBlocklyCode: (code) => set({ blocklyCode: code }),
 
       executeCode: async (code) => {
-        set({ isExecuting: true });
+        set({ isExecuting: true, hasCrashed: false, robotPath: [] }); // Resetear el camino al empezar
 
         const { tasks, currentTask } = get();
         const task = tasks[currentTask];
@@ -97,6 +102,7 @@ const useSteamStore = create<SteamState>()(
 
         let tempRobot = { ...get().robot };
         let hasCrashed = false;
+        let robotPath: [number, number][] = []; // Camino temporal
 
         const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
@@ -104,7 +110,10 @@ const useSteamStore = create<SteamState>()(
         const api = {
           move: async (steps: number = 1) => {
             if (hasCrashed) return;
-            for (let i = 0; i < steps; i++) {
+            
+            // Mover paso a paso, mostrando cada movimiento
+            for (let step = 0; step < steps; step++) {
+              // Calcular la nueva posición para este paso
               let newX = tempRobot.x, newY = tempRobot.y;
               if (tempRobot.dir === 'N') newY--;
               if (tempRobot.dir === 'S') newY++;
@@ -114,19 +123,30 @@ const useSteamStore = create<SteamState>()(
               // Verificar límites del tablero (6x6)
               if (newX < 0 || newX >= 6 || newY < 0 || newY >= 6) {
                 hasCrashed = true;
+                set({ hasCrashed: true });
+                await delay(1000); // Pausa para mostrar el crash
                 return;
               }
 
               // Verificar colisión con muros
               if (task.board.walls.some(([wallX, wallY]) => wallX === newX && wallY === newY)) {
                 hasCrashed = true;
+                set({ hasCrashed: true });
+                await delay(1000); // Pausa para mostrar el crash
                 return;
               }
               
+              // Actualizar la posición del robot paso a paso
               tempRobot = { ...tempRobot, x: newX, y: newY };
-              set({ robot: { ...tempRobot } });
               
-              await delay(200);
+              // Agregar la nueva posición al camino
+              robotPath.push([newX, newY]);
+              
+              // Actualizar el estado con el robot y el camino
+              set({ robot: { ...tempRobot }, robotPath: [...robotPath] });
+              
+              // Pausa para mostrar el movimiento
+              await delay(1500); // Animación mucho más lenta para ver claramente cada movimiento
             }
           },
           turnLeft: async () => {
@@ -134,14 +154,14 @@ const useSteamStore = create<SteamState>()(
             const dirs: ('N' | 'E' | 'S' | 'W')[] = ['N', 'W', 'S', 'E'];
             tempRobot.dir = dirs[(dirs.indexOf(tempRobot.dir) + 1) % 4];
             set({ robot: { ...tempRobot } });
-            await delay(100);
+            await delay(1200); // Animación más lenta para giros
           },
           turnRight: async () => {
             if (hasCrashed) return;
             const dirs: ('N' | 'E' | 'S' | 'W')[] = ['N', 'E', 'S', 'W'];
             tempRobot.dir = dirs[(dirs.indexOf(tempRobot.dir) + 1) % 4];
             set({ robot: { ...tempRobot } });
-            await delay(100);
+            await delay(1200); // Animación más lenta para giros
           },
         };
 
@@ -152,10 +172,12 @@ const useSteamStore = create<SteamState>()(
         } catch (error) {
           console.error("Error ejecutando código de Blockly:", error);
           hasCrashed = true;
+          set({ hasCrashed: true });
         }
 
         // --- Verificación final ---
         if (hasCrashed) {
+          await delay(2000); // Pausa más larga para mostrar el crash
           set(state => {
             state.feedback = {
               show: true,
@@ -169,6 +191,7 @@ const useSteamStore = create<SteamState>()(
           const isSuccess = tempRobot.x === goalX && tempRobot.y === goalY;
           
           if (isSuccess) {
+            await delay(1500); // Pausa más larga para celebrar el éxito
             set(state => { 
               state.xp += 100;
               state.feedback = {
@@ -179,6 +202,7 @@ const useSteamStore = create<SteamState>()(
             });
             get().nextTask();
           } else {
+            await delay(1500); // Pausa más larga para mostrar el error
             set(state => {
               state.feedback = {
                 show: true,
@@ -190,11 +214,12 @@ const useSteamStore = create<SteamState>()(
           }
         }
 
-        set({ isExecuting: false });
+        set({ isExecuting: false, hasCrashed: false });
       },
 
       resetCurrentTask: () => {
         get().initialize(); // Re-inicializa el task actual
+        set({ robotPath: [] }); // Limpiar el camino
       },
 
       nextTask: () => {

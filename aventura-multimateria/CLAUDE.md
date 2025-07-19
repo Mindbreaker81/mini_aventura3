@@ -117,7 +117,7 @@ Todos los juegos implementan:
 **Ruta**: `/world/desafio-steam`
 **Materia**: Programación
 **Mecánica**: Programar robot con bloques visuales
-- **Componentes**: RobotBoard, BlocklyGame.client.tsx, NotificationSystem
+- **Componentes**: RobotBoard, BlocklyGame.client.tsx, BlocklyGame.tsx (wrapper)
 - **Datos**: 6 desafíos progresivos en tablero 6x6
 - **Store**: `useSteamStore`
 - **Dependencias**: blockly para programación visual
@@ -126,6 +126,12 @@ Todos los juegos implementan:
   - Parser de código seguro sin eval()
   - Sistema de notificaciones integrado
   - Inicialización robusta con verificación de dimensiones DOM
+  - **Animaciones mejoradas**: Movimiento paso a paso con timing optimizado
+  - **Feedback visual**: Estados de ejecución, crash y éxito con animaciones CSS
+  - **Comunicación entre componentes**: Callback-based para funciones del editor
+  - **Persistencia**: Código guardado automáticamente en localStorage
+  - **Sistema de vidas**: 3 vidas por nivel con reinicio automático
+  - **Límites de bloques**: Validación en tiempo real por nivel
 
 ### 6. Laboratorio Flip-Ciencia 🧪
 **Ruta**: `/world/laboratorio-flip`

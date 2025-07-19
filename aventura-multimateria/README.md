@@ -149,16 +149,44 @@ aventura-multimateria/
 #### Archivos Clave:
 - `useSteamStore.ts` - Lógica del robot y ejecución
 - `BlocklyGame.client.tsx` - Editor de bloques visuales
+- `BlocklyGame.tsx` - Wrapper para dynamic import
 - `RobotBoard.tsx` - Tablero de juego del robot
 - `blocks.ts` - Definición de bloques personalizados
 - `steam-tasks.json` - 6 niveles de dificultad creciente
 
 #### Características Técnicas:
-- **Editor de Bloques**: Basado en Google Blockly
-- **Ejecución en Tiempo Real**: El robot se mueve según el código
+- **Editor de Bloques**: Basado en Google Blockly con dynamic import
+- **Ejecución en Tiempo Real**: El robot se mueve paso a paso según el código
+- **Animaciones Suaves**: Transiciones de 300ms para movimientos, 200ms para giros
+- **Feedback Visual**: Indicadores de estado (ejecutando, crash, éxito)
 - **Sistema de Vidas**: 3 vidas por nivel
-- **LEDs Coleccionables**: 6 LEDs por completar
-- **Límite de Bloques**: Optimización de código
+- **Límite de Bloques**: Optimización de código por nivel
+- **Persistencia**: Código guardado automáticamente en localStorage
+
+#### Experiencia del Jugador:
+1. **Pantalla de Instrucciones**: Tutorial interactivo con objetivos claros
+2. **Editor Visual**: Bloques drag & drop para programar el robot
+3. **Ejecución Animada**: Movimiento paso a paso visible en tiempo real
+4. **Feedback Inmediato**: 
+   - Robot cambia a 💥 si choca
+   - Celda se vuelve roja al colisionar
+   - Meta rebota durante la ejecución
+   - Indicadores de estado claros
+5. **Sistema de Progreso**: XP y badges por completar niveles
+
+#### Comandos del Robot:
+- **`avanzar()`**: Mueve el robot 1 casilla en la dirección actual
+- **`girarIzquierda()`**: Rota el robot 90° a la izquierda
+- **`girarDerecha()`**: Rota el robot 90° a la derecha
+- **`repetir(n, acciones)`**: Ejecuta acciones n veces
+
+#### Niveles de Dificultad:
+1. **Nivel 1**: Movimiento básico (máx. 3 bloques)
+2. **Nivel 2**: Giros y obstáculos (máx. 4 bloques)
+3. **Nivel 3**: Bucles simples (máx. 5 bloques)
+4. **Nivel 4**: Patrones complejos (máx. 6 bloques)
+5. **Nivel 5**: Optimización avanzada (máx. 7 bloques)
+6. **Nivel 6**: Desafío final (máx. 8 bloques)
 
 ### 6. 🧪 Laboratorio Flip-Ciencia
 **Materia**: Ciencias

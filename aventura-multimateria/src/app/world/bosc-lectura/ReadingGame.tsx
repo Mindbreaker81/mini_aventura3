@@ -26,6 +26,7 @@ export default function ReadingGame() {
   const [feedback, setFeedback] = useState<{ correct: boolean; explanation: string } | null>(null);
   const [sessionLoaded, setSessionLoaded] = useState(false);
   const [session, setSession] = useState<any>(null);
+  const [selectedPassages, setSelectedPassages] = useState<Passage[]>([]);
 
   const store = useBoscLecturaStore();
 
@@ -41,6 +42,16 @@ export default function ReadingGame() {
     }
   }, []);
 
+  // Selección aleatoria de textos (solo una vez)
+  useEffect(() => {
+    if (sessionLoaded) {
+      const availablePassages = passages as Passage[];
+      const maxPassages = Math.min(6, availablePassages.length);
+      const shuffledPassages: Passage[] = availablePassages.sort(() => 0.5 - Math.random()).slice(0, maxPassages);
+      setSelectedPassages(shuffledPassages);
+    }
+  }, [sessionLoaded]);
+
   // Guardar estado en localStorage
   useEffect(() => {
     if (sessionLoaded) {
@@ -48,13 +59,8 @@ export default function ReadingGame() {
     }
   }, [store, sessionLoaded]);
 
-  if (!sessionLoaded) return null;
+  if (!sessionLoaded || selectedPassages.length === 0) return null;
 
-  // Selección aleatoria de textos (máximo 6, pero adaptado a los disponibles)
-  const availablePassages = passages as Passage[];
-  const maxPassages = Math.min(6, availablePassages.length);
-  const selectedPassages: Passage[] = availablePassages.sort(() => 0.5 - Math.random()).slice(0, maxPassages);
-  
   // Verificar que currentPassage esté dentro del rango válido
   if (store.currentPassage >= selectedPassages.length) {
     // Si se sale del rango, completar el juego
@@ -98,12 +104,27 @@ export default function ReadingGame() {
     );
   }
 
+  // FLUJO CORRECTO DEL JUEGO:
+  // 1. Seleccionar respuesta → Solo actualiza selected
+  // 2. Presionar "Comprobar" → Valida la respuesta y muestra feedback
+  // 3. Presionar "Siguiente" → Navega al siguiente paso
   const handleAnswer = (value: number | boolean) => {
+    console.log('Seleccionando respuesta:', value); // Debug
     setSelected(value);
+    // NO llamar a checkAnswer() aquí
+    // NO llamar a nextStep() aquí
   };
 
   const checkAnswer = () => {
+    console.log('Comprobando respuesta...'); // Debug
+    if (selected === null) {
+      console.log('No hay respuesta seleccionada'); // Debug
+      return; // No hacer nada si no hay selección
+    }
+    
     const correct = currentQuestion.answer === selected;
+    console.log('Respuesta correcta:', correct); // Debug
+    
     store.answer(`${current.id}-${step % 2}`, correct);
     if (correct) {
       store.addXp(10);
@@ -113,9 +134,11 @@ export default function ReadingGame() {
       setFeedback({ correct: false, explanation: currentQuestion.explanation });
     }
     setShowFeedback(true);
+    // NO llamar a nextStep() aquí
   };
 
   const nextStep = () => {
+    console.log('Pasando al siguiente paso...'); // Debug
     setShowFeedback(false);
     setSelected(null);
     if (step % 2 === 1) {
