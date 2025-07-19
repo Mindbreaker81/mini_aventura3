@@ -50,10 +50,53 @@ export default function ReadingGame() {
 
   if (!sessionLoaded) return null;
 
-  // Selección aleatoria de 6 textos
-  const selectedPassages: Passage[] = (passages as Passage[]).sort(() => 0.5 - Math.random()).slice(0, 6);
+  // Selección aleatoria de textos (máximo 6, pero adaptado a los disponibles)
+  const availablePassages = passages as Passage[];
+  const maxPassages = Math.min(6, availablePassages.length);
+  const selectedPassages: Passage[] = availablePassages.sort(() => 0.5 - Math.random()).slice(0, maxPassages);
+  
+  // Verificar que currentPassage esté dentro del rango válido
+  if (store.currentPassage >= selectedPassages.length) {
+    // Si se sale del rango, completar el juego
+    store.setCompleted();
+    if (store.energy > 0) {
+      store.addXp(60);
+      store.setBadge();
+    }
+    return (
+      <div className="text-center">
+        <h2>{t('bosc.completed')}</h2>
+        {store.badge && <div className="mt-4">🏅 {t('bosc.badge')}</div>}
+        <div className="mt-2">+{store.xp} XP</div>
+      </div>
+    );
+  }
+  
   const current = selectedPassages[store.currentPassage];
+  
+  // Verificar que current y current.questions existan
+  if (!current || !current.questions) {
+    console.error('Passage data is missing or invalid:', current);
+    return (
+      <div className="text-center">
+        <h2>Error: Datos del pasaje no disponibles</h2>
+        <button className="btn mt-4" onClick={store.reset}>Reintentar</button>
+      </div>
+    );
+  }
+  
   const currentQuestion = current.questions[step % 2];
+  
+  // Verificar que la pregunta existe
+  if (!currentQuestion) {
+    console.error('Question not found for step:', step, 'questions:', current.questions);
+    return (
+      <div className="text-center">
+        <h2>Error: Pregunta no disponible</h2>
+        <button className="btn mt-4" onClick={store.reset}>Reintentar</button>
+      </div>
+    );
+  }
 
   const handleAnswer = (value: number | boolean) => {
     setSelected(value);
@@ -77,7 +120,7 @@ export default function ReadingGame() {
     setSelected(null);
     if (step % 2 === 1) {
       // Siguiente texto
-      if (store.currentPassage < 5) {
+      if (store.currentPassage < selectedPassages.length - 1) {
         useBoscLecturaStore.setState((s) => ({ currentPassage: s.currentPassage + 1 }));
         setStep(0);
       } else {

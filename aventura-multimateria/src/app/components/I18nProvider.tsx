@@ -17,27 +17,45 @@ i18n
       es: {
         common: {
           "correct": "¡Correcto!",
+          "next": "Siguiente",
+          "check": "Comprobar",
+          "true": "Verdadero",
+          "false": "Falso",
           "bosc": {
             "completed": "¡Felicidades! Has completado el Bosque de Lectura",
-            "badge": "¡Has conseguido la medalla del Bosque de Lectura!"
+            "badge": "¡Has conseguido la medalla del Bosque de Lectura!",
+            "failed": "¡Has perdido! Inténtalo de nuevo",
+            "retry": "Reintentar"
           }
         }
       },
       ca: {
         common: {
           "correct": "Correcte!",
+          "next": "Següent",
+          "check": "Comprovar",
+          "true": "Vertader",
+          "false": "Fals",
           "bosc": {
             "completed": "Felicitats! Has completat el Bosc de Lectura",
-            "badge": "Has aconseguit la medalla del Bosc de Lectura!"
+            "badge": "Has aconseguit la medalla del Bosc de Lectura!",
+            "failed": "Has perdut! Torna-ho a provar",
+            "retry": "Tornar a provar"
           }
         }
       },
       en: {
         common: {
           "correct": "Correct!",
+          "next": "Next",
+          "check": "Check",
+          "true": "True",
+          "false": "False",
           "bosc": {
             "completed": "Congratulations! You have completed the Reading Forest",
-            "badge": "You have earned the Reading Forest badge!"
+            "badge": "You have earned the Reading Forest badge!",
+            "failed": "You lost! Try again",
+            "retry": "Retry"
           }
         }
       }
