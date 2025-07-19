@@ -1,6 +1,6 @@
 "use client";
 import dynamic from 'next/dynamic';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from '../../components/I18nProvider';
 import { useBoscLecturaStore } from './useBoscLecturaStore';
 import { useNavigation } from '../../hooks/useNavigation';
 import { Home } from 'lucide-react';

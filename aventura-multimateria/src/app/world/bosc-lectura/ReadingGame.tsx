@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useBoscLecturaStore } from './useBoscLecturaStore';
 import passages from '../../data/bosc-passages.json';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from '../../components/I18nProvider';
 
 interface Question {
   q: string;

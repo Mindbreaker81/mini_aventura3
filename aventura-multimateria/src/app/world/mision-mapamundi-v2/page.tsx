@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { Globe, Waves, MapPin, ArrowLeft } from "lucide-react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "../../components/I18nProvider";
 
 const modes = [
   {
