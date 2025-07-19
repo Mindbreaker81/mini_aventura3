@@ -1,35 +1,102 @@
 {
-  // Transparencia y aprendizaje
-  "explain_every_change": true,
-  "list_code_changes_before_applying": true,
-  "prefer_simple_language": true,
-  "teach_mode": true,
-  "language": "es",
-  "friendly_mode": true,
+  // Transparencia y aprendizaje
+  "explain_every_change": true,
+  "list_code_changes_before_applying": true,
+  "prefer_simple_language": true,
+  "teach_mode": true,
+  "language": "es",
+  "friendly_mode": true,
 
-  // Confirmaciones y seguridad
-  "ask_before_applying_changes": true,          // ← ahora siempre confirma
-  "ask_before_structural_changes": true,
-  "ask_before_deleting_code": true,             // ← sustituye la prohibición absoluta
-  "ask_before_adding_dependency": true,         // ← nuevo
+  // Confirmaciones y seguridad
+  "ask_before_applying_changes": true,
+  "ask_before_structural_changes": true,
+  "ask_before_deleting_code": true,
+  "ask_before_adding_dependency": true,
 
-  // Tests
-  "prefer_tests_for_changes": true,             // ← más flexible que “require”
- 
-  // Alcance de cambios
-  "limit_changes_to_current_file": false,
-  "update_related_files_on_structure_change": true,
-  "propagate_structure_changes_project_wide": true,
+  // Tests y calidad
+  "prefer_tests_for_changes": true,
+  "suggest_tests_for_new_features": true,
 
-  // Estilo y estabilidad
-  "enforce_code_style": "prettier",
-  "avoid_experimental_features": true,
+  // Alcance de cambios
+  "limit_changes_to_current_file": false,
+  "update_related_files_on_structure_change": true,
+  "propagate_structure_changes_project_wide": true,
 
-  // Dependencias
-  "avoid_adding_dependencies": true,
-  "allowed_dependencies": [],                   // ← whitelist vacía
-  "explain_dependency_choice": true,            // ← justificación didáctica
+  // Estilo y estabilidad
+  "enforce_code_style": "prettier",
+  "avoid_experimental_features": true,
+  "prefer_stable_apis": true,
 
-  // Otros
-  "prevent_deleting_code": false                // ← desactivado (ahora se pregunta)
+  // Dependencias
+  "avoid_adding_dependencies": true,
+  "allowed_dependencies": [
+    "react", "next", "typescript", "tailwindcss", "zustand",
+    "lucide-react", "i18next", "react-i18next",
+    "leaflet", "react-leaflet", "react-simple-maps", "topojson-client",
+    "blockly", "react-player", "@hello-pangea/dnd", "immer"
+  ],
+  "explain_dependency_choice": true,
+
+  // Next.js/React específico
+  "prefer_nextjs_conventions": true,
+  "use_app_router": true,
+  "prefer_server_components": true,
+  "use_client_directive_when_needed": true,
+  "follow_react_best_practices": true,
+  "prefer_functional_components": true,
+  "use_proper_react_hooks": true,
+
+  // TypeScript
+  "use_type_hints": true,
+  "prefer_strict_typescript": true,
+  "avoid_any_type": true,
+  "use_proper_interfaces": true,
+
+  // Estado y gestión
+  "prefer_zustand_for_state": true,
+  "use_immer_for_state_updates": true,
+  "prefer_local_storage_for_persistence": true,
+
+  // UI/UX
+  "prefer_tailwind_css": true,
+  "use_semantic_html": true,
+  "prefer_responsive_design": true,
+  "use_accessible_components": true,
+  "prefer_lucide_icons": true,
+
+  // Internacionalización
+  "use_i18next_for_translations": true,
+  "support_multiple_languages": true,
+  "prefer_es_ca_en_languages": true,
+
+  // Juegos educativos específicos
+  "maintain_game_state_consistency": true,
+  "prefer_interactive_components": true,
+  "use_proper_game_mechanics": true,
+  "maintain_educational_value": true,
+  "prefer_progressive_difficulty": true,
+
+  // Mapas y geografía
+  "use_leaflet_for_maps": true,
+  "prefer_geojson_data": true,
+  "use_proper_map_interactions": true,
+
+  // Programación visual
+  "use_blockly_for_visual_programming": true,
+  "maintain_blockly_customization": true,
+  "prefer_visual_programming_ux": true,
+
+  // Drag & Drop
+  "use_hello_pangea_dnd": true,
+  "prefer_drag_drop_ux": true,
+  "maintain_drag_drop_accessibility": true,
+
+  // Video y multimedia
+  "use_react_player_for_videos": true,
+  "prefer_educational_video_integration": true,
+
+  // Otros
+  "prevent_deleting_code": false,
+  "maintain_educational_game_structure": true,
+  "prefer_modular_game_architecture": true
 } 
