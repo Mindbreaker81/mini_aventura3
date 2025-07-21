@@ -20,6 +20,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
   const [hasStarted, setHasStarted] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(0); // Índice del video seleccionado
   const [showVideoOptions, setShowVideoOptions] = useState(false);
+  const [videoError, setVideoError] = useState(false); // Nuevo estado para error
   
   const lesson = lessons[currentLesson];
 
@@ -40,6 +41,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
   const handlePlay = () => {
     setPlaying(true);
     setHasStarted(true);
+    setVideoError(false); // Reiniciar error al intentar reproducir
   };
 
   const handlePause = () => {
@@ -66,7 +68,13 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
     if (hasStarted) {
       setHasStarted(false);
       setPlaying(false);
+      setVideoError(false);
     }
+  };
+
+  const handleVideoError = () => {
+    setVideoError(true);
+    setPlaying(false);
   };
 
   return (
@@ -151,30 +159,51 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
             </div>
           </div>
         ) : (
-          // Player de video
-          <div className="w-full h-64">
-            <ReactPlayer
-              url={currentVideo.url}
-              width="100%"
-              height="100%"
-              playing={playing}
-              controls={true}
-              onPlay={handlePlay}
-              onPause={handlePause}
-              onEnded={handleEnded}
-              onProgress={handleProgress}
-              config={{
-                youtube: {
-                  playerVars: {
-                    showinfo: 1,
-                    modestbranding: 1,
-                    rel: 0,
+          // Player de video o mensaje de error
+          <div className="w-full h-64 flex items-center justify-center bg-black rounded-lg">
+            {videoError ? (
+              <div className="text-center text-red-600 w-full">
+                <div className="text-4xl mb-2">⚠️</div>
+                <div className="font-bold text-lg mb-1">No se pudo cargar el video</div>
+                <div className="text-sm text-red-500">Es posible que YouTube no permita la reproducción embebida o que tu red lo esté bloqueando.<br/>Prueba abrir el video directamente en <a href={currentVideo.url} target='_blank' rel='noopener noreferrer' className='underline text-blue-700'>YouTube</a>.</div>
+              </div>
+            ) : (
+              <ReactPlayer
+                url={currentVideo.url}
+                width="100%"
+                height="100%"
+                playing={playing}
+                controls={true}
+                onPlay={handlePlay}
+                onPause={handlePause}
+                onEnded={handleEnded}
+                onProgress={handleProgress}
+                onError={handleVideoError}
+                config={{
+                  youtube: {
+                    playerVars: {
+                      showinfo: 1,
+                      modestbranding: 1,
+                      rel: 0,
+                    }
                   }
-                }
-              }}
-            />
+                }}
+              />
+            )}
           </div>
         )}
+        {/* Aviso permanente para abrir en YouTube */}
+        <div className="mt-2 text-center">
+          <span className="text-xs text-gray-500">¿Problemas para ver el video? </span>
+          <a
+            href={currentVideo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-blue-700 underline hover:text-blue-900"
+          >
+            Ábrelo directamente en YouTube
+          </a>
+        </div>
       </div>
 
       {/* Descripción y estado */}
