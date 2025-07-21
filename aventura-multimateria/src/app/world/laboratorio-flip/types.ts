@@ -7,10 +7,20 @@ export interface Question {
   explanation: string;
 }
 
+export interface Video {
+  id: string;
+  title: string;
+  url: string;
+  canal: string;
+  duracion: string;
+  descripcion: string;
+}
+
 export interface FlipLesson {
   id: string;
   title: string;
-  videoUrl: string;
+  videoUrl?: string; // Mantener para compatibilidad hacia atrás
+  videos?: Video[]; // Nueva estructura con múltiples videos
   captions: string;
   questions: Question[];
   thumbnail: string;

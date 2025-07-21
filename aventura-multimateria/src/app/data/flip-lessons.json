@@ -2,7 +2,24 @@
   {
     "id": "agua-estados",
     "title": "Los estados del agua",
-    "videoUrl": "https://www.youtube.com/watch?v=o-683K1751o",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "Estados de la materia para niños",
+        "url": "https://www.youtube.com/watch?v=fxDKpEYAoSE",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:12",
+        "descripcion": "Presenta los estados de la materia con ejemplos claros y sencillos para niños."
+      },
+      {
+        "id": "video2", 
+        "title": "Los Estados del Agua",
+        "url": "https://www.youtube.com/watch?v=c4nhGai4TFs",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "3:25",
+        "descripcion": "Explica los tres estados del agua (sólido, líquido y gaseoso) y sus cambios de estado."
+      }
+    ],
     "captions": "/captions/agua-estados.vtt",
     "questions": [
       {
@@ -29,7 +46,24 @@
   {
     "id": "fotosintesis",
     "title": "La fotosíntesis en las plantas",
-    "videoUrl": "https://www.youtube.com/watch?v=vBGGVU2d_a4",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "LA FOTOSÍNTESIS | Vídeos Educativos para Niños",
+        "url": "https://www.youtube.com/watch?v=tdDg1uSKyns",
+        "canal": "Happy Learning Español",
+        "duracion": "2:11",
+        "descripcion": "Describe el proceso de la fotosíntesis, la importancia de la clorofila y la luz solar."
+      },
+      {
+        "id": "video2",
+        "title": "La fotosíntesis de las plantas",
+        "url": "https://www.youtube.com/watch?v=mtGgo68VM54",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:38",
+        "descripcion": "Ilustra de manera amena cómo las plantas fabrican su propio alimento."
+      }
+    ],
     "captions": "/captions/fotosintesis.vtt",
     "questions": [
       {
@@ -56,7 +90,24 @@
   {
     "id": "cadena-alimentaria",
     "title": "La cadena alimentaria",
-    "videoUrl": "https://www.youtube.com/watch?v=K2134g8A-sE",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "La Cadena Trófica | Videos Educativos para Niños",
+        "url": "https://www.youtube.com/watch?v=XdptFwOur6M",
+        "canal": "Happy Learning Español",
+        "duracion": "1:58",
+        "descripcion": "Explica de forma sencilla qué es una cadena trófica y quiénes la componen."
+      },
+      {
+        "id": "video2",
+        "title": "¿Qué es la Cadena Alimenticia?",
+        "url": "https://www.youtube.com/watch?v=LtDpx5HCG_Y",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "2:55",
+        "descripcion": "Define los roles de productores, consumidores y descomponedores en la cadena alimentaria."
+      }
+    ],
     "captions": "/captions/cadena-alimentaria.vtt",
     "questions": [
       {
@@ -83,7 +134,24 @@
   {
     "id": "sistema-solar",
     "title": "Nuestro sistema solar",
-    "videoUrl": "https://www.youtube.com/watch?v=m-hUkprn_JA",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El Sistema Solar | Videos Educativos para Niños",
+        "url": "https://www.youtube.com/watch?v=ZykXgSqet6A",
+        "canal": "Happy Learning Español",
+        "duracion": "3:12",
+        "descripcion": "Un viaje por los 8 planetas de nuestro sistema solar, explicando sus órbitas alrededor del Sol."
+      },
+      {
+        "id": "video2",
+        "title": "El Sistema Solar para niños",
+        "url": "https://www.youtube.com/watch?v=fln82xudLMc",
+        "canal": "Shackleton Kids",
+        "duracion": "5:56",
+        "descripcion": "Una aventura espacial para conocer los planetas y el Sol."
+      }
+    ],
     "captions": "/captions/sistema-solar.vtt",
     "questions": [
       {
@@ -110,7 +178,24 @@
   {
     "id": "magnetismo",
     "title": "Los materiales magnéticos",
-    "videoUrl": "https://www.youtube.com/watch?v=2V08gO2v8R4",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "MAGNETISMO para niños ¿Qué son los imanes?",
+        "url": "https://www.youtube.com/watch?v=vf657n_akeg",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:54",
+        "descripcion": "Introduce el concepto de magnetismo, los polos magnéticos y la atracción y repulsión."
+      },
+      {
+        "id": "video2",
+        "title": "ELECTROMAGNETISMO para niños",
+        "url": "https://www.youtube.com/watch?v=55njQJ-EcV0",
+        "canal": "Smile and Learn - Español",
+        "duracion": "4:00",
+        "descripcion": "Explica qué es un electroimán y cómo funciona."
+      }
+    ],
     "captions": "/captions/magnetismo.vtt",
     "questions": [
       {
@@ -137,7 +222,32 @@
   {
     "id": "corazon-humano",
     "title": "El corazón y la circulación",
-    "videoUrl": "https://www.youtube.com/watch?v=NS_g0SGgH_A",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sistema circulatorio del cuerpo humano para niños",
+        "url": "https://www.youtube.com/watch?v=ZzATGDMNKYw",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:27",
+        "descripcion": "Un recorrido por el sistema circulatorio para entender cómo viaja la sangre por el cuerpo."
+      },
+      {
+        "id": "video2",
+        "title": "EL CORAZÓN HUMANO | Vídeos Educativos para Niños",
+        "url": "https://www.youtube.com/watch?v=WN6sAN2hcFM",
+        "canal": "Happy Learning Español",
+        "duracion": "2:38",
+        "descripcion": "Muestra la anatomía del corazón y cómo funciona la circulación sanguínea."
+      },
+      {
+        "id": "video3",
+        "title": "EL SISTEMA CIRCULATORIO",
+        "url": "https://www.youtube.com/watch?v=nsSg4Eq3LEo",
+        "canal": "Happy Learning Español",
+        "duracion": "3:38",
+        "descripcion": "Explica el sistema circulatorio, sus partes y funciones."
+      }
+    ],
     "captions": "/captions/corazon-humano.vtt",
     "questions": [
       {
@@ -164,7 +274,32 @@
   {
     "id": "respiracion",
     "title": "El sistema respiratorio",
-    "videoUrl": "https://www.youtube.com/watch?v=CEmcS_FPu2k",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sistema respiratorio del cuerpo humano para niños",
+        "url": "https://www.youtube.com/watch?v=Wq_bPoRTn7I",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:21",
+        "descripcion": "Describe el funcionamiento de los pulmones y el intercambio gaseoso en la respiración."
+      },
+      {
+        "id": "video2",
+        "title": "EL APARATO RESPIRATORIO",
+        "url": "https://www.youtube.com/watch?v=tMLFFKof29o",
+        "canal": "Happy Learning Español",
+        "duracion": "1:51",
+        "descripcion": "Una breve y clara explicación del aparato respiratorio."
+      },
+      {
+        "id": "video3",
+        "title": "La RESPIRACIÓN: El SISTEMA RESPIRATORIO",
+        "url": "https://www.youtube.com/watch?v=EXjGQrtEW2I",
+        "canal": "Clases Particulares en Ávila",
+        "duracion": "4:36",
+        "descripcion": "Explica el proceso de la respiración y las partes del sistema respiratorio."
+      }
+    ],
     "captions": "/captions/respiracion.vtt",
     "questions": [
       {
@@ -191,7 +326,32 @@
   {
     "id": "digestion",
     "title": "El proceso de la digestión",
-    "videoUrl": "https://www.youtube.com/watch?v=5Dqg_Kq_oO4",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sistema digestivo del cuerpo humano para niños",
+        "url": "https://www.youtube.com/watch?v=_jbw0FxnaQE",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:15",
+        "descripcion": "Un viaje por el aparato digestivo para entender el proceso de la digestión."
+      },
+      {
+        "id": "video2",
+        "title": "El Aparato Digestivo y la Digestión",
+        "url": "https://www.youtube.com/watch?v=CIhwGRIBEQ8",
+        "canal": "Happy Learning Español",
+        "duracion": "3:14",
+        "descripcion": "Explica cómo funciona el aparato digestivo y el proceso de la digestión."
+      },
+      {
+        "id": "video3",
+        "title": "El Sistema Digestivo: ¿Qué es la Digestión?",
+        "url": "https://www.youtube.com/watch?v=5DUIc9BchOk",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "3:02",
+        "descripcion": "Responde a la pregunta de qué es la digestión y cómo se lleva a cabo."
+      }
+    ],
     "captions": "/captions/digestion.vtt",
     "questions": [
       {
@@ -218,7 +378,32 @@
   {
     "id": "densidad",
     "title": "La densidad de los materiales",
-    "videoUrl": "https://www.youtube.com/watch?v=h6L2-S_3P-w",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "¿QUE ES LA DENSIDAD? fácil y sencillo con ejemplos",
+        "url": "https://www.youtube.com/watch?v=eCwlcdSY2DU",
+        "canal": "Lagartija's vlogs",
+        "duracion": "4:04",
+        "descripcion": "Define el concepto de densidad de una manera fácil y con ejemplos prácticos."
+      },
+      {
+        "id": "video2",
+        "title": "LOS MATERIALES Y SUS PROPIEDADES",
+        "url": "https://www.youtube.com/watch?v=BvELTShsiHE",
+        "canal": "Happy Learning Español",
+        "duracion": "5:54",
+        "descripcion": "Explora las propiedades de los materiales, incluyendo la densidad, con experimentos."
+      },
+      {
+        "id": "video3",
+        "title": "DENSIDAD || ¿QUÉ ES? || CIENCIA PARA NIÑOS",
+        "url": "https://www.youtube.com/watch?v=HbSap-zOQcg",
+        "canal": "Pizarrón de la Ciencia",
+        "duracion": "4:35",
+        "descripcion": "Explica qué es la densidad con experimentos visuales para niños."
+      }
+    ],
     "captions": "/captions/densidad.vtt",
     "questions": [
       {
@@ -245,7 +430,32 @@
   {
     "id": "electricidad",
     "title": "La electricidad estática",
-    "videoUrl": "https://www.youtube.com/watch?v=T3-g4-z8i-Y",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "ELECTRICIDAD ESTÁTICA | Draw My Life",
+        "url": "https://www.youtube.com/watch?v=OZXjclP5xj0",
+        "canal": "TikTak Draw",
+        "duracion": "2:36",
+        "descripcion": "Explica de forma visual y entretenida qué es la electricidad estática."
+      },
+      {
+        "id": "video2",
+        "title": "La Electricidad",
+        "url": "https://www.youtube.com/watch?v=dzcG5a5kd2M",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "3:56",
+        "descripcion": "Introduce el mundo de la electricidad, incluyendo las cargas eléctricas."
+      },
+      {
+        "id": "video3",
+        "title": "ELECTRICIDAD para niños ⚡ Electricidad estática y dinámica",
+        "url": "https://www.youtube.com/watch?v=r6SWnW0EUDI",
+        "canal": "Smile and Learn - Español",
+        "duracion": "5:29",
+        "descripcion": "Diferencia entre electricidad estática y dinámica, y muestra experimentos sencillos."
+      }
+    ],
     "captions": "/captions/electricidad.vtt",
     "questions": [
       {
@@ -272,7 +482,32 @@
   {
     "id": "ecosistemas",
     "title": "Los ecosistemas terrestres",
-    "videoUrl": "https://www.youtube.com/watch?v=X-z_1tq5s-A",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "Los ECOSISTEMAS TERRESTRES para NIÑOS",
+        "url": "https://www.youtube.com/watch?v=bcYn2Z2EgbE",
+        "canal": "Clases Particulares en Ávila",
+        "duracion": "3:51",
+        "descripcion": "Una explicación clara y concisa de los ecosistemas terrestres para primaria."
+      },
+      {
+        "id": "video2",
+        "title": "¿Qué son los ecosistemas? - Tipos de ecosistemas para niños",
+        "url": "https://www.youtube.com/watch?v=usDVb2JWhHo",
+        "canal": "Smile and Learn - Español",
+        "duracion": "4:23",
+        "descripcion": "Presenta los diferentes tipos de ecosistemas, incluyendo los terrestres, y su biodiversidad."
+      },
+      {
+        "id": "video3",
+        "title": "Ecosistema terrestre",
+        "url": "https://www.youtube.com/watch?v=upPOb8caJv4",
+        "canal": "Aula chachi",
+        "duracion": "5:54",
+        "descripcion": "Se centra en los ecosistemas terrestres y sus características."
+      }
+    ],
     "captions": "/captions/ecosistemas.vtt",
     "questions": [
       {
@@ -299,7 +534,32 @@
   {
     "id": "volcanes",
     "title": "Los volcanes y terremotos",
-    "videoUrl": "https://www.youtube.com/watch?v=L4Vf_3aZ3w4",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "¿Qué es un terremoto?",
+        "url": "https://www.youtube.com/watch?v=sk_x58kM_70",
+        "canal": "Happy Learning Español",
+        "duracion": "4:10",
+        "descripcion": "Explica las placas tectónicas y por qué se producen los sismos."
+      },
+      {
+        "id": "video2",
+        "title": "¿Qué es un Volcán?",
+        "url": "https://www.youtube.com/watch?v=Swn1nJEGogI",
+        "canal": "GuerrerosPlanet",
+        "duracion": "5:00",
+        "descripcion": "Describe qué son los volcanes, el magma y las erupciones."
+      },
+      {
+        "id": "video3",
+        "title": "¿Por qué se producen los Terremotos?",
+        "url": "https://www.youtube.com/watch?v=SbejEAjj0j0",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "5:15",
+        "descripcion": "Una explicación detallada sobre las causas de los terremotos."
+      }
+    ],
     "captions": "/captions/volcanes.vtt",
     "questions": [
       {
@@ -326,7 +586,32 @@
   {
     "id": "energia-solar",
     "title": "La energía del Sol",
-    "videoUrl": "https://www.youtube.com/watch?v=mF4e_4YlG4k",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sol | Videos Educativos para Niños",
+        "url": "https://www.youtube.com/watch?v=wANko2eM_uY",
+        "canal": "Happy Learning Español",
+        "duracion": "3:34",
+        "descripcion": "Habla sobre la radiación solar y la importancia del Sol como fuente de energía."
+      },
+      {
+        "id": "video2",
+        "title": "¿Qué es la energía? - Tipos de energía para niños",
+        "url": "https://www.youtube.com/watch?v=NAPAMIpGB-s",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:42",
+        "descripcion": "Explica los diferentes tipos de energía, destacando las renovables como la solar."
+      },
+      {
+        "id": "video3",
+        "title": "Tipos de Energía",
+        "url": "https://www.youtube.com/watch?v=Mk8Env3xrMI",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "4:55",
+        "descripcion": "Presenta los distintos tipos de energía, con un enfoque en las fuentes renovables."
+      }
+    ],
     "captions": "/captions/energia-solar.vtt",
     "questions": [
       {
@@ -353,7 +638,32 @@
   {
     "id": "ciclo-agua",
     "title": "El ciclo del agua",
-    "videoUrl": "https://www.youtube.com/watch?v=QDC_m31E_cI",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El ciclo del agua para niños",
+        "url": "https://www.youtube.com/watch?v=3QVj99UGk3Q",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:17",
+        "descripcion": "Responde a preguntas sobre el ciclo del agua y el origen de la lluvia."
+      },
+      {
+        "id": "video2",
+        "title": "El Ciclo del Agua",
+        "url": "https://www.youtube.com/watch?v=QDCohXW6blg",
+        "canal": "Happy Learning Español",
+        "duracion": "3:35",
+        "descripcion": "Ilustra las fases del ciclo del agua: evaporación, condensación y precipitación."
+      },
+      {
+        "id": "video3",
+        "title": "El ciclo del agua | Camaleón",
+        "url": "https://www.youtube.com/watch?v=76dw3ZRFGNQ",
+        "canal": "CNTV Infantil",
+        "duracion": "3:39",
+        "descripcion": "Una explicación animada y divertida del ciclo del agua."
+      }
+    ],
     "captions": "/captions/ciclo-agua.vtt",
     "questions": [
       {
@@ -380,7 +690,32 @@
   {
     "id": "huesos-musculos",
     "title": "Huesos y músculos",
-    "videoUrl": "https://www.youtube.com/watch?v=f-0T2n3g2cM",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "Los huesos para niños | El sistema óseo",
+        "url": "https://www.youtube.com/watch?v=qBNb8FwOlzQ",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:59",
+        "descripcion": "Se centra en el sistema óseo y la importancia de los huesos."
+      },
+      {
+        "id": "video2",
+        "title": "EL APARATO LOCOMOTOR",
+        "url": "https://www.youtube.com/watch?v=bGvFYRvDjc4",
+        "canal": "Happy Learning Español",
+        "duracion": "1:53",
+        "descripcion": "Una breve introducción al aparato locomotor."
+      },
+      {
+        "id": "video3",
+        "title": "Cuerpo humano: Huesos y músculos",
+        "url": "https://www.youtube.com/watch?v=w8PnlLptHXE",
+        "canal": "CNTV Infantil",
+        "duracion": "3:34",
+        "descripcion": "Explora el sistema locomotor, explicando la función de huesos y músculos."
+      }
+    ],
     "captions": "/captions/huesos-musculos.vtt",
     "questions": [
       {
@@ -407,7 +742,32 @@
   {
     "id": "mezclas-sustancias",
     "title": "Mezclas y sustancias puras",
-    "videoUrl": "https://www.youtube.com/watch?v=3kieXyvK2ig",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "SUSTANCIAS PURAS y MEZCLAS HOMOGÉNEAS y HETEROGÉNEAS",
+        "url": "https://www.youtube.com/watch?v=tl_3qBuJ4Ro",
+        "canal": "Clases Particulares en Ávila",
+        "duracion": "3:03",
+        "descripcion": "Define y diferencia sustancias puras y mezclas homogéneas y heterogéneas."
+      },
+      {
+        "id": "video2",
+        "title": "Sustancias puras y mezclas",
+        "url": "https://www.youtube.com/watch?v=tpYlt7TeqZA",
+        "canal": "Smile and Learn - Español",
+        "duracion": "4:23",
+        "descripcion": "Diferencia entre sustancias puras y mezclas, y muestra métodos de separación."
+      },
+      {
+        "id": "video3",
+        "title": "MEZCLAS Y SEPARACIONES",
+        "url": "https://www.youtube.com/watch?v=2FPaXer7AN0",
+        "canal": "Elesapiens",
+        "duracion": "4:34",
+        "descripcion": "Explica los tipos de mezclas y cómo se pueden separar sus componentes."
+      }
+    ],
     "captions": "/captions/mezclas-sustancias.vtt",
     "questions": [
       {

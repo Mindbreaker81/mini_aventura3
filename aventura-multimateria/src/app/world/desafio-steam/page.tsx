@@ -2,13 +2,11 @@
 export const dynamic = 'force-dynamic';
 import React, { useEffect, useState, useCallback } from 'react';
 import { ArrowLeft, Award, CheckCircle, Home, Play, RotateCcw } from 'lucide-react';
-import { useNavigation } from '../../hooks/useNavigation';
 import useSteamStore from './useSteamStore';
 import RobotBoard from './RobotBoard';
 import BlocklyGame, { BlocklyGameRef } from './BlocklyGame';
 
 const DesafioSteamV2: React.FC = () => {
-  const { goToDashboard } = useNavigation();
   const [blocklyFunctions, setBlocklyFunctions] = useState<BlocklyGameRef | null>(null);
   const [blockCount, setBlockCount] = useState(0);
   const [isBlocklyLoaded, setIsBlocklyLoaded] = useState(false);
