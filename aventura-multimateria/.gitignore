@@ -43,3 +43,7 @@ next-env.d.ts
 # Cursor editor configuration
 .cursor/
 **/.cursor/
+
+# Claude Code configuration
+.claude/
+**/.claude/
