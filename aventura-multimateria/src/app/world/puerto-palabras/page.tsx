@@ -169,7 +169,7 @@ const PuertoPalabrasPage = () => {
                     {/* Palabras asignadas a esta categoría */}
                     <div className="flex flex-wrap gap-1">
                       {Object.entries(assigned)
-                        .filter(([_, c]) => c === cat.key)
+                        .filter(([, c]) => c === cat.key)
                         .map(([word], idx) => (
                           <Draggable key={word} draggableId={word} index={idx}>
                             {(prov) => (

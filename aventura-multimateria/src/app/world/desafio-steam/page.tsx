@@ -1,6 +1,6 @@
 'use client';
 export const dynamic = 'force-dynamic';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { ArrowLeft, Award, CheckCircle, Home, Play, RotateCcw } from 'lucide-react';
 import { useNavigation } from '../../hooks/useNavigation';
 import useSteamStore from './useSteamStore';
@@ -12,7 +12,7 @@ const DesafioSteamV2: React.FC = () => {
   const [blocklyFunctions, setBlocklyFunctions] = useState<BlocklyGameRef | null>(null);
   const [blockCount, setBlockCount] = useState(0);
   const [isBlocklyLoaded, setIsBlocklyLoaded] = useState(false);
-  const [forceUpdate, setForceUpdate] = useState(0);
+  const [forceUpdate] = useState(0);
   
   const {
     showInstructions,
@@ -29,15 +29,11 @@ const DesafioSteamV2: React.FC = () => {
   } = useSteamStore();
 
   // Callback para cuando BlocklyGame esté listo
-  const handleBlocklyReady = (functions: BlocklyGameRef) => {
+  const handleBlocklyReady = useCallback((functions: BlocklyGameRef) => {
     setBlocklyFunctions(functions);
     setIsBlocklyLoaded(functions.isLoaded());
-  };
+  }, []);
 
-  // Verificar la referencia al montar
-  useEffect(() => {
-    console.log('[Page] Componente montado, verificando blocklyFunctions:', !!blocklyFunctions);
-  }, [blocklyFunctions]);
 
   // Actualizar información del editor cada segundo
   useEffect(() => {
@@ -51,13 +47,14 @@ const DesafioSteamV2: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [blockCount, isBlocklyLoaded, blocklyFunctions]);
+  }, [blocklyFunctions]); // Solo depende de blocklyFunctions
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       initializeGame();
     }
-  }, [initializeGame]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Solo ejecutar una vez al montar
 
   // Pantalla de instrucciones
   if (showInstructions) {
@@ -104,8 +101,12 @@ const DesafioSteamV2: React.FC = () => {
 
           <div className="flex gap-3">
             <button
-              onClick={goToDashboard}
-              className="flex items-center gap-2 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = '/';
+              }}
+              className="flex items-center gap-2 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors cursor-pointer"
             >
               <ArrowLeft size={20} />
               Volver
@@ -157,8 +158,12 @@ const DesafioSteamV2: React.FC = () => {
 
           <div className="flex gap-3">
             <button
-              onClick={goToDashboard}
-              className="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = '/';
+              }}
+              className="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold cursor-pointer"
             >
               Volver al Dashboard
             </button>
@@ -176,8 +181,12 @@ const DesafioSteamV2: React.FC = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
             <button
-              onClick={goToDashboard}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = '/';
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors cursor-pointer"
             >
               <Home size={20} />
               Dashboard

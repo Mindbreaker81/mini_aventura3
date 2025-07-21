@@ -2,7 +2,6 @@
 import React from "react";
 import Link from "next/link";
 import { Globe, Waves, MapPin, ArrowLeft } from "lucide-react";
-import { useTranslation } from "../../components/I18nProvider";
 
 const modes = [
   {
@@ -35,7 +34,6 @@ const modes = [
 ];
 
 export default function ModeSelector() {
-  const { t } = useTranslation('common');
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 flex flex-col">

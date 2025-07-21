@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Heart, ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 import { useMapamundiV2Store } from "./useMapamundiV2Store";
-import { MapamundiTask, GameMode, MODE_CONFIG } from "./types";
+import { GameMode, MODE_CONFIG } from "./types";
 import Passport from "./Passport";
 import WorldMap from "./WorldMap";
 import SpainMap from "./SpainMap";

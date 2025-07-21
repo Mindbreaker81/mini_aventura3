@@ -4,7 +4,7 @@ import { useMercadoNumerosStore } from "./useMercadoNumerosStore";
 import { MarketGame } from "./MarketGame";
 import tasksData from "../../data/mercado-tasks.json";
 import type { MercadoTask } from "./types";
-import { ShoppingCart, Heart, X, Home } from "lucide-react";
+import { ShoppingCart, Heart, Home } from "lucide-react";
 import { useNavigation } from "../../hooks/useNavigation";
 
 export default function MercadoNumerosPage() {

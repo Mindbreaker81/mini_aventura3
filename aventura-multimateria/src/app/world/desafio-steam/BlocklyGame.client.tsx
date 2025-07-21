@@ -1,14 +1,14 @@
 'use client';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { Play, RotateCcw, Trophy, Heart } from 'lucide-react';
+import { Trophy, Heart } from 'lucide-react';
 import useSteamStore from './useSteamStore';
 import { initializeBlocks, initializeGenerators, getToolboxConfig } from './blocks';
-import { safeWorkspaceToCode, safeBlocklyOperation } from './blockly-utils';
+import { safeWorkspaceToCode } from './blockly-utils';
 
 // Define un tipo para el estado de Blockly
 type BlocklyState = {
-  Blockly: any;
-  javascriptGenerator: any;
+  Blockly: typeof import('blockly');
+  javascriptGenerator: typeof import('blockly/javascript').javascriptGenerator;
 } | null;
 
 // Define la interfaz para las funciones expuestas
@@ -24,7 +24,7 @@ interface BlocklyGameProps {
 }
 
 const BlocklyGame: React.FC<BlocklyGameProps> = ({ onReady }) => {
-  const workspaceRef = useRef<any>(null);
+  const workspaceRef = useRef<import('blockly').WorkspaceSvg | null>(null);
   const [blocklyState, setBlocklyState] = useState<BlocklyState>(null);
   const [blocklyLoaded, setBlocklyLoaded] = useState(false);
   const initializedRef = useRef(false);
@@ -151,7 +151,7 @@ const BlocklyGame: React.FC<BlocklyGameProps> = ({ onReady }) => {
         console.error('[BlocklyGame] Error inicializando Blockly:', error);
       }
     }
-  }, [blocklyState]); // Removido setBlocklyCode de las dependencias
+  }, [blocklyState, blocklyLoaded, setBlocklyCode]);
 
   // Limpiar al desmontar
   useEffect(() => {
@@ -206,11 +206,11 @@ const BlocklyGame: React.FC<BlocklyGameProps> = ({ onReady }) => {
     resetCurrentTask();
   }, [workspaceRef, blocklyState, resetCurrentTask]);
 
-  const getBlockCount = (): number => {
+  const getBlockCount = useCallback((): number => {
     if (!workspaceRef.current) return 0;
     // `getAllBlocks(false)` cuenta los bloques de usuario, no los de la toolbox.
     return workspaceRef.current.getAllBlocks(false).length;
-  };
+  }, []);
 
   // Asegurar que blocklyLoaded permanezca true una vez inicializado
   const effectiveBlocklyLoaded = blocklyLoaded || initializedRef.current;
@@ -237,7 +237,7 @@ const BlocklyGame: React.FC<BlocklyGameProps> = ({ onReady }) => {
         isLoaded: () => effectiveBlocklyLoaded
       });
     }
-  }, [effectiveBlocklyLoaded, onReady]); // Solo estas dependencias
+  }, [effectiveBlocklyLoaded, onReady, handleReset, runCode, getBlockCount]);
 
   // Forzar que useImperativeHandle se ejecute cuando el workspace esté listo
   useEffect(() => {
@@ -252,7 +252,7 @@ const BlocklyGame: React.FC<BlocklyGameProps> = ({ onReady }) => {
         });
       }
     }
-  }, [workspaceRef.current, effectiveBlocklyLoaded, onReady, runCode, handleReset, getBlockCount]);
+  }, [effectiveBlocklyLoaded, onReady, runCode, handleReset, getBlockCount]);
 
   // Forzar ejecución de useImperativeHandle en cada render cuando esté listo
   useEffect(() => {

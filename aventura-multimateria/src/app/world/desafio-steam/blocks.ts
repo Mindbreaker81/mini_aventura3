@@ -1,7 +1,7 @@
 // Definición de bloques personalizados para Blockly STEAM v2
 
 // Definir bloques personalizados
-export const initializeBlocks = (Blockly: any) => {
+export const initializeBlocks = (Blockly: typeof import('blockly')) => {
   console.log('🔧 Iniciando definición de bloques...');
   
   if (!Blockly || !Blockly.Blocks) {
@@ -61,7 +61,7 @@ export const initializeBlocks = (Blockly: any) => {
 };
 
 // Generadores JavaScript para los bloques
-export const initializeGenerators = (javascriptGenerator: any) => {
+export const initializeGenerators = (javascriptGenerator: { forBlock?: Record<string, () => string>; [key: string]: unknown }) => {
   console.log('🔧 Iniciando definición de generadores...');
 
   // Compatibilidad: usar forBlock si existe, si no, asignar directamente

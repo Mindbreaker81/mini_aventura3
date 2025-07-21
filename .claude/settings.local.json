@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rg:*)",
+      "Bash(npm run lint)",
+      "Bash(ls:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm outdated)",
+      "Bash(npm run dev:*)",
+      "mcp__gemini-cli__ask-gemini"
+    ],
+    "deny": []
+  }
+}

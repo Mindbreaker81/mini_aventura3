@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { MercadoTask, GameState } from './types';
+import type { MercadoTask, GameState, PaymentTask, TimeTask, FractionTask } from './types';
 
 interface MercadoNumerosState extends GameState {
   // Actions
@@ -79,7 +79,7 @@ export const useMercadoNumerosStore = create<MercadoNumerosState>((set, get) => 
 
   submitPayment: () => {
     const { selectedCoins, tasks, currentTask } = get();
-    const task = tasks[currentTask] as any; // PaymentTask
+    const task = tasks[currentTask] as PaymentTask;
     const total = selectedCoins.reduce((sum, coin) => sum + coin, 0);
     const targetAmount = task.amount;
     
@@ -101,7 +101,7 @@ export const useMercadoNumerosStore = create<MercadoNumerosState>((set, get) => 
 
   submitTimeAnswer: () => {
     const { currentAnswer, tasks, currentTask } = get();
-    const task = tasks[currentTask] as any; // TimeTask
+    const task = tasks[currentTask] as TimeTask;
     
     const correct = currentAnswer === task.answer;
     
@@ -121,7 +121,7 @@ export const useMercadoNumerosStore = create<MercadoNumerosState>((set, get) => 
 
   submitFractionAnswer: () => {
     const { currentAnswer, tasks, currentTask } = get();
-    const task = tasks[currentTask] as any; // FractionTask
+    const task = tasks[currentTask] as FractionTask;
     
     const correct = currentAnswer === task.answer;
     

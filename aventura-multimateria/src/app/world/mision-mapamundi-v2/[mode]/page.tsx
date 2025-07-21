@@ -14,7 +14,7 @@ export default function GamePage() {
       <div className="min-h-screen bg-red-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-800 mb-4">Modo no válido</h1>
-          <p className="text-red-600">El modo "{mode}" no está disponible.</p>
+          <p className="text-red-600">El modo &quot;{mode}&quot; no está disponible.</p>
         </div>
       </div>
     );

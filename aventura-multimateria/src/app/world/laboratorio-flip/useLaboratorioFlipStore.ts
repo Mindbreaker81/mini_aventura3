@@ -92,8 +92,7 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
       },
 
       submitQuiz: () => {
-        const { answers, lessons, currentLesson } = get();
-        const lesson = lessons[currentLesson];
+        const { answers } = get();
         
         // Verificar que todas las preguntas estén respondidas
         if (answers.some(answer => answer === null)) {

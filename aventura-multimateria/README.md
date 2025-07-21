@@ -22,7 +22,7 @@ Language: TypeScript 5.8.3
 Styling: Tailwind CSS 4
 State Management: Zustand 5.0.6
 Database: Supabase (configurada)
-Internationalization: next-i18next 15.4.2
+Internationalization: i18next + react-i18next (con I18nProvider propio)
 Icons: lucide-react 0.525.0
 ```
 
@@ -54,6 +54,8 @@ aventura-multimateria/
 │   │   │   ├── mision-mapamundi-v2/  # Geografía interactiva
 │   │   │   ├── desafio-steam/        # Programación con bloques
 │   │   │   └── laboratorio-flip/     # Ciencias con videos
+│   │   ├── components/
+│   │   │   └── I18nProvider.tsx      # 🌐 Proveedor de internacionalización (nuevo)
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   └── page.tsx                  # 🏠 Dashboard principal
@@ -66,9 +68,19 @@ aventura-multimateria/
 ├── next.config.js
 ├── tailwind.config.js
 ├── tsconfig.json
-├── CLAUDE.md                         # 🤖 Documentación para Claude
+├── CLAUDE.md                         # 🤖 Documentación técnica y de cambios
+├── FIXES_APPLIED.md                  # 🛠️ Registro de fixes y migraciones
+├── CHAT_SUMMARY_STEAM_IMPROVEMENTS.md # 📝 Resumen de mejoras STEAM
 └── README.md                         # 📖 Este archivo
 ```
+
+## 🆕 Historial de Cambios Recientes
+
+- **Internacionalización (i18n):** Migración de `next-i18next` a un `I18nProvider` propio usando `i18next` y `react-i18next` para compatibilidad total con App Router. Ver detalles en `FIXES_APPLIED.md`.
+- **Desafío STEAM:** Refactorización completa: animaciones más lentas y visibles, rastro visual del robot, feedback visual mejorado, comunicación entre componentes basada en callbacks, y supresión de warnings de Blockly. Ver detalles en `CHAT_SUMMARY_STEAM_IMPROVEMENTS.md` y `CLAUDE.md`.
+- **Limpieza y Organización:** Eliminación de archivos y versiones obsoletas, estructura de minijuegos y stores unificada, documentación exhaustiva.
+- **Persistencia y Estado:** Zustand con persistencia en localStorage para todos los minijuegos, claves de almacenamiento documentadas.
+- **Documentación:** Se añadieron y actualizaron archivos de referencia: `CLAUDE.md`, `FIXES_APPLIED.md`, `CHAT_SUMMARY_STEAM_IMPROVEMENTS.md`.
 
 ## 🎯 Descripción Detallada de Minijuegos
 

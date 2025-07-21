@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import i18n from 'i18next';
 import { initReactI18next, useTranslation as useI18nTranslation } from 'react-i18next';
 
@@ -62,7 +62,7 @@ i18n
     }
   });
 
-const I18nContext = createContext<any>(null);
+const I18nContext = createContext<typeof i18n | null>(null);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);

@@ -18,12 +18,10 @@ const LaboratorioFlip: React.FC = () => {
     gameStatus,
     xp,
     badge,
-    currentLesson,
     completedLessons,
     experimentPieces,
     piecesObtained,
     videoWatched,
-    lessons,
   } = useLaboratorioFlipStore();
 
   useEffect(() => {
@@ -85,7 +83,7 @@ const LaboratorioFlip: React.FC = () => {
                 <div>• +8 XP por cada respuesta correcta</div>
                 <div>• +10 XP extra por completar cada lección</div>
                 <div>• Piezas del experimento: 🧪 🟦 🟨 🔥</div>
-                <div>• Badge "Científico Novato" al completar todo</div>
+                <div>• Badge &quot;Científico Novato&quot; al completar todo</div>
               </div>
             </div>
           </div>
@@ -224,7 +222,7 @@ const LaboratorioFlip: React.FC = () => {
       <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
         <h2 className="text-lg font-bold text-gray-800 mb-3">🧪 Tu Experimento Virtual</h2>
         <div className="flex justify-center items-center gap-6">
-          {experimentPieces.map((piece, index) => (
+          {experimentPieces.map((piece) => (
             <div
               key={piece.id}
               className={`flex flex-col items-center gap-2 transition-all duration-500 ${

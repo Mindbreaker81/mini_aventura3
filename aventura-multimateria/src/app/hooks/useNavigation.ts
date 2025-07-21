@@ -4,7 +4,12 @@ export const useNavigation = () => {
   const router = useRouter();
 
   const goToDashboard = () => {
-    router.push('/');
+    try {
+      router.push('/');
+    } catch (error) {
+      console.error('Router navigation failed, using window.location', error);
+      window.location.href = '/';
+    }
   };
 
   const goToGame = (gamePath: string) => {

@@ -119,8 +119,7 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
       },
 
       nextTask: () => {
-        const { currentTask, tasks, mode } = get();
-        const config = MODE_CONFIG[mode];
+        const { currentTask, tasks } = get();
         
         if (currentTask < tasks.length - 1) {
           set({

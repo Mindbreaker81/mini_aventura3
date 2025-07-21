@@ -25,21 +25,13 @@ export default function ReadingGame() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedback, setFeedback] = useState<{ correct: boolean; explanation: string } | null>(null);
   const [sessionLoaded, setSessionLoaded] = useState(false);
-  const [session, setSession] = useState<any>(null);
   const [selectedPassages, setSelectedPassages] = useState<Passage[]>([]);
 
   const store = useBoscLecturaStore();
 
   // Cargar estado de localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('bosc-session');
-    if (saved) {
-      const data = JSON.parse(saved);
-      setSession(data);
-      setSessionLoaded(true);
-    } else {
-      setSessionLoaded(true);
-    }
+    setSessionLoaded(true);
   }, []);
 
   // Selección aleatoria de textos (solo una vez)

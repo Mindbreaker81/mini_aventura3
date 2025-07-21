@@ -1,32 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// @ts-ignore
+// @ts-expect-error - react-simple-maps types are not available
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { MapComponentProps } from "./types";
 
 // URL del TopoJSON de España (CCAA)
 const geoUrl = "/ccaa-es.geojson";
 
-// Mapeo de códigos de CCAA
-const CCAA_CODES: { [key: string]: string } = {
-  "AN": "AN", // Andalucía
-  "CT": "CT", // Cataluña
-  "MD": "MD", // Madrid
-  "VC": "VC", // Comunidad Valenciana
-  "GA": "GA", // Galicia
-  "CL": "CL", // Castilla y León
-  "PV": "PV", // País Vasco
-  "CM": "CM", // Castilla-La Mancha
-  "MC": "MC", // Murcia
-  "AR": "AR", // Aragón
-  "EX": "EX", // Extremadura
-  "AS": "AS", // Asturias
-  "NC": "NC", // Navarra
-  "CB": "CB", // Cantabria
-  "RI": "RI", // La Rioja
-  "IB": "IB", // Islas Baleares
-  "CN": "CN"  // Islas Canarias
-};
 
 // Mapeo de cod_ccaa a códigos de tarea (MD, AN, etc.)
 const COD_CCAA_TO_CODE: { [key: string]: string } = {
@@ -49,8 +29,8 @@ const COD_CCAA_TO_CODE: { [key: string]: string } = {
   "17": "RI", // La Rioja
 };
 
-export default function SpainMap({ task, selectedRegion, onRegionClick, onResult }: MapComponentProps) {
-  const [geography, setGeography] = useState<any>(null);
+export default function SpainMap({ selectedRegion, onRegionClick }: MapComponentProps) {
+  const [geography, setGeography] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
 
   // Cargar datos del mapa
@@ -68,7 +48,7 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
   }, []);
 
   // Función para manejar clic en región
-  const handleRegionClick = (geo: any) => {
+  const handleRegionClick = (geo: { properties?: { cod_ccaa?: string } }) => {
     if (!geo || !geo.properties) return;
 
     // Usar el mapeo para obtener el código de tarea
@@ -81,7 +61,7 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
   };
 
   // Función para obtener el estilo de una región
-  const getRegionStyle = (geo: any) => {
+  const getRegionStyle = (geo: { properties?: { cod_ccaa?: string } }) => {
     if (!geo || !geo.properties) return {};
 
     const codCcaa = geo.properties.cod_ccaa;
@@ -161,8 +141,8 @@ export default function SpainMap({ task, selectedRegion, onRegionClick, onResult
         >
           <ZoomableGroup zoom={1} maxZoom={4} minZoom={0.8}>
             <Geographies geography={geography}>
-              {({ geographies }: { geographies: any[] }) =>
-                geographies.map((geo: any) => (
+              {({ geographies }: { geographies: { rsmKey: string; properties?: { NAME?: string; name?: string } }[] }) =>
+                geographies.map((geo) => (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}

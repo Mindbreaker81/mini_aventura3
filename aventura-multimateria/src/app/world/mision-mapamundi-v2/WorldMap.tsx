@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// @ts-ignore
+// @ts-expect-error - react-simple-maps types are not available
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from "react-simple-maps";
 import { MapComponentProps } from "./types";
 // Añadir import para cargar oceans.geojson
@@ -69,14 +69,6 @@ const COUNTRY_TO_CONTINENT: { [key: string]: string } = {
   "Antarctica": "AN"
 };
 
-// Mapeo de códigos de océanos (mantener el original)
-const OCEAN_CODES: { [key: string]: string } = {
-  "ATL": "ATL", // Atlántico
-  "PAC": "PAC", // Pacífico
-  "IND": "IND", // Índico
-  "ARC": "ARC", // Ártico
-  "ANT": "ANT"  // Antártico
-};
 
 // Centroides de océanos para selección clickeable
 const OCEAN_CENTROIDS: { [key: string]: [number, number] } = {
@@ -87,17 +79,9 @@ const OCEAN_CENTROIDS: { [key: string]: [number, number] } = {
   "ANT": [0, -60]      // Océano Antártico - alrededor de Antártida
 };
 
-// Nombres de océanos para mostrar
-const OCEAN_NAMES: { [key: string]: string } = {
-  "ATL": "Océano Atlántico",
-  "PAC": "Océano Pacífico", 
-  "IND": "Océano Índico",
-  "ARC": "Océano Ártico",
-  "ANT": "Océano Antártico"
-};
 
-export default function WorldMap({ task, selectedRegion, onRegionClick, onResult }: MapComponentProps) {
-  const [geography, setGeography] = useState<any>(null);
+export default function WorldMap({ task, selectedRegion, onRegionClick }: MapComponentProps) {
+  const [geography, setGeography] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
 
   // Determinar si es pregunta de continente o océano
@@ -133,7 +117,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
   }, [isOceanQuestion]);
 
   // Función para manejar clic en región
-  const handleRegionClick = (geo: any) => {
+  const handleRegionClick = (geo: { properties?: { name?: string; NAME?: string } }) => {
     if (!geo || !geo.properties) return;
 
     let regionId = "";
@@ -170,7 +154,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
   };
 
   // Función para obtener el estilo de una región
-  const getRegionStyle = (geo: any) => {
+  const getRegionStyle = (geo: { properties?: { name?: string; NAME?: string } }) => {
     if (!geo || !geo.properties) return {};
 
     let regionId = "";
@@ -263,8 +247,8 @@ export default function WorldMap({ task, selectedRegion, onRegionClick, onResult
         >
           <ZoomableGroup zoom={1} maxZoom={3} minZoom={0.8}>
             <Geographies geography={geography}>
-              {({ geographies }: { geographies: any[] }) =>
-                geographies.map((geo: any) => (
+              {({ geographies }: { geographies: { rsmKey: string; properties?: { name?: string; NAME?: string } }[] }) =>
+                geographies.map((geo) => (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}

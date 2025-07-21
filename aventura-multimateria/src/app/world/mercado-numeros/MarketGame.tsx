@@ -4,7 +4,7 @@ import { useMercadoNumerosStore } from "./useMercadoNumerosStore";
 import { PaymentChallenge } from "./PaymentChallenge";
 import { TimeChallenge } from "./TimeChallenge";
 import { FractionChallenge } from "./FractionChallenge";
-import { ShoppingCart, Check, X } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 export const MarketGame: React.FC = () => {
   const { 

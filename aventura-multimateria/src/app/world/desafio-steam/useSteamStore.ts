@@ -102,7 +102,7 @@ const useSteamStore = create<SteamState>()(
 
         let tempRobot = { ...get().robot };
         let hasCrashed = false;
-        let robotPath: [number, number][] = []; // Camino temporal
+        const robotPath: [number, number][] = []; // Camino temporal
 
         const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 

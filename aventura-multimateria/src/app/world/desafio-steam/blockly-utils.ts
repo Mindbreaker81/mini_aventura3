@@ -4,7 +4,7 @@ export function suppressBlocklyDeprecationWarnings() {
   const originalWarn = console.warn;
   
   // Override console.warn to filter out specific Blockly deprecation warnings
-  console.warn = function(message: any, ...args: any[]) {
+  console.warn = function(message: unknown, ...args: unknown[]) {
     // Skip the specific deprecation warning for getAllVariables
     if (typeof message === 'string' && message.includes('getAllVariables was deprecated in v12')) {
       return;
@@ -20,7 +20,7 @@ export function suppressBlocklyDeprecationWarnings() {
 }
 
 // Safe wrapper for workspaceToCode that suppresses deprecation warnings
-export function safeWorkspaceToCode(generator: any, workspace: any): string {
+export function safeWorkspaceToCode(generator: { workspaceToCode: (workspace: unknown) => string }, workspace: unknown): string {
   const restore = suppressBlocklyDeprecationWarnings();
   try {
     const code = generator.workspaceToCode(workspace);

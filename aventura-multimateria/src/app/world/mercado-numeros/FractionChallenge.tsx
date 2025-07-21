@@ -162,7 +162,7 @@ export const FractionChallenge: React.FC<FractionChallengeProps> = ({ task }) =>
       <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
         <h4 className="font-bold text-purple-800 mb-2">💡 Consejo:</h4>
         <p className="text-purple-700 text-sm">
-          Una fracción como ½ significa "1 parte de 2 partes iguales". 
+          Una fracción como ½ significa &quot;1 parte de 2 partes iguales&quot;. 
           Para sumar fracciones iguales: ¼ + ¼ = 2/4 = ½
         </p>
       </div>
