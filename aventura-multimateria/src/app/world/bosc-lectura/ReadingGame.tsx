@@ -3,6 +3,11 @@ import { useBoscLecturaStore } from './useBoscLecturaStore';
 import passages from '../../data/bosc-passages.json';
 import { useTranslation } from '../../components/I18nProvider';
 
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+
 interface Question {
   q: string;
   type: 'single' | 'true_false';
@@ -62,11 +67,13 @@ export default function ReadingGame() {
       store.setBadge();
     }
     return (
-      <div className="text-center">
-        <h2>{t('bosc.completed')}</h2>
-        {store.badge && <div className="mt-4">🏅 {t('bosc.badge')}</div>}
-        <div className="mt-2">+{store.xp} XP</div>
-      </div>
+      <Card className="max-w-md mx-auto text-center border-green-200">
+        <CardContent className="pt-6 pb-6 space-y-3">
+          <h2 className="text-xl font-bold text-green-800">{t('bosc.completed')}</h2>
+          {store.badge && <div className="text-2xl">🏅 {t('bosc.badge')}</div>}
+          <Badge variant="success" className="text-base px-4 py-1">+{store.xp} XP</Badge>
+        </CardContent>
+      </Card>
     );
   }
   
@@ -76,10 +83,12 @@ export default function ReadingGame() {
   if (!current || !current.questions) {
     console.error('Passage data is missing or invalid:', current);
     return (
-      <div className="text-center">
-        <h2>Error: Datos del pasaje no disponibles</h2>
-        <button className="btn mt-4" onClick={store.reset}>Reintentar</button>
-      </div>
+      <Card className="max-w-md mx-auto text-center border-red-200">
+        <CardContent className="pt-6 pb-6 space-y-3">
+          <h2 className="text-xl font-bold text-red-800">Error: Datos del pasaje no disponibles</h2>
+          <Button variant="destructive" onClick={store.reset}>Reintentar</Button>
+        </CardContent>
+      </Card>
     );
   }
   
@@ -89,10 +98,12 @@ export default function ReadingGame() {
   if (!currentQuestion) {
     console.error('Question not found for step:', step, 'questions:', current.questions);
     return (
-      <div className="text-center">
-        <h2>Error: Pregunta no disponible</h2>
-        <button className="btn mt-4" onClick={store.reset}>Reintentar</button>
-      </div>
+      <Card className="max-w-md mx-auto text-center border-red-200">
+        <CardContent className="pt-6 pb-6 space-y-3">
+          <h2 className="text-xl font-bold text-red-800">Error: Pregunta no disponible</h2>
+          <Button variant="destructive" onClick={store.reset}>Reintentar</Button>
+        </CardContent>
+      </Card>
     );
   }
 
@@ -153,81 +164,137 @@ export default function ReadingGame() {
 
   if (store.completed) {
     return (
-      <div className="text-center">
-        <h2>{t('bosc.completed')}</h2>
-        {store.badge && <div className="mt-4">🏅 {t('bosc.badge')}</div>}
-        <div className="mt-2">+{store.xp} XP</div>
-      </div>
+      <Card className="max-w-md mx-auto text-center border-green-200">
+        <CardContent className="pt-6 pb-6 space-y-3">
+          <h2 className="text-xl font-bold text-green-800">{t('bosc.completed')}</h2>
+          {store.badge && <div className="text-2xl">🏅 {t('bosc.badge')}</div>}
+          <Badge variant="success" className="text-base px-4 py-1">+{store.xp} XP</Badge>
+        </CardContent>
+      </Card>
     );
   }
 
   if (store.energy === 0) {
     return (
-      <div className="text-center">
-        <h2>{t('bosc.failed')}</h2>
-        <button className="btn mt-4" onClick={store.reset}>{t('bosc.retry')}</button>
-      </div>
+      <Card className="max-w-md mx-auto text-center border-red-200">
+        <CardContent className="pt-6 pb-6 space-y-4">
+          <h2 className="text-xl font-bold text-red-800">{t('bosc.failed')}</h2>
+          <Button variant="destructive" size="lg" onClick={store.reset}>{t('bosc.retry')}</Button>
+        </CardContent>
+      </Card>
     );
   }
 
+  const progressValue = store.currentPassage * 2 + (step % 2);
+  const progressMax = selectedPassages.length * 2;
+
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <div className="mb-4">
-        <h3 className="font-bold text-lg mb-2">{current.title}</h3>
-        <div className="bg-gray-100 rounded p-3 mb-4" tabIndex={0} aria-label={current.paragraph}>{current.paragraph}</div>
+    <div className="max-w-xl mx-auto p-4 space-y-4">
+      {/* Progress indicator */}
+      <div className="flex items-center gap-3">
+        <Badge variant="outline" className="text-xs whitespace-nowrap">
+          📖 {store.currentPassage + 1}/{selectedPassages.length}
+        </Badge>
+        <Progress value={progressValue} max={progressMax} className="h-2 flex-1" indicatorClassName="bg-green-500" />
+        <Badge variant="success" className="text-xs">
+          ⭐ {store.xp} XP
+        </Badge>
       </div>
-      <fieldset className="mb-4 border-none p-0 m-0">
-        <legend className="font-semibold mb-2">{currentQuestion.q}</legend>
-        {currentQuestion.type === 'single' && currentQuestion.options && (
-          <div role="radiogroup" aria-label={currentQuestion.q}>
-            {currentQuestion.options.map((opt, idx) => (
-              <label key={idx} className="block mb-1">
-                <input
-                  type="radio"
-                  name="option"
-                  value={idx}
-                  checked={selected === idx}
-                  onChange={() => handleAnswer(idx)}
-                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAnswer(idx); } }}
-                  tabIndex={0}
-                />{' '}
-                {opt}
-              </label>
-            ))}
+
+      {/* Passage card */}
+      <Card className="border-green-200">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-lg text-green-800">📚 {current.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="bg-green-50/50 rounded-lg p-4 text-gray-700 leading-relaxed border border-green-100" tabIndex={0} aria-label={current.paragraph}>
+            {current.paragraph}
           </div>
-        )}
-        {currentQuestion.type === 'true_false' && (
-          <div role="radiogroup" aria-label={currentQuestion.q}>
-            {[true, false].map((val, idx) => (
-              <label key={idx} className="block mb-1">
-                <input
-                  type="radio"
-                  name="option"
-                  value={val ? 'true' : 'false'}
-                  checked={selected === val}
-                  onChange={() => handleAnswer(val)}
-                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAnswer(val); } }}
-                  tabIndex={0}
-                />{' '}
-                {t(val ? 'true' : 'false')}
-              </label>
-            ))}
-          </div>
-        )}
-      </fieldset>
+        </CardContent>
+      </Card>
+
+      {/* Question card */}
+      <Card className="border-blue-200">
+        <CardContent className="pt-4 pb-4">
+          <fieldset className="border-none p-0 m-0">
+            <legend className="font-semibold mb-3 text-blue-800">❓ {currentQuestion.q}</legend>
+            {currentQuestion.type === 'single' && currentQuestion.options && (
+              <div role="radiogroup" aria-label={currentQuestion.q} className="space-y-2">
+                {currentQuestion.options.map((opt, idx) => (
+                  <label
+                    key={idx}
+                    className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                      selected === idx
+                        ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200'
+                        : 'bg-white border-gray-200 hover:bg-gray-50'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="option"
+                      value={idx}
+                      checked={selected === idx}
+                      onChange={() => handleAnswer(idx)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAnswer(idx); } }}
+                      tabIndex={0}
+                      className="accent-blue-600"
+                    />
+                    <span className="text-sm">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+            {currentQuestion.type === 'true_false' && (
+              <div role="radiogroup" aria-label={currentQuestion.q} className="space-y-2">
+                {[true, false].map((val, idx) => (
+                  <label
+                    key={idx}
+                    className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                      selected === val
+                        ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200'
+                        : 'bg-white border-gray-200 hover:bg-gray-50'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="option"
+                      value={val ? 'true' : 'false'}
+                      checked={selected === val}
+                      onChange={() => handleAnswer(val)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAnswer(val); } }}
+                      tabIndex={0}
+                      className="accent-blue-600"
+                    />
+                    <span className="text-sm">{t(val ? 'true' : 'false')}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </fieldset>
+        </CardContent>
+      </Card>
+
+      {/* Feedback */}
       {showFeedback && (
-        <div className={feedback?.correct ? 'text-green-600' : 'text-red-600'} aria-live="polite">
-          {feedback?.explanation}
-        </div>
+        <Card className={feedback?.correct ? "border-green-300 bg-green-50/80" : "border-red-300 bg-red-50/80"}>
+          <CardContent className="pt-4 pb-4" aria-live="polite">
+            <span className={feedback?.correct ? 'text-green-700 font-medium' : 'text-red-700 font-medium'}>
+              {feedback?.correct ? '✅ ' : '❌ '}{feedback?.explanation}
+            </span>
+          </CardContent>
+        </Card>
       )}
-      <button
-        className="btn mt-4"
+
+      {/* Action button */}
+      <Button
+        className="w-full"
+        size="lg"
         onClick={showFeedback ? nextStep : checkAnswer}
         disabled={selected === null || showFeedback && !feedback}
         tabIndex={0}
       >
-        {showFeedback ? t('next') : t('check')}
-      </button>
+        {showFeedback ? `➡️ ${t('next')}` : `🔍 ${t('check')}`}
+      </Button>
     </div>
   );
 }

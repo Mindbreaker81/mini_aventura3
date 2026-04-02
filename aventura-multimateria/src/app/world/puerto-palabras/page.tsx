@@ -7,6 +7,11 @@ import { useNavigation } from "../../hooks/useNavigation";
 import wordsData from "../../data/puerto-words.json";
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+
 const PuertoPalabrasPage = () => {
   const { roundWords, assigned, repaired, feedback, xp, showInstructions, loadWords, assignWord, startGame } = usePuertoPalabrasStore();
   const { goToDashboard } = useNavigation();
@@ -47,73 +52,88 @@ const PuertoPalabrasPage = () => {
   // Componente de instrucciones
   if (showInstructions) {
     return (
-      <main className="min-h-screen bg-blue-50 flex flex-col items-center justify-center p-4">
-        <div className="max-w-2xl bg-white rounded-xl shadow-lg p-8 text-center">
-          <div className="text-6xl mb-4">🚢</div>
-          <h1 className="text-3xl font-bold text-blue-800 mb-4">¡Bienvenido al Puerto de las Palabras!</h1>
-          
-          <div className="text-lg text-gray-700 space-y-4 mb-6">
+      <main className="min-h-screen bg-gradient-to-b from-blue-50 to-sky-100 flex flex-col items-center justify-center p-4">
+        <Card className="max-w-2xl w-full text-center border-blue-200 shadow-lg">
+          <CardHeader className="pb-2">
+            <div className="text-6xl mb-2">🚢</div>
+            <CardTitle className="text-3xl text-blue-800">¡Bienvenido al Puerto de las Palabras!</CardTitle>
+          </CardHeader>
+          <CardContent className="text-lg text-gray-700 space-y-4">
             <p>🎯 <strong>Tu misión:</strong> Ayuda a reparar el barco colocando cada palabra en su categoría correcta.</p>
             
-            <div className="bg-blue-50 rounded-lg p-4">
-              <h3 className="font-bold text-blue-800 mb-2">📖 ¿Cómo jugar?</h3>
-              <ol className="text-left space-y-2">
-                <li>1. 🖱️ <strong>Arrastra</strong> las palabras azules hacia las cajas de colores</li>
-                <li>2. 🎯 Cada palabra pertenece a una <strong>categoría gramatical</strong></li>
-                <li>3. ✅ Si aciertas, ¡reparas una parte del barco!</li>
-                <li>4. 📚 Si no aciertas, aprenderás la regla correcta</li>
-                <li>5. 🏆 Repara 6 partes para completar el barco</li>
-              </ol>
-            </div>
+            <Card className="bg-blue-50/60 border-blue-200">
+              <CardContent className="pt-4 pb-4">
+                <h3 className="font-bold text-blue-800 mb-2">📖 ¿Cómo jugar?</h3>
+                <ol className="text-left space-y-2">
+                  <li>1. 🖱️ <strong>Arrastra</strong> las palabras azules hacia las cajas de colores</li>
+                  <li>2. 🎯 Cada palabra pertenece a una <strong>categoría gramatical</strong></li>
+                  <li>3. ✅ Si aciertas, ¡reparas una parte del barco!</li>
+                  <li>4. 📚 Si no aciertas, aprenderás la regla correcta</li>
+                  <li>5. 🏆 Repara 6 partes para completar el barco</li>
+                </ol>
+              </CardContent>
+            </Card>
 
-            <div className="bg-yellow-50 rounded-lg p-4">
-              <h3 className="font-bold text-yellow-800 mb-2">🏷️ Las categorías son:</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div>📖 <strong>Sustantivo:</strong> personas, animales, cosas</div>
-                <div>🏃 <strong>Verbo:</strong> acciones</div>
-                <div>✨ <strong>Adjetivo:</strong> cómo es algo</div>
-                <div>⏰ <strong>Adverbio:</strong> cómo se hace algo</div>
-                <div>📍 <strong>Preposición:</strong> donde está algo</div>
-                <div>🔗 <strong>Conjunción:</strong> une palabras</div>
-              </div>
-            </div>
-          </div>
+            <Card className="bg-amber-50/60 border-amber-200">
+              <CardContent className="pt-4 pb-4">
+                <h3 className="font-bold text-amber-800 mb-2">🏷️ Las categorías son:</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div>📖 <strong>Sustantivo:</strong> personas, animales, cosas</div>
+                  <div>🏃 <strong>Verbo:</strong> acciones</div>
+                  <div>✨ <strong>Adjetivo:</strong> cómo es algo</div>
+                  <div>⏰ <strong>Adverbio:</strong> cómo se hace algo</div>
+                  <div>📍 <strong>Preposición:</strong> donde está algo</div>
+                  <div>🔗 <strong>Conjunción:</strong> une palabras</div>
+                </div>
+              </CardContent>
+            </Card>
+          </CardContent>
 
-          <div className="flex gap-4 justify-center">
-            <button 
+          <CardFooter className="flex gap-4 justify-center pt-2">
+            <Button 
               onClick={startGame}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+              size="xl"
             >
               🚢 ¡Empezar a Reparar el Barco!
-            </button>
-            <button 
+            </Button>
+            <Button 
               onClick={goToDashboard}
-              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors flex items-center gap-2"
+              variant="outline"
+              size="lg"
+              className="gap-2"
             >
               <Home size={20} />
               Inicio
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-blue-50 flex flex-col items-center justify-start p-4">
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-sky-100 flex flex-col items-center justify-start p-4">
       {/* Header con progreso y botón salir */}
-      <header className="w-full flex justify-between items-center mb-6">
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-lg">Barco reparado:</span>
-          <span className="text-blue-700 font-mono">{repaired} / 6</span>
+      <header className="w-full max-w-3xl flex justify-between items-center mb-6">
+        <div className="flex items-center gap-3">
+          <Badge variant="secondary" className="text-sm px-3 py-1">
+            ⭐ XP: {xp}
+          </Badge>
+          <div className="flex items-center gap-2 flex-1 min-w-[180px]">
+            <span className="font-semibold text-sm text-muted-foreground whitespace-nowrap">🔧 Barco:</span>
+            <Progress value={repaired} max={6} className="h-3 w-28" indicatorClassName="bg-blue-500" />
+            <span className="text-sm font-mono text-blue-700">{repaired}/6</span>
+          </div>
         </div>
-        <button 
+        <Button 
           onClick={goToDashboard}
-          className="bg-red-100 hover:bg-red-200 text-red-700 px-4 py-2 rounded flex items-center gap-2 transition-colors"
+          variant="destructive"
+          size="sm"
+          className="gap-2"
         >
           <Home size={16} />
           Volver al Inicio
-        </button>
+        </Button>
       </header>
       {/* Barco SVG */}
       <BarcoSVG repaired={repaired} />
@@ -123,35 +143,37 @@ const PuertoPalabrasPage = () => {
           {/* Palabras disponibles */}
           <Droppable droppableId="words" direction="horizontal">
             {(provided) => (
-              <div className="flex-1 bg-white rounded shadow p-4" ref={provided.innerRef} {...provided.droppableProps}>
-                <h2 className="font-semibold mb-2">Palabras</h2>
-                <div className="flex flex-wrap gap-2 min-h-[60px]">
-                  {availableWords.map((w, idx) => (
-                    <Draggable key={w.word} draggableId={w.word} index={idx}>
-                      {(prov) => (
-                        <span
-                          ref={prov.innerRef}
-                          {...prov.draggableProps}
-                          {...prov.dragHandleProps}
-                          className="cursor-move px-3 py-2 rounded bg-blue-100 shadow text-blue-900 font-medium"
-                          tabIndex={0}
-                          role="button"
-                          aria-label={w.word}
-                          onKeyDown={(e) => {
-                            // Space is handled by @hello-pangea/dnd for keyboard drag-and-drop
-                            if (e.key === 'Enter') {
-                              e.preventDefault();
-                            }
-                          }}
-                        >
-                          {w.word}
-                        </span>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              </div>
+              <Card className="flex-1" ref={provided.innerRef} {...provided.droppableProps}>
+                <CardContent className="pt-4 pb-4">
+                  <h2 className="font-semibold mb-2 text-base">📝 Palabras</h2>
+                  <div className="flex flex-wrap gap-2 min-h-[60px]">
+                    {availableWords.map((w, idx) => (
+                      <Draggable key={w.word} draggableId={w.word} index={idx}>
+                        {(prov) => (
+                          <span
+                            ref={prov.innerRef}
+                            {...prov.draggableProps}
+                            {...prov.dragHandleProps}
+                            className="cursor-move px-3 py-2 rounded-md bg-blue-100 shadow-sm text-blue-900 font-medium border border-blue-200 hover:bg-blue-200 transition-colors"
+                            tabIndex={0}
+                            role="button"
+                            aria-label={w.word}
+                            onKeyDown={(e) => {
+                              // Space is handled by @hello-pangea/dnd for keyboard drag-and-drop
+                              if (e.key === 'Enter') {
+                                e.preventDefault();
+                              }
+                            }}
+                          >
+                            {w.word}
+                          </span>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                </CardContent>
+              </Card>
             )}
           </Droppable>
           {/* Categorías */}
@@ -162,15 +184,15 @@ const PuertoPalabrasPage = () => {
                   <div
                     ref={provided.innerRef}
                     {...provided.droppableProps}
-                    className={`rounded p-4 min-h-[80px] flex flex-col items-center justify-start border-2 border-dashed ${cat.color}`}
+                    className={`rounded-lg p-4 min-h-[80px] flex flex-col items-center justify-start border-2 border-dashed ${cat.color} transition-colors`}
                   >
-                    <span className="font-bold mb-2 flex items-center gap-2">
-                      {cat.icon === "book" && <Book size={20} />}
-                      {cat.icon === "activity" && <Activity size={20} />}
-                      {cat.icon === "sparkles" && <Sparkles size={20} />}
-                      {cat.icon === "timer" && <Timer size={20} />}
-                      {cat.icon === "corner-down-right" && <CornerDownRight size={20} />}
-                      {cat.icon === "link" && <Link size={20} />}
+                    <span className="font-bold mb-2 flex items-center gap-2 text-sm">
+                      {cat.icon === "book" && <Book size={18} />}
+                      {cat.icon === "activity" && <Activity size={18} />}
+                      {cat.icon === "sparkles" && <Sparkles size={18} />}
+                      {cat.icon === "timer" && <Timer size={18} />}
+                      {cat.icon === "corner-down-right" && <CornerDownRight size={18} />}
+                      {cat.icon === "link" && <Link size={18} />}
                       {cat.label}
                     </span>
                     {/* Palabras asignadas a esta categoría */}
@@ -184,7 +206,7 @@ const PuertoPalabrasPage = () => {
                                 ref={prov.innerRef}
                                 {...prov.draggableProps}
                                 {...prov.dragHandleProps}
-                                className="px-2 py-1 rounded bg-white border text-xs text-gray-700"
+                                className="px-2 py-1 rounded-md bg-white border text-xs text-gray-700 shadow-sm"
                               >
                                 {word}
                               </span>
@@ -203,29 +225,28 @@ const PuertoPalabrasPage = () => {
       {/* Feedback, XP, badge, etc. */}
       <section className="mt-6 w-full max-w-3xl">
         {feedback && (
-          <div className={`rounded p-3 mb-2 ${feedback.correct ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
-            {feedback.correct ? (
-              <>
-                <span className="font-bold">¡Muy bien! </span>
-                <span>Has colocado la palabra en la categoría correcta y has ayudado a reparar el barco. ¡Sigue así para zarpar!</span>
-                <br />
-                <span className="italic text-green-700">Pista ortográfica: {feedback.rule}</span>
-              </>
-            ) : (
-              <>
-                <span className="font-bold">¡Uy! </span>
-                <span>No pasa nada, inténtalo de nuevo. Recuerda:</span>
-                <br />
-                <span className="italic text-red-700">{feedback.rule}</span>
-                <br />
-                <span>Observa bien la palabra y piensa en su función o cómo se escribe. ¡Tú puedes!</span>
-              </>
-            )}
-          </div>
+          <Card className={feedback.correct ? "border-green-300 bg-green-50/80" : "border-red-300 bg-red-50/80"}>
+            <CardContent className="pt-4 pb-4">
+              {feedback.correct ? (
+                <>
+                  <span className="font-bold text-green-800">✅ ¡Muy bien! </span>
+                  <span className="text-green-700">Has colocado la palabra en la categoría correcta y has ayudado a reparar el barco. ¡Sigue así para zarpar!</span>
+                  <br />
+                  <span className="italic text-green-600 text-sm">💡 Pista ortográfica: {feedback.rule}</span>
+                </>
+              ) : (
+                <>
+                  <span className="font-bold text-red-800">🔄 ¡Uy! </span>
+                  <span className="text-red-700">No pasa nada, inténtalo de nuevo. Recuerda:</span>
+                  <br />
+                  <span className="italic text-red-600 text-sm">{feedback.rule}</span>
+                  <br />
+                  <span className="text-red-700 text-sm">Observa bien la palabra y piensa en su función o cómo se escribe. ¡Tú puedes!</span>
+                </>
+              )}
+            </CardContent>
+          </Card>
         )}
-        <div className="flex gap-4 items-center">
-          <span className="font-semibold">XP: {xp}</span>
-        </div>
       </section>
     </main>
   );

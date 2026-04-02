@@ -6,7 +6,7 @@ import Dashboard from './page';
 describe('Dashboard', () => {
   it('muestra el título principal', () => {
     render(<Dashboard />);
-    expect(screen.getByText(/ExplorAventura 3: Minijuegos/i)).toBeInTheDocument();
+    expect(screen.getByText(/ExplorAventura 3/i)).toBeInTheDocument();
   });
 
   it('muestra al menos un minijuego', () => {

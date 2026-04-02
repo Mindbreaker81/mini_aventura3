@@ -5,6 +5,10 @@ import { useBoscLecturaStore } from './useBoscLecturaStore';
 import { useNavigation } from '../../hooks/useNavigation';
 import { Home } from 'lucide-react';
 
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
 const ReadingGame = dynamic(() => import('./ReadingGame'), { ssr: false });
 
 export default function BoscLecturaPage() {
@@ -17,77 +21,95 @@ export default function BoscLecturaPage() {
   // Componente de instrucciones
   if (showInstructions) {
     return (
-      <div className="min-h-screen bg-green-50 flex flex-col items-center justify-center p-4">
-        <div className="max-w-2xl bg-white rounded-xl shadow-lg p-8 text-center">
-          <div className="text-6xl mb-4">🌲</div>
-          <h1 className="text-3xl font-bold text-green-800 mb-4">¡Bienvenido al Bosque de Lectura!</h1>
-          
-          <div className="text-lg text-gray-700 space-y-4 mb-6">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-emerald-100 flex flex-col items-center justify-center p-4">
+        <Card className="max-w-2xl w-full text-center border-green-200 shadow-lg">
+          <CardHeader className="pb-2">
+            <div className="text-6xl mb-2">🌲</div>
+            <CardTitle className="text-3xl text-green-800">¡Bienvenido al Bosque de Lectura!</CardTitle>
+          </CardHeader>
+          <CardContent className="text-lg text-gray-700 space-y-4">
             <p>✨ <strong>Tu misión:</strong> Lee los textos y responde las preguntas para iluminar el bosque mágico.</p>
             
-            <div className="bg-green-50 rounded-lg p-4">
-              <h3 className="font-bold text-green-800 mb-2">📚 ¿Cómo jugar?</h3>
-              <ol className="text-left space-y-2">
-                <li>1. 👀 <strong>Lee</strong> cada texto con mucha atención</li>
-                <li>2. 🤔 <strong>Responde</strong> las preguntas sobre lo que has leído</li>
-                <li>3. ❤️ Tienes <strong>5 corazones</strong> de energía</li>
-                <li>4. ✅ Si respondes bien, ¡ganas puntos!</li>
-                <li>5. ❌ Si fallas, pierdes un corazón</li>
-                <li>6. 🏆 Completa todos los textos para conseguir la medalla</li>
-              </ol>
-            </div>
+            <Card className="bg-green-50/60 border-green-200">
+              <CardContent className="pt-4 pb-4">
+                <h3 className="font-bold text-green-800 mb-2">📚 ¿Cómo jugar?</h3>
+                <ol className="text-left space-y-2">
+                  <li>1. 👀 <strong>Lee</strong> cada texto con mucha atención</li>
+                  <li>2. 🤔 <strong>Responde</strong> las preguntas sobre lo que has leído</li>
+                  <li>3. ❤️ Tienes <strong>5 corazones</strong> de energía</li>
+                  <li>4. ✅ Si respondes bien, ¡ganas puntos!</li>
+                  <li>5. ❌ Si fallas, pierdes un corazón</li>
+                  <li>6. 🏆 Completa todos los textos para conseguir la medalla</li>
+                </ol>
+              </CardContent>
+            </Card>
 
-            <div className="bg-yellow-50 rounded-lg p-4">
-              <h3 className="font-bold text-yellow-800 mb-2">💡 Consejos:</h3>
-              <ul className="text-left space-y-1 text-sm">
-                <li>• 🧐 Lee despacio y con atención</li>
-                <li>• 📝 Fíjate en los detalles importantes</li>
-                <li>• 🎯 Algunas preguntas son de Verdadero/Falso</li>
-                <li>• 🔍 Otras tienen varias opciones para elegir</li>
-              </ul>
-            </div>
+            <Card className="bg-amber-50/60 border-amber-200">
+              <CardContent className="pt-4 pb-4">
+                <h3 className="font-bold text-amber-800 mb-2">💡 Consejos:</h3>
+                <ul className="text-left space-y-1 text-sm">
+                  <li>• 🧐 Lee despacio y con atención</li>
+                  <li>• 📝 Fíjate en los detalles importantes</li>
+                  <li>• 🎯 Algunas preguntas son de Verdadero/Falso</li>
+                  <li>• 🔍 Otras tienen varias opciones para elegir</li>
+                </ul>
+              </CardContent>
+            </Card>
 
-            <div className="flex items-center justify-center gap-2 text-red-500">
+            <div className="flex items-center justify-center gap-2">
               <span>❤️❤️❤️❤️❤️</span>
-              <span className="text-sm text-gray-600">Tienes 5 corazones</span>
+              <span className="text-sm text-muted-foreground">Tienes 5 corazones</span>
             </div>
-          </div>
+          </CardContent>
 
-          <div className="flex gap-4 justify-center">
-            <button 
+          <CardFooter className="flex gap-4 justify-center pt-2">
+            <Button 
               onClick={startGame}
-              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+              size="xl"
+              className="bg-green-600 hover:bg-green-700"
             >
               🌟 ¡Empezar la Aventura!
-            </button>
-            <button 
+            </Button>
+            <Button 
               onClick={goToDashboard}
-              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors flex items-center gap-2"
+              variant="outline"
+              size="lg"
+              className="gap-2"
             >
               <Home size={20} />
               Inicio
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-green-50 flex flex-col">
-      <header className="flex items-center justify-between p-4 bg-green-200">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-emerald-100 flex flex-col">
+      <header className="flex items-center justify-between p-4 bg-green-100/80 border-b border-green-200 backdrop-blur-sm">
         <div className="flex items-center gap-2">
           {[...Array(5)].map((_, i) => (
-            <span key={i} aria-label={t('bosc.heart')} role="img" className={i < energy ? 'text-red-500' : 'text-gray-300'}>❤️</span>
+            <Badge
+              key={i}
+              variant={i < energy ? "destructive" : "outline"}
+              className={i < energy ? "bg-red-500 text-white" : "text-gray-300"}
+              aria-label={t('bosc.heart')}
+              role="img"
+            >
+              ❤️
+            </Badge>
           ))}
         </div>
-        <button 
+        <Button 
           onClick={goToDashboard}
-          className="bg-red-100 hover:bg-red-200 text-red-700 px-4 py-2 rounded flex items-center gap-2 transition-colors"
+          variant="destructive"
+          size="sm"
+          className="gap-2"
         >
           <Home size={16} />
           {t('exit')}
-        </button>
+        </Button>
       </header>
       <main className="flex-1 flex flex-col items-center justify-center">
         <ReadingGame />

@@ -3,6 +3,8 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { Home, RotateCcw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 
 export default function GlobalError({
   error,
@@ -17,36 +19,39 @@ export default function GlobalError({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full text-center">
-        <div className="mb-6">
+      <Card className="max-w-lg w-full shadow-2xl border-0 text-center">
+        <CardHeader>
           <div className="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-5xl">😅</span>
           </div>
-          <h1 className="text-3xl font-bold text-blue-800 mb-2">
+          <CardTitle className="text-3xl text-blue-800">
             ¡Ups! Algo salió mal
-          </h1>
-          <p className="text-gray-600 text-lg">
+          </CardTitle>
+          <CardDescription className="text-lg">
             No te preocupes, estas cosas pasan. ¡Vamos a intentarlo de nuevo!
-          </p>
-        </div>
+          </CardDescription>
+        </CardHeader>
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
-            href="/"
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-          >
-            <Home size={20} />
-            Volver al inicio
-          </Link>
-          <button
-            onClick={reset}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
-          >
-            <RotateCcw size={20} />
-            Intentar de nuevo
-          </button>
-        </div>
-      </div>
+        <CardContent>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button size="lg" className="gap-2 bg-blue-600 hover:bg-blue-700 text-white" asChild>
+              <Link href="/">
+                <Home size={20} />
+                Volver al inicio
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={reset}
+              className="gap-2 border-green-600 text-green-700 hover:bg-green-50"
+            >
+              <RotateCcw size={20} />
+              Intentar de nuevo
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

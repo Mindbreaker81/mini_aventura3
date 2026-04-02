@@ -6,6 +6,10 @@ import useSteamStore from './useSteamStore';
 import RobotBoard from './RobotBoard';
 import BlocklyGame, { BlocklyGameRef } from './BlocklyGame';
 import { useNavigation } from '../../hooks/useNavigation';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 
 const DesafioSteamV2: React.FC = () => {
   const [blocklyFunctions, setBlocklyFunctions] = useState<BlocklyGameRef | null>(null);
@@ -60,20 +64,20 @@ const DesafioSteamV2: React.FC = () => {
   if (showInstructions) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-200 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full">
-          <div className="text-center mb-6">
+        <Card className="max-w-2xl w-full shadow-2xl">
+          <CardHeader className="text-center">
             <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-3xl">🤖</span>
             </div>
-            <h1 className="text-3xl font-bold text-purple-800 mb-2">
+            <CardTitle className="text-3xl text-purple-800">
               ¡Bienvenido al Desafío STEAM!
-            </h1>
-            <p className="text-gray-600 text-lg">
+            </CardTitle>
+            <CardDescription className="text-lg">
               Programa un robot explorador con bloques visuales
-            </p>
-          </div>
+            </CardDescription>
+          </CardHeader>
 
-          <div className="space-y-4 mb-8">
+          <CardContent className="space-y-4">
             <div className="bg-purple-50 p-4 rounded-lg">
               <h3 className="font-semibold text-purple-800 mb-2">🎯 Tu misión:</h3>
               <p className="text-gray-700">
@@ -97,24 +101,27 @@ const DesafioSteamV2: React.FC = () => {
                 Completa los 6 desafíos para obtener +140 XP y la insignia de Ingeniero Junior.
               </p>
             </div>
-          </div>
+          </CardContent>
 
-          <div className="flex gap-3">
-            <button
+          <CardFooter className="flex gap-3">
+            <Button
               onClick={goToDashboard}
-              className="flex items-center gap-2 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors cursor-pointer"
+              variant="outline"
+              size="lg"
+              className="gap-2"
             >
               <ArrowLeft size={20} />
               Volver
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={hideInstructions}
-              className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 font-semibold"
+              size="xl"
+              className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold transition-all transform hover:scale-105"
             >
               ¡Empezar a Programar! 🚀
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     );
   }
@@ -123,25 +130,29 @@ const DesafioSteamV2: React.FC = () => {
   if (gameCompleted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-100 to-emerald-200 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full text-center">
-          <div className="mb-6">
+        <Card className="max-w-lg w-full text-center shadow-2xl">
+          <CardHeader>
             <Award size={80} className="text-yellow-500 mx-auto mb-4" />
-            <h1 className="text-3xl font-bold text-green-800 mb-2">
+            <CardTitle className="text-3xl text-green-800">
               ¡Felicitaciones!
-            </h1>
-            <p className="text-gray-600 text-lg">
+            </CardTitle>
+            <CardDescription className="text-lg">
               Has completado todos los desafíos STEAM
-            </p>
-          </div>
+            </CardDescription>
+          </CardHeader>
 
-          <div className="space-y-4 mb-8">
+          <CardContent className="space-y-4">
             <div className="bg-yellow-50 p-4 rounded-lg">
               <h3 className="font-semibold text-yellow-800 mb-2">🏆 Has obtenido:</h3>
               <div className="space-y-2">
                 {badge && (
-                  <div className="text-gray-700">Insignia: {badge.name}</div>
+                  <div className="text-gray-700">
+                    Insignia: <Badge variant="warning" className="ml-1">{badge.name}</Badge>
+                  </div>
                 )}
-                <div className="text-gray-700">XP total: {xp} puntos</div>
+                <div className="text-gray-700">
+                  XP total: <Badge variant="success" className="ml-1">{xp} puntos</Badge>
+                </div>
               </div>
             </div>
 
@@ -150,17 +161,18 @@ const DesafioSteamV2: React.FC = () => {
                 ¡Excelente trabajo programando el robot! 🤖✨
               </p>
             </div>
-          </div>
+          </CardContent>
 
-          <div className="flex gap-3">
-            <button
+          <CardFooter className="flex gap-3">
+            <Button
               onClick={goToDashboard}
-              className="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold cursor-pointer"
+              size="lg"
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold"
             >
               Volver al Dashboard
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     );
   }
@@ -169,68 +181,95 @@ const DesafioSteamV2: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-200 p-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={goToDashboard}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors cursor-pointer"
-            >
-              <Home size={20} />
-              Dashboard
-            </button>
-            <h1 className="text-2xl font-bold text-purple-800 flex items-center gap-2">
-              🤖 Desafío STEAM
-            </h1>
-          </div>
+      <Card className="mb-4 shadow-lg">
+        <CardContent className="p-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <Button
+                onClick={goToDashboard}
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                <Home size={18} />
+                Dashboard
+              </Button>
+              <h1 className="text-2xl font-bold text-purple-800 flex items-center gap-2">
+                🤖 Desafío STEAM
+              </h1>
+            </div>
           
-          <div className="flex items-center gap-4">
-            {badge && (
-              <div className="flex items-center gap-1 text-yellow-600">
-                <Award size={20} />
-                <span className="text-sm font-semibold">Insignia obtenida</span>
-              </div>
-            )}
+            <div className="flex items-center gap-3">
+              <Badge variant="success" className="px-3 py-1 text-sm">
+                ✨ XP: {xp}
+              </Badge>
+              {badge && (
+                <Badge variant="warning" className="gap-1.5 px-3 py-1 text-sm">
+                  <Award size={14} />
+                  Insignia obtenida
+                </Badge>
+              )}
+              <Badge variant="outline" className="px-3 py-1 text-sm">
+                Nivel {currentTask + 1} / {tasks.length || 6}
+              </Badge>
+            </div>
           </div>
-        </div>
-      </div>
+
+          {/* Level progress bar */}
+          <div className="mt-3">
+            <Progress
+              value={currentTask}
+              max={tasks.length || 6}
+              className="h-2"
+              indicatorClassName="bg-purple-500"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Controles del Editor */}
-      <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
-        <div className="flex justify-between items-center">
-          <div className="text-sm text-gray-600">
-            Bloques: <span className="font-semibold">{blockCount}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
-          </div>
+      <Card className="mb-4 shadow-lg">
+        <CardContent className="p-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <Badge variant="outline" className="px-3 py-1 text-sm">
+                🧩 Bloques: <span className="font-semibold">{blockCount}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
+              </Badge>
+            </div>
           
-          <div className="flex gap-2">
-            <button
-              onClick={() => {
-                if (blocklyFunctions) {
-                  blocklyFunctions.handleReset();
-                }
-              }}
-              disabled={isExecuting}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 transition-colors"
-            >
-              <RotateCcw size={16} />
-              Reiniciar
-            </button>
+            <div className="flex gap-2">
+              <Button
+                onClick={() => {
+                  if (blocklyFunctions) {
+                    blocklyFunctions.handleReset();
+                  }
+                }}
+                disabled={isExecuting}
+                variant="secondary"
+                size="default"
+                className="gap-2"
+              >
+                <RotateCcw size={16} />
+                Reiniciar
+              </Button>
             
-            <button
-              onClick={() => {
-                if (blocklyFunctions) {
-                  blocklyFunctions.runCode();
-                }
-              }}
-              disabled={isExecuting || !isBlocklyLoaded}
-              className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
-            >
-              <Play size={16} />
-              {isExecuting ? 'Ejecutando...' : 'Ejecutar'}
-            </button>
+              <Button
+                onClick={() => {
+                  if (blocklyFunctions) {
+                    blocklyFunctions.runCode();
+                  }
+                }}
+                disabled={isExecuting || !isBlocklyLoaded}
+                size="lg"
+                className="gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold"
+              >
+                <Play size={16} />
+                {isExecuting ? 'Ejecutando...' : 'Ejecutar'}
+              </Button>
+            </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Contenido principal */}
       <div className="max-w-7xl mx-auto">
@@ -253,38 +292,41 @@ const DesafioSteamV2: React.FC = () => {
       {/* Modal de feedback */}
       {feedback?.show && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full">
-            <div className="text-center">
-              {feedback.type === 'success' ? (
-                <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
-              ) : (
-                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-xl">❌</span>
-                </div>
-              )}
+          <Card className="max-w-md w-full shadow-2xl">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                {feedback.type === 'success' ? (
+                  <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
+                ) : (
+                  <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-white text-xl">❌</span>
+                  </div>
+                )}
               
-              <h3 className={`text-xl font-bold mb-2 ${
-                feedback.type === 'success' ? 'text-green-800' : 'text-red-800'
-              }`}>
-                {feedback.type === 'success' ? '¡Excelente!' : '¡Ups!'}
-              </h3>
+                <h3 className={`text-xl font-bold mb-2 ${
+                  feedback.type === 'success' ? 'text-green-800' : 'text-red-800'
+                }`}>
+                  {feedback.type === 'success' ? '¡Excelente!' : '¡Ups!'}
+                </h3>
               
-              <p className="text-gray-700 mb-6">
-                {feedback.message}
-              </p>
+                <p className="text-gray-700 mb-6">
+                  {feedback.message}
+                </p>
               
-              <button
-                onClick={hideFeedback}
-                className={`px-6 py-2 rounded-lg text-white font-semibold transition-colors ${
-                  feedback.type === 'success' 
-                    ? 'bg-green-600 hover:bg-green-700' 
-                    : 'bg-red-600 hover:bg-red-700'
-                }`}
-              >
-                Continuar
-              </button>
-            </div>
-          </div>
+                <Button
+                  onClick={hideFeedback}
+                  size="lg"
+                  className={
+                    feedback.type === 'success'
+                      ? 'bg-green-600 hover:bg-green-700 text-white font-semibold'
+                      : 'bg-red-600 hover:bg-red-700 text-white font-semibold'
+                  }
+                >
+                  Continuar
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
     </div>

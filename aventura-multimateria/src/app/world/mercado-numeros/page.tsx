@@ -6,6 +6,10 @@ import tasksData from "../../data/mercado-tasks.json";
 import type { MercadoTask } from "./types";
 import { ShoppingCart, Heart, Home } from "lucide-react";
 import { useNavigation } from "../../hooks/useNavigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 
 export default function MercadoNumerosPage() {
   const { 
@@ -29,11 +33,13 @@ export default function MercadoNumerosPage() {
   if (gameStatus === "instructions") {
     return (
       <main className="min-h-screen bg-orange-50 flex flex-col items-center justify-center p-4">
-        <div className="max-w-2xl bg-white rounded-xl shadow-lg p-8 text-center">
-          <div className="text-6xl mb-4">🏪</div>
-          <h1 className="text-3xl font-bold text-orange-800 mb-4">¡Bienvenido al Mercado de Números!</h1>
+        <Card className="max-w-2xl w-full text-center shadow-lg">
+          <CardHeader>
+            <div className="text-6xl mb-2">🏪</div>
+            <CardTitle className="text-3xl text-orange-800">¡Bienvenido al Mercado de Números!</CardTitle>
+          </CardHeader>
           
-          <div className="text-lg text-gray-700 space-y-4 mb-6">
+          <CardContent className="text-lg text-gray-700 space-y-4">
             <p>🎯 <strong>Tu misión:</strong> Ayuda al tendero resolviendo problemas de matemáticas para llenar las cestas de la compra.</p>
             
             <div className="bg-orange-50 rounded-lg p-4">
@@ -69,33 +75,36 @@ export default function MercadoNumerosPage() {
             </div>
 
             <div className="flex items-center justify-center gap-4">
-              <div className="flex items-center gap-2">
-                <ShoppingCart size={20} className="text-orange-600" />
-                <span className="text-sm text-gray-600">8 cestas por llenar</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Heart size={20} className="text-red-500" />
-                <span className="text-sm text-gray-600">3 corazones</span>
-              </div>
+              <Badge variant="outline" className="gap-1.5 px-3 py-1 text-sm">
+                <ShoppingCart size={16} className="text-orange-600" />
+                8 cestas por llenar
+              </Badge>
+              <Badge variant="destructive" className="gap-1.5 px-3 py-1 text-sm">
+                <Heart size={16} />
+                3 corazones
+              </Badge>
             </div>
-          </div>
+          </CardContent>
 
-          <div className="flex gap-4 justify-center">
-            <button 
+          <CardFooter className="flex gap-4 justify-center">
+            <Button 
               onClick={startGame}
-              className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+              size="xl"
+              className="bg-orange-600 hover:bg-orange-700 text-white font-bold"
             >
               🛒 ¡Empezar en el Mercado!
-            </button>
-            <button 
+            </Button>
+            <Button 
               onClick={goToDashboard}
-              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors flex items-center gap-2"
+              variant="outline"
+              size="lg"
+              className="gap-2"
             >
               <Home size={20} />
               Inicio
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </main>
     );
   }
@@ -104,13 +113,15 @@ export default function MercadoNumerosPage() {
   if (gameStatus === "completed") {
     return (
       <main className="min-h-screen bg-orange-50 flex flex-col items-center justify-center p-4">
-        <div className="max-w-xl bg-white rounded-xl shadow-lg p-8 text-center">
-          <div className="text-6xl mb-4">🎉</div>
-          <h1 className="text-3xl font-bold text-green-800 mb-4">¡Felicitaciones!</h1>
+        <Card className="max-w-xl w-full text-center shadow-lg">
+          <CardHeader>
+            <div className="text-6xl mb-2">🎉</div>
+            <CardTitle className="text-3xl text-green-800">¡Felicitaciones!</CardTitle>
+          </CardHeader>
           
-          <div className="text-lg text-gray-700 space-y-4 mb-6">
+          <CardContent className="text-lg text-gray-700 space-y-4">
             <p>🛒 Has llenado <strong>{completedBaskets} cestas</strong> de la compra</p>
-            <p>✨ Has ganado <strong>{xp} XP</strong></p>
+            <p>✨ Has ganado <Badge variant="success" className="text-sm ml-1">{xp} XP</Badge></p>
             
             {badge && (
               <div className="bg-yellow-50 rounded-lg p-4">
@@ -119,24 +130,27 @@ export default function MercadoNumerosPage() {
                 <p className="text-sm">Completaste todos los retos sin perder corazones</p>
               </div>
             )}
-          </div>
+          </CardContent>
 
-          <div className="flex gap-4 justify-center">
-            <button 
+          <CardFooter className="flex gap-4 justify-center">
+            <Button 
               onClick={reset}
-              className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+              size="lg"
+              className="bg-orange-600 hover:bg-orange-700 text-white font-bold"
             >
               🔄 Jugar de Nuevo
-            </button>
-            <button 
+            </Button>
+            <Button 
               onClick={goToDashboard}
-              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition-colors flex items-center gap-2"
+              variant="outline"
+              size="lg"
+              className="gap-2"
             >
               <Home size={16} />
               Volver al Inicio
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </main>
     );
   }
@@ -145,33 +159,38 @@ export default function MercadoNumerosPage() {
   if (gameStatus === "failed") {
     return (
       <main className="min-h-screen bg-orange-50 flex flex-col items-center justify-center p-4">
-        <div className="max-w-xl bg-white rounded-xl shadow-lg p-8 text-center">
-          <div className="text-6xl mb-4">😔</div>
-          <h1 className="text-3xl font-bold text-red-800 mb-4">¡Oh no!</h1>
+        <Card className="max-w-xl w-full text-center shadow-lg">
+          <CardHeader>
+            <div className="text-6xl mb-2">😔</div>
+            <CardTitle className="text-3xl text-red-800">¡Oh no!</CardTitle>
+          </CardHeader>
           
-          <div className="text-lg text-gray-700 space-y-4 mb-6">
+          <CardContent className="text-lg text-gray-700 space-y-4">
             <p>💔 Te has quedado sin corazones</p>
             <p>🛒 Llenaste <strong>{completedBaskets} cestas</strong> de la compra</p>
-            <p>✨ Ganaste <strong>{xp} XP</strong></p>
+            <p>✨ Ganaste <Badge variant="success" className="text-sm ml-1">{xp} XP</Badge></p>
             <p className="text-blue-600">¡No te preocupes! Puedes intentarlo de nuevo.</p>
-          </div>
+          </CardContent>
 
-          <div className="flex gap-4 justify-center">
-            <button 
+          <CardFooter className="flex gap-4 justify-center">
+            <Button 
               onClick={reset}
-              className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+              size="lg"
+              className="bg-orange-600 hover:bg-orange-700 text-white font-bold"
             >
               🔄 Intentar de Nuevo
-            </button>
-            <button 
+            </Button>
+            <Button 
               onClick={goToDashboard}
-              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition-colors flex items-center gap-2"
+              variant="outline"
+              size="lg"
+              className="gap-2"
             >
               <Home size={16} />
               Volver al Inicio
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </main>
     );
   }
@@ -180,42 +199,54 @@ export default function MercadoNumerosPage() {
   return (
     <main className="min-h-screen bg-orange-50 flex flex-col">
       {/* Header */}
-      <header className="bg-orange-200 p-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          {/* Progreso de cestas */}
-          <div className="flex items-center gap-2">
-            <ShoppingCart size={20} className="text-orange-700" />
-            <span className="font-bold text-orange-800">
-              Cestas: {completedBaskets} / 8
-            </span>
-          </div>
+      <Card className="rounded-none border-x-0 border-t-0 shadow-md">
+        <CardContent className="p-4 flex items-center justify-between">
+          <div className="flex items-center gap-4 flex-wrap">
+            {/* Progreso de cestas */}
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className="gap-1.5 px-3 py-1 text-sm font-bold text-orange-800 border-orange-300 bg-orange-50">
+                <ShoppingCart size={16} className="text-orange-700" />
+                Cestas: {completedBaskets} / 8
+              </Badge>
+            </div>
+
+            {/* Barra de progreso */}
+            <Progress 
+              value={completedBaskets} 
+              max={8} 
+              className="w-24 h-3"
+              indicatorClassName="bg-orange-500"
+            />
           
-          {/* Corazones */}
-          <div className="flex items-center gap-1">
-            {[...Array(3)].map((_, i) => (
-              <Heart 
-                key={i} 
-                size={20} 
-                className={i < hearts ? "text-red-500 fill-red-500" : "text-gray-300"} 
-              />
-            ))}
-          </div>
+            {/* Corazones */}
+            <div className="flex items-center gap-1">
+              {[...Array(3)].map((_, i) => (
+                <Heart 
+                  key={i} 
+                  size={20} 
+                  className={i < hearts ? "text-red-500 fill-red-500" : "text-gray-300"} 
+                />
+              ))}
+            </div>
           
-          {/* XP */}
-          <div className="flex items-center gap-2">
-            <span className="text-orange-800 font-semibold">XP: {xp}</span>
+            {/* XP */}
+            <Badge variant="success" className="px-3 py-1 text-sm">
+              ✨ XP: {xp}
+            </Badge>
           </div>
-        </div>
         
-        {/* Botón salir */}
-        <button 
-          onClick={goToDashboard}
-          className="bg-red-100 hover:bg-red-200 text-red-700 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
-        >
-          <Home size={16} />
-          Volver al Inicio
-        </button>
-      </header>
+          {/* Botón salir */}
+          <Button 
+            onClick={goToDashboard}
+            variant="ghost"
+            size="sm"
+            className="gap-2 text-red-700 hover:bg-red-100 hover:text-red-800"
+          >
+            <Home size={16} />
+            Volver al Inicio
+          </Button>
+        </CardContent>
+      </Card>
 
       {/* Área de juego */}
       <div className="flex-1 flex items-center justify-center p-4">

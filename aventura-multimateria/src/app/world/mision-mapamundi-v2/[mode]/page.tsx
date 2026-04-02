@@ -1,8 +1,12 @@
 "use client";
 import React from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 import MapGame from "../MapGame";
 import { GameMode } from "../types";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { ArrowLeft } from "lucide-react";
 
 const validModes: GameMode[] = ['continent', 'ocean', 'ccaa'];
 
@@ -17,14 +21,32 @@ export default function GamePage() {
   // Validar que el modo sea válido
   if (!isValidMode(mode)) {
     return (
-      <div className="min-h-screen bg-red-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-red-800 mb-4">Modo no válido</h1>
-          <p className="text-red-600">El modo &quot;{mode}&quot; no está disponible.</p>
-        </div>
+      <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-100 flex items-center justify-center p-4">
+        <Card className="max-w-md w-full shadow-xl border-0 text-center">
+          <CardHeader>
+            <div className="text-5xl mb-2">🚫</div>
+            <CardTitle className="text-2xl text-red-800">Modo no válido</CardTitle>
+            <CardDescription className="text-red-600">
+              El modo &quot;{mode}&quot; no está disponible.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-600 text-sm">
+              Los modos disponibles son: Continentes, Océanos y Comunidades de España.
+            </p>
+          </CardContent>
+          <CardFooter className="justify-center">
+            <Button variant="outline" size="lg" asChild>
+              <Link href="/world/mision-mapamundi-v2" className="gap-2">
+                <ArrowLeft size={18} />
+                Volver a selección de modo
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     );
   }
 
   return <MapGame mode={mode} />;
-} 
+}
