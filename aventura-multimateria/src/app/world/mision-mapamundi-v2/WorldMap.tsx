@@ -83,38 +83,37 @@ const OCEAN_CENTROIDS: { [key: string]: [number, number] } = {
 export default function WorldMap({ task, selectedRegion, onRegionClick }: MapComponentProps) {
   const [geography, setGeography] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   // Determinar si es pregunta de continente o océano
   const isContinentQuestion = task.mode === "continent";
   const isOceanQuestion = task.mode === "ocean";
 
+  // Función para cargar datos del mapa
+  const loadMapData = () => {
+    setLoading(true);
+    setLoadError(false);
+
+    const url = isOceanQuestion ? "/oceans_filtered.geojson" : geoUrl;
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        setGeography(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading map data:", error);
+        setLoadError(true);
+        setLoading(false);
+      });
+  };
+
   // Cargar datos del mapa
-  useEffect(() => {
-    if (isOceanQuestion) {
-      // Para océanos, usar el geojson filtrado
-      fetch("/oceans_filtered.geojson")
-        .then((res) => res.json())
-        .then((data) => {
-          setGeography(data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error cargando oceans_filtered.geojson:", error);
-          setLoading(false);
-        });
-    } else {
-      fetch(geoUrl)
-        .then((res) => res.json())
-        .then((geoData) => {
-          setGeography(geoData);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error loading world map:", error);
-          setLoading(false);
-        });
-    }
-  }, [isOceanQuestion]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { loadMapData(); }, [isOceanQuestion]);
 
   // Función para manejar clic en región
   const handleRegionClick = (geo: { properties?: { name?: string; NAME?: string } }) => {
@@ -125,7 +124,9 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
     if (isContinentQuestion) {
       // Para continentes, mapear país a continente
       const countryName = geo.properties.name;
-      regionId = COUNTRY_TO_CONTINENT[countryName];
+      if (countryName) {
+        regionId = COUNTRY_TO_CONTINENT[countryName] || "";
+      }
     } else if (isOceanQuestion) {
       // Para océanos, usar el nombre o código del geojson
       // oceans.geojson no tiene OCEAN_ID, así que usar 'name' o 'NAME' y mapear a código
@@ -138,7 +139,9 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
         "Arctic Ocean": "ARC",
         "Southern Ocean": "ANT"
       };
-      regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
+      if (oceanName) {
+        regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
+      }
     }
 
     if (regionId) {
@@ -161,7 +164,9 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
     
     if (isContinentQuestion) {
       const countryName = geo.properties.name;
-      regionId = COUNTRY_TO_CONTINENT[countryName];
+      if (countryName) {
+        regionId = COUNTRY_TO_CONTINENT[countryName] || "";
+      }
     } else if (isOceanQuestion) {
       const oceanName = geo.properties.name || geo.properties.NAME;
       const OCEAN_NAME_TO_CODE: { [key: string]: string } = {
@@ -171,7 +176,9 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
         "Arctic Ocean": "ARC",
         "Southern Ocean": "ANT"
       };
-      regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
+      if (oceanName) {
+        regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
+      }
     }
 
     const isSelected = selectedRegion === regionId;
@@ -216,12 +223,19 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
     );
   }
 
-  if (!geography) {
+  if (loadError || !geography) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="text-center">
+        <div className="text-center px-6">
           <div className="text-6xl mb-4">🗺️</div>
-          <p className="text-gray-600">Error al cargar el mapa</p>
+          <p className="text-gray-800 font-semibold text-lg mb-1">El mapa necesita conexión a internet</p>
+          <p className="text-gray-500 text-sm mb-4">Comprueba tu conexión e inténtalo de nuevo.</p>
+          <button
+            onClick={loadMapData}
+            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+          >
+            🔄 Reintentar
+          </button>
         </div>
       </div>
     );
@@ -258,7 +272,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
                       hover: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" },
                       pressed: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" }
                     } : getRegionStyle(geo)}
-                    title={isOceanQuestion ? (geo.properties.name || geo.properties.NAME) : (geo.properties?.NAME || geo.properties?.name || "Región")}
+                    title={isOceanQuestion ? (geo.properties?.name || geo.properties?.NAME || "Océano") : (geo.properties?.NAME || geo.properties?.name || "Región")}
                   />
                 ))
               }

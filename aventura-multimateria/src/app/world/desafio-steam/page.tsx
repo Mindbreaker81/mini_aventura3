@@ -5,12 +5,14 @@ import { ArrowLeft, Award, CheckCircle, Home, Play, RotateCcw } from 'lucide-rea
 import useSteamStore from './useSteamStore';
 import RobotBoard from './RobotBoard';
 import BlocklyGame, { BlocklyGameRef } from './BlocklyGame';
+import { useNavigation } from '../../hooks/useNavigation';
 
 const DesafioSteamV2: React.FC = () => {
   const [blocklyFunctions, setBlocklyFunctions] = useState<BlocklyGameRef | null>(null);
   const [blockCount, setBlockCount] = useState(0);
   const [isBlocklyLoaded, setIsBlocklyLoaded] = useState(false);
   const [forceUpdate] = useState(0);
+  const { goToDashboard } = useNavigation();
   
   const {
     showInstructions,
@@ -99,11 +101,7 @@ const DesafioSteamV2: React.FC = () => {
 
           <div className="flex gap-3">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.location.href = '/';
-              }}
+              onClick={goToDashboard}
               className="flex items-center gap-2 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors cursor-pointer"
             >
               <ArrowLeft size={20} />
@@ -156,11 +154,7 @@ const DesafioSteamV2: React.FC = () => {
 
           <div className="flex gap-3">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.location.href = '/';
-              }}
+              onClick={goToDashboard}
               className="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold cursor-pointer"
             >
               Volver al Dashboard
@@ -179,11 +173,7 @@ const DesafioSteamV2: React.FC = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.location.href = '/';
-              }}
+              onClick={goToDashboard}
               className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors cursor-pointer"
             >
               <Home size={20} />

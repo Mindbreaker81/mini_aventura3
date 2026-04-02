@@ -1,6 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { BlocklyGameRef } from './BlocklyGame.client';
+import type { BlocklyGameRef } from './BlocklyGame.client';
+export type { BlocklyGameRef };
 
 const BlocklyGameClient = dynamic(
   () => import('./BlocklyGame.client'),

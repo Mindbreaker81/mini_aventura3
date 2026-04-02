@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { MapComponentProps } from "./types";
 
-// URL del TopoJSON de España (CCAA)
+// URL del TopoJSON de España (Comunidades Autónomas)
 const geoUrl = "/ccaa-es.geojson";
 
 
@@ -32,20 +32,31 @@ const COD_CCAA_TO_CODE: { [key: string]: string } = {
 export default function SpainMap({ selectedRegion, onRegionClick }: MapComponentProps) {
   const [geography, setGeography] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
-  // Cargar datos del mapa
-  useEffect(() => {
+  // Función para cargar datos del mapa
+  const loadMapData = () => {
+    setLoading(true);
+    setLoadError(false);
+
     fetch(geoUrl)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then((geoData) => {
         setGeography(geoData);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error loading Spain map:", error);
+        setLoadError(true);
         setLoading(false);
       });
-  }, []);
+  };
+
+  // Cargar datos del mapa
+  useEffect(() => { loadMapData(); }, []);
 
   // Función para manejar clic en región
   const handleRegionClick = (geo: { properties?: { cod_ccaa?: string } }) => {
@@ -53,6 +64,7 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
 
     // Usar el mapeo para obtener el código de tarea
     const codCcaa = geo.properties.cod_ccaa;
+    if (!codCcaa) return;
     const regionId = COD_CCAA_TO_CODE[codCcaa];
 
     if (regionId) {
@@ -65,6 +77,7 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
     if (!geo || !geo.properties) return {};
 
     const codCcaa = geo.properties.cod_ccaa;
+    if (!codCcaa) return {};
     const regionId = COD_CCAA_TO_CODE[codCcaa];
 
     const isSelected = selectedRegion === regionId;
@@ -110,12 +123,19 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
     );
   }
 
-  if (!geography) {
+  if (loadError || !geography) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="text-center">
+        <div className="text-center px-6">
           <div className="text-6xl mb-4">🇪🇸</div>
-          <p className="text-gray-600">Error al cargar el mapa de España</p>
+          <p className="text-gray-800 font-semibold text-lg mb-1">El mapa necesita conexión a internet</p>
+          <p className="text-gray-500 text-sm mb-4">Comprueba tu conexión e inténtalo de nuevo.</p>
+          <button
+            onClick={loadMapData}
+            className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+          >
+            🔄 Reintentar
+          </button>
         </div>
       </div>
     );
@@ -141,7 +161,7 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
         >
           <ZoomableGroup zoom={1} maxZoom={4} minZoom={0.8}>
             <Geographies geography={geography}>
-              {({ geographies }: { geographies: { rsmKey: string; properties?: { NAME?: string; name?: string } }[] }) =>
+              {({ geographies }: { geographies: { rsmKey: string; properties?: { NAME?: string; name?: string; cod_ccaa?: string } }[] }) =>
                 geographies.map((geo) => (
                   <Geography
                     key={geo.rsmKey}
@@ -162,7 +182,7 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
         <div className="flex items-center justify-center space-x-4">
           <div className="flex items-center space-x-1">
             <div className="w-3 h-3 bg-gray-300 rounded"></div>
-            <span>CCAA</span>
+            <span>Comunidades</span>
           </div>
           <div className="flex items-center space-x-1">
             <div className="w-3 h-3 bg-blue-500 rounded"></div>

@@ -215,8 +215,9 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
       getCorrectAnswersCount: () => {
         const { answers, lessons, currentLesson } = get();
         const lesson = lessons[currentLesson];
+        if (!lesson) return 0;
         
-        return answers.reduce((count, answer, index) => {
+        return answers.reduce<number>((count, answer, index) => {
           if (answer !== null && answer === lesson.questions[index].answer) {
             return count + 1;
           }

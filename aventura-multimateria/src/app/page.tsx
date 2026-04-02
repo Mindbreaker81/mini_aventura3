@@ -28,7 +28,7 @@ const minigames = [
 	{
 		code: "mision-mapamundi-v2",
 		name: "Misión Mapamundi",
-		description: "Practica geografía: continentes, océanos o CCAA de España en el mapa interactivo.",
+		description: "Practica geografía: continentes, océanos o comunidades autónomas de España en el mapa interactivo.",
 		icon: <MapPin size={32} className="text-blue-500" />,
 		path: "/world/mision-mapamundi-v2",
 	},

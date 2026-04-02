@@ -134,6 +134,7 @@ export const FractionChallenge: React.FC<FractionChallengeProps> = ({ task }) =>
                   onClick={() => setFractionAnswer(Math.max(0, (currentAnswer || 0) - 1))}
                   className="bg-red-100 hover:bg-red-200 text-red-700 p-2 rounded-lg transition-colors"
                   disabled={(currentAnswer || 0) <= 0}
+                  aria-label="Disminuir respuesta"
                 >
                   <Minus size={20} />
                 </button>
@@ -146,6 +147,7 @@ export const FractionChallenge: React.FC<FractionChallengeProps> = ({ task }) =>
                   onClick={() => setFractionAnswer((currentAnswer || 0) + 1)}
                   className="bg-green-100 hover:bg-green-200 text-green-700 p-2 rounded-lg transition-colors"
                   disabled={(currentAnswer || 0) >= 20}
+                  aria-label="Aumentar respuesta"
                 >
                   <Plus size={20} />
                 </button>

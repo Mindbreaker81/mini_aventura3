@@ -1,14 +1,29 @@
 "use client";
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Play, CheckCircle, Monitor, ChevronDown, ChevronUp } from 'lucide-react';
+import { Play, CheckCircle, Monitor, ChevronDown, ChevronUp, RefreshCw, WifiOff } from 'lucide-react';
 import useLaboratorioFlipStore from './useLaboratorioFlipStore';
+
+// Props que react-player usa en runtime pero no están correctamente tipados en sus definiciones TS
+interface ReactPlayerRuntimeProps {
+  url?: string;
+  width?: string | number;
+  height?: string | number;
+  playing?: boolean;
+  controls?: boolean;
+  onPlay?: () => void;
+  onPause?: () => void;
+  onEnded?: () => void;
+  onProgress?: (state: { played: number; playedSeconds: number; loaded: number; loadedSeconds: number }) => void;
+  onError?: () => void;
+  config?: Record<string, unknown>;
+}
 
 // Importar ReactPlayer dinámicamente para evitar problemas de SSR
 const ReactPlayer = dynamic(() => import('react-player'), {
   ssr: false,
   loading: () => <div className="w-full h-64 bg-gray-200 animate-pulse rounded-lg" />
-});
+}) as unknown as React.ComponentType<ReactPlayerRuntimeProps>;
 
 interface VideoCardProps {
   onVideoEnd: () => void;
@@ -77,6 +92,12 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
     setPlaying(false);
   };
 
+  const handleRetryVideo = () => {
+    setVideoError(false);
+    setHasStarted(false);
+    setPlaying(false);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="mb-4">
@@ -141,7 +162,11 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
           // Thumbnail con botón de play
           <div 
             className="relative w-full h-64 bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center cursor-pointer group"
+            role="button"
+            tabIndex={0}
+            aria-label={`Reproducir video: ${currentVideo.title}`}
             onClick={handlePlay}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handlePlay(); } }}
           >
             <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             <div className="relative z-10 flex flex-col items-center text-white">
@@ -162,10 +187,29 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
           // Player de video o mensaje de error
           <div className="w-full h-64 flex items-center justify-center bg-black rounded-lg">
             {videoError ? (
-              <div className="text-center text-red-600 w-full">
-                <div className="text-4xl mb-2">⚠️</div>
-                <div className="font-bold text-lg mb-1">No se pudo cargar el video</div>
-                <div className="text-sm text-red-500">Es posible que YouTube no permita la reproducción embebida o que tu red lo esté bloqueando.<br/>Prueba abrir el video directamente en <a href={currentVideo.url} target='_blank' rel='noopener noreferrer' className='underline text-blue-700'>YouTube</a>.</div>
+              <div className="flex flex-col items-center justify-center text-center px-6 py-8 w-full">
+                <WifiOff size={48} className="text-amber-400 mb-3" />
+                <div className="font-bold text-lg text-white mb-1">No se pudo cargar el video</div>
+                <div className="text-sm text-gray-300 mb-4">
+                  Comprueba tu conexión a internet o prueba de nuevo.
+                </div>
+                <div className="flex flex-col sm:flex-row items-center gap-3">
+                  <button
+                    onClick={handleRetryVideo}
+                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+                  >
+                    <RefreshCw size={16} />
+                    Reintentar
+                  </button>
+                  <a
+                    href={currentVideo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-400 underline hover:text-blue-300"
+                  >
+                    Abrir en YouTube
+                  </a>
+                </div>
               </div>
             ) : (
               <ReactPlayer

@@ -176,10 +176,10 @@ export default function ReadingGame() {
         <h3 className="font-bold text-lg mb-2">{current.title}</h3>
         <div className="bg-gray-100 rounded p-3 mb-4" tabIndex={0} aria-label={current.paragraph}>{current.paragraph}</div>
       </div>
-      <div className="mb-4">
-        <div className="font-semibold mb-2">{currentQuestion.q}</div>
+      <fieldset className="mb-4 border-none p-0 m-0">
+        <legend className="font-semibold mb-2">{currentQuestion.q}</legend>
         {currentQuestion.type === 'single' && currentQuestion.options && (
-          <div role="radiogroup">
+          <div role="radiogroup" aria-label={currentQuestion.q}>
             {currentQuestion.options.map((opt, idx) => (
               <label key={idx} className="block mb-1">
                 <input
@@ -188,6 +188,7 @@ export default function ReadingGame() {
                   value={idx}
                   checked={selected === idx}
                   onChange={() => handleAnswer(idx)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAnswer(idx); } }}
                   tabIndex={0}
                 />{' '}
                 {opt}
@@ -196,7 +197,7 @@ export default function ReadingGame() {
           </div>
         )}
         {currentQuestion.type === 'true_false' && (
-          <div role="radiogroup">
+          <div role="radiogroup" aria-label={currentQuestion.q}>
             {[true, false].map((val, idx) => (
               <label key={idx} className="block mb-1">
                 <input
@@ -205,6 +206,7 @@ export default function ReadingGame() {
                   value={val ? 'true' : 'false'}
                   checked={selected === val}
                   onChange={() => handleAnswer(val)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAnswer(val); } }}
                   tabIndex={0}
                 />{' '}
                 {t(val ? 'true' : 'false')}
@@ -212,7 +214,7 @@ export default function ReadingGame() {
             ))}
           </div>
         )}
-      </div>
+      </fieldset>
       {showFeedback && (
         <div className={feedback?.correct ? 'text-green-600' : 'text-red-600'} aria-live="polite">
           {feedback?.explanation}

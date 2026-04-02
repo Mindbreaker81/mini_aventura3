@@ -94,6 +94,7 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
                       <button
                         onClick={() => removeCoin(index)}
                         className="text-red-600 hover:text-red-800"
+                        aria-label="Eliminar moneda"
                       >
                         <Trash2 size={12} />
                       </button>

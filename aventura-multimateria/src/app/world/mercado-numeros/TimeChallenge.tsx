@@ -27,7 +27,8 @@ export const TimeChallenge: React.FC<TimeChallengeProps> = ({ task }) => {
     const hourAngle = ((hours % 12) * 30 + minutes * 0.5) - 90; // 30 grados por hora + ajuste por minutos
     
     return (
-      <svg width="120" height="120" viewBox="0 0 120 120" className="mx-auto">
+      <svg width="120" height="120" viewBox="0 0 120 120" className="mx-auto" role="img" aria-label={`Reloj analógico mostrando las ${time}`}>
+        <title>Reloj analógico mostrando las {time}</title>
         {/* Círculo del reloj */}
         <circle
           cx="60"

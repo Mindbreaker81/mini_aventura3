@@ -24,7 +24,7 @@ const modes = [
   },
   {
     id: 'ccaa',
-    label: 'CCAA España',
+    label: 'Comunidades de España',
     description: 'Localiza las 17 comunidades autónomas',
     icon: MapPin,
     color: 'bg-green-500',

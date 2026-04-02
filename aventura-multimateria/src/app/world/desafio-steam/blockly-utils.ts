@@ -20,7 +20,7 @@ export function suppressBlocklyDeprecationWarnings() {
 }
 
 // Safe wrapper for workspaceToCode that suppresses deprecation warnings
-export function safeWorkspaceToCode(generator: { workspaceToCode: (workspace: unknown) => string }, workspace: unknown): string {
+export function safeWorkspaceToCode(generator: { workspaceToCode: (workspace?: import('blockly').Workspace) => string }, workspace: import('blockly').Workspace): string {
   const restore = suppressBlocklyDeprecationWarnings();
   try {
     const code = generator.workspaceToCode(workspace);

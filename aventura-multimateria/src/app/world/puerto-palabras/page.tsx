@@ -27,7 +27,8 @@ const PuertoPalabrasPage = () => {
 
   // Componente de barco reparable
   const BarcoSVG = ({ repaired }: { repaired: number }) => (
-    <svg viewBox="0 0 300 180" width="300" height="180" className="mx-auto mb-4">
+    <svg viewBox="0 0 300 180" width="300" height="180" className="mx-auto mb-4" role="img" aria-label="Barco del Puerto de las Palabras">
+      <title>Barco del Puerto de las Palabras</title>
       {/* Casco */}
       <rect x="60" y="120" width="180" height="40" rx="20" fill={repaired >= 1 ? '#8B5C2A' : '#d1d5db'} stroke="#654321" strokeWidth="3" />
       {/* Cubierta */}
@@ -136,6 +137,12 @@ const PuertoPalabrasPage = () => {
                           tabIndex={0}
                           role="button"
                           aria-label={w.word}
+                          onKeyDown={(e) => {
+                            // Space is handled by @hello-pangea/dnd for keyboard drag-and-drop
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                            }
+                          }}
                         >
                           {w.word}
                         </span>

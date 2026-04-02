@@ -61,7 +61,7 @@ export const initializeBlocks = (Blockly: typeof import('blockly')) => {
 };
 
 // Generadores JavaScript para los bloques
-export const initializeGenerators = (javascriptGenerator: { forBlock?: Record<string, () => string>; [key: string]: unknown }) => {
+export const initializeGenerators = (javascriptGenerator: typeof import('blockly/javascript').javascriptGenerator) => {
   console.log('🔧 Iniciando definición de generadores...');
 
   // Compatibilidad: usar forBlock si existe, si no, asignar directamente
@@ -70,7 +70,7 @@ export const initializeGenerators = (javascriptGenerator: { forBlock?: Record<st
       javascriptGenerator.forBlock[name] = fn;
       console.log(`✅ Generador asignado a forBlock['${name}']`);
     } else {
-      javascriptGenerator[name] = fn;
+      (javascriptGenerator as unknown as Record<string, unknown>)[name] = fn;
       console.log(`✅ Generador asignado a javascriptGenerator['${name}']`);
     }
   };
