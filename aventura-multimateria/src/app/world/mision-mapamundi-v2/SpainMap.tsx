@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // @ts-expect-error - react-simple-maps types are not available
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { MapComponentProps } from "./types";
+import { useTranslation } from "../../components/I18nProvider";
 
 // URL del TopoJSON de España (Comunidades Autónomas)
 const geoUrl = "/ccaa-es.geojson";
@@ -30,6 +31,7 @@ const COD_CCAA_TO_CODE: { [key: string]: string } = {
 };
 
 export default function SpainMap({ selectedRegion, onRegionClick }: MapComponentProps) {
+  const { t } = useTranslation('common');
   const [geography, setGeography] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
@@ -74,11 +76,10 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
 
   // Función para obtener el estilo de una región
   const getRegionStyle = (geo: { properties?: { cod_ccaa?: string } }) => {
-    if (!geo || !geo.properties) return {};
+    if (!geo?.properties?.cod_ccaa) return {};
 
-    const codCcaa = geo.properties.cod_ccaa;
-    if (!codCcaa) return {};
-    const regionId = COD_CCAA_TO_CODE[codCcaa];
+    const regionId = COD_CCAA_TO_CODE[geo.properties.cod_ccaa];
+    if (!regionId) return {};
 
     const isSelected = selectedRegion === regionId;
     // Eliminadas las pistas visuales (isTarget) para evitar dar la respuesta
@@ -117,7 +118,7 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
       <div className="flex items-center justify-center h-96">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Cargando mapa de España...</p>
+          <p className="text-gray-600">{t('mapamundi.maps.loadingSpain')}</p>
         </div>
       </div>
     );
@@ -128,13 +129,13 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
       <div className="flex items-center justify-center h-96">
         <div className="text-center px-6">
           <div className="text-6xl mb-4">🇪🇸</div>
-          <p className="text-gray-800 font-semibold text-lg mb-1">El mapa necesita conexión a internet</p>
-          <p className="text-gray-500 text-sm mb-4">Comprueba tu conexión e inténtalo de nuevo.</p>
+          <p className="text-gray-800 font-semibold text-lg mb-1">{t('mapamundi.maps.offlineTitle')}</p>
+          <p className="text-gray-500 text-sm mb-4">{t('mapamundi.maps.offlineHint')}</p>
           <button
             onClick={loadMapData}
             className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
           >
-            🔄 Reintentar
+            🔄 {t('mapamundi.maps.retry')}
           </button>
         </div>
       </div>
@@ -162,15 +163,21 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
           <ZoomableGroup zoom={1} maxZoom={4} minZoom={0.8}>
             <Geographies geography={geography}>
               {({ geographies }: { geographies: { rsmKey: string; properties?: { NAME?: string; name?: string; cod_ccaa?: string } }[] }) =>
-                geographies.map((geo) => (
+                geographies.map((geo) => {
+                  const regionId = geo.properties?.cod_ccaa
+                    ? COD_CCAA_TO_CODE[geo.properties.cod_ccaa]
+                    : undefined;
+                  return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
+                    data-region-id={regionId || undefined}
                     onClick={() => handleRegionClick(geo)}
                     style={getRegionStyle(geo)}
-                    title={geo.properties?.NAME || geo.properties?.name || "Comunidad Autónoma"}
+                    title={geo.properties?.NAME || geo.properties?.name || t('mapamundi.maps.community')}
                   />
-                ))
+                  );
+                })
               }
             </Geographies>
           </ZoomableGroup>
@@ -182,7 +189,7 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
         <div className="flex items-center justify-center space-x-4">
           <div className="flex items-center space-x-1">
             <div className="w-3 h-3 bg-gray-300 rounded"></div>
-            <span>Comunidades</span>
+            <span>{t('mapamundi.maps.legendRegions')}</span>
           </div>
           <div className="flex items-center space-x-1">
             <div className="w-3 h-3 bg-blue-500 rounded"></div>

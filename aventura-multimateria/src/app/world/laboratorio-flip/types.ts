@@ -45,7 +45,9 @@ export interface GameState {
     show: boolean;
     success: boolean;
     message: string;
+    messageParams?: Record<string, string | number>;
     explanation?: string;
+    explanationParams?: Record<string, string | number>;
   } | null;
   gameStatus: "instructions" | "playing" | "video" | "quiz" | "completed" | "retrying";
   badge: boolean;

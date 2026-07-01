@@ -2,10 +2,10 @@
 
 ## 🎮 Descripción del Proyecto
 
-ExplorAventura 3 es una plataforma educativa interactiva que presenta 6 minijuegos diseñados para estudiantes de primaria. Cada juego aborda una materia específica utilizando mecánicas divertidas y educativas, con un sistema de progreso, XP y badges para motivar el aprendizaje.
+ExplorAventura 3 es una plataforma educativa interactiva con **10 minijuegos**. Cada juego aborda una materia específica con mecánicas divertidas, XP y badges.
 
 ### ✨ Características Principales
-- **6 Minijuegos Educativos**: Gramática, lectura, matemáticas, geografía, programación y ciencias
+- **10 Minijuegos Educativos**: Gramática, lectura, mates, geografía, programación, ciencias, historia, reciclaje, ortografía y astronomía
 - **Sistema de Progreso**: XP, badges y seguimiento de avance
 - **Multilingüe**: Soporte para español, catalán e inglés
 - **Responsive**: Adaptado para desktop, tablet y móvil
@@ -38,13 +38,9 @@ Reproducción de Video: react-player 3.1.0
 aventura-multimateria/
 ├── src/
 │   ├── app/
-│   │   ├── data/                     # 📊 Datos de los juegos (JSON)
-│   │   │   ├── puerto-words.json     # Palabras categorizadas
-│   │   │   ├── bosc-passages.json    # Textos y preguntas de lectura
-│   │   │   ├── mercado-tasks.json    # Problemas matemáticos
-│   │   │   ├── mapamundi-tasks.json  # Ubicaciones geográficas
-│   │   │   ├── steam-tasks.json      # Desafíos de programación
-│   │   │   └── flip-lessons.json     # Lecciones científicas
+│   │   ├── data/
+│   │   │   ├── gameDataRegistry.ts   # Registro i18n es/ca/en
+│   │   │   └── locales/{es,ca,en}/   # JSON pedagógicos por idioma
 │   │   ├── hooks/
 │   │   │   └── useNavigation.ts      # 🧭 Hook de navegación centralizado
 │   │   ├── world/                    # 🌍 Directorio de minijuegos
@@ -53,7 +49,14 @@ aventura-multimateria/
 │   │   │   ├── mercado-numeros/      # Matemáticas aplicadas
 │   │   │   ├── mision-mapamundi-v2/  # Geografía interactiva
 │   │   │   ├── desafio-steam/        # Programación con bloques
-│   │   │   └── laboratorio-flip/     # Ciencias con videos
+│   │   │   ├── laboratorio-flip/     # Ciencias con videos
+│   │   │   ├── museo-tiempo/         # Historia (línea temporal)
+│   │   │   ├── fabrica-reciclaje/    # Medio ambiente (reciclaje)
+│   │   │   ├── taller-ortografia/    # Ortografía (quiz)
+│   │   │   └── planetario/           # Sistema Solar + exploración espacial (v2)
+│   │   │       ├── page.tsx          # Selector de modo
+│   │   │       ├── [mode]/           # planetas | exploracion
+│   │   │       └── PlanetGame.tsx
 │   │   ├── components/
 │   │   │   └── I18nProvider.tsx      # 🌐 Proveedor de internacionalización (nuevo)
 │   │   ├── globals.css
@@ -68,19 +71,43 @@ aventura-multimateria/
 ├── next.config.js
 ├── tailwind.config.js
 ├── tsconfig.json
-├── CLAUDE.md                         # 🤖 Documentación técnica y de cambios
-├── FIXES_APPLIED.md                  # 🛠️ Registro de fixes y migraciones
-├── CHAT_SUMMARY_STEAM_IMPROVEMENTS.md # 📝 Resumen de mejoras STEAM
+├── docs/
+│   └── GAME_ARCHITECTURE.md          # 🏗️ Arquitectura (contrato stores, persistencia)
+├── CLAUDE.md                         # 🤖 Guía para agentes IA
+├── STEAM_GAME_DOCS.md                # 🤖 Detalle Blockly/robot
+├── CHANGELOG.md                      # 📝 Versiones + plan histórico fases 0–7
 └── README.md                         # 📖 Este archivo
 ```
 
+## 📚 Documentación
+
+| Documento | Descripción |
+|-----------|-------------|
+| [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) | **Referencia principal:** patrón de minijuegos, contrato de stores, persistencia |
+| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones + plan de implementación (fases 0–7) |
+| [CLAUDE.md](CLAUDE.md) | Guía para agentes IA |
+| [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle Blockly/robot |
+
 ## 🆕 Historial de Cambios Recientes
 
-- **Internacionalización (i18n):** Migración de `next-i18next` a un `I18nProvider` propio usando `i18next` y `react-i18next` para compatibilidad total con App Router. Ver detalles en `FIXES_APPLIED.md`.
-- **Desafío STEAM:** Refactorización completa: animaciones más lentas y visibles, rastro visual del robot, feedback visual mejorado, comunicación entre componentes basada en callbacks, y supresión de warnings de Blockly. Ver detalles en `CHAT_SUMMARY_STEAM_IMPROVEMENTS.md` y `CLAUDE.md`.
-- **Limpieza y Organización:** Eliminación de archivos y versiones obsoletas, estructura de minijuegos y stores unificada, documentación exhaustiva.
-- **Persistencia y Estado:** Zustand con persistencia en localStorage para todos los minijuegos, claves de almacenamiento documentadas.
-- **Documentación:** Se añadieron y actualizaron archivos de referencia: `CLAUDE.md`, `FIXES_APPLIED.md`, `CHAT_SUMMARY_STEAM_IMPROVEMENTS.md`.
+> Detalle completo en [CHANGELOG.md](CHANGELOG.md).
+
+### v3.3.2 (Julio 2026)
+- Mapamundi: `data-region-id` en mapa; tests UI 100 % interacción
+- v3.3.1: tests UI puros, ortografía 70 ítems (B/V, G/J)
+
+### v3.2.0 (Julio 2026)
+- **Fase 7:** Fábrica del Reciclaje, Taller de Ortografía, Planetario
+- 10 minijuegos, 88 tests Jest, humo UI 10/10, i18n es/ca/en
+
+### v3.0.0 (Julio 2026)
+- **Infraestructura:** módulos compartidos (`shared/`, `useGameSession`)
+- **6 juegos:** victoria/derrota, persistencia fiable, 46 tests
+- **Docs:** `GAME_ARCHITECTURE.md`, CHANGELOG (plan fases 0–7)
+
+### v2.0.0 (Diciembre 2024)
+- **Desafío STEAM:** animaciones paso a paso, rastro visual, comunicación callback-based
+- **Limpieza:** eliminación de STEAM v1 y archivos obsoletos
 
 ## 🎯 Descripción Detallada de Minijuegos
 
@@ -218,6 +245,39 @@ aventura-multimateria/
 4. Feedback detallado con explicaciones
 5. Sistema de progreso por materia
 
+### 7. 🏛️ Museo del Tiempo
+**Materia**: Historia  
+**Ruta**: `/world/museo-tiempo`  
+**Mecánica**: Ordenar 8 eventos históricos en línea temporal (drag-and-drop)
+
+- **Store**: `useMuseoTiempoStore` · **Datos**: `museo-events.json` (24 eventos, es/ca/en)
+- **Badge**: Historiador Junior · **Persistencia**: `museo-tiempo-storage`
+
+### 8. ♻️ Fábrica del Reciclaje
+**Materia**: Medio ambiente  
+**Ruta**: `/world/fabrica-reciclaje`  
+**Mecánica**: Clasificar residuos en 5 contenedores (drag-and-drop)
+
+- **Store**: `useFabricaReciclajeStore` · **Datos**: `fabrica-reciclaje-items.json` (48 ítems)
+- **Badge**: Eco-Héroe Junior · **Meta**: 8 clasificaciones correctas
+
+### 9. ✏️ Taller de Ortografía
+**Materia**: Lengua / ortografía  
+**Ruta**: `/world/taller-ortografia`  
+**Mecánica**: Completar frases con hueco (quiz, 8 preguntas, 5 corazones)
+
+- **Store**: `useTallerOrtografiaStore` · **Componente**: `SpellingGame.tsx`
+- **Datos**: `taller-ortografia-items.json` (70 ítems) · **Badge**: Maestro de la Ortografía
+
+### 10. 🪐 Planetario
+**Materia**: Ciencias (Sistema Solar y exploración espacial)  
+**Rutas**: `/world/planetario` (selector) · `/world/planetario/planetas` · `/world/planetario/exploracion`  
+**Mecánica**: Ordenar tarjetas en línea temporal (drag-and-drop)
+
+- **Modos**: `planetas` (8 planetas) · `exploracion` (8 hitos cronológicos)
+- **Store**: `usePlanetarioStore` · **Datos**: `planetario-bodies.json` (planetas + hitos)
+- **Badges**: Astrónomo Junior · Explorador Espacial · **Persistencia**: `planetario-storage`
+
 ## 🚀 Instalación y Desarrollo
 
 ### Prerrequisitos
@@ -246,6 +306,9 @@ aventura-multimateria/
 | `npm run build` | Compila para producción |
 | `npm run start` | Inicia en modo producción |
 | `npm run lint` | Ejecuta el linter de código |
+| `npm test` | Tests Jest (stores + shared) |
+| `npm run test:ci` | Tests con cobertura (umbral 60 %) |
+| `npm run test:ui` | Humo Playwright de los 10 minijuegos (requiere `npm run start`) |
 | `npm run supabase:start` | Inicia Supabase local |
 | `npm run supabase:stop` | Detiene Supabase local |
 | `npm run db:reset` | Resetea la base de datos |

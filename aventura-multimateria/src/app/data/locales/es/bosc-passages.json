@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "El perro y el oso",
+    "paragraph": "Un perro pequeño encontró un oso de miel en el bosque. El oso lo miró con curiosidad, pero el perro, en lugar de asustarse, le ofreció compartir su galleta...",
+    "questions": [
+      {
+        "q": "¿Qué animal encuentra el perro?",
+        "type": "single",
+        "options": ["Un gato", "Un oso", "Un zorro"],
+        "answer": 1,
+        "explanation": "El texto dice: 'El oso lo miró con curiosidad'."
+      },
+      {
+        "q": "El perro se asusta cuando ve al oso.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El texto indica que no se asusta, sino que le ofrece una galleta."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "La hormiga trabajadora",
+    "paragraph": "Una hormiga trabajaba todo el día para acumular comida para el invierno. Las otras hormigas se reían de ella, pero cuando llegó el invierno, ella tenía suficiente comida para sobrevivir.",
+    "questions": [
+      {
+        "q": "¿Qué hacía la hormiga durante el día?",
+        "type": "single",
+        "options": ["Dormía", "Trabajaba para acumular comida", "Jugaba con las otras"],
+        "answer": 1,
+        "explanation": "El texto dice que 'trabajaba todo el día para acumular comida'."
+      },
+      {
+        "q": "Las otras hormigas ayudaban a la hormiga trabajadora.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El texto dice que 'las otras hormigas se reían de ella'."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "El conejo y la tortuga",
+    "paragraph": "Un conejo muy rápido desafió a una tortuga a una carrera. El conejo estaba tan seguro de ganar que se detuvo a mitad de camino para descansar. La tortuga, lenta pero constante, llegó primero a la meta.",
+    "questions": [
+      {
+        "q": "¿Qué animal era más rápido?",
+        "type": "single",
+        "options": ["La tortuga", "El conejo", "Los dos eran igual de rápidos"],
+        "answer": 1,
+        "explanation": "El texto dice que el conejo era 'muy rápido'."
+      },
+      {
+        "q": "La tortuga ganó la carrera porque era más rápida.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "La tortuga ganó porque era constante, no por ser más rápida."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "El sol y el viento",
+    "paragraph": "El sol y el viento discutían sobre quién era más fuerte. Decidieron hacer una prueba: quién podría hacer que un viajero se quitara el abrigo. El viento sopló fuerte, pero el viajero se envolvió más con el abrigo. El sol brilló con calor y el viajero se quitó el abrigo.",
+    "questions": [
+      {
+        "q": "¿Qué querían probar el sol y el viento?",
+        "type": "single",
+        "options": ["Quién era más fuerte", "Quién podía hacer que un viajero se quitara el abrigo", "Quién brillaba más"],
+        "answer": 1,
+        "explanation": "El texto dice que quieren probar 'quién podría hacer que un viajero se quitara el abrigo'."
+      },
+      {
+        "q": "El viento consiguió que el viajero se quitara el abrigo.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El texto dice que el viajero 'se envolvió más con el abrigo' cuando el viento sopló."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "La liebre y su cría",
+    "paragraph": "Una liebre madre enseñaba a su cría a saltar. El pequeño tenía miedo de saltar demasiado alto, pero la madre lo animaba con paciencia. Finalmente, la cría aprendió a saltar con confianza.",
+    "questions": [
+      {
+        "q": "¿Qué hacía la liebre madre?",
+        "type": "single",
+        "options": ["Dormía", "Enseñaba a su cría a saltar", "Buscaba comida"],
+        "answer": 1,
+        "explanation": "El texto dice que 'enseñaba a su cría a saltar'."
+      },
+      {
+        "q": "La cría tenía confianza desde el principio.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El texto dice que 'tenía miedo de saltar demasiado alto' al principio."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "El gorrión y la cigüeña",
+    "paragraph": "Un gorrión pequeño vio a una cigüeña comiéndose una rana. El gorrión quería comerse la rana también, pero era demasiado grande para él. La cigüeña le explicó que cada ave tiene su propia comida.",
+    "questions": [
+      {
+        "q": "¿Qué comía la cigüeña?",
+        "type": "single",
+        "options": ["Una rana", "Un gorrión", "Una cigüeña"],
+        "answer": 0,
+        "explanation": "El texto dice que la cigüeña comía 'una rana'."
+      },
+      {
+        "q": "El gorrión consiguió comerse la rana.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "El texto dice que la rana era 'demasiado grande para él'."
+      }
+    ]
+  }
+]

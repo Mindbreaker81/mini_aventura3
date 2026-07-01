@@ -1,0 +1,338 @@
+[
+  {
+    "id": "r01",
+    "item": "Ampolla de plàstic",
+    "emoji": "🥤",
+    "bin": "amarillo",
+    "rule": "El plàstic d'envàs va al contenidor groc"
+  },
+  {
+    "id": "r02",
+    "item": "Llauna de refresc",
+    "emoji": "🥫",
+    "bin": "amarillo",
+    "rule": "Les llaunes de metall van al contenidor groc"
+  },
+  {
+    "id": "r03",
+    "item": "Brick de llet",
+    "emoji": "🧃",
+    "bin": "amarillo",
+    "rule": "Els brics van al contenidor groc"
+  },
+  {
+    "id": "r04",
+    "item": "Envàs de iogurt",
+    "emoji": "🫙",
+    "bin": "amarillo",
+    "rule": "Els envàsos de plàstic van al groc"
+  },
+  {
+    "id": "r05",
+    "item": "Bossa de plàstic neta",
+    "emoji": "🛍️",
+    "bin": "amarillo",
+    "rule": "El plàstic net va al contenidor groc"
+  },
+  {
+    "id": "r06",
+    "item": "Ampolla de xampú",
+    "emoji": "🧴",
+    "bin": "amarillo",
+    "rule": "Els flacons de plàstic van al groc"
+  },
+  {
+    "id": "r07",
+    "item": "Envàs de gel",
+    "emoji": "🧼",
+    "bin": "amarillo",
+    "rule": "Els envàsos de plàstic van al groc"
+  },
+  {
+    "id": "r08",
+    "item": "Embalatge de xocolata",
+    "emoji": "🍫",
+    "bin": "amarillo",
+    "rule": "El plàstic va al contenidor groc"
+  },
+  {
+    "id": "r09",
+    "item": "Ampolla de detergent",
+    "emoji": "🧴",
+    "bin": "amarillo",
+    "rule": "Els envàsos de neteja van al groc"
+  },
+  {
+    "id": "r10",
+    "item": "Got de plàstic",
+    "emoji": "🥤",
+    "bin": "amarillo",
+    "rule": "El plàstic va al contenidor groc"
+  },
+  {
+    "id": "r11",
+    "item": "Diari",
+    "emoji": "📰",
+    "bin": "azul",
+    "rule": "El paper i el cartró van al contenidor blau"
+  },
+  {
+    "id": "r12",
+    "item": "Caixa de cartró",
+    "emoji": "📦",
+    "bin": "azul",
+    "rule": "El cartró va al contenidor blau"
+  },
+  {
+    "id": "r13",
+    "item": "Fulls de paper",
+    "emoji": "📄",
+    "bin": "azul",
+    "rule": "El paper va al contenidor blau"
+  },
+  {
+    "id": "r14",
+    "item": "Sobre de carta",
+    "emoji": "✉️",
+    "bin": "azul",
+    "rule": "El paper va al contenidor blau"
+  },
+  {
+    "id": "r15",
+    "item": "Revista usada",
+    "emoji": "📚",
+    "bin": "azul",
+    "rule": "El paper va al contenidor blau"
+  },
+  {
+    "id": "r16",
+    "item": "Caixa de sabates",
+    "emoji": "👟",
+    "bin": "azul",
+    "rule": "El cartró va al contenidor blau"
+  },
+  {
+    "id": "r17",
+    "item": "Caixa de pizza",
+    "emoji": "🍕",
+    "bin": "azul",
+    "rule": "El cartró net va al blau"
+  },
+  {
+    "id": "r18",
+    "item": "Quadern vell",
+    "emoji": "📖",
+    "bin": "azul",
+    "rule": "El paper va al contenidor blau"
+  },
+  {
+    "id": "r19",
+    "item": "Caixa de cereals",
+    "emoji": "🥣",
+    "bin": "azul",
+    "rule": "El cartró va al blau"
+  },
+  {
+    "id": "r20",
+    "item": "Paper de regal",
+    "emoji": "🎁",
+    "bin": "azul",
+    "rule": "El paper va al contenidor blau"
+  },
+  {
+    "id": "r21",
+    "item": "Ampolla de vidre",
+    "emoji": "🍾",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r22",
+    "item": "Pot de melmelada",
+    "emoji": "🫙",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r23",
+    "item": "Ampolla d'oli",
+    "emoji": "🫒",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r24",
+    "item": "Ampolla de vi",
+    "emoji": "🍷",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r25",
+    "item": "Ampolla de cervesa",
+    "emoji": "🍺",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r26",
+    "item": "Pot de conserva",
+    "emoji": "🥫",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r27",
+    "item": "Ampolla de perfum buida",
+    "emoji": "🧴",
+    "bin": "verde",
+    "rule": "El vidre va al verd"
+  },
+  {
+    "id": "r28",
+    "item": "Pot de mel",
+    "emoji": "🍯",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r29",
+    "item": "Pot de kètchup de vidre",
+    "emoji": "🫙",
+    "bin": "verde",
+    "rule": "El vidre va al verd"
+  },
+  {
+    "id": "r30",
+    "item": "Pot d'espècies",
+    "emoji": "🧂",
+    "bin": "verde",
+    "rule": "El vidre va al contenidor verd"
+  },
+  {
+    "id": "r31",
+    "item": "Cultell de plàtan",
+    "emoji": "🍌",
+    "bin": "marron",
+    "rule": "Els restes de menjar van al marró"
+  },
+  {
+    "id": "r32",
+    "item": "Posos de cafè",
+    "emoji": "☕",
+    "bin": "marron",
+    "rule": "Els restes orgànics van al marró"
+  },
+  {
+    "id": "r33",
+    "item": "Clara d'ou",
+    "emoji": "🥚",
+    "bin": "marron",
+    "rule": "Els restes de menjar van al marró"
+  },
+  {
+    "id": "r34",
+    "item": "Pell de taronja",
+    "emoji": "🍊",
+    "bin": "marron",
+    "rule": "Els restes de fruita van al marró"
+  },
+  {
+    "id": "r35",
+    "item": "Restes d'amanida",
+    "emoji": "🥗",
+    "bin": "marron",
+    "rule": "Els restes de menjar van al marró"
+  },
+  {
+    "id": "r36",
+    "item": "Os de pollastre",
+    "emoji": "🍗",
+    "bin": "marron",
+    "rule": "Els restes de menjar van al marró"
+  },
+  {
+    "id": "r37",
+    "item": "Pa dur",
+    "emoji": "🍞",
+    "bin": "marron",
+    "rule": "Els restes de menjar van al marró"
+  },
+  {
+    "id": "r38",
+    "item": "Restes d'arròs",
+    "emoji": "🍚",
+    "bin": "marron",
+    "rule": "Els restes de menjar van al marró"
+  },
+  {
+    "id": "r39",
+    "item": "Cor de poma",
+    "emoji": "🍎",
+    "bin": "marron",
+    "rule": "Els restes de fruita van al marró"
+  },
+  {
+    "id": "r40",
+    "item": "Cultell de patata",
+    "emoji": "🥔",
+    "bin": "marron",
+    "rule": "Els restes de verdura van al marró"
+  },
+  {
+    "id": "r41",
+    "item": "Fulles seques",
+    "emoji": "🍃",
+    "bin": "organico",
+    "rule": "Els restes vegetals van a l'orgànic"
+  },
+  {
+    "id": "r42",
+    "item": "Restes de poda",
+    "emoji": "🌿",
+    "bin": "organico",
+    "rule": "Les plantes van a l'orgànic"
+  },
+  {
+    "id": "r43",
+    "item": "Tiges de flors",
+    "emoji": "🌻",
+    "bin": "organico",
+    "rule": "Els restes vegetals van a l'orgànic"
+  },
+  {
+    "id": "r44",
+    "item": "Terra de test",
+    "emoji": "🪴",
+    "bin": "organico",
+    "rule": "Els restes del jardí van a l'orgànic"
+  },
+  {
+    "id": "r45",
+    "item": "Herba tallada",
+    "emoji": "🌾",
+    "bin": "organico",
+    "rule": "Els restes del jardí van a l'orgànic"
+  },
+  {
+    "id": "r46",
+    "item": "Fulles de enciam marcides",
+    "emoji": "🥬",
+    "bin": "organico",
+    "rule": "Els restes vegetals van a l'orgànic"
+  },
+  {
+    "id": "r47",
+    "item": "Fulles de blat de moro",
+    "emoji": "🌽",
+    "bin": "organico",
+    "rule": "Els restes vegetals van a l'orgànic"
+  },
+  {
+    "id": "r48",
+    "item": "Cultell de síndria",
+    "emoji": "🍉",
+    "bin": "organico",
+    "rule": "Els restes vegetals van a l'orgànic"
+  }
+]

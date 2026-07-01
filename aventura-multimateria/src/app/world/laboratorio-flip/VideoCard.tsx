@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Play, CheckCircle, Monitor, ChevronDown, ChevronUp, RefreshCw, WifiOff } from 'lucide-react';
+import { useTranslation } from '../../components/I18nProvider';
 import useLaboratorioFlipStore from './useLaboratorioFlipStore';
 
 // Props que react-player usa en runtime pero no están correctamente tipados en sus definiciones TS
@@ -30,6 +31,7 @@ interface VideoCardProps {
 }
 
 const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
+  const { t } = useTranslation('common');
   const { lessons, currentLesson, finishVideo, videoWatched } = useLaboratorioFlipStore();
   const [playing, setPlaying] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
@@ -46,9 +48,9 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
     id: "video1", 
     title: lesson.title, 
     url: lesson.videoUrl, 
-    canal: "Canal Educativo", 
+    canal: t('flip.video.defaultChannel'), 
     duracion: "3:00", 
-    descripcion: `Video educativo sobre ${lesson.title}` 
+    descripcion: t('flip.video.defaultDescription', { title: lesson.title })
   }];
   
   const currentVideo = videos[selectedVideo];
@@ -151,7 +153,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
           {videoWatched && (
             <span className="flex items-center gap-1 text-green-600 font-semibold">
               <CheckCircle size={16} />
-              Video completado
+              {t('flip.video.completed')}
             </span>
           )}
         </div>
@@ -164,7 +166,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
             className="relative w-full h-64 bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center cursor-pointer group"
             role="button"
             tabIndex={0}
-            aria-label={`Reproducir video: ${currentVideo.title}`}
+            aria-label={t('flip.video.playAria', { title: currentVideo.title })}
             onClick={handlePlay}
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handlePlay(); } }}
           >
@@ -174,7 +176,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
                 <Play size={32} className="ml-1" fill="white" />
               </div>
               <h3 className="text-lg font-semibold text-center">{currentVideo.title}</h3>
-              <p className="text-gray-300 text-center mt-2">Haz clic para reproducir</p>
+              <p className="text-gray-300 text-center mt-2">{t('flip.video.clickToPlay')}</p>
               <p className="text-gray-400 text-sm mt-1">{currentVideo.canal}</p>
             </div>
             
@@ -189,9 +191,9 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
             {videoError ? (
               <div className="flex flex-col items-center justify-center text-center px-6 py-8 w-full">
                 <WifiOff size={48} className="text-amber-400 mb-3" />
-                <div className="font-bold text-lg text-white mb-1">No se pudo cargar el video</div>
+                <div className="font-bold text-lg text-white mb-1">{t('flip.video.loadError')}</div>
                 <div className="text-sm text-gray-300 mb-4">
-                  Comprueba tu conexión a internet o prueba de nuevo.
+                  {t('flip.video.loadErrorHint')}
                 </div>
                 <div className="flex flex-col sm:flex-row items-center gap-3">
                   <button
@@ -199,7 +201,17 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
                     className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
                   >
                     <RefreshCw size={16} />
-                    Reintentar
+                    {t('common.retry')}
+                  </button>
+                  <button
+                    onClick={() => {
+                      finishVideo();
+                      onVideoEnd();
+                    }}
+                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+                  >
+                    <CheckCircle size={16} />
+                    {t('flip.video.continueToQuiz')}
                   </button>
                   <a
                     href={currentVideo.url}
@@ -207,7 +219,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
                     rel="noopener noreferrer"
                     className="text-sm text-blue-400 underline hover:text-blue-300"
                   >
-                    Abrir en YouTube
+                    {t('flip.video.openYoutube')}
                   </a>
                 </div>
               </div>
@@ -238,27 +250,42 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
         )}
         {/* Aviso permanente para abrir en YouTube */}
         <div className="mt-2 text-center">
-          <span className="text-xs text-gray-500">¿Problemas para ver el video? </span>
+          <span className="text-xs text-gray-500">{t('flip.video.videoHelp')} </span>
           <a
             href={currentVideo.url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-blue-700 underline hover:text-blue-900"
           >
-            Ábrelo directamente en YouTube
+            {t('flip.video.openYoutubeDirect')}
           </a>
         </div>
+        {!videoWatched && (
+          <div className="mt-3 text-center">
+            <button
+              type="button"
+              onClick={() => {
+                finishVideo();
+                onVideoEnd();
+              }}
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              <CheckCircle size={16} />
+              {t('flip.video.skipToQuiz')}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Descripción y estado */}
       <div className="mt-4">
         <div className="bg-blue-50 p-4 rounded-lg">
-          <h4 className="font-semibold text-blue-800 mb-2">📖 Sobre esta lección:</h4>
+          <h4 className="font-semibold text-blue-800 mb-2">📖 {t('flip.video.aboutLesson')}</h4>
           <p className="text-blue-700 text-sm">
             {currentVideo.descripcion}
           </p>
           <p className="text-blue-600 text-sm mt-2">
-            Al finalizar el video, responderás 3 preguntas sobre el contenido.
+            {t('flip.video.afterVideo')}
           </p>
         </div>
 
@@ -266,7 +293,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
           <div className="mt-4 text-center">
             <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-lg">
               <CheckCircle size={20} />
-              <span className="font-semibold">¡Listo para el quiz!</span>
+              <span className="font-semibold">{t('flip.video.readyForQuiz')}</span>
             </div>
           </div>
         )}

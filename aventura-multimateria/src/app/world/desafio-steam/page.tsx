@@ -6,12 +6,16 @@ import useSteamStore from './useSteamStore';
 import RobotBoard from './RobotBoard';
 import BlocklyGame, { BlocklyGameRef } from './BlocklyGame';
 import { useNavigation } from '../../hooks/useNavigation';
+import { useTranslation } from '../../components/I18nProvider';
+import { useGameData } from '../../hooks/useGameData';
+import { useReloadGameDataOnLocale } from '../../hooks/useReloadGameDataOnLocale';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 
 const DesafioSteamV2: React.FC = () => {
+  const { t } = useTranslation('common');
   const [blocklyFunctions, setBlocklyFunctions] = useState<BlocklyGameRef | null>(null);
   const [blockCount, setBlockCount] = useState(0);
   const [isBlocklyLoaded, setIsBlocklyLoaded] = useState(false);
@@ -21,16 +25,30 @@ const DesafioSteamV2: React.FC = () => {
   const {
     showInstructions,
     gameCompleted,
+    gameStatus,
     feedback,
     xp,
     badge,
     tasks,
     currentTask,
     isExecuting,
-    initializeGame,
+    loadTasks,
     hideInstructions,
-    hideFeedback
+    hideFeedback,
+    resetAdventure,
   } = useSteamStore();
+
+  const steamTasks = useGameData('steam-tasks');
+
+  const reloadTasks = useCallback(() => {
+    loadTasks(steamTasks as Parameters<typeof loadTasks>[0]);
+  }, [loadTasks, steamTasks]);
+
+  useEffect(() => {
+    reloadTasks();
+  }, [reloadTasks]);
+
+  useReloadGameDataOnLocale(useSteamStore.getState, reloadTasks);
 
   // Callback para cuando BlocklyGame esté listo
   const handleBlocklyReady = useCallback((functions: BlocklyGameRef) => {
@@ -51,14 +69,7 @@ const DesafioSteamV2: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [blocklyFunctions]); // Solo depende de blocklyFunctions
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      initializeGame();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Solo ejecutar una vez al montar
+  }, [blocklyFunctions]);
 
   // Pantalla de instrucciones
   if (showInstructions) {
@@ -70,35 +81,35 @@ const DesafioSteamV2: React.FC = () => {
               <span className="text-3xl">🤖</span>
             </div>
             <CardTitle className="text-3xl text-purple-800">
-              ¡Bienvenido al Desafío STEAM!
+              {t('steam.instructions.title')}
             </CardTitle>
             <CardDescription className="text-lg">
-              Programa un robot explorador con bloques visuales
+              {t('steam.instructions.subtitle')}
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-purple-800 mb-2">🎯 Tu misión:</h3>
+              <h3 className="font-semibold text-purple-800 mb-2">🎯 {t('steam.instructions.missionTitle')}</h3>
               <p className="text-gray-700">
-                Programa el robot para que llegue a la meta evitando obstáculos en un tablero 6×6.
+                {t('steam.instructions.mission')}
               </p>
             </div>
 
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-blue-800 mb-2">🧩 Cómo jugar:</h3>
+              <h3 className="font-semibold text-blue-800 mb-2">🧩 {t('steam.instructions.howToPlayTitle')}</h3>
               <ul className="text-gray-700 space-y-1">
-                <li>• Arrastra bloques de &quot;avanzar&quot;, &quot;girar izquierda&quot; y &quot;girar derecha&quot;</li>
-                <li>• Usa bucles &quot;repetir&quot; para optimizar tu código</li>
-                <li>• Respeta el límite de bloques de cada nivel</li>
-                <li>• ¡El robot tiene 3 vidas por nivel!</li>
+                <li>• {t('steam.instructions.step1')}</li>
+                <li>• {t('steam.instructions.step2')}</li>
+                <li>• {t('steam.instructions.step3')}</li>
+                <li>• {t('steam.instructions.step4')}</li>
               </ul>
             </div>
 
             <div className="bg-green-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-green-800 mb-2">🏆 Objetivo:</h3>
+              <h3 className="font-semibold text-green-800 mb-2">🏆 {t('steam.instructions.goalTitle')}</h3>
               <p className="text-gray-700">
-                Completa los 6 desafíos para obtener +140 XP y la insignia de Ingeniero Junior.
+                {t('steam.instructions.goal')}
               </p>
             </div>
           </CardContent>
@@ -111,14 +122,43 @@ const DesafioSteamV2: React.FC = () => {
               className="gap-2"
             >
               <ArrowLeft size={20} />
-              Volver
+              {t('steam.instructions.back')}
             </Button>
             <Button
               onClick={hideInstructions}
               size="xl"
               className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold transition-all transform hover:scale-105"
             >
-              ¡Empezar a Programar! 🚀
+              {t('steam.instructions.start')} 🚀
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    );
+  }
+
+  // Pantalla de game over
+  if (gameStatus === 'failed') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-100 to-orange-200 flex items-center justify-center p-4">
+        <Card className="max-w-lg w-full text-center shadow-2xl">
+          <CardHeader>
+            <CardTitle className="text-3xl text-red-800">{t('steam.failed.title')}</CardTitle>
+            <CardDescription className="text-lg">
+              {t('steam.failed.subtitle')}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Badge variant="secondary" className="text-base px-4 py-1">⭐ {t('common.xpAccumulated', { count: xp })}</Badge>
+          </CardContent>
+          <CardFooter className="flex gap-3">
+            <Button onClick={resetAdventure} variant="outline" className="gap-2 flex-1">
+              <RotateCcw size={18} />
+              {t('steam.failed.reset')}
+            </Button>
+            <Button onClick={goToDashboard} className="flex-1 gap-2">
+              <Home size={18} />
+              {t('common.dashboard')}
             </Button>
           </CardFooter>
         </Card>
@@ -134,42 +174,46 @@ const DesafioSteamV2: React.FC = () => {
           <CardHeader>
             <Award size={80} className="text-yellow-500 mx-auto mb-4" />
             <CardTitle className="text-3xl text-green-800">
-              ¡Felicitaciones!
+              {t('steam.completed.title')}
             </CardTitle>
             <CardDescription className="text-lg">
-              Has completado todos los desafíos STEAM
+              {t('steam.completed.subtitle')}
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
             <div className="bg-yellow-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-yellow-800 mb-2">🏆 Has obtenido:</h3>
+              <h3 className="font-semibold text-yellow-800 mb-2">🏆 {t('steam.completed.earned')}</h3>
               <div className="space-y-2">
                 {badge && (
                   <div className="text-gray-700">
-                    Insignia: <Badge variant="warning" className="ml-1">{badge.name}</Badge>
+                    {t('steam.completed.badge')} <Badge variant="warning" className="ml-1">{badge.name}</Badge>
                   </div>
                 )}
                 <div className="text-gray-700">
-                  XP total: <Badge variant="success" className="ml-1">{xp} puntos</Badge>
+                  {t('steam.completed.xpTotal')} <Badge variant="success" className="ml-1">{t('steam.completed.points', { count: xp })}</Badge>
                 </div>
               </div>
             </div>
 
             <div className="bg-green-50 p-4 rounded-lg">
               <p className="text-green-800 font-semibold">
-                ¡Excelente trabajo programando el robot! 🤖✨
+                {t('steam.completed.praise')} 🤖✨
               </p>
             </div>
           </CardContent>
 
           <CardFooter className="flex gap-3">
+            <Button onClick={resetAdventure} variant="outline" className="gap-2">
+              <RotateCcw size={18} />
+              {t('steam.completed.newAdventure')}
+            </Button>
             <Button
               onClick={goToDashboard}
               size="lg"
               className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold"
             >
-              Volver al Dashboard
+              {t('steam.completed.backDashboard')}
             </Button>
           </CardFooter>
         </Card>
@@ -192,10 +236,10 @@ const DesafioSteamV2: React.FC = () => {
                 className="gap-2"
               >
                 <Home size={18} />
-                Dashboard
+                {t('common.dashboard')}
               </Button>
               <h1 className="text-2xl font-bold text-purple-800 flex items-center gap-2">
-                🤖 Desafío STEAM
+                🤖 {t('steam.title')}
               </h1>
             </div>
           
@@ -206,11 +250,11 @@ const DesafioSteamV2: React.FC = () => {
               {badge && (
                 <Badge variant="warning" className="gap-1.5 px-3 py-1 text-sm">
                   <Award size={14} />
-                  Insignia obtenida
+                  {t('steam.playing.badgeEarned')}
                 </Badge>
               )}
               <Badge variant="outline" className="px-3 py-1 text-sm">
-                Nivel {currentTask + 1} / {tasks.length || 6}
+                {t('steam.playing.levelProgress', { current: currentTask + 1, total: tasks.length || 6 })}
               </Badge>
             </div>
           </div>
@@ -233,7 +277,7 @@ const DesafioSteamV2: React.FC = () => {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
               <Badge variant="outline" className="px-3 py-1 text-sm">
-                🧩 Bloques: <span className="font-semibold">{blockCount}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
+                🧩 {t('steam.playing.blocks')} <span className="font-semibold">{blockCount}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
               </Badge>
             </div>
           
@@ -250,7 +294,7 @@ const DesafioSteamV2: React.FC = () => {
                 className="gap-2"
               >
                 <RotateCcw size={16} />
-                Reiniciar
+                {t('steam.playing.reset')}
               </Button>
             
               <Button
@@ -264,7 +308,7 @@ const DesafioSteamV2: React.FC = () => {
                 className="gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold"
               >
                 <Play size={16} />
-                {isExecuting ? 'Ejecutando...' : 'Ejecutar'}
+                {isExecuting ? t('steam.playing.executing') : t('steam.playing.run')}
               </Button>
             </div>
           </div>
@@ -306,11 +350,11 @@ const DesafioSteamV2: React.FC = () => {
                 <h3 className={`text-xl font-bold mb-2 ${
                   feedback.type === 'success' ? 'text-green-800' : 'text-red-800'
                 }`}>
-                  {feedback.type === 'success' ? '¡Excelente!' : '¡Ups!'}
+                  {feedback.type === 'success' ? t('steam.playing.feedbackSuccess') : t('steam.playing.feedbackFail')}
                 </h3>
               
                 <p className="text-gray-700 mb-6">
-                  {feedback.message}
+                  {t(feedback.message)}
                 </p>
               
                 <Button
@@ -322,7 +366,7 @@ const DesafioSteamV2: React.FC = () => {
                       : 'bg-red-600 hover:bg-red-700 text-white font-semibold'
                   }
                 >
-                  Continuar
+                  {t('common.continue')}
                 </Button>
               </div>
             </CardContent>

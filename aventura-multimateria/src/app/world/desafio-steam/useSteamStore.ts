@@ -2,9 +2,8 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import steamTasksData from '../../data/steam-tasks.json';
+import type { GameStatus } from '../shared/types';
 
-// --- Types ---
 interface RobotState {
   x: number;
   y: number;
@@ -31,16 +30,18 @@ interface SteamState {
   xp: number;
   isExecuting: boolean;
   hasCrashed: boolean;
-  robotPath: [number, number][]; // Rastro del camino del robot
+  robotPath: [number, number][];
   blocklyCode: string;
   showInstructions: boolean;
+  gameStatus: GameStatus;
   gameCompleted: boolean;
+  pendingAdvance: boolean;
   feedback: { show: boolean; type: 'success' | 'error'; message: string } | null;
   badge: { name: string } | null;
-  
-  // Actions
+
+  loadTasks: (tasks: SteamTask[]) => void;
   initialize: (taskId?: number) => void;
-  initializeGame: () => void;
+  resetAdventure: () => void;
   setBlocklyCode: (code: string) => void;
   executeCode: (code: string) => Promise<void>;
   resetCurrentTask: () => void;
@@ -50,48 +51,69 @@ interface SteamState {
   hideFeedback: () => void;
 }
 
-// --- Store ---
+const STEAM_BADGE = { name: 'Ingeniero Junior' };
+
 const useSteamStore = create<SteamState>()(
   persist(
     immer((set, get) => ({
-      // --- State ---
-      tasks: steamTasksData as SteamTask[],
+      tasks: [] as SteamTask[],
       currentTask: 0,
       robot: { x: 0, y: 0, dir: 'E' },
       lives: 3,
       xp: 0,
       isExecuting: false,
       hasCrashed: false,
-      robotPath: [], // Inicialmente vacío
+      robotPath: [],
       blocklyCode: '',
       showInstructions: true,
+      gameStatus: 'instructions',
       gameCompleted: false,
+      pendingAdvance: false,
       feedback: null,
       badge: null,
 
-      // --- Actions ---
+      loadTasks: (tasks) => {
+        set({ tasks });
+      },
+
       initialize: (taskId) => {
         const { tasks } = get();
         const taskIndex = taskId ?? get().currentTask;
         const task = tasks[taskIndex];
 
         if (task) {
-          set(state => {
+          set((state) => {
             state.currentTask = taskIndex;
-            state.robot = { 
-              x: task.board.start[0], 
-              y: task.board.start[1], 
-              dir: 'E' 
+            state.robot = {
+              x: task.board.start[0],
+              y: task.board.start[1],
+              dir: 'E',
             };
-            state.robotPath = []; // Resetear el camino al iniciar un nuevo task
+            state.robotPath = [];
           });
         }
       },
-      
+
+      resetAdventure: () => {
+        set((state) => {
+          state.currentTask = 0;
+          state.lives = 3;
+          state.xp = 0;
+          state.gameCompleted = false;
+          state.gameStatus = 'playing';
+          state.showInstructions = false;
+          state.badge = null;
+          state.pendingAdvance = false;
+          state.feedback = null;
+          state.robotPath = [];
+        });
+        get().initialize(0);
+      },
+
       setBlocklyCode: (code) => set({ blocklyCode: code }),
 
       executeCode: async (code) => {
-        set({ isExecuting: true, hasCrashed: false, robotPath: [] }); // Resetear el camino al empezar
+        set({ isExecuting: true, hasCrashed: false, robotPath: [] });
 
         const { tasks, currentTask } = get();
         const task = tasks[currentTask];
@@ -102,51 +124,40 @@ const useSteamStore = create<SteamState>()(
 
         let tempRobot = { ...get().robot };
         let hasCrashed = false;
-        const robotPath: [number, number][] = []; // Camino temporal
+        const robotPath: [number, number][] = [];
 
-        const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+        const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-        // --- API de funciones para el código de Blockly ---
         const api = {
           move: async (steps: number = 1) => {
             if (hasCrashed) return;
-            
-            // Mover paso a paso, mostrando cada movimiento
+
             for (let step = 0; step < steps; step++) {
-              // Calcular la nueva posición para este paso
-              let newX = tempRobot.x, newY = tempRobot.y;
+              let newX = tempRobot.x;
+              let newY = tempRobot.y;
               if (tempRobot.dir === 'N') newY--;
               if (tempRobot.dir === 'S') newY++;
               if (tempRobot.dir === 'W') newX--;
               if (tempRobot.dir === 'E') newX++;
 
-              // Verificar límites del tablero (6x6)
               if (newX < 0 || newX >= 6 || newY < 0 || newY >= 6) {
                 hasCrashed = true;
                 set({ hasCrashed: true });
-                await delay(1000); // Pausa para mostrar el crash
+                await delay(1000);
                 return;
               }
 
-              // Verificar colisión con muros
               if (task.board.walls.some(([wallX, wallY]) => wallX === newX && wallY === newY)) {
                 hasCrashed = true;
                 set({ hasCrashed: true });
-                await delay(1000); // Pausa para mostrar el crash
+                await delay(1000);
                 return;
               }
-              
-              // Actualizar la posición del robot paso a paso
+
               tempRobot = { ...tempRobot, x: newX, y: newY };
-              
-              // Agregar la nueva posición al camino
               robotPath.push([newX, newY]);
-              
-              // Actualizar el estado con el robot y el camino
               set({ robot: { ...tempRobot }, robotPath: [...robotPath] });
-              
-              // Pausa para mostrar el movimiento
-              await delay(1500); // Animación mucho más lenta para ver claramente cada movimiento
+              await delay(1500);
             }
           },
           turnLeft: async () => {
@@ -154,60 +165,63 @@ const useSteamStore = create<SteamState>()(
             const dirs: ('N' | 'E' | 'S' | 'W')[] = ['N', 'W', 'S', 'E'];
             tempRobot.dir = dirs[(dirs.indexOf(tempRobot.dir) + 1) % 4];
             set({ robot: { ...tempRobot } });
-            await delay(1200); // Animación más lenta para giros
+            await delay(1200);
           },
           turnRight: async () => {
             if (hasCrashed) return;
             const dirs: ('N' | 'E' | 'S' | 'W')[] = ['N', 'E', 'S', 'W'];
             tempRobot.dir = dirs[(dirs.indexOf(tempRobot.dir) + 1) % 4];
             set({ robot: { ...tempRobot } });
-            await delay(1200); // Animación más lenta para giros
+            await delay(1200);
           },
         };
 
-        // --- Ejecución segura del código ---
         try {
-          const func = new Function('move', 'turnLeft', 'turnRight', `return (async () => { ${code} })();`);
+          const func = new Function(
+            'move',
+            'turnLeft',
+            'turnRight',
+            `return (async () => { ${code} })();`
+          );
           await func(api.move, api.turnLeft, api.turnRight);
         } catch (error) {
-          console.error("Error ejecutando código de Blockly:", error);
+          console.error('Error ejecutando código de Blockly:', error);
           hasCrashed = true;
           set({ hasCrashed: true });
         }
 
-        // --- Verificación final ---
         if (hasCrashed) {
-          await delay(2000); // Pausa más larga para mostrar el crash
-          set(state => {
+          await delay(2000);
+          set((state) => {
             state.feedback = {
               show: true,
               type: 'error',
-              message: '¡El robot ha chocado! Intenta de nuevo.'
+              message: 'steam.feedback.crashed',
             };
           });
           get().loseLife();
         } else {
           const [goalX, goalY] = task.board.goal;
           const isSuccess = tempRobot.x === goalX && tempRobot.y === goalY;
-          
+
           if (isSuccess) {
-            await delay(1500); // Pausa más larga para celebrar el éxito
-            set(state => { 
+            await delay(1500);
+            set((state) => {
               state.xp += 100;
               state.feedback = {
                 show: true,
                 type: 'success',
-                message: '¡Excelente! Has completado el nivel.'
+                message: 'steam.feedback.levelComplete',
               };
+              state.pendingAdvance = true;
             });
-            get().nextTask();
           } else {
-            await delay(1500); // Pausa más larga para mostrar el error
-            set(state => {
+            await delay(1500);
+            set((state) => {
               state.feedback = {
                 show: true,
                 type: 'error',
-                message: '¡No has llegado a la meta! Intenta de nuevo.'
+                message: 'steam.feedback.missedGoal',
               };
             });
             get().loseLife();
@@ -218,48 +232,57 @@ const useSteamStore = create<SteamState>()(
       },
 
       resetCurrentTask: () => {
-        get().initialize(); // Re-inicializa el task actual
-        set({ robotPath: [] }); // Limpiar el camino
+        get().initialize();
+        set({ robotPath: [] });
       },
 
       nextTask: () => {
         const { tasks, currentTask } = get();
         if (currentTask < tasks.length - 1) {
+          set((state) => {
+            state.currentTask = currentTask + 1;
+            state.lives = 3;
+          });
           get().initialize(currentTask + 1);
         } else {
-          console.log("¡Juego completado!");
-          // Aquí se podría mostrar un modal o redirigir
+          set((state) => {
+            state.gameCompleted = true;
+            state.gameStatus = 'completed';
+            state.badge = STEAM_BADGE;
+          });
         }
       },
 
       loseLife: () => {
-        set(state => {
+        set((state) => {
           state.lives -= 1;
         });
         if (get().lives > 0) {
           get().resetCurrentTask();
         } else {
-          console.log("Game Over");
-          // Lógica de Game Over
-        }
-      },
-
-      initializeGame: () => {
-        if (typeof window !== 'undefined') {
-          get().initialize(0);
+          set((state) => {
+            state.gameStatus = 'failed';
+          });
         }
       },
 
       hideInstructions: () => {
-        set(state => {
+        set((state) => {
           state.showInstructions = false;
+          state.gameStatus = 'playing';
         });
+        get().initialize(0);
       },
 
       hideFeedback: () => {
-        set(state => {
+        const pending = get().pendingAdvance;
+        set((state) => {
           state.feedback = null;
+          state.pendingAdvance = false;
         });
+        if (pending) {
+          get().nextTask();
+        }
       },
     })),
     {
@@ -269,6 +292,10 @@ const useSteamStore = create<SteamState>()(
         currentTask: state.currentTask,
         lives: state.lives,
         xp: state.xp,
+        gameStatus: state.gameStatus,
+        gameCompleted: state.gameCompleted,
+        showInstructions: state.showInstructions,
+        badge: state.badge,
       }),
     }
   )

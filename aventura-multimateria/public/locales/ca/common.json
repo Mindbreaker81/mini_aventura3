@@ -1,19 +1,616 @@
 {
+  "common": {
+    "dashboard": "Tauler",
+    "newGame": "Nova partida",
+    "retry": "Torna-ho a provar",
+    "continue": "Continuar",
+    "play": "Jugar",
+    "start": "Començar",
+    "exit": "Sortir",
+    "correct": "Correcte!",
+    "next": "Següent",
+    "check": "Comprovar",
+    "true": "Vertader",
+    "false": "Fals",
+    "home": "Inici",
+    "backToHome": "Tornar a l'inici",
+    "xp": "XP",
+    "xpAccumulated": "{{count}} XP acumulats"
+  },
+  "dashboard": {
+    "title": "ExplorAventura 3",
+    "subtitle": "10 minijocs educatius per aprendre jugant",
+    "cta": "Tria un minijoc i comença l'aventura",
+    "footer": "© 2025 Edmundo Rosales Mayor"
+  },
+  "games": {
+    "puerto-palabras": {
+      "name": "Port de les Paraules",
+      "description": "Arrossega paraules a la seva categoria i practica ortografia.",
+      "subject": "Llengua"
+    },
+    "bosc-lectura": {
+      "name": "Bosc de Lectura",
+      "description": "Llegeix textos i respon preguntes per il·luminar el bosc!",
+      "subject": "Lectura"
+    },
+    "mercado-numeros": {
+      "name": "Mercat de Nombres",
+      "description": "Resol problemes de diners, temps i fraccions ajudant el botiguer.",
+      "subject": "Mates"
+    },
+    "mision-mapamundi-v2": {
+      "name": "Missió Mapamundi",
+      "description": "Practica geografia: continents, oceans o comunitats autònomes d'Espanya.",
+      "subject": "Geografia"
+    },
+    "desafio-steam": {
+      "name": "Repte STEAM",
+      "description": "Programa un robot explorador amb blocs visuals.",
+      "subject": "Programació"
+    },
+    "laboratorio-flip": {
+      "name": "Laboratori Flip-Ciència",
+      "description": "Aprèn ciència veient vídeos educatius i responent quiz.",
+      "subject": "Ciències"
+    },
+    "museo-tiempo": {
+      "name": "Museu del Temps",
+      "description": "Ordena esdeveniments històrics a la línia temporal del museu.",
+      "subject": "Història"
+    },
+    "fabrica-reciclaje": {
+      "name": "Fàbrica del Reciclatge",
+      "description": "Classifica residus als contenidors correctes i aprèn a reciclar.",
+      "subject": "Medi ambient"
+    },
+    "taller-ortografia": {
+      "name": "Taller d'Ortografia",
+      "description": "Completa frases triant la forma ortogràfica correcta.",
+      "subject": "Llengua"
+    },
+    "planetario": {
+      "name": "Planetari",
+      "description": "Ordena els planetes del Sistema Solar segons la distància al Sol.",
+      "subject": "Ciències"
+    }
+  },
   "bosc": {
     "completed": "Has completat el Bosc de Lectura!",
     "failed": "T'has quedat sense energia. Vols tornar-ho a intentar?",
-    "retry": "Torna-ho a intentar",
+    "retry": "Torna-ho a provar",
     "badge": "Guardabosc Expert",
     "heart": "cor",
     "next": "Següent",
     "check": "Comprova",
     "true": "Cert",
-    "false": "Fals"
+    "false": "Fals",
+    "instructions": {
+      "title": "Benvingut al Bosc de Lectura!",
+      "mission": "La teva missió: Llegeix els textos i respon les preguntes per il·luminar el bosc màgic.",
+      "howToPlay": "Com jugar?",
+      "step1": "Llegeix cada text amb molta atenció",
+      "step2": "Respon les preguntes sobre el que has llegit",
+      "step3": "Tens 5 cors d'energia",
+      "step4": "Si respons bé, guanyes punts!",
+      "step5": "Si falles, perds un cor",
+      "step6": "Completa tots els textos per aconseguir la medalla",
+      "tipsTitle": "Consells:",
+      "tip1": "Llegeix a poc a poc i amb atenció",
+      "tip2": "Fixa't en els detalls importants",
+      "tip3": "Algunes preguntes són de Cert/Fals",
+      "tip4": "Altres tenen diverses opcions per triar",
+      "heartsLabel": "Tens 5 cors",
+      "start": "Començar l'Aventura!"
+    },
+    "playing": {
+      "passageProgress": "{{current}}/{{total}}",
+      "errorPassage": "Error: dades del passatge no disponibles",
+      "errorQuestion": "Error: pregunta no disponible"
+    }
   },
-  "exit": "Sortir",
-  "correct": "Correcte!",
-  "bosc-lectura": {
-    "id": "bosc-lectura",
-    "name": "Bosc de Lectura"
+  "puerto": {
+    "instructions": {
+      "title": "Benvingut al Port de les Paraules!",
+      "mission": "La teva missió: Ajuda a reparar el vaixell col·locant cada paraula a la categoria correcta.",
+      "howToPlay": "Com jugar?",
+      "step1": "Arrossega les paraules blaves cap a les caixes de colors",
+      "step2": "Cada paraula pertany a una categoria gramatical",
+      "step3": "Si encertes, reps una part del vaixell!",
+      "step4": "Si no encertes, torna-ho a provar",
+      "step5": "Repara 6 parts per completar el vaixell",
+      "start": "Començar a Reparar el Vaixell!"
+    },
+    "completed": {
+      "title": "Vaixell reparat!",
+      "badge": "🏅 Mestre del Port"
+    },
+    "playing": {
+      "ship": "Vaixell:",
+      "words": "Paraules",
+      "feedbackCorrect": "Molt bé! Has col·locat la paraula a la categoria correcta.",
+      "feedbackRetry": "Torna-ho a provar!"
+    },
+    "categories": {
+      "sustantivo": "Substantiu",
+      "verbo": "Verb",
+      "adjetivo": "Adjectiu",
+      "adverbio": "Adverbi",
+      "preposición": "Preposició",
+      "conjunción": "Conjunció"
+    }
+  },
+  "mercado": {
+    "instructions": {
+      "title": "Benvingut al Mercat de Nombres!",
+      "mission": "La teva missió: Ajuda el botiguer resolent problemes de matemàtiques per omplir les cistelles de la compra.",
+      "howToPlay": "Com jugar?",
+      "step1": "Resol problemes de diners, temps i fraccions",
+      "step2": "Cada encert omple una cistella de la compra",
+      "step3": "Tens 3 cors — no els perdis tots!",
+      "step4": "Completa 8 cistelles per guanyar",
+      "step5": "Si no perds cap cor, aconsegueixes medalla especial!",
+      "problemTypes": "Tipus de problemes:",
+      "money": "Diners",
+      "moneyDesc": "Paga amb monedes i bitllets",
+      "time": "Temps",
+      "timeDesc": "Calcula hores i minuts",
+      "fractions": "Fraccions",
+      "fractionsDesc": "Divideix i compta parts",
+      "basketsGoal": "8 cistelles per omplir",
+      "hearts": "3 cors",
+      "start": "Començar al Mercat!"
+    },
+    "completed": {
+      "title": "Felicitats!",
+      "baskets": "Has omplert {{count}} cistelles de la compra",
+      "xp": "Has guanyat {{count}} XP",
+      "badge": "Mestre Moneder!",
+      "badgeDesc": "Has completat tots els reptes sense perdre cors",
+      "playAgain": "Jugar de Nou"
+    },
+    "failed": {
+      "title": "Oh no!",
+      "noHearts": "T'has quedat sense cors",
+      "baskets": "Has omplert {{count}} cistelles de la compra",
+      "xp": "Has guanyat {{count}} XP",
+      "encourage": "No et preocupis! Pots tornar-ho a intentar.",
+      "retry": "Tornar-ho a Provar"
+    },
+    "playing": {
+      "baskets": "Cistelles: {{current}} / {{total}}",
+      "loading": "Carregant repte...",
+      "allDone": "Tots els reptes completats!",
+      "unknownType": "Tipus de repte no reconegut",
+      "challengeProgress": "Repte {{current}} de {{total}}",
+      "correct": "Correcte!",
+      "tryAgain": "Torna-ho a provar!",
+      "nextChallenge": "Següent Repte",
+      "retryChallenge": "Tornar-ho a Provar",
+      "typePayment": "💰 Problema de Diners",
+      "typeTime": "⏰ Problema de Temps",
+      "typeFraction": "🍰 Problema de Fraccions"
+    },
+    "challenge": {
+      "payment": {
+        "price": "Preu:",
+        "selectCoins": "Selecciona monedes i bitllets:",
+        "bill": "bitllet",
+        "currentPayment": "El teu pagament actual:",
+        "selectHint": "Selecciona monedes i bitllets a dalt",
+        "removeCoin": "Eliminar moneda",
+        "total": "Total:",
+        "exactAmount": "Quantitat exacta!",
+        "overpaid": "T'has passat per {{amount}}",
+        "missing": "Falten {{amount}}",
+        "pay": "Pagar"
+      },
+      "time": {
+        "clockAria": "Rellotge analògic que marca les {{time}}",
+        "currentTime": "Hora actual:",
+        "timeLeft": "Quant temps falta?",
+        "tipTitle": "Consell:",
+        "tip": "Per calcular el temps que falta, compta les hores i minuts des de l'hora actual fins a l'hora de tancament. Recorda que cada hora té 60 minuts.",
+        "confirm": "Confirmar Resposta"
+      },
+      "fraction": {
+        "visualization": "Visualització:",
+        "yourAnswer": "La teva resposta:",
+        "decrease": "Disminuir resposta",
+        "increase": "Augmentar resposta",
+        "adjustHint": "Usa els botons + i - per ajustar la resposta",
+        "tipTitle": "Consell:",
+        "tip": "Una fracció com ½ vol dir «1 part de 2 parts iguals». Per sumar fraccions iguals: ¼ + ¼ = 2/4 = ½",
+        "confirm": "Confirmar Resposta"
+      }
+    },
+    "feedback": {
+      "paymentExact": "Perfecte! Has pagat exactament {{amount}}",
+      "timeCorrect": "Correcte! Has calculat bé el temps restant.",
+      "fractionCorrect": "Excel·lent! Has resolt la fracció correctament.",
+      "incorrect": "No és correcte. {{explanation}}"
+    }
+  },
+  "steam": {
+    "title": "Repte STEAM",
+    "instructions": {
+      "title": "Benvingut al Repte STEAM!",
+      "subtitle": "Programa un robot explorador amb blocs visuals",
+      "missionTitle": "La teva missió:",
+      "mission": "Programa el robot per arribar a la meta evitant obstacles en un tauler 6×6.",
+      "howToPlayTitle": "Com jugar:",
+      "step1": "Arrossega blocs d'«avançar», «girar esquerra» i «girar dreta»",
+      "step2": "Usa bucles «repetir» per optimitzar el codi",
+      "step3": "Respecta el límit de blocs de cada nivell",
+      "step4": "El robot té 3 vides per nivell!",
+      "goalTitle": "Objectiu:",
+      "goal": "Completa els 6 reptes per obtenir +140 XP i la insígnia d'Enginyer Junior.",
+      "back": "Tornar",
+      "start": "Començar a Programar!"
+    },
+    "failed": {
+      "title": "Sense vides!",
+      "subtitle": "El robot necessita més intents. No et rendeixis!",
+      "reset": "Reiniciar aventura"
+    },
+    "completed": {
+      "title": "Felicitats!",
+      "subtitle": "Has completat tots els reptes STEAM",
+      "earned": "Has obtingut:",
+      "badge": "Insígnia:",
+      "xpTotal": "XP total:",
+      "points": "{{count}} punts",
+      "praise": "Excel·lent feina programant el robot!",
+      "newAdventure": "Nova aventura",
+      "backDashboard": "Tornar al Tauler"
+    },
+    "playing": {
+      "badgeEarned": "Insígnia obtinguda",
+      "levelProgress": "Nivell {{current}} / {{total}}",
+      "blocks": "Blocs:",
+      "reset": "Reiniciar",
+      "executing": "Executant...",
+      "run": "Executar",
+      "levelTitle": "Nivell {{level}}: {{name}}",
+      "maxBlocks": "Màxim blocs: {{count}}",
+      "executingCode": "Executant codi...",
+      "crashed": "El robot ha xocat!",
+      "feedbackSuccess": "Excel·lent!",
+      "feedbackFail": "Ups!"
+    },
+    "feedback": {
+      "crashed": "El robot ha xocat! Torna-ho a provar.",
+      "levelComplete": "Excel·lent! Has completat el nivell.",
+      "missedGoal": "No has arribat a la meta! Torna-ho a provar."
+    },
+    "blockly": {
+      "maxBlocks": "Usa com a màxim {{max}} blocs! Actualment n'uses {{count}}.",
+      "addBlocks": "Afegeix alguns blocs per programar el robot!"
+    }
+  },
+  "flip": {
+    "title": "Laboratori Flip-Ciència",
+    "instructions": {
+      "title": "Benvingut al Laboratori Flip-Ciència!",
+      "subtitle": "Aprèn ciència veient vídeos i responent quiz",
+      "missionTitle": "La teva missió:",
+      "mission": "Completa 4 experiments científics veient vídeos educatius i responent preguntes.",
+      "howTitle": "Com funciona:",
+      "step1": "Mira un vídeo científic d'uns 90 segons",
+      "step2": "Respon 3 preguntes sobre el contingut",
+      "step3": "Obtén almenys 2 respostes correctes",
+      "step4": "Guanya peces per completar el teu experiment virtual",
+      "rewardsTitle": "Recompenses:",
+      "reward1": "+8 XP per cada resposta correcta",
+      "reward2": "+10 XP extra per completar cada lliçó",
+      "reward3": "Peces de l'experiment: 🧪 🟦 🟨 🔥",
+      "reward4": "Badge «Científic Novell» en completar-ho tot",
+      "back": "Tornar",
+      "start": "Començar Experiments!"
+    },
+    "completed": {
+      "title": "Experiment Completat!",
+      "subtitle": "Has completat tots els experiments científics",
+      "virtualExp": "El teu Experiment Virtual:",
+      "reaction": "REACCIÓ EXITOSA!",
+      "reactionDesc": "Has combinat tots els elements correctament!",
+      "earned": "Has obtingut:",
+      "badgeName": "Científic Novell",
+      "experiments": "4/4 completats",
+      "praise": "Excel·lent feina aprenent ciència!",
+      "backDashboard": "Tornar al Tauler"
+    },
+    "playing": {
+      "experiments": "{{current}}/4 experiments",
+      "pieces": "{{current}}/4 peces",
+      "badgeEarned": "Badge obtingut",
+      "virtualExp": "El teu Experiment Virtual",
+      "startQuiz": "Començar Quiz",
+      "quizLocked": "Quiz bloquejat",
+      "quizLockedDesc": "Primer has de veure el vídeo complet per desbloquejar el quiz.",
+      "feedbackSuccess": "Excel·lent!",
+      "feedbackFail": "Ups!"
+    },
+    "quiz": {
+      "title": "Quiz: {{title}}",
+      "questionsCount": "3 preguntes",
+      "minCorrect": "Mínim 2 correctes per continuar",
+      "questionN": "Pregunta {{n}}",
+      "progress": "Progrés del quiz",
+      "answered": "{{count}}/3 respostes",
+      "submit": "Comprovar respostes",
+      "answerAll": "Respon totes les preguntes",
+      "reminderTitle": "Recordatori:",
+      "reminder": "Si no recordes alguna resposta, pots tornar a veure el vídeo. Necessites almenys 2 respostes correctes per obtenir una peça de l'experiment."
+    },
+    "video": {
+      "completed": "Vídeo completat",
+      "playAria": "Reproduir vídeo: {{title}}",
+      "clickToPlay": "Fes clic per reproduir",
+      "loadError": "No s'ha pogut carregar el vídeo",
+      "loadErrorHint": "Comprova la teva connexió a internet o torna-ho a provar.",
+      "openYoutube": "Obrir a YouTube",
+      "videoHelp": "Problemes per veure el vídeo?",
+      "openYoutubeDirect": "Obre'l directament a YouTube",
+      "aboutLesson": "Sobre aquesta lliçó:",
+      "afterVideo": "En acabar el vídeo, respondràs 3 preguntes sobre el contingut.",
+      "readyForQuiz": "A punt per al quiz!",
+      "continueToQuiz": "Continua al quiz",
+      "skipToQuiz": "Anar al quiz (sense veure el vídeo)",
+      "defaultChannel": "Canal Educatiu",
+      "defaultDescription": "Vídeo educatiu sobre {{title}}"
+    },
+    "feedback": {
+      "success": "Excel·lent! Has obtingut {{count}}/3 respostes correctes.",
+      "pieceAdded": "Has afegit una peça a l'experiment: {{name}} {{icon}}",
+      "fail": "Has obtingut {{count}}/3 respostes correctes. Necessites almenys 2 per continuar.",
+      "retryHint": "Torna a veure el vídeo i repeteix el quiz.",
+      "answerAll": "Si us plau, respon totes les preguntes abans de continuar."
+    }
+  },
+  "mapamundi": {
+    "title": "Missió Mapamundi v2",
+    "chooseMission": "Tria la teva missió geogràfica!",
+    "intro": "Selecciona què vols practicar: continents, oceans o comunitats autònomes d'Espanya. Cada encert et donarà un segell al teu passaport.",
+    "questions": "{{count}} preguntes",
+    "lives": "5 vides",
+    "footer": "Cada encert: +12 XP • Completar missió: +100 XP + Badge",
+    "backToMode": "Tornar a la selecció de mode",
+    "backToSelector": "Tornar al Selector",
+    "modes": {
+      "continent": {
+        "label": "Continents",
+        "description": "Localitza els 7 continents del món",
+        "badge": "🌍 Explorador de Continents"
+      },
+      "ocean": {
+        "label": "Oceans",
+        "description": "Identifica els 5 oceans principals",
+        "badge": "🌊 Explorador d'Oceans"
+      },
+      "ccaa": {
+        "label": "Comunitats d'Espanya",
+        "description": "Localitza les 17 comunitats autònomes",
+        "badge": "🇪🇸 Explorador d'Espanya"
+      }
+    },
+    "invalidMode": {
+      "title": "Mode no vàlid",
+      "description": "El mode «{{mode}}» no està disponible.",
+      "hint": "Els modes disponibles són: Continents, Oceans i Comunitats d'Espanya."
+    },
+    "playing": {
+      "selector": "Selector",
+      "questionProgress": "Pregunta {{current}} de {{total}}",
+      "typeContinent": "🌍 Continent",
+      "typeOcean": "🌊 Oceà",
+      "typeCcaa": "🇪🇸 Comunitat Autònoma",
+      "verifying": "Verificant...",
+      "confirmSelection": "Confirmar Selecció",
+      "missionComplete": "Missió Completada!",
+      "missionCompleteDesc": "Has completat totes les preguntes de {{badge}}",
+      "rewards": "Recompenses:",
+      "correctAnswers": "Encerts:",
+      "bonus": "Bonus:",
+      "totalXp": "XP total:",
+      "saveProgress": "Desar Progrés",
+      "gameOver": "Game Over!",
+      "gameOverDesc": "T'has quedat sense vides. Torna-ho a provar!",
+      "progressLabel": "Progrés:",
+      "progressQuestions": "Has completat {{current}} de {{total}} preguntes",
+      "feedbackCorrect": "Correcte! {{explanation}}",
+      "feedbackIncorrect": "Incorrecte. {{explanation}}"
+    },
+    "passport": {
+      "continent": "Passaport de Continents",
+      "ocean": "Passaport d'Oceans",
+      "ccaa": "Passaport d'Espanya",
+      "progress": "Progrés: {{current}} de {{total}} segells",
+      "next": "Pròxim",
+      "completed": "🎉 Passaport completat! Missió complerta!",
+      "remaining": "Excel·lent progrés! {{count}} segells restants",
+      "start": "Comença la teva aventura! Fes clic a les regions correctes per guanyar segells"
+    },
+    "maps": {
+      "loadingWorld": "Carregant mapa mundial...",
+      "loadingSpain": "Carregant mapa d'Espanya...",
+      "offlineTitle": "El mapa necessita connexió a internet",
+      "offlineHint": "Comprova la teva connexió i torna-ho a provar.",
+      "retry": "Torna-ho a provar",
+      "clickContinent": "🌍 Fes clic al continent",
+      "clickOcean": "🌊 Fes clic a l'oceà",
+      "ocean": "Oceà",
+      "region": "Regió",
+      "community": "Comunitat Autònoma",
+      "legendOceans": "Oceans",
+      "legendClickPoints": "Punts clicables",
+      "legendSelected": "Seleccionat",
+      "legendRegions": "Regions",
+      "instructions": "Instruccions:",
+      "oceanHint": "Fes clic al punt blau de l'oceà correcte per seleccionar-lo.",
+      "regionHint": "Fes clic a la regió correcta del mapa i després confirma la selecció."
+    }
+  },
+  "reciclaje": {
+    "instructions": {
+      "title": "Benvingut a la Fàbrica del Reciclatge!",
+      "mission": "La teva missió: classifica cada residu al contenidor correcte per completar la cadena de reciclatge.",
+      "howToPlay": "Com jugar?",
+      "step1": "Arrossega els objectes cap als contenidors de colors",
+      "step2": "Cada residu va a un contenidor segons el seu material",
+      "step3": "Si encertes, avances a la cadena de reciclatge",
+      "step4": "Si no encertes, llegeix la regla i torna-ho a provar",
+      "step5": "Classifica 8 residus per guanyar",
+      "start": "Comença a reciclar!"
+    },
+    "completed": {
+      "title": "Cadena de reciclatge completada!",
+      "badge": "🏅 Eco-Hèroe Junior"
+    },
+    "playing": {
+      "progress": "Reciclats:",
+      "items": "Residus",
+      "feedbackCorrect": "Molt bé! Has classificat el residu correctament.",
+      "feedbackRetry": "Torna-ho a provar!"
+    },
+    "bins": {
+      "amarillo": "Groc (envasos)",
+      "azul": "Blau (paper)",
+      "verde": "Verd (vidre)",
+      "marron": "Marró (orgànic)",
+      "organico": "Orgànic (jardí)"
+    }
+  },
+  "ortografia": {
+    "instructions": {
+      "title": "Benvingut al Taller d'Ortografia!",
+      "mission": "La teva missió: completa les frases triant la paraula ben escrita.",
+      "howToPlay": "Com jugar?",
+      "step1": "Llegeix la frase amb el buit (___)",
+      "step2": "Tria l'opció ortogràficament correcta",
+      "step3": "Tens 5 cors — cuida'ls!",
+      "step4": "Respon 8 preguntes per guanyar",
+      "step5": "Si completes sense perdre cors, aconsegueixes medalla!",
+      "heartsLabel": "5 cors",
+      "start": "Comença el taller!"
+    },
+    "completed": {
+      "title": "Taller completat!",
+      "badge": "Mestre de l'Ortografia"
+    },
+    "failed": {
+      "title": "T'has quedat sense cors"
+    },
+    "playing": {
+      "choose": "Tria la resposta correcta:",
+      "check": "Comprova",
+      "next": "Següent",
+      "feedbackCorrect": "Correcte!",
+      "feedbackWrong": "Incorrecte. Revisa la regla:"
+    }
+  },
+  "planetario": {
+    "title": "Planetari",
+    "chooseMission": "Tria la teva missió espacial!",
+    "intro": "Ordena planetes del Sistema Solar o fites de l'exploració espacial.",
+    "backToMode": "Tornar al selector",
+    "cards": "{{count}} targetes",
+    "lives": "3 cors",
+    "orbit": "Òrbita (del Sol cap a fora)",
+    "pool": "Planetes per ordenar",
+    "emptySlot": "Arrossega aquí",
+    "checkOrder": "Comprovar ordre",
+    "invalidMode": {
+      "title": "Mode no vàlid",
+      "description": "El mode «{{mode}}» no existeix al Planetari.",
+      "hint": "Tria «planetas» o «exploracion» des del selector."
+    },
+    "modes": {
+      "planetas": {
+        "label": "Sistema Solar",
+        "description": "Ordena els 8 planetes segons la distància al Sol.",
+        "badge": "🏅 Astrònom Junior",
+        "orbit": "Òrbita (del Sol cap a fora)",
+        "pool": "Planetes per ordenar",
+        "instructions": {
+          "title": "Benvingut al Planetari!",
+          "mission": "La teva missió: ordena 8 planetes segons la distància al Sol.",
+          "step1": "Llegeix cada targeta amb el seu planeta.",
+          "step2": "Arrossega els planetes a l'òrbita (1 = més proper al Sol).",
+          "step3": "Quan estiguin els 8, prem «Comprovar ordre».",
+          "step4": "Tens 3 cors. Bona sort!",
+          "start": "Comença l'exploració!"
+        },
+        "completed": { "title": "Sistema Solar ordenat!" }
+      },
+      "exploracion": {
+        "label": "Exploració espacial",
+        "description": "Ordena 8 fites cronològiques de la conquista de l'espai.",
+        "badge": "🏅 Explorador Espacial",
+        "orbit": "Línia temporal (de més antic a recent)",
+        "pool": "Fites per ordenar",
+        "instructions": {
+          "title": "Missió d'exploració!",
+          "mission": "Ordena 8 fites de l'exploració espacial en ordre cronològic.",
+          "step1": "Llegeix cada targeta amb la seva fita.",
+          "step2": "Arrossega les fites a la línia temporal (1 = més antic).",
+          "step3": "Quan estiguin les 8, prem «Comprovar ordre».",
+          "step4": "Tens 3 cors. Bona sort!",
+          "start": "Comença la missió!"
+        },
+        "completed": { "title": "Exploració espacial ordenada!" }
+      }
+    },
+    "instructions": {
+      "title": "Benvingut al Planetari!",
+      "mission": "La teva missió: ordena 8 planetes segons la distància al Sol.",
+      "step1": "Llegeix cada targeta amb el seu planeta.",
+      "step2": "Arrossega els planetes a l'òrbita (1 = més proper al Sol).",
+      "step3": "Quan estiguin els 8, prem «Comprovar ordre».",
+      "step4": "Tens 3 cors. Bona sort!",
+      "start": "Comença l'exploració!"
+    },
+    "completed": {
+      "title": "Sistema Solar ordenat!",
+      "badge": "🏅 Astrònom Junior"
+    },
+    "failed": {
+      "title": "S'han acabat els intents"
+    },
+    "feedback": {
+      "incomplete": "Col·loca les {{count}} targetes abans de comprovar.",
+      "completed": "Perfecte! Ho has ordenat correctament.",
+      "wrongOrder": "L'ordre no és correcte. Revisa-ho i torna-ho a provar.",
+      "failed": "Has esgotat els teus cors. Torna-ho a intentar!"
+    }
+  },
+  "museo": {
+    "title": "Museu del Temps",
+    "timeline": "Línia temporal",
+    "pool": "Esdeveniments per ordenar",
+    "emptySlot": "Arrossega aquí",
+    "checkOrder": "Comprovar ordre",
+    "instructions": {
+      "title": "Benvingut al Museu del Temps!",
+      "mission": "La teva missió: col·loca 8 esdeveniments històrics en ordre cronològic.",
+      "step1": "Llegeix cada targeta amb la seva data.",
+      "step2": "Arrossega els esdeveniments a la línia temporal (1 = més antic).",
+      "step3": "Quan hi hagi els 8, prem «Comprovar ordre».",
+      "step4": "Tens 3 cors. Bona sort!",
+      "start": "Començar la visita!"
+    },
+    "completed": {
+      "title": "Línia temporal completada!",
+      "badge": "🏅 Historiador Junior"
+    },
+    "failed": {
+      "title": "S'han acabat els intents"
+    },
+    "feedback": {
+      "incomplete": "Col·loca els 8 esdeveniments abans de comprovar.",
+      "completed": "Perfecte! Has ordenat la història correctament.",
+      "wrongOrder": "L'ordre no és correcte. Revisa les dates i torna-ho a provar.",
+      "failed": "Has esgotat els cors. Torna-ho a intentar!"
+    }
   }
 }

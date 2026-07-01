@@ -7,107 +7,71 @@ const palabrasPrueba: PuertoWord[] = [
   { word: 'grande', category: 'adjetivo', rule: 'Describe una cualidad' },
   { word: 'rápidamente', category: 'adverbio', rule: 'Modifica un verbo' },
   { word: 'sobre', category: 'preposición', rule: 'Enlaza elementos' },
+  { word: 'pero', category: 'conjunción', rule: 'Palabra simple' },
+  { word: 'barco', category: 'sustantivo', rule: 'B al inicio' },
+  { word: 'nadar', category: 'verbo', rule: 'N inicial' },
 ];
 
 describe('usePuertoPalabrasStore', () => {
   beforeEach(() => {
-    usePuertoPalabrasStore.getState().reset();
+    localStorage.clear();
+    usePuertoPalabrasStore.getState().resetGame();
+    usePuertoPalabrasStore.getState().loadWords(palabrasPrueba);
+    usePuertoPalabrasStore.setState({ roundWords: palabrasPrueba, showInstructions: false, gameStatus: 'playing' });
   });
 
-  describe('loadWords - inicialización del juego', () => {
-    it('establece el estado inicial correctamente al cargar palabras', () => {
-      usePuertoPalabrasStore.getState().loadWords(palabrasPrueba);
-      const state = usePuertoPalabrasStore.getState();
-
-      expect(state.words).toHaveLength(5);
-      expect(state.roundWords.length).toBeLessThanOrEqual(10);
-      expect(state.roundWords.length).toBeGreaterThan(0);
-      expect(state.assigned).toEqual({});
-      expect(state.repaired).toBe(0);
-      expect(state.xp).toBe(0);
-      expect(state.badge).toBe(false);
-      expect(state.feedback).toBeNull();
-    });
-
-    it('deduplica palabras repetidas', () => {
-      const conDuplicados: PuertoWord[] = [
-        ...palabrasPrueba,
-        { word: 'gato', category: 'sustantivo', rule: 'Es un nombre de animal' },
-      ];
-      usePuertoPalabrasStore.getState().loadWords(conDuplicados);
-      const state = usePuertoPalabrasStore.getState();
-
-      expect(state.words).toHaveLength(5);
-    });
-  });
-
-  describe('assignWord - asignar palabra a categoría', () => {
-    beforeEach(() => {
-      // Cargar palabras y forzar un set conocido de roundWords
-      usePuertoPalabrasStore.getState().loadWords(palabrasPrueba);
-      usePuertoPalabrasStore.setState({ roundWords: palabrasPrueba });
-    });
-
-    it('otorga XP al asignar una palabra a la categoría correcta', () => {
+  describe('assignWord', () => {
+    it('otorga XP al acierto', () => {
       usePuertoPalabrasStore.getState().assignWord('gato', 'sustantivo');
       const state = usePuertoPalabrasStore.getState();
-
       expect(state.xp).toBe(10);
       expect(state.repaired).toBe(1);
-      expect(state.feedback).toEqual({
-        word: 'gato',
-        correct: true,
-        rule: 'Es un nombre de animal',
-      });
-      expect(state.assigned['gato']).toBe('sustantivo');
+      expect(state.correctWords).toContain('gato');
     });
 
-    it('no otorga XP al asignar una palabra a la categoría incorrecta', () => {
+    it('no otorga XP en error y permite reintento', () => {
       usePuertoPalabrasStore.getState().assignWord('gato', 'verbo');
       const state = usePuertoPalabrasStore.getState();
-
       expect(state.xp).toBe(0);
       expect(state.repaired).toBe(0);
-      expect(state.feedback).toEqual({
-        word: 'gato',
-        correct: false,
-        rule: 'Es un nombre de animal',
+      expect(state.assigned['gato']).toBeUndefined();
+    });
+
+    it('no duplica XP al reasignar palabra ya correcta', () => {
+      usePuertoPalabrasStore.getState().assignWord('gato', 'sustantivo');
+      usePuertoPalabrasStore.getState().assignWord('gato', 'sustantivo');
+      expect(usePuertoPalabrasStore.getState().xp).toBe(10);
+      expect(usePuertoPalabrasStore.getState().repaired).toBe(1);
+    });
+
+    it('completa el juego al alcanzar 6 aciertos', () => {
+      const words = [
+        ['gato', 'sustantivo'],
+        ['correr', 'verbo'],
+        ['grande', 'adjetivo'],
+        ['rápidamente', 'adverbio'],
+        ['sobre', 'preposición'],
+        ['pero', 'conjunción'],
+      ] as const;
+
+      words.forEach(([word, cat]) => {
+        usePuertoPalabrasStore.getState().assignWord(word, cat);
       });
-      expect(state.assigned['gato']).toBe('verbo');
-    });
 
-    it('acumula XP con múltiples respuestas correctas', () => {
-      usePuertoPalabrasStore.getState().assignWord('gato', 'sustantivo');
-      usePuertoPalabrasStore.getState().assignWord('correr', 'verbo');
       const state = usePuertoPalabrasStore.getState();
-
-      expect(state.xp).toBe(20);
-      expect(state.repaired).toBe(2);
+      expect(state.gameStatus).toBe('completed');
+      expect(state.badge).toBe(true);
+      expect(state.repaired).toBe(6);
     });
   });
 
-  describe('startGame - iniciar partida', () => {
-    it('oculta las instrucciones al iniciar', () => {
-      const state = usePuertoPalabrasStore.getState();
-      expect(state.showInstructions).toBe(true);
-
+  describe('startGame', () => {
+    it('oculta instrucciones y pasa a playing', () => {
+      usePuertoPalabrasStore.setState({ showInstructions: true, gameStatus: 'instructions' });
       usePuertoPalabrasStore.getState().startGame();
-      expect(usePuertoPalabrasStore.getState().showInstructions).toBe(false);
-    });
-  });
-
-  describe('reset - reiniciar juego', () => {
-    it('reinicia el estado del juego', () => {
-      usePuertoPalabrasStore.getState().loadWords(palabrasPrueba);
-      usePuertoPalabrasStore.setState({ roundWords: palabrasPrueba });
-      usePuertoPalabrasStore.getState().assignWord('gato', 'sustantivo');
-      usePuertoPalabrasStore.getState().reset();
-
       const state = usePuertoPalabrasStore.getState();
-      expect(state.xp).toBe(0);
-      expect(state.repaired).toBe(0);
-      expect(state.assigned).toEqual({});
-      expect(state.feedback).toBeNull();
+      expect(state.showInstructions).toBe(false);
+      expect(state.gameStatus).toBe('playing');
     });
   });
 });

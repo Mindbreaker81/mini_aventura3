@@ -7,6 +7,7 @@ import { GameMode } from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from "../../../components/I18nProvider";
 
 const validModes: GameMode[] = ['continent', 'ocean', 'ccaa'];
 
@@ -15,6 +16,7 @@ function isValidMode(mode: string): mode is GameMode {
 }
 
 export default function GamePage() {
+  const { t } = useTranslation('common');
   const params = useParams();
   const mode = params.mode as string;
 
@@ -25,21 +27,21 @@ export default function GamePage() {
         <Card className="max-w-md w-full shadow-xl border-0 text-center">
           <CardHeader>
             <div className="text-5xl mb-2">🚫</div>
-            <CardTitle className="text-2xl text-red-800">Modo no válido</CardTitle>
+            <CardTitle className="text-2xl text-red-800">{t('mapamundi.invalidMode.title')}</CardTitle>
             <CardDescription className="text-red-600">
-              El modo &quot;{mode}&quot; no está disponible.
+              {t('mapamundi.invalidMode.description', { mode })}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-gray-600 text-sm">
-              Los modos disponibles son: Continentes, Océanos y Comunidades de España.
+              {t('mapamundi.invalidMode.hint')}
             </p>
           </CardContent>
           <CardFooter className="justify-center">
             <Button variant="outline" size="lg" asChild>
               <Link href="/world/mision-mapamundi-v2" className="gap-2">
                 <ArrowLeft size={18} />
-                Volver a selección de modo
+                {t('mapamundi.backToMode')}
               </Link>
             </Button>
           </CardFooter>

@@ -1,4 +1,80 @@
 {
+  "common": {
+    "dashboard": "Dashboard",
+    "newGame": "Nueva partida",
+    "retry": "Reintentar",
+    "continue": "Continuar",
+    "play": "Jugar",
+    "start": "Empezar",
+    "exit": "Salir",
+    "correct": "¡Correcto!",
+    "next": "Siguiente",
+    "check": "Comprobar",
+    "true": "Verdadero",
+    "false": "Falso",
+    "home": "Inicio",
+    "backToHome": "Volver al Inicio",
+    "xp": "XP",
+    "xpAccumulated": "{{count}} XP acumulados"
+  },
+  "dashboard": {
+    "title": "ExplorAventura 3",
+    "subtitle": "10 minijuegos educativos para aprender jugando",
+    "cta": "Elige un minijuego y empieza tu aventura",
+    "footer": "© 2025 Edmundo Rosales Mayor"
+  },
+  "games": {
+    "puerto-palabras": {
+      "name": "Puerto de las Palabras",
+      "description": "Arrastra palabras a su categoría y practica ortografía.",
+      "subject": "Lengua"
+    },
+    "bosc-lectura": {
+      "name": "Bosc de Lectura",
+      "description": "Llegeix textos i respon preguntes per il·luminar el bosc!",
+      "subject": "Lectura"
+    },
+    "mercado-numeros": {
+      "name": "Mercado de Números",
+      "description": "Resuelve problemas de dinero, tiempo y fracciones ayudando al tendero.",
+      "subject": "Mates"
+    },
+    "mision-mapamundi-v2": {
+      "name": "Misión Mapamundi",
+      "description": "Practica geografía: continentes, océanos o comunidades autónomas de España.",
+      "subject": "Geografía"
+    },
+    "desafio-steam": {
+      "name": "Desafío STEAM",
+      "description": "Programa un robot explorador con bloques visuales y 6 LEDs.",
+      "subject": "Programación"
+    },
+    "laboratorio-flip": {
+      "name": "Laboratorio Flip-Ciencia",
+      "description": "Aprende ciencia viendo videos educativos y respondiendo quiz interactivos.",
+      "subject": "Ciencias"
+    },
+    "museo-tiempo": {
+      "name": "Museo del Tiempo",
+      "description": "Ordena eventos históricos en la línea temporal del museo.",
+      "subject": "Historia"
+    },
+    "fabrica-reciclaje": {
+      "name": "Fábrica del Reciclaje",
+      "description": "Clasifica residuos en los contenedores correctos y aprende a reciclar.",
+      "subject": "Medio ambiente"
+    },
+    "taller-ortografia": {
+      "name": "Taller de Ortografía",
+      "description": "Completa frases eligiendo la forma ortográfica correcta.",
+      "subject": "Lengua"
+    },
+    "planetario": {
+      "name": "Planetario",
+      "description": "Ordena los planetas del Sistema Solar según su distancia al Sol.",
+      "subject": "Ciencias"
+    }
+  },
   "bosc": {
     "completed": "¡Has completado el Bosque de Lectura!",
     "failed": "Te has quedado sin energía. ¿Quieres volver a intentarlo?",
@@ -8,13 +84,537 @@
     "next": "Siguiente",
     "check": "Comprobar",
     "true": "Verdadero",
-    "false": "Falso"
+    "false": "Falso",
+    "instructions": {
+      "title": "¡Bienvenido al Bosque de Lectura!",
+      "mission": "Tu misión: Lee los textos y responde las preguntas para iluminar el bosque mágico.",
+      "howToPlay": "¿Cómo jugar?",
+      "step1": "Lee cada texto con mucha atención",
+      "step2": "Responde las preguntas sobre lo que has leído",
+      "step3": "Tienes 5 corazones de energía",
+      "step4": "Si respondes bien, ¡ganas puntos!",
+      "step5": "Si fallas, pierdes un corazón",
+      "step6": "Completa todos los textos para conseguir la medalla",
+      "tipsTitle": "Consejos:",
+      "tip1": "Lee despacio y con atención",
+      "tip2": "Fíjate en los detalles importantes",
+      "tip3": "Algunas preguntas son de Verdadero/Falso",
+      "tip4": "Otras tienen varias opciones para elegir",
+      "heartsLabel": "Tienes 5 corazones",
+      "start": "¡Empezar la Aventura!"
+    },
+    "playing": {
+      "passageProgress": "{{current}}/{{total}}",
+      "errorPassage": "Error: datos del pasaje no disponibles",
+      "errorQuestion": "Error: pregunta no disponible"
+    }
   },
-  "exit": "Salir",
-  "correct": "¡Correcto!",
-  "bosc-lectura": {
-    "id": "bosc-lectura",
-    "name": "Bosque de Lectura",
-    "description": "Lee textos y responde preguntas para iluminar el bosque!"
+  "puerto": {
+    "instructions": {
+      "title": "¡Bienvenido al Puerto de las Palabras!",
+      "mission": "Tu misión: Ayuda a reparar el barco colocando cada palabra en su categoría correcta.",
+      "howToPlay": "¿Cómo jugar?",
+      "step1": "Arrastra las palabras azules hacia las cajas de colores",
+      "step2": "Cada palabra pertenece a una categoría gramatical",
+      "step3": "Si aciertas, ¡reparas una parte del barco!",
+      "step4": "Si no aciertas, inténtalo de nuevo",
+      "step5": "Repara 6 partes para completar el barco",
+      "start": "¡Empezar a Reparar el Barco!"
+    },
+    "completed": {
+      "title": "¡Barco reparado!",
+      "badge": "🏅 Maestro del Puerto"
+    },
+    "playing": {
+      "ship": "Barco:",
+      "words": "Palabras",
+      "feedbackCorrect": "¡Muy bien! Has colocado la palabra en la categoría correcta.",
+      "feedbackRetry": "¡Inténtalo de nuevo!"
+    },
+    "categories": {
+      "sustantivo": "Sustantivo",
+      "verbo": "Verbo",
+      "adjetivo": "Adjetivo",
+      "adverbio": "Adverbo",
+      "preposición": "Preposición",
+      "conjunción": "Conjunción"
+    }
+  },
+  "mercado": {
+    "instructions": {
+      "title": "¡Bienvenido al Mercado de Números!",
+      "mission": "Tu misión: Ayuda al tendero resolviendo problemas de matemáticas para llenar las cestas de la compra.",
+      "howToPlay": "¿Cómo jugar?",
+      "step1": "Resuelve problemas de dinero, tiempo y fracciones",
+      "step2": "Cada acierto llena una cesta de la compra",
+      "step3": "Tienes 3 corazones — ¡no los pierdas todos!",
+      "step4": "Completa 8 cestas para ganar",
+      "step5": "Si no pierdes ningún corazón, ¡consigues medalla especial!",
+      "problemTypes": "Tipos de problemas:",
+      "money": "Dinero",
+      "moneyDesc": "Paga con monedas y billetes",
+      "time": "Tiempo",
+      "timeDesc": "Calcula horas y minutos",
+      "fractions": "Fracciones",
+      "fractionsDesc": "Divide y cuenta partes",
+      "basketsGoal": "8 cestas por llenar",
+      "hearts": "3 corazones",
+      "start": "¡Empezar en el Mercado!"
+    },
+    "completed": {
+      "title": "¡Felicitaciones!",
+      "baskets": "Has llenado {{count}} cestas de la compra",
+      "xp": "Has ganado {{count}} XP",
+      "badge": "¡Maestro Monedero!",
+      "badgeDesc": "Completaste todos los retos sin perder corazones",
+      "playAgain": "Jugar de Nuevo"
+    },
+    "failed": {
+      "title": "¡Oh no!",
+      "noHearts": "Te has quedado sin corazones",
+      "baskets": "Llenaste {{count}} cestas de la compra",
+      "xp": "Ganaste {{count}} XP",
+      "encourage": "¡No te preocupes! Puedes intentarlo de nuevo.",
+      "retry": "Intentar de Nuevo"
+    },
+    "playing": {
+      "baskets": "Cestas: {{current}} / {{total}}",
+      "loading": "Cargando desafío...",
+      "allDone": "¡Todos los desafíos completados!",
+      "unknownType": "Tipo de desafío no reconocido",
+      "challengeProgress": "Desafío {{current}} de {{total}}",
+      "correct": "¡Correcto!",
+      "tryAgain": "¡Inténtalo de nuevo!",
+      "nextChallenge": "Siguiente Desafío",
+      "retryChallenge": "Intentar de Nuevo",
+      "typePayment": "💰 Problema de Dinero",
+      "typeTime": "⏰ Problema de Tiempo",
+      "typeFraction": "🍰 Problema de Fracciones"
+    },
+    "challenge": {
+      "payment": {
+        "price": "Precio:",
+        "selectCoins": "Selecciona monedas y billetes:",
+        "bill": "billete",
+        "currentPayment": "Tu pago actual:",
+        "selectHint": "Selecciona monedas y billetes arriba",
+        "removeCoin": "Eliminar moneda",
+        "total": "Total:",
+        "exactAmount": "¡Cantidad exacta!",
+        "overpaid": "Te pasaste por {{amount}}",
+        "missing": "Faltan {{amount}}",
+        "pay": "Pagar"
+      },
+      "time": {
+        "clockAria": "Reloj analógico mostrando las {{time}}",
+        "currentTime": "Hora actual:",
+        "timeLeft": "¿Cuánto tiempo falta?",
+        "tipTitle": "Consejo:",
+        "tip": "Para calcular el tiempo que falta, cuenta las horas y minutos desde la hora actual hasta la hora de cierre. Recuerda que cada hora tiene 60 minutos.",
+        "confirm": "Confirmar Respuesta"
+      },
+      "fraction": {
+        "visualization": "Visualización:",
+        "yourAnswer": "Tu respuesta:",
+        "decrease": "Disminuir respuesta",
+        "increase": "Aumentar respuesta",
+        "adjustHint": "Usa los botones + y - para ajustar tu respuesta",
+        "tipTitle": "Consejo:",
+        "tip": "Una fracción como ½ significa «1 parte de 2 partes iguales». Para sumar fracciones iguales: ¼ + ¼ = 2/4 = ½",
+        "confirm": "Confirmar Respuesta"
+      }
+    },
+    "feedback": {
+      "paymentExact": "¡Perfecto! Pagaste exactamente {{amount}}",
+      "timeCorrect": "¡Correcto! Calculaste bien el tiempo restante.",
+      "fractionCorrect": "¡Excelente! Resolviste la fracción correctamente.",
+      "incorrect": "No es correcto. {{explanation}}"
+    }
+  },
+  "steam": {
+    "title": "Desafío STEAM",
+    "instructions": {
+      "title": "¡Bienvenido al Desafío STEAM!",
+      "subtitle": "Programa un robot explorador con bloques visuales",
+      "missionTitle": "Tu misión:",
+      "mission": "Programa el robot para que llegue a la meta evitando obstáculos en un tablero 6×6.",
+      "howToPlayTitle": "Cómo jugar:",
+      "step1": "Arrastra bloques de «avanzar», «girar izquierda» y «girar derecha»",
+      "step2": "Usa bucles «repetir» para optimizar tu código",
+      "step3": "Respeta el límite de bloques de cada nivel",
+      "step4": "¡El robot tiene 3 vidas por nivel!",
+      "goalTitle": "Objetivo:",
+      "goal": "Completa los 6 desafíos para obtener +140 XP y la insignia de Ingeniero Junior.",
+      "back": "Volver",
+      "start": "¡Empezar a Programar!"
+    },
+    "failed": {
+      "title": "¡Sin vidas!",
+      "subtitle": "El robot necesita más intentos. ¡No te rindas!",
+      "reset": "Reiniciar aventura"
+    },
+    "completed": {
+      "title": "¡Felicitaciones!",
+      "subtitle": "Has completado todos los desafíos STEAM",
+      "earned": "Has obtenido:",
+      "badge": "Insignia:",
+      "xpTotal": "XP total:",
+      "points": "{{count}} puntos",
+      "praise": "¡Excelente trabajo programando el robot!",
+      "newAdventure": "Nueva aventura",
+      "backDashboard": "Volver al Dashboard"
+    },
+    "playing": {
+      "badgeEarned": "Insignia obtenida",
+      "levelProgress": "Nivel {{current}} / {{total}}",
+      "blocks": "Bloques:",
+      "reset": "Reiniciar",
+      "executing": "Ejecutando...",
+      "run": "Ejecutar",
+      "levelTitle": "Nivel {{level}}: {{name}}",
+      "maxBlocks": "Máximo bloques: {{count}}",
+      "executingCode": "Ejecutando código...",
+      "crashed": "¡El robot ha chocado!",
+      "feedbackSuccess": "¡Excelente!",
+      "feedbackFail": "¡Ups!"
+    },
+    "feedback": {
+      "crashed": "¡El robot ha chocado! Intenta de nuevo.",
+      "levelComplete": "¡Excelente! Has completado el nivel.",
+      "missedGoal": "¡No has llegado a la meta! Intenta de nuevo."
+    },
+    "blockly": {
+      "maxBlocks": "¡Usa máximo {{max}} bloques! Actualmente usas {{count}}.",
+      "addBlocks": "¡Agrega algunos bloques para programar el robot!"
+    }
+  },
+  "flip": {
+    "title": "Laboratorio Flip-Ciencia",
+    "instructions": {
+      "title": "¡Bienvenido al Laboratorio Flip-Ciencia!",
+      "subtitle": "Aprende ciencia viendo videos y respondiendo quiz",
+      "missionTitle": "Tu misión:",
+      "mission": "Completa 4 experimentos científicos viendo videos educativos y respondiendo preguntas.",
+      "howTitle": "Cómo funciona:",
+      "step1": "Mira un video científico de ~90 segundos",
+      "step2": "Responde 3 preguntas sobre el contenido",
+      "step3": "Obtén al menos 2 respuestas correctas",
+      "step4": "Gana piezas para completar tu experimento virtual",
+      "rewardsTitle": "Recompensas:",
+      "reward1": "+8 XP por cada respuesta correcta",
+      "reward2": "+10 XP extra por completar cada lección",
+      "reward3": "Piezas del experimento: 🧪 🟦 🟨 🔥",
+      "reward4": "Badge «Científico Novato» al completar todo",
+      "back": "Volver",
+      "start": "¡Empezar Experimentos!"
+    },
+    "completed": {
+      "title": "¡Experimento Completado!",
+      "subtitle": "Has completado todos los experimentos científicos",
+      "virtualExp": "Tu Experimento Virtual:",
+      "reaction": "¡REACCIÓN EXITOSA!",
+      "reactionDesc": "¡Has combinado todos los elementos correctamente!",
+      "earned": "Has obtenido:",
+      "badgeName": "Científico Novato",
+      "experiments": "4/4 completados",
+      "praise": "¡Excelente trabajo aprendiendo ciencia!",
+      "backDashboard": "Volver al Dashboard"
+    },
+    "playing": {
+      "experiments": "{{current}}/4 experimentos",
+      "pieces": "{{current}}/4 piezas",
+      "badgeEarned": "Badge obtenido",
+      "virtualExp": "Tu Experimento Virtual",
+      "startQuiz": "Empezar Quiz",
+      "quizLocked": "Quiz bloqueado",
+      "quizLockedDesc": "Primero debes ver el video completo para desbloquear el quiz.",
+      "feedbackSuccess": "¡Excelente!",
+      "feedbackFail": "¡Ups!"
+    },
+    "quiz": {
+      "title": "Quiz: {{title}}",
+      "questionsCount": "3 preguntas",
+      "minCorrect": "Mínimo 2 correctas para continuar",
+      "questionN": "Pregunta {{n}}",
+      "progress": "Progreso del quiz",
+      "answered": "{{count}}/3 respondidas",
+      "submit": "Comprobar respuestas",
+      "answerAll": "Responde todas las preguntas",
+      "reminderTitle": "Recordatorio:",
+      "reminder": "Si no recuerdas alguna respuesta, puedes volver a ver el video. Necesitas al menos 2 respuestas correctas para obtener una pieza del experimento."
+    },
+    "video": {
+      "completed": "Video completado",
+      "playAria": "Reproducir video: {{title}}",
+      "clickToPlay": "Haz clic para reproducir",
+      "loadError": "No se pudo cargar el video",
+      "loadErrorHint": "Comprueba tu conexión a internet o prueba de nuevo.",
+      "openYoutube": "Abrir en YouTube",
+      "videoHelp": "¿Problemas para ver el video?",
+      "openYoutubeDirect": "Ábrelo directamente en YouTube",
+      "aboutLesson": "Sobre esta lección:",
+      "afterVideo": "Al finalizar el video, responderás 3 preguntas sobre el contenido.",
+      "readyForQuiz": "¡Listo para el quiz!",
+      "continueToQuiz": "Continuar al quiz",
+      "skipToQuiz": "Ir al quiz (sin ver el vídeo)",
+      "defaultChannel": "Canal Educativo",
+      "defaultDescription": "Video educativo sobre {{title}}"
+    },
+    "feedback": {
+      "success": "¡Excelente! Has obtenido {{count}}/3 respuestas correctas.",
+      "pieceAdded": "Has añadido una pieza al experimento: {{name}} {{icon}}",
+      "fail": "Has obtenido {{count}}/3 respuestas correctas. Necesitas al menos 2 para continuar.",
+      "retryHint": "Vuelve a ver el vídeo y repite el quiz.",
+      "answerAll": "Por favor, responde todas las preguntas antes de continuar."
+    }
+  },
+  "mapamundi": {
+    "title": "Misión Mapamundi v2",
+    "chooseMission": "¡Elige tu misión geográfica!",
+    "intro": "Selecciona qué quieres practicar: continentes, océanos o comunidades autónomas de España. Cada acierto te dará un sello en tu pasaporte.",
+    "questions": "{{count}} preguntas",
+    "lives": "5 vidas",
+    "footer": "Cada acierto: +12 XP • Completar misión: +100 XP + Badge",
+    "backToMode": "Volver a selección de modo",
+    "backToSelector": "Volver al Selector",
+    "modes": {
+      "continent": {
+        "label": "Continentes",
+        "description": "Localiza los 7 continentes del mundo",
+        "badge": "🌍 Explorador de Continentes"
+      },
+      "ocean": {
+        "label": "Océanos",
+        "description": "Identifica los 5 océanos principales",
+        "badge": "🌊 Explorador de Océanos"
+      },
+      "ccaa": {
+        "label": "Comunidades de España",
+        "description": "Localiza las 17 comunidades autónomas",
+        "badge": "🇪🇸 Explorador de España"
+      }
+    },
+    "invalidMode": {
+      "title": "Modo no válido",
+      "description": "El modo «{{mode}}» no está disponible.",
+      "hint": "Los modos disponibles son: Continentes, Océanos y Comunidades de España."
+    },
+    "playing": {
+      "selector": "Selector",
+      "questionProgress": "Pregunta {{current}} de {{total}}",
+      "typeContinent": "🌍 Continente",
+      "typeOcean": "🌊 Océano",
+      "typeCcaa": "🇪🇸 Comunidad Autónoma",
+      "verifying": "Verificando...",
+      "confirmSelection": "Confirmar Selección",
+      "missionComplete": "¡Misión Completada!",
+      "missionCompleteDesc": "Has completado todas las preguntas de {{badge}}",
+      "rewards": "Recompensas:",
+      "correctAnswers": "Aciertos:",
+      "bonus": "Bonus:",
+      "totalXp": "Total XP:",
+      "saveProgress": "Guardar Progreso",
+      "gameOver": "¡Game Over!",
+      "gameOverDesc": "Te has quedado sin vidas. ¡Inténtalo de nuevo!",
+      "progressLabel": "Progreso:",
+      "progressQuestions": "Completaste {{current}} de {{total}} preguntas",
+      "feedbackCorrect": "¡Correcto! {{explanation}}",
+      "feedbackIncorrect": "Incorrecto. {{explanation}}"
+    },
+    "passport": {
+      "continent": "Pasaporte de Continentes",
+      "ocean": "Pasaporte de Océanos",
+      "ccaa": "Pasaporte de España",
+      "progress": "Progreso: {{current}} de {{total}} sellos",
+      "next": "Próximo",
+      "completed": "🎉 ¡Pasaporte completado! ¡Misión cumplida!",
+      "remaining": "¡Excelente progreso! {{count}} sellos restantes",
+      "start": "¡Comienza tu aventura! Haz clic en las regiones correctas para ganar sellos"
+    },
+    "maps": {
+      "loadingWorld": "Cargando mapa mundial...",
+      "loadingSpain": "Cargando mapa de España...",
+      "offlineTitle": "El mapa necesita conexión a internet",
+      "offlineHint": "Comprueba tu conexión e inténtalo de nuevo.",
+      "retry": "Reintentar",
+      "clickContinent": "🌍 Haz clic en el continente",
+      "clickOcean": "🌊 Haz clic en el océano",
+      "ocean": "Océano",
+      "region": "Región",
+      "community": "Comunidad Autónoma",
+      "legendOceans": "Océanos",
+      "legendClickPoints": "Puntos clickeables",
+      "legendSelected": "Seleccionado",
+      "legendRegions": "Regiones",
+      "instructions": "Instrucciones:",
+      "oceanHint": "Haz clic en el punto azul del océano correcto para seleccionarlo.",
+      "regionHint": "Haz clic en la región correcta del mapa y luego confirma tu selección."
+    }
+  },
+  "reciclaje": {
+    "instructions": {
+      "title": "¡Bienvenido a la Fábrica del Reciclaje!",
+      "mission": "Tu misión: clasifica cada residuo en el contenedor correcto para completar la cadena de reciclaje.",
+      "howToPlay": "¿Cómo jugar?",
+      "step1": "Arrastra los objetos hacia los contenedores de colores",
+      "step2": "Cada residuo va a un contenedor según su material",
+      "step3": "Si aciertas, avanzas en la cadena de reciclaje",
+      "step4": "Si no aciertas, lee la regla e inténtalo de nuevo",
+      "step5": "Clasifica 8 residuos para ganar",
+      "start": "¡Empezar a reciclar!"
+    },
+    "completed": {
+      "title": "¡Cadena de reciclaje completada!",
+      "badge": "🏅 Eco-Héroe Junior"
+    },
+    "playing": {
+      "progress": "Reciclados:",
+      "items": "Residuos",
+      "feedbackCorrect": "¡Muy bien! Has clasificado el residuo correctamente.",
+      "feedbackRetry": "¡Inténtalo de nuevo!"
+    },
+    "bins": {
+      "amarillo": "Amarillo (envases)",
+      "azul": "Azul (papel)",
+      "verde": "Verde (vidrio)",
+      "marron": "Marrón (orgánico)",
+      "organico": "Orgánico (jardín)"
+    }
+  },
+  "ortografia": {
+    "instructions": {
+      "title": "¡Bienvenido al Taller de Ortografía!",
+      "mission": "Tu misión: completa las frases eligiendo la palabra bien escrita.",
+      "howToPlay": "¿Cómo jugar?",
+      "step1": "Lee la frase con el hueco (___)",
+      "step2": "Elige la opción ortográficamente correcta",
+      "step3": "Tienes 5 corazones — ¡cuídalos!",
+      "step4": "Responde 8 preguntas para ganar",
+      "step5": "Si completas sin perder corazones, ¡consigues medalla!",
+      "heartsLabel": "5 corazones",
+      "start": "¡Empezar el taller!"
+    },
+    "completed": {
+      "title": "¡Taller completado!",
+      "badge": "Maestro de la Ortografía"
+    },
+    "failed": {
+      "title": "Te has quedado sin corazones"
+    },
+    "playing": {
+      "choose": "Elige la respuesta correcta:",
+      "check": "Comprobar",
+      "next": "Siguiente",
+      "feedbackCorrect": "¡Correcto!",
+      "feedbackWrong": "Incorrecto. Revisa la regla:"
+    }
+  },
+  "planetario": {
+    "title": "Planetario",
+    "chooseMission": "¡Elige tu misión espacial!",
+    "intro": "Ordena planetas del Sistema Solar o hitos de la exploración espacial.",
+    "backToMode": "Volver al selector",
+    "cards": "{{count}} tarjetas",
+    "lives": "3 corazones",
+    "orbit": "Órbita (del Sol hacia afuera)",
+    "pool": "Planetas por ordenar",
+    "emptySlot": "Arrastra aquí",
+    "checkOrder": "Comprobar orden",
+    "invalidMode": {
+      "title": "Modo no válido",
+      "description": "El modo «{{mode}}» no existe en el Planetario.",
+      "hint": "Elige «planetas» u «exploracion» desde el selector."
+    },
+    "modes": {
+      "planetas": {
+        "label": "Sistema Solar",
+        "description": "Ordena los 8 planetas según su distancia al Sol.",
+        "badge": "🏅 Astrónomo Junior",
+        "orbit": "Órbita (del Sol hacia afuera)",
+        "pool": "Planetas por ordenar",
+        "instructions": {
+          "title": "¡Bienvenido al Planetario!",
+          "mission": "Tu misión: ordena 8 planetas según su distancia al Sol.",
+          "step1": "Lee cada tarjeta con su planeta.",
+          "step2": "Arrastra los planetas a la órbita (1 = más cercano al Sol).",
+          "step3": "Cuando estén los 8, pulsa «Comprobar orden».",
+          "step4": "Tienes 3 corazones. ¡Buena suerte!",
+          "start": "¡Empezar la exploración!"
+        },
+        "completed": {
+          "title": "¡Sistema Solar ordenado!"
+        }
+      },
+      "exploracion": {
+        "label": "Exploración espacial",
+        "description": "Ordena 8 hitos cronológicos de la conquista del espacio.",
+        "badge": "🏅 Explorador Espacial",
+        "orbit": "Línea temporal (de más antiguo a reciente)",
+        "pool": "Hitos por ordenar",
+        "instructions": {
+          "title": "¡Misión de exploración!",
+          "mission": "Tu misión: ordena 8 hitos de la exploración espacial en orden cronológico.",
+          "step1": "Lee cada tarjeta con su hito histórico.",
+          "step2": "Arrastra los hitos a la línea temporal (1 = más antiguo).",
+          "step3": "Cuando estén los 8, pulsa «Comprobar orden».",
+          "step4": "Tienes 3 corazones. ¡Buena suerte!",
+          "start": "¡Empezar la misión!"
+        },
+        "completed": {
+          "title": "¡Exploración espacial ordenada!"
+        }
+      }
+    },
+    "instructions": {
+      "title": "¡Bienvenido al Planetario!",
+      "mission": "Tu misión: ordena 8 planetas según su distancia al Sol.",
+      "step1": "Lee cada tarjeta con su planeta.",
+      "step2": "Arrastra los planetas a la órbita (1 = más cercano al Sol).",
+      "step3": "Cuando estén los 8, pulsa «Comprobar orden».",
+      "step4": "Tienes 3 corazones. ¡Buena suerte!",
+      "start": "¡Empezar la exploración!"
+    },
+    "completed": {
+      "title": "¡Sistema Solar ordenado!",
+      "badge": "🏅 Astrónomo Junior"
+    },
+    "failed": {
+      "title": "Se acabaron los intentos"
+    },
+    "feedback": {
+      "incomplete": "Coloca las {{count}} tarjetas antes de comprobar.",
+      "completed": "¡Perfecto! Has ordenado todo correctamente.",
+      "wrongOrder": "El orden no es correcto. Revísalo e inténtalo otra vez.",
+      "failed": "Has agotado tus corazones. ¡Vuelve a intentarlo!"
+    }
+  },
+  "museo": {
+    "title": "Museo del Tiempo",
+    "timeline": "Línea temporal",
+    "pool": "Eventos por ordenar",
+    "emptySlot": "Arrastra aquí",
+    "checkOrder": "Comprobar orden",
+    "instructions": {
+      "title": "¡Bienvenido al Museo del Tiempo!",
+      "mission": "Tu misión: coloca 8 eventos históricos en orden cronológico.",
+      "step1": "Lee cada tarjeta con su fecha.",
+      "step2": "Arrastra los eventos a la línea temporal (1 = más antiguo).",
+      "step3": "Cuando estén los 8, pulsa «Comprobar orden».",
+      "step4": "Tienes 3 corazones. ¡Buena suerte!",
+      "start": "¡Empezar la visita!"
+    },
+    "completed": {
+      "title": "¡Línea temporal completada!",
+      "badge": "🏅 Historiador Junior"
+    },
+    "failed": {
+      "title": "Se acabaron los intentos"
+    },
+    "feedback": {
+      "incomplete": "Coloca los 8 eventos antes de comprobar.",
+      "completed": "¡Perfecto! Has ordenado la historia correctamente.",
+      "wrongOrder": "El orden no es correcto. Revisa las fechas e inténtalo otra vez.",
+      "failed": "Has agotado tus corazones. ¡Vuelve a intentarlo!"
+    }
   }
 }

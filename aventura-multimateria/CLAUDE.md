@@ -1,7 +1,7 @@
 # ExplorAventura 3: Minijuegos Educativos
 
 ## Descripción del Proyecto
-ExplorAventura 3 es una plataforma de minijuegos educativos desarrollada en Next.js 15 con React 18. El proyecto incluye 6 minijuegos interactivos que cubren diferentes materias: gramática, lectura comprensiva, matemáticas, geografía, programación y ciencias.
+ExplorAventura 3 es una plataforma de minijuegos educativos en Next.js 15 + React 18. Incluye **10 minijuegos**: gramática, lectura, mates, geografía, programación, ciencias, historia, reciclaje, ortografía y astronomía.
 
 ## Arquitectura del Proyecto
 
@@ -22,13 +22,9 @@ ExplorAventura 3 es una plataforma de minijuegos educativos desarrollada en Next
 ```
 src/
 ├── app/
-│   ├── data/                    # Archivos JSON con datos de los juegos
-│   │   ├── bosc-passages.json   # Textos y preguntas para Bosc de Lectura
-│   │   ├── puerto-words.json    # Palabras para Puerto de las Palabras
-│   │   ├── mercado-tasks.json   # Tareas matemáticas para Mercado de Números
-│   │   ├── mapamundi-tasks.json # Ubicaciones para Misión Mapamundi
-│   │   ├── steam-tasks.json     # Desafíos para Desafío STEAM
-│   │   └── flip-lessons.json    # Lecciones científicas para Laboratorio Flip
+│   ├── data/
+│   │   ├── gameDataRegistry.ts
+│   │   └── locales/{es,ca,en}/  # JSON pedagógicos (10 archivos × 3 idiomas)
 │   ├── hooks/
 │   │   └── useNavigation.ts     # Hook de navegación centralizado
 │   ├── world/                   # Directorio de minijuegos
@@ -37,7 +33,11 @@ src/
 │   │   ├── mercado-numeros/     # Minijuego de matemáticas
 │   │   ├── mision-mapamundi-v2/ # Minijuego de geografía
 │   │   ├── desafio-steam/       # Minijuego de programación
-│   │   └── laboratorio-flip/    # Minijuego de ciencias
+│   │   ├── laboratorio-flip/    # Minijuego de ciencias
+│   │   ├── museo-tiempo/        # Historia (línea temporal)
+│   │   ├── fabrica-reciclaje/   # Medio ambiente (reciclaje)
+│   │   ├── taller-ortografia/   # Ortografía (quiz)
+│   │   └── planetario/          # Sistema Solar
 │   ├── globals.css              # Estilos globales
 │   ├── layout.tsx               # Layout principal
 │   └── page.tsx                 # Dashboard principal
@@ -49,6 +49,8 @@ src/
 ```
 
 ### Patrones de Desarrollo
+
+> **Documento de referencia:** ver [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) para el contrato completo de stores, persistencia, ciclo de partida y checklist de juegos nuevos.
 
 #### 1. Estructura de Minijuego
 Cada minijuego sigue una estructura consistente:
@@ -142,6 +144,30 @@ Todos los juegos implementan:
 - **Store**: `useLaboratorioFlipStore`
 - **Dependencias**: react-player para reproducción de video
 
+### 7. Museo del Tiempo 🏛️
+**Ruta**: `/world/museo-tiempo`  
+**Materia**: Historia  
+**Mecánica**: Ordenar eventos en línea temporal  
+- **Store**: `useMuseoTiempoStore` · **Datos**: `museo-events.json`
+
+### 8. Fábrica del Reciclaje ♻️
+**Ruta**: `/world/fabrica-reciclaje`  
+**Materia**: Medio ambiente  
+**Mecánica**: Drag-and-drop a contenedores de reciclaje  
+- **Store**: `useFabricaReciclajeStore` · **Datos**: `fabrica-reciclaje-items.json`
+
+### 9. Taller de Ortografía ✏️
+**Ruta**: `/world/taller-ortografia`  
+**Materia**: Lengua  
+**Mecánica**: Quiz de huecos ortográficos  
+- **Store**: `useTallerOrtografiaStore` · **Componente**: `SpellingGame.tsx`
+
+### 10. Planetario 🪐
+**Ruta**: `/world/planetario`  
+**Materia**: Ciencias  
+**Mecánica**: Ordenar planetas por distancia al Sol  
+- **Store**: `usePlanetarioStore` · **Datos**: `planetario-bodies.json`
+
 ## Comandos de Desarrollo
 
 ### Instalación
@@ -157,6 +183,9 @@ npm run dev          # Servidor de desarrollo en localhost:3000
 npm run build        # Build de producción
 npm run start        # Servidor de producción
 npm run lint         # Linting con ESLint
+npm test             # Tests Jest
+npm run test:ci      # Tests con cobertura (CI)
+npm run test:ui      # Humo Playwright 10 juegos (servidor en :3000)
 ```
 
 ### Supabase (Opcional)
@@ -185,28 +214,28 @@ npm run types:generate    # Generar tipos TypeScript
 - **ReactPlayer**: Importar con `dynamic` y `ssr: false`
 
 ### Persistencia
-- Zustand con middleware `persist`
-- localStorage para estado de juegos
-- Claves de almacenamiento:
-  - `puerto-palabras-storage`
-  - `bosc-lectura-storage`
-  - `mercado-numeros-storage`
-  - `mision-mapamundi-v2-storage`
-  - `steam-storage`
+- Objetivo: Zustand con middleware `persist` en **todos** los minijuegos
+- Estado actual (julio 2026): persistencia completa o parcial solo en Mapamundi, STEAM y Laboratorio Flip; ver tabla en `docs/GAME_ARCHITECTURE.md` §5.3
+- Claves en uso:
+  - `bosc-session` (manual, solo escritura — migrar a persist)
+  - `mapamundi-v2-session`
+  - `steam-v2-storage`
   - `laboratorio-flip-storage`
+- Claves objetivo pendientes: `puerto-palabras-storage`, `bosc-lectura-storage`, `mercado-numeros-storage`
+- **Regla:** no llamar `initializeGame()` / `loadWords()` / `loadTasks()` en montaje si hay sesión activa
 
 ## Extensibilidad
 
 ### Añadir Nuevo Minijuego
+Seguir el checklist completo en [docs/GAME_ARCHITECTURE.md §14](docs/GAME_ARCHITECTURE.md#14-checklist-añadir-un-minijuego-nuevo). Resumen:
+
 1. **Crear directorio**: `/src/app/world/nuevo-juego/`
-2. **Crear archivos base**:
-   - `types.ts` - Interfaces del juego
-   - `useNuevoJuegoStore.ts` - Store de Zustand
-   - `page.tsx` - Página principal
-   - Componentes específicos
-3. **Añadir datos**: Crear archivo JSON en `/src/app/data/`
-4. **Actualizar dashboard**: Modificar `/src/app/page.tsx`
-5. **Añadir traducciones**: Actualizar archivos en `/public/locales/`
+2. **Crear archivos base**: `types.ts`, `useNuevoJuegoStore.ts` (con `persist`), `page.tsx`, componentes
+3. **Añadir datos**: JSON en `/src/app/data/`
+4. **Implementar ciclo completo**: instrucciones → playing → completed/failed
+5. **Actualizar dashboard**: `/src/app/page.tsx`
+6. **Traducciones**: `/public/locales/{es,ca,en}/`
+7. **Tests**: `__tests__/useNuevoJuegoStore.test.ts`
 
 ## Actualizaciones Recientes
 

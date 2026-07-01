@@ -71,10 +71,11 @@ describe('useLaboratorioFlipStore', () => {
 
   describe('initializeGame - inicializar juego', () => {
     it('configura el juego con lecciones aleatorias', () => {
+      useLaboratorioFlipStore.getState().setLessonPool([...leccionesPrueba, ...leccionesPrueba]);
       useLaboratorioFlipStore.getState().initializeGame();
       const state = useLaboratorioFlipStore.getState();
 
-      expect(state.gameStatus).toBe('playing');
+      expect(state.gameStatus).toBe('video');
       expect(state.lessons.length).toBeGreaterThan(0);
       expect(state.lessons.length).toBeLessThanOrEqual(4);
       expect(state.currentLesson).toBe(0);
@@ -169,18 +170,22 @@ describe('useLaboratorioFlipStore', () => {
     });
   });
 
-  describe('showFeedback / hideFeedback', () => {
-    it('muestra y oculta el feedback', () => {
-      useLaboratorioFlipStore.getState().showFeedback(true, '¡Correcto!', 'Bien hecho');
-      expect(useLaboratorioFlipStore.getState().feedback).toEqual({
-        show: true,
-        success: true,
-        message: '¡Correcto!',
-        explanation: 'Bien hecho',
-      });
+  describe('submitQuiz', () => {
+    it('requiere todas las respuestas', () => {
+      useLaboratorioFlipStore.setState({ lessons: leccionesPrueba, answers: [0, null, null] });
+      useLaboratorioFlipStore.getState().submitQuiz();
+      expect(useLaboratorioFlipStore.getState().feedback?.success).toBe(false);
+    });
 
+    it('aplica pendingQuizAction al ocultar feedback', () => {
+      useLaboratorioFlipStore.setState({
+        lessons: leccionesPrueba,
+        answers: [0, 1, 2],
+        pendingQuizAction: 'nextLesson',
+        completedLessons: 0,
+      });
       useLaboratorioFlipStore.getState().hideFeedback();
-      expect(useLaboratorioFlipStore.getState().feedback).toBeNull();
+      expect(useLaboratorioFlipStore.getState().currentLesson).toBe(1);
     });
   });
 });

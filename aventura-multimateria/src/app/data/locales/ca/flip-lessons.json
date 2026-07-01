@@ -1,0 +1,986 @@
+[
+  {
+    "id": "agua-estados",
+    "title": "Els estats de l'aigua",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "Estats de la matèria per a infants",
+        "url": "https://www.youtube.com/watch?v=fxDKpEYAoSE",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:12",
+        "descripcion": "Presenta els estats de la matèria amb exemples clars i senzills per a infants."
+      },
+      {
+        "id": "video2",
+        "title": "Els estats de l'aigua",
+        "url": "https://www.youtube.com/watch?v=c4nhGai4TFs",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "3:25",
+        "descripcion": "Explica els tres estats de l'aigua (sòlid, líquid i gasós) i els seus canvis d'estat."
+      }
+    ],
+    "captions": "/captions/agua-estados.vtt",
+    "questions": [
+      {
+        "q": "A quina temperatura bull l'aigua al nivell del mar?",
+        "options": [
+          "90 °C",
+          "100 °C",
+          "120 °C"
+        ],
+        "answer": 1,
+        "explanation": "En condicions normals, l'aigua bull a 100 °C."
+      },
+      {
+        "q": "Com es diu el canvi de sòlid a líquid?",
+        "options": [
+          "Condensació",
+          "Fusió",
+          "Solidificació"
+        ],
+        "answer": 1,
+        "explanation": "El gel es fon en convertir-se en aigua líquida."
+      },
+      {
+        "q": "Quin estat té l'aigua als núvols?",
+        "options": [
+          "Gas",
+          "Líquid",
+          "Sòlid"
+        ],
+        "answer": 0,
+        "explanation": "El vapor d'aigua (estat gasós) forma els núvols."
+      }
+    ],
+    "thumbnail": "/img/agua-estados.jpg"
+  },
+  {
+    "id": "fotosintesis",
+    "title": "La fotosíntesi de les plantes",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "LA FOTOSÍNTESI | Vídeos educatius per a infants",
+        "url": "https://www.youtube.com/watch?v=tdDg1uSKyns",
+        "canal": "Happy Learning Español",
+        "duracion": "2:11",
+        "descripcion": "Descriu el procés de la fotosíntesi, la importància de la clorofil·la i la llum solar."
+      },
+      {
+        "id": "video2",
+        "title": "La fotosíntesi de les plantes",
+        "url": "https://www.youtube.com/watch?v=mtGgo68VM54",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:38",
+        "descripcion": "Il·lustra d'una manera amena com les plantes fabriquen el seu propi aliment."
+      }
+    ],
+    "captions": "/captions/fotosintesis.vtt",
+    "questions": [
+      {
+        "q": "Quin gas produeixen les plantes durant la fotosíntesi?",
+        "options": [
+          "Diòxid de carboni",
+          "Oxigen",
+          "Nitrogen"
+        ],
+        "answer": 1,
+        "explanation": "Les plantes alliberen oxigen com a subproducte de la fotosíntesi."
+      },
+      {
+        "q": "Què necessiten les plantes per fer la fotosíntesi?",
+        "options": [
+          "Llum solar, aigua i CO₂",
+          "Només aigua",
+          "Només llum solar"
+        ],
+        "answer": 0,
+        "explanation": "La fotosíntesi requereix llum solar, aigua i diòxid de carboni."
+      },
+      {
+        "q": "En quina part de la planta passa principalment la fotosíntesi?",
+        "options": [
+          "Arrels",
+          "Fulles",
+          "Flors"
+        ],
+        "answer": 1,
+        "explanation": "Les fulles contenen clorofil·la, on passa la fotosíntesi."
+      }
+    ],
+    "thumbnail": "/img/fotosintesis.jpg"
+  },
+  {
+    "id": "cadena-alimentaria",
+    "title": "La cadena alimentària",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "La cadena tròfica | Vídeos educatius per a infants",
+        "url": "https://www.youtube.com/watch?v=XdptFwOur6M",
+        "canal": "Happy Learning Español",
+        "duracion": "1:58",
+        "descripcion": "Explica de manera senzilla què és una cadena tròfica i qui la compon."
+      },
+      {
+        "id": "video2",
+        "title": "Què és la cadena alimentària?",
+        "url": "https://www.youtube.com/watch?v=LtDpx5HCG_Y",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "2:55",
+        "descripcion": "Defineix els rols de productors, consumidors i descomponedors a la cadena alimentària."
+      }
+    ],
+    "captions": "/captions/cadena-alimentaria.vtt",
+    "questions": [
+      {
+        "q": "Quin és el primer eslabó de la cadena alimentària?",
+        "options": [
+          "Carnívors",
+          "Productors",
+          "Descomponedors"
+        ],
+        "answer": 1,
+        "explanation": "Els productors (plantes) són la base de tota cadena alimentària."
+      },
+      {
+        "q": "Què són els herbívors?",
+        "options": [
+          "Animals que mengen carn",
+          "Animals que mengen plantes",
+          "Animals que mengen de tot"
+        ],
+        "answer": 1,
+        "explanation": "Els herbívors s'alimenten exclusivament de plantes."
+      },
+      {
+        "q": "Quina és la funció dels descomponedors?",
+        "options": [
+          "Caçar altres animals",
+          "Reciclar nutrients",
+          "Produir energia"
+        ],
+        "answer": 1,
+        "explanation": "Els descomponedors retornen els nutrients al sòl."
+      }
+    ],
+    "thumbnail": "/img/cadena-alimentaria.jpg"
+  },
+  {
+    "id": "sistema-solar",
+    "title": "El nostre sistema solar",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sistema solar | Vídeos educatius per a infants",
+        "url": "https://www.youtube.com/watch?v=ZykXgSqet6A",
+        "canal": "Happy Learning Español",
+        "duracion": "3:12",
+        "descripcion": "Un viatge pels 8 planetes del nostre sistema solar, explicant les seves òrbites al voltant del Sol."
+      },
+      {
+        "id": "video2",
+        "title": "El sistema solar per a infants",
+        "url": "https://www.youtube.com/watch?v=fln82xudLMc",
+        "canal": "Shackleton Kids",
+        "duracion": "5:56",
+        "descripcion": "Una aventura espacial per conèixer els planetes i el Sol."
+      }
+    ],
+    "captions": "/captions/sistema-solar.vtt",
+    "questions": [
+      {
+        "q": "Quin és el planeta més proper al Sol?",
+        "options": [
+          "Venus",
+          "Mercuri",
+          "Terra"
+        ],
+        "answer": 1,
+        "explanation": "Mercuri és el planeta més proper a la nostra estrella."
+      },
+      {
+        "q": "Quants planetes hi ha al nostre sistema solar?",
+        "options": [
+          "7",
+          "8",
+          "9"
+        ],
+        "answer": 1,
+        "explanation": "Actualment es reconeixen 8 planetes al sistema solar."
+      },
+      {
+        "q": "Quin és el planeta més gran?",
+        "options": [
+          "Saturn",
+          "Júpiter",
+          "Neptú"
+        ],
+        "answer": 1,
+        "explanation": "Júpiter és el planeta gegant del nostre sistema solar."
+      }
+    ],
+    "thumbnail": "/img/sistema-solar.jpg"
+  },
+  {
+    "id": "magnetismo",
+    "title": "Els materials magnètics",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "MAGNETISME per a infants: què són els imants?",
+        "url": "https://www.youtube.com/watch?v=vf657n_akeg",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:54",
+        "descripcion": "Introdueix el concepte de magnetisme, els pols magnètics i l'atracció i repulsió."
+      },
+      {
+        "id": "video2",
+        "title": "ELECTROMAGNETISME per a infants",
+        "url": "https://www.youtube.com/watch?v=55njQJ-EcV0",
+        "canal": "Smile and Learn - Español",
+        "duracion": "4:00",
+        "descripcion": "Explica què és un electroimant i com funciona."
+      }
+    ],
+    "captions": "/captions/magnetismo.vtt",
+    "questions": [
+      {
+        "q": "Quin d'aquests materials és magnètic?",
+        "options": [
+          "Fusta",
+          "Ferro",
+          "Plàstic"
+        ],
+        "answer": 1,
+        "explanation": "El ferro és un material ferromagnètic que s'atrau als imants."
+      },
+      {
+        "q": "Com es diuen els extrems d'un imant?",
+        "options": [
+          "Pols nord i sud",
+          "Costats positiu i negatiu",
+          "Extrems alfa i beta"
+        ],
+        "answer": 0,
+        "explanation": "Els imants tenen un pol nord i un pol sud."
+      },
+      {
+        "q": "Què passa quan acostes dos pols iguals?",
+        "options": [
+          "S'atrauen",
+          "Es repulsen",
+          "No passa res"
+        ],
+        "answer": 1,
+        "explanation": "Els pols iguals es repulsen; els oposats s'atrauen."
+      }
+    ],
+    "thumbnail": "/img/magnetismo.jpg"
+  },
+  {
+    "id": "corazon-humano",
+    "title": "El cor i la circulació",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sistema circulatori del cos humà per a infants",
+        "url": "https://www.youtube.com/watch?v=ZzATGDMNKYw",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:27",
+        "descripcion": "Un recorregut pel sistema circulatori per entendre com viatja la sang pel cos."
+      },
+      {
+        "id": "video2",
+        "title": "EL COR HUMÀ | Vídeos educatius per a infants",
+        "url": "https://www.youtube.com/watch?v=WN6sAN2hcFM",
+        "canal": "Happy Learning Español",
+        "duracion": "2:38",
+        "descripcion": "Mostra l'anatomia del cor i com funciona la circulació sanguínia."
+      },
+      {
+        "id": "video3",
+        "title": "EL SISTEMA CIRCULATORI",
+        "url": "https://www.youtube.com/watch?v=nsSg4Eq3LEo",
+        "canal": "Happy Learning Español",
+        "duracion": "3:38",
+        "descripcion": "Explica el sistema circulatori, les seves parts i funcions."
+      }
+    ],
+    "captions": "/captions/corazon-humano.vtt",
+    "questions": [
+      {
+        "q": "Quantes cavitats té el cor humà?",
+        "options": [
+          "2",
+          "4",
+          "6"
+        ],
+        "answer": 1,
+        "explanation": "El cor té quatre cavitats: dues aurícules i dos ventricles."
+      },
+      {
+        "q": "Què transporta la sang per tot el cos?",
+        "options": [
+          "Només oxigen",
+          "Oxigen i nutrients",
+          "Només nutrients"
+        ],
+        "answer": 1,
+        "explanation": "La sang porta oxigen i nutrients a totes les cèl·lules."
+      },
+      {
+        "q": "Quina és la funció principal del cor?",
+        "options": [
+          "Respirar",
+          "Bombear sang",
+          "Digerir aliments"
+        ],
+        "answer": 1,
+        "explanation": "El cor bombeja sang a través del sistema circulatori."
+      }
+    ],
+    "thumbnail": "/img/corazon-humano.jpg"
+  },
+  {
+    "id": "respiracion",
+    "title": "El sistema respiratori",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sistema respiratori del cos humà per a infants",
+        "url": "https://www.youtube.com/watch?v=Wq_bPoRTn7I",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:21",
+        "descripcion": "Descriu el funcionament dels pulmons i l'intercanvi gasós en la respiració."
+      },
+      {
+        "id": "video2",
+        "title": "L'APARELL RESPIRATORI",
+        "url": "https://www.youtube.com/watch?v=tMLFFKof29o",
+        "canal": "Happy Learning Español",
+        "duracion": "1:51",
+        "descripcion": "Una breu i clara explicació de l'aparell respiratori."
+      },
+      {
+        "id": "video3",
+        "title": "La RESPIRACIÓ: el SISTEMA RESPIRATORI",
+        "url": "https://www.youtube.com/watch?v=EXjGQrtEW2I",
+        "canal": "Clases Particulares en Ávila",
+        "duracion": "4:36",
+        "descripcion": "Explica el procés de la respiració i les parts del sistema respiratori."
+      }
+    ],
+    "captions": "/captions/respiracion.vtt",
+    "questions": [
+      {
+        "q": "Quin gas prenem de l'aire en respirar?",
+        "options": [
+          "Diòxid de carboni",
+          "Oxigen",
+          "Nitrogen"
+        ],
+        "answer": 1,
+        "explanation": "En inspirar, els pulmons prenen oxigen de l'aire."
+      },
+      {
+        "q": "On passa l'intercanvi de gasos?",
+        "options": [
+          "Als alvèols",
+          "A la tràquea",
+          "Als bronquis"
+        ],
+        "answer": 0,
+        "explanation": "Els alvèols pulmonars són on s'intercanvien O₂ i CO₂."
+      },
+      {
+        "q": "Què expulsem en exhalar?",
+        "options": [
+          "Oxigen",
+          "Diòxid de carboni",
+          "Vapor d'aigua"
+        ],
+        "answer": 1,
+        "explanation": "En exhalar eliminem el CO₂ produït per les cèl·lules."
+      }
+    ],
+    "thumbnail": "/img/respiracion.jpg"
+  },
+  {
+    "id": "digestion",
+    "title": "El procés de la digestió",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El sistema digestiu del cos humà per a infants",
+        "url": "https://www.youtube.com/watch?v=_jbw0FxnaQE",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:15",
+        "descripcion": "Un viatge per l'aparell digestiu per entendre el procés de la digestió."
+      },
+      {
+        "id": "video2",
+        "title": "L'aparell digestiu i la digestió",
+        "url": "https://www.youtube.com/watch?v=CIhwGRIBEQ8",
+        "canal": "Happy Learning Español",
+        "duracion": "3:14",
+        "descripcion": "Explica com funciona l'aparell digestiu i el procés de la digestió."
+      },
+      {
+        "id": "video3",
+        "title": "El sistema digestiu: què és la digestió?",
+        "url": "https://www.youtube.com/watch?v=5DUIc9BchOk",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "3:02",
+        "descripcion": "Respon a la pregunta de què és la digestió i com es duu a terme."
+      }
+    ],
+    "captions": "/captions/digestion.vtt",
+    "questions": [
+      {
+        "q": "On comença la digestió?",
+        "options": [
+          "A l'estómac",
+          "A la boca",
+          "A l'intestí"
+        ],
+        "answer": 1,
+        "explanation": "La digestió comença a la boca amb la masticació i la saliva."
+      },
+      {
+        "q": "Quina és la funció de l'estómac?",
+        "options": [
+          "Absorbir nutrients",
+          "Descompondre aliments",
+          "Eliminar residus"
+        ],
+        "answer": 1,
+        "explanation": "L'estómac produeix àcids que descomponen els aliments."
+      },
+      {
+        "q": "On s'absorbeixen principalment els nutrients?",
+        "options": [
+          "Intestí prim",
+          "Intestí gruixut",
+          "Estómac"
+        ],
+        "answer": 0,
+        "explanation": "L'intestí prim és on s'absorbeixen la majoria de nutrients."
+      }
+    ],
+    "thumbnail": "/img/digestion.jpg"
+  },
+  {
+    "id": "densidad",
+    "title": "La densitat dels materials",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "QUÈ ÉS LA DENSITAT? fàcil i senzill amb exemples",
+        "url": "https://www.youtube.com/watch?v=eCwlcdSY2DU",
+        "canal": "Lagartija's vlogs",
+        "duracion": "4:04",
+        "descripcion": "Defineix el concepte de densitat d'una manera fàcil i amb exemples pràctics."
+      },
+      {
+        "id": "video2",
+        "title": "ELS MATERIALS I LES SEVES PROPIETATS",
+        "url": "https://www.youtube.com/watch?v=BvELTShsiHE",
+        "canal": "Happy Learning Español",
+        "duracion": "5:54",
+        "descripcion": "Explora les propietats dels materials, incloent-hi la densitat, amb experiments."
+      },
+      {
+        "id": "video3",
+        "title": "DENSITAT || QUÈ ÉS? || CIÈNCIA PER A INFANTS",
+        "url": "https://www.youtube.com/watch?v=HbSap-zOQcg",
+        "canal": "Pizarrón de la Ciencia",
+        "duracion": "4:35",
+        "descripcion": "Explica què és la densitat amb experiments visuals per a infants."
+      }
+    ],
+    "captions": "/captions/densidad.vtt",
+    "questions": [
+      {
+        "q": "Per què flota el gel a l'aigua?",
+        "options": [
+          "És més pesat",
+          "És menys dens",
+          "Té aire"
+        ],
+        "answer": 1,
+        "explanation": "El gel és menys dens que l'aigua líquida, per això flota."
+      },
+      {
+        "q": "Quin material és més dens?",
+        "options": [
+          "Fusta",
+          "Ferro",
+          "Suro"
+        ],
+        "answer": 1,
+        "explanation": "El ferro té una densitat major que la fusta i el suro."
+      },
+      {
+        "q": "Com es calcula la densitat?",
+        "options": [
+          "Massa ÷ Volum",
+          "Volum ÷ Massa",
+          "Massa × Volum"
+        ],
+        "answer": 0,
+        "explanation": "Densitat = Massa dividida entre Volum (D = m/V)."
+      }
+    ],
+    "thumbnail": "/img/densidad.jpg"
+  },
+  {
+    "id": "electricidad",
+    "title": "L'electricitat estàtica",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "ELECTRICITAT ESTÀTICA | Draw My Life",
+        "url": "https://www.youtube.com/watch?v=OZXjclP5xj0",
+        "canal": "TikTak Draw",
+        "duracion": "2:36",
+        "descripcion": "Explica de manera visual i entretinguda què és l'electricitat estàtica."
+      },
+      {
+        "id": "video2",
+        "title": "L'electricitat",
+        "url": "https://www.youtube.com/watch?v=dzcG5a5kd2M",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "3:56",
+        "descripcion": "Introduïx el món de l'electricitat, incloent-hi les càrregues elèctriques."
+      },
+      {
+        "id": "video3",
+        "title": "ELECTRICITAT per a infants ⚡ Electricitat estàtica i dinàmica",
+        "url": "https://www.youtube.com/watch?v=r6SWnW0EUDI",
+        "canal": "Smile and Learn - Español",
+        "duracion": "5:29",
+        "descripcion": "Diferencia entre electricitat estàtica i dinàmica, i mostra experiments senzills."
+      }
+    ],
+    "captions": "/captions/electricidad.vtt",
+    "questions": [
+      {
+        "q": "Què passa quan fregues un globus al teu cabell?",
+        "options": [
+          "Es carrega elèctricament",
+          "S'escalfa",
+          "Canvia de color"
+        ],
+        "answer": 0,
+        "explanation": "El fregament genera electricitat estàtica al globus."
+      },
+      {
+        "q": "Quin tipus de càrregues s'atrauen?",
+        "options": [
+          "Iguals",
+          "Opostes",
+          "Neutres"
+        ],
+        "answer": 1,
+        "explanation": "Les càrregues oposades (+ i -) s'atrauen entre si."
+      },
+      {
+        "q": "Quin és un bon conductor d'electricitat?",
+        "options": [
+          "Fusta",
+          "Metall",
+          "Goma"
+        ],
+        "answer": 1,
+        "explanation": "Els metalls són excel·lents conductors elèctrics."
+      }
+    ],
+    "thumbnail": "/img/electricidad.jpg"
+  },
+  {
+    "id": "ecosistemas",
+    "title": "Els ecosistemes terrestres",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "Els ECOSISTEMES TERRESTRES per a INFANTS",
+        "url": "https://www.youtube.com/watch?v=bcYn2Z2EgbE",
+        "canal": "Clases Particulares en Ávila",
+        "duracion": "3:51",
+        "descripcion": "Una explicació clara i concisa dels ecosistemes terrestres per a primària."
+      },
+      {
+        "id": "video2",
+        "title": "Què són els ecosistemes? - Tipus d'ecosistemes per a infants",
+        "url": "https://www.youtube.com/watch?v=usDVb2JWhHo",
+        "canal": "Smile and Learn - Español",
+        "duracion": "4:23",
+        "descripcion": "Presenta els diferents tipus d'ecosistemes, incloent-hi els terrestres, i la seva biodiversitat."
+      },
+      {
+        "id": "video3",
+        "title": "Ecosistema terrestre",
+        "url": "https://www.youtube.com/watch?v=upPOb8caJv4",
+        "canal": "Aula chachi",
+        "duracion": "5:54",
+        "descripcion": "Es centra en els ecosistemes terrestres i les seves característiques."
+      }
+    ],
+    "captions": "/captions/ecosistemas.vtt",
+    "questions": [
+      {
+        "q": "Què és un ecosistema?",
+        "options": [
+          "Només animals",
+          "Només plantes",
+          "Éssers vius i el seu ambient"
+        ],
+        "answer": 2,
+        "explanation": "Un ecosistema inclou tots els éssers vius i el seu entorn físic."
+      },
+      {
+        "q": "Quin és l'ecosistema més biodivers?",
+        "options": [
+          "Desert",
+          "Selva tropical",
+          "Tundra"
+        ],
+        "answer": 1,
+        "explanation": "Les selves tropicals acullen la major diversitat d'espècies."
+      },
+      {
+        "q": "Quins factors componen el medi abiótic?",
+        "options": [
+          "Només temperatura",
+          "Aigua, sòl, clima",
+          "Només animals"
+        ],
+        "answer": 1,
+        "explanation": "El medi abiótic inclou aigua, sòl, temperatura i clima."
+      }
+    ],
+    "thumbnail": "/img/ecosistemas.jpg"
+  },
+  {
+    "id": "volcanes",
+    "title": "Els volcans i terratrèmols",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "Què és un terratrèmol?",
+        "url": "https://www.youtube.com/watch?v=sk_x58kM_70",
+        "canal": "Happy Learning Español",
+        "duracion": "4:10",
+        "descripcion": "Explica les plaques tectòniques i per què es produeixen els sismes."
+      },
+      {
+        "id": "video2",
+        "title": "Què és un volcà?",
+        "url": "https://www.youtube.com/watch?v=Swn1nJEGogI",
+        "canal": "GuerrerosPlanet",
+        "duracion": "5:00",
+        "descripcion": "Descriu què són els volcans, el magma i les erupcions."
+      },
+      {
+        "id": "video3",
+        "title": "Per què es produeixen els terratrèmols?",
+        "url": "https://www.youtube.com/watch?v=SbejEAjj0j0",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "5:15",
+        "descripcion": "Una explicació detallada sobre les causes dels terratrèmols."
+      }
+    ],
+    "captions": "/captions/volcanes.vtt",
+    "questions": [
+      {
+        "q": "Com es diu la roca fundida dins del volcà?",
+        "options": [
+          "Lava",
+          "Magma",
+          "Cendra"
+        ],
+        "answer": 1,
+        "explanation": "El magma és la roca fundida sota terra; lava és quan surt."
+      },
+      {
+        "q": "Què causa els terratrèmols?",
+        "options": [
+          "Moviment de plaques",
+          "Pluja intensa",
+          "Vent fort"
+        ],
+        "answer": 0,
+        "explanation": "Els terratrèmols es deuen al moviment de les plaques tectòniques."
+      },
+      {
+        "q": "On es formen la majoria de volcans?",
+        "options": [
+          "Centre dels continents",
+          "Vores de plaques",
+          "Sota el mar"
+        ],
+        "answer": 1,
+        "explanation": "Els volcans es formen principalment a les vores de plaques."
+      }
+    ],
+    "thumbnail": "/img/volcanes.jpg"
+  },
+  {
+    "id": "energia-solar",
+    "title": "L'energia del Sol",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El Sol | Vídeos educatius per a infants",
+        "url": "https://www.youtube.com/watch?v=wANko2eM_uY",
+        "canal": "Happy Learning Español",
+        "duracion": "3:34",
+        "descripcion": "Parla sobre la radiació solar i la importància del Sol com a font d'energia."
+      },
+      {
+        "id": "video2",
+        "title": "Què és l'energia? - Tipus d'energia per a infants",
+        "url": "https://www.youtube.com/watch?v=NAPAMIpGB-s",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:42",
+        "descripcion": "Explica els diferents tipus d'energia, destacant les renovables com la solar."
+      },
+      {
+        "id": "video3",
+        "title": "Tipus d'energia",
+        "url": "https://www.youtube.com/watch?v=Mk8Env3xrMI",
+        "canal": "FlexFlix Kids en Español",
+        "duracion": "4:55",
+        "descripcion": "Presenta els diferents tipus d'energia, amb un enfocament en les fonts renovables."
+      }
+    ],
+    "captions": "/captions/energia-solar.vtt",
+    "questions": [
+      {
+        "q": "Com arriba l'energia del Sol a la Terra?",
+        "options": [
+          "Per radiació",
+          "Per conducció",
+          "Per convecció"
+        ],
+        "answer": 0,
+        "explanation": "L'energia solar viatja com a radiació electromagnètica."
+      },
+      {
+        "q": "Què és una font d'energia renovable?",
+        "options": [
+          "Petroli",
+          "Energia solar",
+          "Carbó"
+        ],
+        "answer": 1,
+        "explanation": "L'energia solar és renovable perquè el Sol no s'esgota."
+      },
+      {
+        "q": "Per a què fan servir les plantes l'energia solar?",
+        "options": [
+          "Per créixer",
+          "Per fer la fotosíntesi",
+          "Per reproduir-se"
+        ],
+        "answer": 1,
+        "explanation": "Les plantes fan servir l'energia solar per realitzar la fotosíntesi."
+      }
+    ],
+    "thumbnail": "/img/energia-solar.jpg"
+  },
+  {
+    "id": "ciclo-agua",
+    "title": "El cicle de l'aigua",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "El cicle de l'aigua per a infants",
+        "url": "https://www.youtube.com/watch?v=3QVj99UGk3Q",
+        "canal": "Smile and Learn - Español",
+        "duracion": "3:17",
+        "descripcion": "Respon preguntes sobre el cicle de l'aigua i l'origen de la pluja."
+      },
+      {
+        "id": "video2",
+        "title": "El cicle de l'aigua",
+        "url": "https://www.youtube.com/watch?v=QDCohXW6blg",
+        "canal": "Happy Learning Español",
+        "duracion": "3:35",
+        "descripcion": "Il·lustra les fases del cicle de l'aigua: evaporació, condensació i precipitació."
+      },
+      {
+        "id": "video3",
+        "title": "El cicle de l'aigua | Camaleó",
+        "url": "https://www.youtube.com/watch?v=76dw3ZRFGNQ",
+        "canal": "CNTV Infantil",
+        "duracion": "3:39",
+        "descripcion": "Una explicació animada i divertida del cicle de l'aigua."
+      }
+    ],
+    "captions": "/captions/ciclo-agua.vtt",
+    "questions": [
+      {
+        "q": "Com es diu quan l'aigua es converteix en vapor?",
+        "options": [
+          "Condensació",
+          "Evaporació",
+          "Precipitació"
+        ],
+        "answer": 1,
+        "explanation": "L'evaporació és el pas de líquid a gas per la calor solar."
+      },
+      {
+        "q": "On es forma principalment la pluja?",
+        "options": [
+          "A les muntanyes",
+          "Als núvols",
+          "Als oceans"
+        ],
+        "answer": 1,
+        "explanation": "La pluja es forma als núvols per condensació del vapor."
+      },
+      {
+        "q": "Què impulsa principalment el cicle de l'aigua?",
+        "options": [
+          "El vent",
+          "L'energia solar",
+          "La gravetat"
+        ],
+        "answer": 1,
+        "explanation": "El Sol proporciona l'energia que mou el cicle de l'aigua."
+      }
+    ],
+    "thumbnail": "/img/ciclo-agua.jpg"
+  },
+  {
+    "id": "huesos-musculos",
+    "title": "Ossos i músculs",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "Els ossos per a infants | El sistema òssi",
+        "url": "https://www.youtube.com/watch?v=qBNb8FwOlzQ",
+        "canal": "Smile and Learn - Español",
+        "duracion": "2:59",
+        "descripcion": "Es centra en el sistema òssi i la importància dels ossos."
+      },
+      {
+        "id": "video2",
+        "title": "L'APARELL LOCOMOTOR",
+        "url": "https://www.youtube.com/watch?v=bGvFYRvDjc4",
+        "canal": "Happy Learning Español",
+        "duracion": "1:53",
+        "descripcion": "Una breu introducció a l'aparell locomotor."
+      },
+      {
+        "id": "video3",
+        "title": "Cos humà: ossos i músculs",
+        "url": "https://www.youtube.com/watch?v=w8PnlLptHXE",
+        "canal": "CNTV Infantil",
+        "duracion": "3:34",
+        "descripcion": "Explora el sistema locomotor, explicant la funció dels ossos i músculs."
+      }
+    ],
+    "captions": "/captions/huesos-musculos.vtt",
+    "questions": [
+      {
+        "q": "Quants ossos té aproximadament un adult?",
+        "options": [
+          "150",
+          "206",
+          "300"
+        ],
+        "answer": 1,
+        "explanation": "Un adult té aproximadament 206 ossos a l'esquelet."
+      },
+      {
+        "q": "Quina és la funció principal dels músculs?",
+        "options": [
+          "Protegir òrgans",
+          "Produir moviment",
+          "Emmagatzemar energia"
+        ],
+        "answer": 1,
+        "explanation": "Els músculs es contrauen per produir moviment corporal."
+      },
+      {
+        "q": "Com es diu l'os més llarg del cos?",
+        "options": [
+          "Úmer",
+          "Fèmur",
+          "Tíbia"
+        ],
+        "answer": 1,
+        "explanation": "El fèmur (os del cuix) és el més llarg del cos humà."
+      }
+    ],
+    "thumbnail": "/img/huesos-musculos.jpg"
+  },
+  {
+    "id": "mezclas-sustancias",
+    "title": "Mesclas i substàncies pures",
+    "videos": [
+      {
+        "id": "video1",
+        "title": "SUBSTÀNCIES PURES i MESCLAS HOMOGÈNIES i HETEROGÈNIES",
+        "url": "https://www.youtube.com/watch?v=tl_3qBuJ4Ro",
+        "canal": "Clases Particulares en Ávila",
+        "duracion": "3:03",
+        "descripcion": "Defineix i diferencia substàncies pures i mesclas homogènies i heterogènies."
+      },
+      {
+        "id": "video2",
+        "title": "Substàncies pures i mesclas",
+        "url": "https://www.youtube.com/watch?v=tpYlt7TeqZA",
+        "canal": "Smile and Learn - Español",
+        "duracion": "4:23",
+        "descripcion": "Diferencia entre substàncies pures i mesclas, i mostra mètodes de separació."
+      },
+      {
+        "id": "video3",
+        "title": "MESCLAR I SEPARACIONS",
+        "url": "https://www.youtube.com/watch?v=2FPaXer7AN0",
+        "canal": "Elesapiens",
+        "duracion": "4:34",
+        "descripcion": "Explica els tipus de mesclas i com es poden separar els seus components."
+      }
+    ],
+    "captions": "/captions/mezclas-sustancias.vtt",
+    "questions": [
+      {
+        "q": "Quin és un exemple de mescla homogènia?",
+        "options": [
+          "Aigua amb oli",
+          "Aigua amb sal dissolta",
+          "Sorra amb pedres"
+        ],
+        "answer": 1,
+        "explanation": "L'aigua salada és homogènia perquè la sal es dissol completament."
+      },
+      {
+        "q": "Com es pot separar la sal de l'aigua?",
+        "options": [
+          "Filtració",
+          "Evaporació",
+          "Decantació"
+        ],
+        "answer": 1,
+        "explanation": "En evaporar l'aigua, la sal queda com a residu sòlid."
+      },
+      {
+        "q": "Què és una substància pura?",
+        "options": [
+          "Una mescla",
+          "Un sol tipus de matèria",
+          "Diversos materials junts"
+        ],
+        "answer": 1,
+        "explanation": "Una substància pura conté un sol tipus de matèria."
+      }
+    ],
+    "thumbnail": "/img/mezclas-sustancias.jpg"
+  }
+]

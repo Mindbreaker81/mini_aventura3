@@ -205,6 +205,45 @@ console.log('[Robot] Posición:', robot.x, robot.y);
 console.log('[Execution] Estado:', isExecuting, hasCrashed);
 ```
 
+## 🔒 Ejecución de código generado
+
+El robot ejecuta el JavaScript generado por Blockly mediante `new Function()` en `useSteamStore.ts`:
+
+```typescript
+const func = new Function(
+  'move',
+  'turnLeft',
+  'turnRight',
+  `return (async () => { ${code} })();`
+);
+await func(api.move, api.turnLeft, api.turnRight);
+```
+
+### Alcance y riesgos
+
+| Aspecto | Detalle |
+|---------|---------|
+| **Origen del código** | Solo salida del editor Blockly (bloques acotados: avanzar, girar, repetir) |
+| **API expuesta** | Tres funciones async inyectadas; sin acceso a `window`, `document` ni imports |
+| **Entorno** | Cliente, partida local del alumno; no se envía a servidor |
+| **Riesgo residual** | `new Function` puede ejecutar JS arbitrario si el generador Blockly fallara o se manipulara el store |
+
+### Mitigaciones actuales
+
+- Bloques personalizados limitados en `blocks.ts` (sin bloques de texto libre).
+- Validación de límites de tablero y vidas en el store.
+- Ejecución solo tras pulsar «Ejecutar» en partida activa.
+
+### Mejora futura (sandbox)
+
+Valorar sustituir `new Function()` por:
+
+1. **Intérprete de instrucciones** — recorrer AST/lista de acciones sin eval.
+2. **Sandbox iframe** con `sandbox` attribute y postMessage (mayor aislamiento).
+3. **Worker dedicado** con timeout por ejecución.
+
+Prioridad baja mientras el editor siga siendo solo bloques visuales en entorno educativo controlado.
+
 ## 🚀 Mejoras Futuras
 
 ### Posibles Extensiones

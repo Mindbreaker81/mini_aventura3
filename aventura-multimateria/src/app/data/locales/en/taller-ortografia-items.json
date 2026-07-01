@@ -1,0 +1,794 @@
+[
+  {
+    "id": 1,
+    "sentence": "The ___ sings in the tree.",
+    "options": [
+      "pájaro",
+      "bajaro",
+      "pajaro"
+    ],
+    "rule": "Pájaro has tilde en la á.",
+    "topic": "tilde"
+  },
+  {
+    "id": 2,
+    "sentence": "My ___ is very friendly.",
+    "options": [
+      "friend",
+      "frieng",
+      "friand"
+    ],
+    "rule": "In Spanish practice: amiga uses g, not j or b.",
+    "topic": "gj"
+  },
+  {
+    "id": 3,
+    "sentence": "The ___ shines in the sky.",
+    "options": [
+      "sol",
+      "ora",
+      "umo"
+    ],
+    "rule": "Sol no has h ni z.",
+    "topic": "h"
+  },
+  {
+    "id": 4,
+    "sentence": "I will ___ my homework.",
+    "options": [
+      "hacer",
+      "ora",
+      "umo"
+    ],
+    "rule": "Hacer has h inicial.",
+    "topic": "h"
+  },
+  {
+    "id": 5,
+    "sentence": "The ___ gives milk on the farm.",
+    "options": [
+      "vaca",
+      "baca",
+      "vaka"
+    ],
+    "rule": "Vaca (cow) is spelled with v, not b.",
+    "topic": "bv",
+    "answer": 0
+  },
+  {
+    "id": 6,
+    "sentence": "The boy ___ in the park.",
+    "options": [
+      "jugó",
+      "pajaro",
+      "arbol"
+    ],
+    "rule": "Jugó (pasado) has tilde; jugo es sustantivo.",
+    "topic": "tilde"
+  },
+  {
+    "id": 7,
+    "sentence": "There is a lot of ___ in winter.",
+    "options": [
+      "nieve",
+      "niebe",
+      "nibe"
+    ],
+    "rule": "Nieve uses v, not b.",
+    "topic": "bv"
+  },
+  {
+    "id": 8,
+    "sentence": "The ___ is a fast animal.",
+    "options": [
+      "liebre",
+      "yama",
+      "yuvia"
+    ],
+    "rule": "Liebre (animal) has ll.",
+    "topic": "ll-y"
+  },
+  {
+    "id": 9,
+    "sentence": "My favorite ___ is red.",
+    "options": [
+      "color",
+      "yama",
+      "yuvia"
+    ],
+    "rule": "Color is spelled con una sola l.",
+    "topic": "ll-y"
+  },
+  {
+    "id": 10,
+    "sentence": "The ___ runs in the meadow.",
+    "options": [
+      "caballo",
+      "yama",
+      "yuvia"
+    ],
+    "rule": "Caballo has ll.",
+    "topic": "ll-y"
+  },
+  {
+    "id": 11,
+    "sentence": "___ is very important.",
+    "options": [
+      "historia",
+      "ora",
+      "umo"
+    ],
+    "rule": "Historia has h muda inicial.",
+    "topic": "h"
+  },
+  {
+    "id": 12,
+    "sentence": "The ___ is on the table.",
+    "options": [
+      "huevo",
+      "ora",
+      "umo"
+    ],
+    "rule": "Huevo has h.",
+    "topic": "h"
+  },
+  {
+    "id": 13,
+    "sentence": "The ___ is very fun.",
+    "options": [
+      "juego",
+      "guego",
+      "juego"
+    ],
+    "rule": "Juego uses j, not g.",
+    "topic": "gj",
+    "answer": 0
+  },
+  {
+    "id": 14,
+    "sentence": "The ___ is very big.",
+    "options": [
+      "gigante",
+      "jigante",
+      "gijante"
+    ],
+    "rule": "Gigante uses g, not j.",
+    "topic": "gj"
+  },
+  {
+    "id": 15,
+    "sentence": "The ___ is blue.",
+    "options": [
+      "bandera",
+      "vandera",
+      "banderra"
+    ],
+    "rule": "Bandera uses b, not v.",
+    "topic": "bv"
+  },
+  {
+    "id": 16,
+    "sentence": "The ___ flies high.",
+    "options": [
+      "águila",
+      "aguila",
+      "agila"
+    ],
+    "rule": "Águila has tilde en la primera á.",
+    "topic": "tilde"
+  },
+  {
+    "id": 17,
+    "sentence": "I am ___ years old.",
+    "options": [
+      "diez",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Diez is spelled con z al final.",
+    "topic": "gj"
+  },
+  {
+    "id": 18,
+    "sentence": "The ___ is very strong.",
+    "options": [
+      "viento",
+      "vaca",
+      "beca"
+    ],
+    "rule": "Viento is spelled con v.",
+    "topic": "bv"
+  },
+  {
+    "id": 19,
+    "sentence": "The ___ is pretty.",
+    "options": [
+      "flor",
+      "ora",
+      "umo"
+    ],
+    "rule": "Flor no has h.",
+    "topic": "h"
+  },
+  {
+    "id": 20,
+    "sentence": "The ___ plays on the team.",
+    "options": [
+      "jugador",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Jugador is spelled con j.",
+    "topic": "gj"
+  },
+  {
+    "id": 21,
+    "sentence": "There is a ___ in the garden.",
+    "options": [
+      "árbol",
+      "arbol",
+      "arvol"
+    ],
+    "rule": "Árbol has tilde en la á.",
+    "topic": "tilde"
+  },
+  {
+    "id": 22,
+    "sentence": "The ___ is my pet.",
+    "options": [
+      "perro",
+      "vaca",
+      "beca"
+    ],
+    "rule": "Perro is spelled con p.",
+    "topic": "bv"
+  },
+  {
+    "id": 23,
+    "sentence": "The ___ is delicious.",
+    "options": [
+      "sopa",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Sopa is spelled con s.",
+    "topic": "gj"
+  },
+  {
+    "id": 24,
+    "sentence": "The ___ swims in the river.",
+    "options": [
+      "pez",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Pez has z al final.",
+    "topic": "gj"
+  },
+  {
+    "id": 25,
+    "sentence": "My ___ is a teacher.",
+    "options": [
+      "profesora",
+      "vaca",
+      "beca"
+    ],
+    "rule": "Profesora is spelled con f.",
+    "topic": "bv"
+  },
+  {
+    "id": 26,
+    "sentence": "The ___ is very tall.",
+    "options": [
+      "edificio",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Edificio is spelled con f.",
+    "topic": "gj"
+  },
+  {
+    "id": 27,
+    "sentence": "The ___ shines at night.",
+    "options": [
+      "luna",
+      "yama",
+      "yuvia"
+    ],
+    "rule": "Luna is spelled con una l.",
+    "topic": "ll-y"
+  },
+  {
+    "id": 28,
+    "sentence": "The ___ is my brother.",
+    "options": [
+      "niño",
+      "pajaro",
+      "arbol"
+    ],
+    "rule": "Niño has tilde en la ñ.",
+    "topic": "tilde"
+  },
+  {
+    "id": 29,
+    "sentence": "I will ___ water.",
+    "options": [
+      "beber",
+      "veber",
+      "bever"
+    ],
+    "rule": "Beber uses b, not v.",
+    "topic": "bv"
+  },
+  {
+    "id": 30,
+    "sentence": "The ___ is red.",
+    "options": [
+      "tomate",
+      "ora",
+      "umo"
+    ],
+    "rule": "Tomate is spelled con t.",
+    "topic": "h"
+  },
+  {
+    "id": 31,
+    "sentence": "The ___ is green.",
+    "options": [
+      "hierba",
+      "ora",
+      "umo"
+    ],
+    "rule": "Hierba has h.",
+    "topic": "h"
+  },
+  {
+    "id": 32,
+    "sentence": "The ___ is an instrument.",
+    "options": [
+      "violín",
+      "vaca",
+      "beca"
+    ],
+    "rule": "Violín is spelled con v.",
+    "topic": "bv"
+  },
+  {
+    "id": 33,
+    "sentence": "There is ___ in the kitchen.",
+    "options": [
+      "harina",
+      "ora",
+      "umo"
+    ],
+    "rule": "Harina has h.",
+    "topic": "h"
+  },
+  {
+    "id": 34,
+    "sentence": "The ___ is very long.",
+    "options": [
+      "camino",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Camino is spelled con m.",
+    "topic": "gj"
+  },
+  {
+    "id": 35,
+    "sentence": "___ is my grandmother.",
+    "options": [
+      "yaya",
+      "yama",
+      "yuvia"
+    ],
+    "rule": "Yaya is spelled con y.",
+    "topic": "ll-y"
+  },
+  {
+    "id": 36,
+    "sentence": "The ___ is blue.",
+    "options": [
+      "cielo",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Cielo is spelled con c.",
+    "topic": "gj"
+  },
+  {
+    "id": 37,
+    "sentence": "My ___ is blue.",
+    "options": [
+      "libro",
+      "vaca",
+      "beca"
+    ],
+    "rule": "Libro is spelled con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 38,
+    "sentence": "The ___ is very fast.",
+    "options": [
+      "tren",
+      "pajaro",
+      "arbol"
+    ],
+    "rule": "Tren no has tilde.",
+    "topic": "tilde"
+  },
+  {
+    "id": 39,
+    "sentence": "The ___ is white.",
+    "options": [
+      "nube",
+      "vaca",
+      "beca"
+    ],
+    "rule": "Nube is spelled con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 40,
+    "sentence": "The ___ is my friend.",
+    "options": [
+      "vecino",
+      "becino",
+      "vesino"
+    ],
+    "rule": "Vecino uses v, not b.",
+    "topic": "bv"
+  },
+  {
+    "id": 41,
+    "sentence": "There are ___ in the sky.",
+    "options": [
+      "estrellas",
+      "yama",
+      "yuvia"
+    ],
+    "rule": "Estrellas has ll.",
+    "topic": "ll-y"
+  },
+  {
+    "id": 42,
+    "sentence": "The ___ is sweet.",
+    "options": [
+      "caramelo",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Caramelo is spelled con c.",
+    "topic": "gj"
+  },
+  {
+    "id": 43,
+    "sentence": "The ___ is long.",
+    "options": [
+      "carretera",
+      "caratera",
+      "pero"
+    ],
+    "rule": "Carretera is spelled con rr.",
+    "topic": "r-rr"
+  },
+  {
+    "id": 44,
+    "sentence": "The ___ is small.",
+    "options": [
+      "ratón",
+      "pajaro",
+      "arbol"
+    ],
+    "rule": "Ratón has tilde en la o.",
+    "topic": "tilde"
+  },
+  {
+    "id": 45,
+    "sentence": "My ___ is red.",
+    "options": [
+      "bici",
+      "vaca",
+      "beca"
+    ],
+    "rule": "Bici (bicicleta) is spelled con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 46,
+    "sentence": "The ___ is green.",
+    "options": [
+      "césped",
+      "pajaro",
+      "arbol"
+    ],
+    "rule": "Césped has tilde en la e.",
+    "topic": "tilde"
+  },
+  {
+    "id": 47,
+    "sentence": "The ___ is cold.",
+    "options": [
+      "helado",
+      "ora",
+      "umo"
+    ],
+    "rule": "Helado has h.",
+    "topic": "h"
+  },
+  {
+    "id": 48,
+    "sentence": "The ___ is my father.",
+    "options": [
+      "hombre",
+      "ora",
+      "umo"
+    ],
+    "rule": "Hombre has h muda.",
+    "topic": "h"
+  },
+  {
+    "id": 49,
+    "sentence": "There is a ___ in the class.",
+    "options": [
+      "mapa",
+      "jirafa",
+      "gente"
+    ],
+    "rule": "Mapa is spelled con m.",
+    "topic": "gj"
+  },
+  {
+    "id": 50,
+    "sentence": "The ___ is my school.",
+    "options": [
+      "colegio",
+      "golegio",
+      "jolezio"
+    ],
+    "rule": "Colegio uses g, not j.",
+    "topic": "gj"
+  },
+  {
+    "id": 51,
+    "sentence": "We buy ___ at the shop.",
+    "options": [
+      "vino",
+      "bino",
+      "vino"
+    ],
+    "answer": 0,
+    "rule": "Vino uses v, not b.",
+    "topic": "bv"
+  },
+  {
+    "id": 52,
+    "sentence": "The ___ is very brave.",
+    "options": [
+      "valiente",
+      "baliente",
+      "valiente"
+    ],
+    "answer": 0,
+    "rule": "Valiente uses v, not b.",
+    "topic": "bv"
+  },
+  {
+    "id": 53,
+    "sentence": "The ___ is red.",
+    "options": [
+      "bota",
+      "vota",
+      "bota"
+    ],
+    "answer": 0,
+    "rule": "Bota uses b, not v.",
+    "topic": "bv"
+  },
+  {
+    "id": 54,
+    "sentence": "The ___ is very fast.",
+    "options": [
+      "velero",
+      "belero",
+      "velero"
+    ],
+    "answer": 0,
+    "rule": "Velero uses v, not b.",
+    "topic": "bv"
+  },
+  {
+    "id": 55,
+    "sentence": "My favourite ___ is apple.",
+    "options": [
+      "fruta",
+      "vruta",
+      "fruta"
+    ],
+    "answer": 0,
+    "rule": "Fruta: vruta is a b/v spelling mistake.",
+    "topic": "bv"
+  },
+  {
+    "id": 56,
+    "sentence": "The ___ is in the wardrobe.",
+    "options": [
+      "vestido",
+      "bestido",
+      "vestido"
+    ],
+    "answer": 0,
+    "rule": "Vestido uses v, not b.",
+    "topic": "bv"
+  },
+  {
+    "id": 57,
+    "sentence": "The ___ is very high.",
+    "options": [
+      "barrera",
+      "varrera",
+      "barrera"
+    ],
+    "answer": 0,
+    "rule": "Barrera uses b, not v.",
+    "topic": "bv"
+  },
+  {
+    "id": 58,
+    "sentence": "The ___ smells nice.",
+    "options": [
+      "violeta",
+      "bioleta",
+      "violeta"
+    ],
+    "answer": 0,
+    "rule": "Violeta uses v, not b.",
+    "topic": "bv"
+  },
+  {
+    "id": 59,
+    "sentence": "I keep books in the ___.",
+    "options": [
+      "biblioteca",
+      "viblioteca",
+      "biblioteka"
+    ],
+    "answer": 0,
+    "rule": "Biblioteca uses b, not v.",
+    "topic": "bv"
+  },
+  {
+    "id": 60,
+    "sentence": "The ___ shines at night.",
+    "options": [
+      "brillo",
+      "vrillo",
+      "brillo"
+    ],
+    "answer": 0,
+    "rule": "Brillo uses b; vrillo confuses b/v.",
+    "topic": "bv"
+  },
+  {
+    "id": 61,
+    "sentence": "The ___ jumps high.",
+    "options": [
+      "jabalí",
+      "gabalí",
+      "javalí"
+    ],
+    "answer": 0,
+    "rule": "Jabalí uses j, not g.",
+    "topic": "gj"
+  },
+  {
+    "id": 62,
+    "sentence": "The ___ tastes good.",
+    "options": [
+      "gelatina",
+      "jelatina",
+      "gelatina"
+    ],
+    "answer": 0,
+    "rule": "Gelatina uses g, not j.",
+    "topic": "gj"
+  },
+  {
+    "id": 63,
+    "sentence": "The ___ lives in Africa.",
+    "options": [
+      "jirafa",
+      "girafa",
+      "jirafa"
+    ],
+    "answer": 0,
+    "rule": "Jirafa uses j, not g.",
+    "topic": "gj"
+  },
+  {
+    "id": 64,
+    "sentence": "My ___ is very kind.",
+    "options": [
+      "gemelo",
+      "jemelo",
+      "gemelo"
+    ],
+    "answer": 0,
+    "rule": "Gemelo uses g, not j.",
+    "topic": "gj"
+  },
+  {
+    "id": 65,
+    "sentence": "The ___ plays guitar.",
+    "options": [
+      "músico",
+      "mujico",
+      "músico"
+    ],
+    "answer": 0,
+    "rule": "Músico: mujico confuses g/j.",
+    "topic": "gj"
+  },
+  {
+    "id": 66,
+    "sentence": "The ___ is very young.",
+    "options": [
+      "joven",
+      "goven",
+      "joven"
+    ],
+    "answer": 0,
+    "rule": "Joven uses j, not g.",
+    "topic": "gj"
+  },
+  {
+    "id": 67,
+    "sentence": "We study ___ in class.",
+    "options": [
+      "geografía",
+      "jeografía",
+      "geografía"
+    ],
+    "answer": 0,
+    "rule": "Geografía uses g, not j.",
+    "topic": "gj"
+  },
+  {
+    "id": 68,
+    "sentence": "The ___ is very agile.",
+    "options": [
+      "gato",
+      "jato",
+      "gato"
+    ],
+    "answer": 0,
+    "rule": "Gato uses g, not j.",
+    "topic": "gj"
+  },
+  {
+    "id": 69,
+    "sentence": "The ___ is an animal.",
+    "options": [
+      "jaguar",
+      "gaguar",
+      "jaguar"
+    ],
+    "answer": 0,
+    "rule": "Jaguar uses j, not g.",
+    "topic": "gj"
+  },
+  {
+    "id": 70,
+    "sentence": "The ___ is very big.",
+    "options": [
+      "gigante",
+      "jigante",
+      "gijante"
+    ],
+    "answer": 0,
+    "rule": "Gigante uses g, not j.",
+    "topic": "gj"
+  }
+]

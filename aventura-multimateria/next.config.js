@@ -1,9 +1,8 @@
-module.exports = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+const path = require('path');
+
+const nextConfig = {
   reactStrictMode: false,
-}; 
+  outputFileTracingRoot: path.join(__dirname),
+};
+
+module.exports = nextConfig; 

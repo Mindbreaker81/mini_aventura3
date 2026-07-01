@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Trophy, Heart } from 'lucide-react';
 import useSteamStore from './useSteamStore';
+import { useTranslation } from '../../components/I18nProvider';
 import { initializeBlocks, initializeGenerators, getToolboxConfig } from './blocks';
 import { safeWorkspaceToCode } from './blockly-utils';
 
@@ -24,6 +25,7 @@ interface BlocklyGameProps {
 }
 
 const BlocklyGame: React.FC<BlocklyGameProps> = ({ onReady }) => {
+  const { t } = useTranslation('common');
   const workspaceRef = useRef<import('blockly').WorkspaceSvg | null>(null);
   const [blocklyState, setBlocklyState] = useState<BlocklyState>(null);
   const [blocklyLoaded, setBlocklyLoaded] = useState(false);
@@ -175,17 +177,17 @@ const BlocklyGame: React.FC<BlocklyGameProps> = ({ onReady }) => {
     const maxBlocks = tasks[currentTask]?.maxBlocks;
 
     if (maxBlocks && blockCount > maxBlocks) {
-      alert(`¡Usa máximo ${maxBlocks} bloques! Actualmente usas ${blockCount}.`);
+      alert(t('steam.blockly.maxBlocks', { max: maxBlocks, count: blockCount }));
       return;
     }
 
     if (!code.trim()) {
-      alert('¡Agrega algunos bloques para programar el robot!');
+      alert(t('steam.blockly.addBlocks'));
       return;
     }
 
     await executeCode(code);
-  }, [workspaceRef, blocklyState, isExecuting, tasks, currentTask, executeCode]);
+  }, [workspaceRef, blocklyState, isExecuting, tasks, currentTask, executeCode, t]);
 
   // Función para reiniciar
   const handleReset = useCallback(() => {

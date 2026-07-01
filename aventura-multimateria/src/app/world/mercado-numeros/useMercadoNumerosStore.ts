@@ -1,8 +1,10 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import type { MercadoTask, GameState, PaymentTask, TimeTask, FractionTask } from './types';
+import { selectRandom } from '../shared/random';
 
 interface MercadoNumerosState extends GameState {
-  // Actions
+  hasFractionAnswer: boolean;
   loadTasks: (tasks: MercadoTask[]) => void;
   startGame: () => void;
   selectCoin: (value: number) => void;
@@ -13,13 +15,14 @@ interface MercadoNumerosState extends GameState {
   setFractionAnswer: (answer: number) => void;
   submitFractionAnswer: () => void;
   nextTask: () => void;
-  showFeedback: (correct: boolean, message: string) => void;
+  showFeedback: (correct: boolean, message: string, params?: Record<string, string | number>) => void;
   hideFeedback: () => void;
   loseHeart: () => void;
   gainXP: (amount: number) => void;
   completeBasket: () => void;
   reset: () => void;
   completeGame: () => void;
+  newGame: (tasks: MercadoTask[]) => void;
 }
 
 const initialState: GameState = {
@@ -35,174 +38,180 @@ const initialState: GameState = {
   badge: false,
 };
 
-export const useMercadoNumerosStore = create<MercadoNumerosState>((set, get) => ({
-  ...initialState,
-
-  loadTasks: (tasks: MercadoTask[]) => {
-    // Seleccionar 8 tareas aleatorias mezclando los 3 tipos
-    const shuffled = [...tasks].sort(() => Math.random() - 0.5);
-    const selectedTasks = shuffled.slice(0, 8);
-    
-    set({ 
-      tasks: selectedTasks,
-      currentTask: 0,
-      completedBaskets: 0,
-      hearts: 3,
-      xp: 0,
-      selectedCoins: [],
-      currentAnswer: null,
-      feedback: null,
-      gameStatus: "instructions",
-      badge: false,
-    });
-  },
-
-  startGame: () => {
-    set({ gameStatus: "playing" });
-  },
-
-  selectCoin: (value: number) => {
-    const { selectedCoins } = get();
-    const total = selectedCoins.reduce((sum, coin) => sum + coin, 0) + value;
-    
-    // No permitir exceder 10€
-    if (total <= 10) {
-      set({ selectedCoins: [...selectedCoins, value] });
-    }
-  },
-
-  removeCoin: (index: number) => {
-    const { selectedCoins } = get();
-    const newCoins = selectedCoins.filter((_, i) => i !== index);
-    set({ selectedCoins: newCoins });
-  },
-
-  submitPayment: () => {
-    const { selectedCoins, tasks, currentTask } = get();
-    const task = tasks[currentTask] as PaymentTask;
-    const total = selectedCoins.reduce((sum, coin) => sum + coin, 0);
-    const targetAmount = task.amount;
-    
-    const correct = Math.abs(total - targetAmount) < 0.01; // Tolerancia para decimales
-    
-    if (correct) {
-      get().completeBasket();
-      get().gainXP(15);
-      get().showFeedback(true, `¡Perfecto! Pagaste exactamente €${targetAmount.toFixed(2)}`);
-    } else {
-      get().loseHeart();
-      get().showFeedback(false, `No es correcto. ${task.explanation}`);
-    }
-  },
-
-  selectTimeAnswer: (answer: number) => {
-    set({ currentAnswer: answer });
-  },
-
-  submitTimeAnswer: () => {
-    const { currentAnswer, tasks, currentTask } = get();
-    const task = tasks[currentTask] as TimeTask;
-    
-    const correct = currentAnswer === task.answer;
-    
-    if (correct) {
-      get().completeBasket();
-      get().gainXP(15);
-      get().showFeedback(true, "¡Correcto! Calculaste bien el tiempo restante.");
-    } else {
-      get().loseHeart();
-      get().showFeedback(false, `No es correcto. ${task.explanation}`);
-    }
-  },
-
-  setFractionAnswer: (answer: number) => {
-    set({ currentAnswer: answer });
-  },
-
-  submitFractionAnswer: () => {
-    const { currentAnswer, tasks, currentTask } = get();
-    const task = tasks[currentTask] as FractionTask;
-    
-    const correct = currentAnswer === task.answer;
-    
-    if (correct) {
-      get().completeBasket();
-      get().gainXP(15);
-      get().showFeedback(true, "¡Excelente! Resolviste la fracción correctamente.");
-    } else {
-      get().loseHeart();
-      get().showFeedback(false, `No es correcto. ${task.explanation}`);
-    }
-  },
-
-  nextTask: () => {
-    const { currentTask, tasks, completedBaskets } = get();
-    
-    set({ 
-      selectedCoins: [],
-      currentAnswer: null,
-      feedback: null 
-    });
-
-    if (currentTask + 1 >= tasks.length || completedBaskets >= 8) {
-      get().completeGame();
-    } else {
-      set({ currentTask: currentTask + 1 });
-    }
-  },
-
-  showFeedback: (correct: boolean, message: string) => {
-    set({ 
-      feedback: { 
-        show: true, 
-        correct, 
-        message 
-      } 
-    });
-  },
-
-  hideFeedback: () => {
-    set({ feedback: null });
-  },
-
-  loseHeart: () => {
-    const { hearts } = get();
-    const newHearts = hearts - 1;
-    
-    if (newHearts <= 0) {
-      set({ hearts: 0, gameStatus: "failed" });
-    } else {
-      set({ hearts: newHearts });
-    }
-  },
-
-  gainXP: (amount: number) => {
-    const { xp } = get();
-    set({ xp: xp + amount });
-  },
-
-  completeBasket: () => {
-    const { completedBaskets } = get();
-    set({ completedBaskets: completedBaskets + 1 });
-  },
-
-  completeGame: () => {
-    const { hearts, xp } = get();
-    const bonusXP = hearts > 0 ? 80 : 0;
-    const badge = hearts > 0;
-    
-    set({ 
-      gameStatus: "completed",
-      xp: xp + bonusXP,
-      badge
-    });
-  },
-
-  reset: () => {
-    set({
+export const useMercadoNumerosStore = create<MercadoNumerosState>()(
+  persist(
+    (set, get) => ({
       ...initialState,
-      tasks: get().tasks, // Mantener las tareas cargadas
-      gameStatus: "instructions"
-    });
-  },
-}));
+      hasFractionAnswer: false,
+
+      loadTasks: (tasks: MercadoTask[]) => {
+        set({
+          tasks: selectRandom(tasks, 8),
+          currentTask: 0,
+          completedBaskets: 0,
+          hearts: 3,
+          xp: 0,
+          selectedCoins: [],
+          currentAnswer: null,
+          hasFractionAnswer: false,
+          feedback: null,
+          gameStatus: "instructions",
+          badge: false,
+        });
+      },
+
+      newGame: (tasks: MercadoTask[]) => {
+        get().loadTasks(tasks);
+      },
+
+      startGame: () => {
+        set({ gameStatus: "playing" });
+      },
+
+      selectCoin: (value: number) => {
+        const { selectedCoins } = get();
+        const total = selectedCoins.reduce((sum, coin) => sum + coin, 0) + value;
+        if (total <= 10) {
+          set({ selectedCoins: [...selectedCoins, value] });
+        }
+      },
+
+      removeCoin: (index: number) => {
+        const { selectedCoins } = get();
+        set({ selectedCoins: selectedCoins.filter((_, i) => i !== index) });
+      },
+
+      submitPayment: () => {
+        const { selectedCoins, tasks, currentTask } = get();
+        const task = tasks[currentTask] as PaymentTask;
+        const total = selectedCoins.reduce((sum, coin) => sum + coin, 0);
+        const correct = Math.abs(total - task.amount) < 0.01;
+
+        if (correct) {
+          get().completeBasket();
+          get().gainXP(15);
+          get().showFeedback(true, 'mercado.feedback.paymentExact', { amount: `€${task.amount.toFixed(2)}` });
+        } else {
+          get().loseHeart();
+          get().showFeedback(false, 'mercado.feedback.incorrect', { explanation: task.explanation });
+        }
+      },
+
+      selectTimeAnswer: (answer: number) => {
+        set({ currentAnswer: answer });
+      },
+
+      submitTimeAnswer: () => {
+        const { currentAnswer, tasks, currentTask } = get();
+        const task = tasks[currentTask] as TimeTask;
+        const correct = currentAnswer === task.answer;
+
+        if (correct) {
+          get().completeBasket();
+          get().gainXP(15);
+          get().showFeedback(true, 'mercado.feedback.timeCorrect');
+        } else {
+          get().loseHeart();
+          get().showFeedback(false, 'mercado.feedback.incorrect', { explanation: task.explanation });
+        }
+      },
+
+      setFractionAnswer: (answer: number) => {
+        set({ currentAnswer: answer, hasFractionAnswer: true });
+      },
+
+      submitFractionAnswer: () => {
+        const { currentAnswer, hasFractionAnswer, tasks, currentTask } = get();
+        if (!hasFractionAnswer || currentAnswer === null) return;
+
+        const task = tasks[currentTask] as FractionTask;
+        const correct = currentAnswer === task.answer;
+
+        if (correct) {
+          get().completeBasket();
+          get().gainXP(15);
+          get().showFeedback(true, 'mercado.feedback.fractionCorrect');
+        } else {
+          get().loseHeart();
+          get().showFeedback(false, 'mercado.feedback.incorrect', { explanation: task.explanation });
+        }
+      },
+
+      nextTask: () => {
+        const { currentTask, tasks, completedBaskets } = get();
+
+        set({
+          selectedCoins: [],
+          currentAnswer: null,
+          hasFractionAnswer: false,
+          feedback: null,
+        });
+
+        if (currentTask + 1 >= tasks.length || completedBaskets >= 8) {
+          get().completeGame();
+        } else {
+          set({ currentTask: currentTask + 1 });
+        }
+      },
+
+      showFeedback: (correct: boolean, message: string, params?: Record<string, string | number>) => {
+        set({ feedback: { show: true, correct, message, params } });
+      },
+
+      hideFeedback: () => {
+        set({ feedback: null });
+      },
+
+      loseHeart: () => {
+        const newHearts = get().hearts - 1;
+        if (newHearts <= 0) {
+          set({ hearts: 0, gameStatus: "failed" });
+        } else {
+          set({ hearts: newHearts });
+        }
+      },
+
+      gainXP: (amount: number) => {
+        set({ xp: get().xp + amount });
+      },
+
+      completeBasket: () => {
+        set({ completedBaskets: get().completedBaskets + 1 });
+      },
+
+      completeGame: () => {
+        const { hearts, xp } = get();
+        const bonusXP = hearts > 0 ? 80 : 0;
+        set({
+          gameStatus: "completed",
+          xp: xp + bonusXP,
+          badge: hearts > 0,
+        });
+      },
+
+      reset: () => {
+        set({
+          ...initialState,
+          tasks: get().tasks,
+          gameStatus: "instructions",
+          hasFractionAnswer: false,
+        });
+      },
+    }),
+    {
+      name: "mercado-numeros-storage",
+      partialize: (state) => ({
+        currentTask: state.currentTask,
+        completedBaskets: state.completedBaskets,
+        hearts: state.hearts,
+        xp: state.xp,
+        tasks: state.tasks,
+        selectedCoins: state.selectedCoins,
+        currentAnswer: state.currentAnswer,
+        hasFractionAnswer: state.hasFractionAnswer,
+        gameStatus: state.gameStatus,
+        badge: state.badge,
+      }),
+    }
+  )
+);

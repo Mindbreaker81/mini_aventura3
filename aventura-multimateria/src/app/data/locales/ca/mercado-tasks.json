@@ -1,0 +1,858 @@
+[
+  {
+    "id": 101,
+    "type": "PAGO",
+    "statement": "Paga exactament €3,65 per una barra de pa i un suc.",
+    "amount": 3.65,
+    "explanation": "3 € (bitllet) + 50 c + 10 c + 5 c."
+  },
+  {
+    "id": 102,
+    "type": "PAGO",
+    "statement": "Compra llet per €1,85. Com el pots pagar?",
+    "amount": 1.85,
+    "explanation": "1 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 103,
+    "type": "PAGO",
+    "statement": "El preu d'unes pomes és €2,40.",
+    "amount": 2.4,
+    "explanation": "2 € + 20 c + 20 c."
+  },
+  {
+    "id": 104,
+    "type": "PAGO",
+    "statement": "Paga €5,20 per un entrepà.",
+    "amount": 5.2,
+    "explanation": "5 € + 20 c."
+  },
+  {
+    "id": 105,
+    "type": "PAGO",
+    "statement": "Una ampolla d'aigua costa €0,75.",
+    "amount": 0.75,
+    "explanation": "50 c + 20 c + 5 c."
+  },
+  {
+    "id": 106,
+    "type": "PAGO",
+    "statement": "Compra xocolata per €4,15.",
+    "amount": 4.15,
+    "explanation": "2 € + 2 € + 10 c + 5 c."
+  },
+  {
+    "id": 107,
+    "type": "PAGO",
+    "statement": "El iogurt costa €1,20.",
+    "amount": 1.2,
+    "explanation": "1 € + 20 c."
+  },
+  {
+    "id": 108,
+    "type": "PAGO",
+    "statement": "Paga €6,50 per formatge.",
+    "amount": 6.5,
+    "explanation": "5 € + 1 € + 50 c."
+  },
+  {
+    "id": 109,
+    "type": "PAGO",
+    "statement": "Les galetes costen €2,95.",
+    "amount": 2.95,
+    "explanation": "2 € + 50 c + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 110,
+    "type": "PAGO",
+    "statement": "Compra fruita per €3,30.",
+    "amount": 3.3,
+    "explanation": "2 € + 1 € + 20 c + 10 c."
+  },
+  {
+    "id": 111,
+    "type": "PAGO",
+    "statement": "El pernil costa €7,85.",
+    "amount": 7.85,
+    "explanation": "5 € + 2 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 112,
+    "type": "PAGO",
+    "statement": "Paga €1,55 per caramels.",
+    "amount": 1.55,
+    "explanation": "1 € + 50 c + 5 c."
+  },
+  {
+    "id": 113,
+    "type": "PAGO",
+    "statement": "Les patates costen €2,10.",
+    "amount": 2.1,
+    "explanation": "2 € + 10 c."
+  },
+  {
+    "id": 114,
+    "type": "PAGO",
+    "statement": "Compra oli per €4,75.",
+    "amount": 4.75,
+    "explanation": "2 € + 2 € + 50 c + 20 c + 5 c."
+  },
+  {
+    "id": 115,
+    "type": "PAGO",
+    "statement": "L'arròs costa €1,35.",
+    "amount": 1.35,
+    "explanation": "1 € + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 116,
+    "type": "PAGO",
+    "statement": "Paga €8,25 per carn.",
+    "amount": 8.25,
+    "explanation": "5 € + 2 € + 1 € + 20 c + 5 c."
+  },
+  {
+    "id": 117,
+    "type": "PAGO",
+    "statement": "Les cireres costen €3,05.",
+    "amount": 3.05,
+    "explanation": "2 € + 1 € + 5 c."
+  },
+  {
+    "id": 118,
+    "type": "PAGO",
+    "statement": "Compra pasta per €1,90.",
+    "amount": 1.9,
+    "explanation": "1 € + 50 c + 20 c + 20 c."
+  },
+  {
+    "id": 202,
+    "type": "HORA",
+    "statement": "Són les 17:10 i la botiga tanca a les 18:00. Quant falta?",
+    "options": [
+      "50 min",
+      "40 min",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "De 17:10 a 18:00 hi ha 50 min."
+  },
+  {
+    "id": 203,
+    "type": "HORA",
+    "statement": "Són les 15:30 i tanquen a les 17:00. Quant de temps queda?",
+    "options": [
+      "1 h 30 min",
+      "2 h",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "De 15:30 a 17:00 hi ha 1 hora i 30 minuts."
+  },
+  {
+    "id": 204,
+    "type": "HORA",
+    "statement": "Són les 16:45 i la botiga tanca a les 18:30. Quant falta?",
+    "options": [
+      "1 h 45 min",
+      "2 h 15 min",
+      "1 h 15 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:45 a 18:30 hi ha 1 hora i 45 minuts."
+  },
+  {
+    "id": 205,
+    "type": "HORA",
+    "statement": "Són les 14:20 i tanquen a les 16:00. Quant de temps queda?",
+    "options": [
+      "1 h 40 min",
+      "2 h 20 min",
+      "1 h 20 min"
+    ],
+    "answer": 0,
+    "explanation": "De 14:20 a 16:00 hi ha 1 hora i 40 minuts."
+  },
+  {
+    "id": 206,
+    "type": "HORA",
+    "statement": "Són les 17:25 i la botiga tanca a les 18:15. Quant falta?",
+    "options": [
+      "50 min",
+      "45 min",
+      "1 h 10 min"
+    ],
+    "answer": 0,
+    "explanation": "De 17:25 a 18:15 hi ha 50 minuts."
+  },
+  {
+    "id": 207,
+    "type": "HORA",
+    "statement": "Són les 16:10 i tanquen a les 17:30. Quant de temps queda?",
+    "options": [
+      "1 h 20 min",
+      "1 h 40 min",
+      "1 h 10 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:10 a 17:30 hi ha 1 hora i 20 minuts."
+  },
+  {
+    "id": 208,
+    "type": "HORA",
+    "statement": "Són les 15:15 i la botiga tanca a les 17:45. Quant falta?",
+    "options": [
+      "2 h 30 min",
+      "2 h 15 min",
+      "2 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "De 15:15 a 17:45 hi ha 2 hores i 30 minuts."
+  },
+  {
+    "id": 209,
+    "type": "HORA",
+    "statement": "Són les 16:35 i tanquen a les 18:00. Quant de temps queda?",
+    "options": [
+      "1 h 25 min",
+      "1 h 35 min",
+      "1 h 15 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:35 a 18:00 hi ha 1 hora i 25 minuts."
+  },
+  {
+    "id": 210,
+    "type": "HORA",
+    "statement": "Són les 17:05 i la botiga tanca a les 18:20. Quant falta?",
+    "options": [
+      "1 h 15 min",
+      "1 h 25 min",
+      "1 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "De 17:05 a 18:20 hi ha 1 hora i 15 minuts."
+  },
+  {
+    "id": 211,
+    "type": "HORA",
+    "statement": "Són les 14:50 i tanquen a les 16:30. Quant de temps queda?",
+    "options": [
+      "1 h 40 min",
+      "1 h 30 min",
+      "1 h 50 min"
+    ],
+    "answer": 0,
+    "explanation": "De 14:50 a 16:30 hi ha 1 hora i 40 minuts."
+  },
+  {
+    "id": 212,
+    "type": "HORA",
+    "statement": "Són les 15:45 i la botiga tanca a les 17:15. Quant falta?",
+    "options": [
+      "1 h 30 min",
+      "1 h 15 min",
+      "1 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "De 15:45 a 17:15 hi ha 1 hora i 30 minuts."
+  },
+  {
+    "id": 213,
+    "type": "HORA",
+    "statement": "Són les 16:20 i tanquen a les 18:45. Quant de temps queda?",
+    "options": [
+      "2 h 25 min",
+      "2 h 15 min",
+      "2 h 35 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:20 a 18:45 hi ha 2 hores i 25 minuts."
+  },
+  {
+    "id": 214,
+    "type": "HORA",
+    "statement": "Són les 17:30 i la botiga tanca a les 18:15. Quant falta?",
+    "options": [
+      "45 min",
+      "30 min",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "De 17:30 a 18:15 hi ha 45 minuts."
+  },
+  {
+    "id": 215,
+    "type": "HORA",
+    "statement": "Són les 14:15 i tanquen a les 16:45. Quant de temps queda?",
+    "options": [
+      "2 h 30 min",
+      "2 h 15 min",
+      "2 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "De 14:15 a 16:45 hi ha 2 hores i 30 minuts."
+  },
+  {
+    "id": 216,
+    "type": "HORA",
+    "statement": "Són les 15:55 i la botiga tanca a les 17:10. Quant falta?",
+    "options": [
+      "1 h 15 min",
+      "1 h 5 min",
+      "1 h 25 min"
+    ],
+    "answer": 0,
+    "explanation": "De 15:55 a 17:10 hi ha 1 hora i 15 minuts."
+  },
+  {
+    "id": 217,
+    "type": "HORA",
+    "statement": "Són les 16:40 i tanquen a les 18:25. Quant de temps queda?",
+    "options": [
+      "1 h 45 min",
+      "1 h 25 min",
+      "1 h 55 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:40 a 18:25 hi ha 1 hora i 45 minuts."
+  },
+  {
+    "id": 303,
+    "type": "FRACCION",
+    "statement": "Necessites 3/4 kg de sucre. Si cada bossa pesa 1/4 kg, quantes bosses compres?",
+    "answer": 3,
+    "explanation": "3 bosses d'1/4 kg sumen 3/4 kg."
+  },
+  {
+    "id": 304,
+    "type": "FRACCION",
+    "statement": "Vols comprar 1/2 kg de farina. Les bosses són d'1/4 kg. Quant en necessites?",
+    "answer": 2,
+    "explanation": "2 bosses d'1/4 kg sumen 1/2 kg."
+  },
+  {
+    "id": 305,
+    "type": "FRACCION",
+    "statement": "Una pizza es divideix en 8 trossos iguals. Et menges 3 trossos. Quina fracció has menjat?",
+    "options": [
+      "3/8",
+      "1/4",
+      "1/2"
+    ],
+    "answer": 0,
+    "explanation": "3 trossos de 8 són 3/8 de la pizza."
+  },
+  {
+    "id": 306,
+    "type": "FRACCION",
+    "statement": "Necessites 1 kg d'arròs. Les bosses són d'1/2 kg. Quantes bosses compres?",
+    "answer": 2,
+    "explanation": "2 bosses d'1/2 kg sumen 1 kg complet."
+  },
+  {
+    "id": 307,
+    "type": "FRACCION",
+    "statement": "Un pastís es talla en 4 parts iguals. Et menges 1 part. Quina fracció queda?",
+    "options": [
+      "3/4",
+      "1/4",
+      "1/2"
+    ],
+    "answer": 0,
+    "explanation": "Si et menges 1/4, queden 3/4 del pastís."
+  },
+  {
+    "id": 308,
+    "type": "FRACCION",
+    "statement": "Vols 3/8 kg de formatge. Les porcions són d'1/8 kg. Quantes porcions necessites?",
+    "answer": 3,
+    "explanation": "3 porcions d'1/8 kg sumen 3/8 kg."
+  },
+  {
+    "id": 309,
+    "type": "FRACCION",
+    "statement": "Una xocolata té 8 quadrats. Et menges la meitat. Quants quadrats has menjat?",
+    "answer": 4,
+    "explanation": "La meitat de 8 quadrats són 4 quadrats."
+  },
+  {
+    "id": 310,
+    "type": "FRACCION",
+    "statement": "Necessites 1/4 kg de pernil. Les llesques pesen 1/8 kg cadascuna. Quantes llesques compres?",
+    "answer": 2,
+    "explanation": "2 llesques d'1/8 kg sumen 1/4 kg."
+  },
+  {
+    "id": 311,
+    "type": "FRACCION",
+    "statement": "Una tableta de xocolata té 12 trossos. Et menges 1/4 de la tableta. Quants trossos has menjat?",
+    "answer": 3,
+    "explanation": "1/4 de 12 trossos són 3 trossos."
+  },
+  {
+    "id": 312,
+    "type": "FRACCION",
+    "statement": "Compres 1/2 dotzena d'ous. Quants ous són?",
+    "answer": 6,
+    "explanation": "1/2 de 12 ous (una dotzena) són 6 ous."
+  },
+  {
+    "id": 313,
+    "type": "FRACCION",
+    "statement": "Una barra de pa es talla en 8 llesques. Fas servir 1/2 de la barra. Quantes llesques has fet servir?",
+    "answer": 4,
+    "explanation": "1/2 de 8 llesques són 4 llesques."
+  },
+  {
+    "id": 314,
+    "type": "FRACCION",
+    "statement": "Vols 5/8 kg de carn. Les porcions són d'1/8 kg. Quantes porcions necessites?",
+    "answer": 5,
+    "explanation": "5 porcions d'1/8 kg sumen 5/8 kg."
+  },
+  {
+    "id": 315,
+    "type": "FRACCION",
+    "statement": "Una pizza gran es divideix en 8 trossos. Comparteixes 3/4 de la pizza. Quants trossos comparteixes?",
+    "answer": 6,
+    "explanation": "3/4 de 8 trossos són 6 trossos."
+  },
+  {
+    "id": 316,
+    "type": "FRACCION",
+    "statement": "Necessites 7/8 kg de verdures. Les bosses són d'1/8 kg. Quantes bosses compres?",
+    "answer": 7,
+    "explanation": "7 bosses d'1/8 kg sumen 7/8 kg."
+  },
+  {
+    "id": 317,
+    "type": "FRACCION",
+    "statement": "Un pastís es talla en 6 porcions iguals. Et menges 1/3 del pastís. Quantes porcions has menjat?",
+    "answer": 2,
+    "explanation": "1/3 de 6 porcions són 2 porcions."
+  },
+  {
+    "id": 119,
+    "type": "PAGO",
+    "statement": "Compra sardines per €5,75.",
+    "amount": 5.75,
+    "explanation": "5 € + 50 c + 20 c + 5 c."
+  },
+  {
+    "id": 120,
+    "type": "PAGO",
+    "statement": "El tonyina costa €6,90.",
+    "amount": 6.9,
+    "explanation": "5 € + 1 € + 50 c + 20 c + 20 c."
+  },
+  {
+    "id": 121,
+    "type": "PAGO",
+    "statement": "Paga €4,05 per tomàquets.",
+    "amount": 4.05,
+    "explanation": "2 € + 2 € + 5 c."
+  },
+  {
+    "id": 122,
+    "type": "PAGO",
+    "statement": "Les peres costen €3,80.",
+    "amount": 3.8,
+    "explanation": "2 € + 1 € + 50 c + 20 c + 10 c."
+  },
+  {
+    "id": 123,
+    "type": "PAGO",
+    "statement": "Compra enciam per €1,45.",
+    "amount": 1.45,
+    "explanation": "1 € + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 124,
+    "type": "PAGO",
+    "statement": "El salmó costa €9,15.",
+    "amount": 9.15,
+    "explanation": "5 € + 2 € + 2 € + 10 c + 5 c."
+  },
+  {
+    "id": 125,
+    "type": "PAGO",
+    "statement": "Paga €2,65 per pastanagues.",
+    "amount": 2.65,
+    "explanation": "2 € + 50 c + 10 c + 5 c."
+  },
+  {
+    "id": 126,
+    "type": "PAGO",
+    "statement": "Les taronges costen €4,20.",
+    "amount": 4.2,
+    "explanation": "2 € + 2 € + 20 c."
+  },
+  {
+    "id": 127,
+    "type": "PAGO",
+    "statement": "Compra lluc per €7,35.",
+    "amount": 7.35,
+    "explanation": "5 € + 2 € + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 128,
+    "type": "PAGO",
+    "statement": "L'api costa €1,25.",
+    "amount": 1.25,
+    "explanation": "1 € + 20 c + 5 c."
+  },
+  {
+    "id": 129,
+    "type": "PAGO",
+    "statement": "Paga €5,60 per pollastre.",
+    "amount": 5.6,
+    "explanation": "5 € + 50 c + 10 c."
+  },
+  {
+    "id": 130,
+    "type": "PAGO",
+    "statement": "Les cebes costen €0,95.",
+    "amount": 0.95,
+    "explanation": "50 c + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 131,
+    "type": "PAGO",
+    "statement": "Compra plàtans per €2,85.",
+    "amount": 2.85,
+    "explanation": "2 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 132,
+    "type": "PAGO",
+    "statement": "El bacallà costa €8,70.",
+    "amount": 8.7,
+    "explanation": "5 € + 2 € + 1 € + 50 c + 20 c."
+  },
+  {
+    "id": 133,
+    "type": "PAGO",
+    "statement": "Paga €3,15 per cogombres.",
+    "amount": 3.15,
+    "explanation": "2 € + 1 € + 10 c + 5 c."
+  },
+  {
+    "id": 134,
+    "type": "PAGO",
+    "statement": "Les raïms costen €6,45.",
+    "amount": 6.45,
+    "explanation": "5 € + 1 € + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 218,
+    "type": "HORA",
+    "statement": "Són les 14:40 i la botiga tanca a les 16:20. Quant falta?",
+    "options": [
+      "1 h 40 min",
+      "1 h 20 min",
+      "2 h"
+    ],
+    "answer": 0,
+    "explanation": "De 14:40 a 16:20 hi ha 1 hora i 40 minuts."
+  },
+  {
+    "id": 219,
+    "type": "HORA",
+    "statement": "Són les 15:25 i tanquen a les 17:50. Quant de temps queda?",
+    "options": [
+      "2 h 25 min",
+      "2 h 35 min",
+      "2 h 15 min"
+    ],
+    "answer": 0,
+    "explanation": "De 15:25 a 17:50 hi ha 2 hores i 25 minuts."
+  },
+  {
+    "id": 220,
+    "type": "HORA",
+    "statement": "Són les 16:15 i la botiga tanca a les 17:00. Quant falta?",
+    "options": [
+      "45 min",
+      "1 h 15 min",
+      "30 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:15 a 17:00 hi ha 45 minuts."
+  },
+  {
+    "id": 221,
+    "type": "HORA",
+    "statement": "Són les 17:20 i tanquen a les 18:35. Quant de temps queda?",
+    "options": [
+      "1 h 15 min",
+      "1 h 25 min",
+      "1 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "De 17:20 a 18:35 hi ha 1 hora i 15 minuts."
+  },
+  {
+    "id": 222,
+    "type": "HORA",
+    "statement": "Són les 14:35 i la botiga tanca a les 16:10. Quant falta?",
+    "options": [
+      "1 h 35 min",
+      "1 h 25 min",
+      "1 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "De 14:35 a 16:10 hi ha 1 hora i 35 minuts."
+  },
+  {
+    "id": 223,
+    "type": "HORA",
+    "statement": "Són les 15:50 i tanquen a les 18:05. Quant de temps queda?",
+    "options": [
+      "2 h 15 min",
+      "2 h 25 min",
+      "2 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "De 15:50 a 18:05 hi ha 2 hores i 15 minuts."
+  },
+  {
+    "id": 224,
+    "type": "HORA",
+    "statement": "Són les 16:25 i la botiga tanca a les 17:40. Quant falta?",
+    "options": [
+      "1 h 15 min",
+      "1 h 25 min",
+      "1 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:25 a 17:40 hi ha 1 hora i 15 minuts."
+  },
+  {
+    "id": 225,
+    "type": "HORA",
+    "statement": "Són les 17:15 i tanquen a les 18:50. Quant de temps queda?",
+    "options": [
+      "1 h 35 min",
+      "1 h 25 min",
+      "1 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "De 17:15 a 18:50 hi ha 1 hora i 35 minuts."
+  },
+  {
+    "id": 226,
+    "type": "HORA",
+    "statement": "Són les 14:25 i la botiga tanca a les 16:55. Quant falta?",
+    "options": [
+      "2 h 30 min",
+      "2 h 20 min",
+      "2 h 40 min"
+    ],
+    "answer": 0,
+    "explanation": "De 14:25 a 16:55 hi ha 2 hores i 30 minuts."
+  },
+  {
+    "id": 227,
+    "type": "HORA",
+    "statement": "Són les 15:05 i tanquen a les 17:25. Quant de temps queda?",
+    "options": [
+      "2 h 20 min",
+      "2 h 10 min",
+      "2 h 30 min"
+    ],
+    "answer": 0,
+    "explanation": "De 15:05 a 17:25 hi ha 2 hores i 20 minuts."
+  },
+  {
+    "id": 228,
+    "type": "HORA",
+    "statement": "Són les 16:50 i la botiga tanca a les 18:10. Quant falta?",
+    "options": [
+      "1 h 20 min",
+      "1 h 10 min",
+      "1 h 30 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:50 a 18:10 hi ha 1 hora i 20 minuts."
+  },
+  {
+    "id": 229,
+    "type": "HORA",
+    "statement": "Són les 17:35 i tanquen a les 18:45. Quant de temps queda?",
+    "options": [
+      "1 h 10 min",
+      "1 h 20 min",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "De 17:35 a 18:45 hi ha 1 hora i 10 minuts."
+  },
+  {
+    "id": 230,
+    "type": "HORA",
+    "statement": "Són les 14:45 i la botiga tanca a les 17:15. Quant falta?",
+    "options": [
+      "2 h 30 min",
+      "2 h 20 min",
+      "2 h 40 min"
+    ],
+    "answer": 0,
+    "explanation": "De 14:45 a 17:15 hi ha 2 hores i 30 minuts."
+  },
+  {
+    "id": 231,
+    "type": "HORA",
+    "statement": "Són les 15:35 i tanquen a les 18:20. Quant de temps queda?",
+    "options": [
+      "2 h 45 min",
+      "2 h 35 min",
+      "2 h 55 min"
+    ],
+    "answer": 0,
+    "explanation": "De 15:35 a 18:20 hi ha 2 hores i 45 minuts."
+  },
+  {
+    "id": 232,
+    "type": "HORA",
+    "statement": "Són les 16:05 i la botiga tanca a les 17:30. Quant falta?",
+    "options": [
+      "1 h 25 min",
+      "1 h 15 min",
+      "1 h 35 min"
+    ],
+    "answer": 0,
+    "explanation": "De 16:05 a 17:30 hi ha 1 hora i 25 minuts."
+  },
+  {
+    "id": 233,
+    "type": "HORA",
+    "statement": "Són les 17:00 i tanquen a les 18:40. Quant de temps queda?",
+    "options": [
+      "1 h 40 min",
+      "1 h 30 min",
+      "1 h 50 min"
+    ],
+    "answer": 0,
+    "explanation": "De 17:00 a 18:40 hi ha 1 hora i 40 minuts."
+  },
+  {
+    "id": 318,
+    "type": "FRACCION",
+    "statement": "Una tarta es divideix en 10 porcions. Et menges 3/10 de la tarta. Quantes porcions has menjat?",
+    "answer": 3,
+    "explanation": "3/10 de 10 porcions són 3 porcions."
+  },
+  {
+    "id": 319,
+    "type": "FRACCION",
+    "statement": "Necessites 2/3 kg de peix. Les porcions són d'1/3 kg. Quantes porcions compres?",
+    "answer": 2,
+    "explanation": "2 porcions d'1/3 kg sumen 2/3 kg."
+  },
+  {
+    "id": 320,
+    "type": "FRACCION",
+    "statement": "Una síndria es talla en 16 trossos. Et menges 1/4 de la síndria. Quants trossos has menjat?",
+    "answer": 4,
+    "explanation": "1/4 de 16 trossos són 4 trossos."
+  },
+  {
+    "id": 321,
+    "type": "FRACCION",
+    "statement": "Vols 5/6 kg de verdures. Les bosses són d'1/6 kg. Quantes bosses necessites?",
+    "answer": 5,
+    "explanation": "5 bosses d'1/6 kg sumen 5/6 kg."
+  },
+  {
+    "id": 322,
+    "type": "FRACCION",
+    "statement": "Un meló es divideix en 8 talls. Et menges 3/8 del meló. Quants talls has menjat?",
+    "answer": 3,
+    "explanation": "3/8 de 8 talls són 3 talls."
+  },
+  {
+    "id": 323,
+    "type": "FRACCION",
+    "statement": "Necessites 3/5 kg de carn. Les porcions són d'1/5 kg. Quantes porcions compres?",
+    "answer": 3,
+    "explanation": "3 porcions d'1/5 kg sumen 3/5 kg."
+  },
+  {
+    "id": 324,
+    "type": "FRACCION",
+    "statement": "Una barra de xocolata té 20 quadrats. Et menges 1/5 de la barra. Quants quadrats has menjat?",
+    "answer": 4,
+    "explanation": "1/5 de 20 quadrats són 4 quadrats."
+  },
+  {
+    "id": 325,
+    "type": "FRACCION",
+    "statement": "Vols 4/5 kg de pomes. Les bosses són d'1/5 kg. Quantes bosses necessites?",
+    "answer": 4,
+    "explanation": "4 bosses d'1/5 kg sumen 4/5 kg."
+  },
+  {
+    "id": 326,
+    "type": "FRACCION",
+    "statement": "Una empanada es talla en 12 porcions. Et menges 1/3 de l'empanada. Quantes porcions has menjat?",
+    "answer": 4,
+    "explanation": "1/3 de 12 porcions són 4 porcions."
+  },
+  {
+    "id": 327,
+    "type": "FRACCION",
+    "statement": "Necessites 7/10 kg de patates. Les bosses són d'1/10 kg. Quantes bosses compres?",
+    "answer": 7,
+    "explanation": "7 bosses d'1/10 kg sumen 7/10 kg."
+  },
+  {
+    "id": 328,
+    "type": "FRACCION",
+    "statement": "Un pastís es divideix en 14 trossos. Et menges 1/7 del pastís. Quants trossos has menjat?",
+    "answer": 2,
+    "explanation": "1/7 de 14 trossos són 2 trossos."
+  },
+  {
+    "id": 329,
+    "type": "FRACCION",
+    "statement": "Vols 6/7 kg d'arròs. Les bosses són d'1/7 kg. Quantes bosses necessites?",
+    "answer": 6,
+    "explanation": "6 bosses d'1/7 kg sumen 6/7 kg."
+  },
+  {
+    "id": 330,
+    "type": "FRACCION",
+    "statement": "Una pizza familiar es talla en 18 trossos. Et menges 1/6 de la pizza. Quants trossos has menjat?",
+    "answer": 3,
+    "explanation": "1/6 de 18 trossos són 3 trossos."
+  },
+  {
+    "id": 331,
+    "type": "FRACCION",
+    "statement": "Necessites 8/9 kg de farina. Les bosses són d'1/9 kg. Quantes bosses compres?",
+    "answer": 8,
+    "explanation": "8 bosses d'1/9 kg sumen 8/9 kg."
+  },
+  {
+    "id": 332,
+    "type": "FRACCION",
+    "statement": "Un formatge es talla en 15 llesques. Et menges 1/5 del formatge. Quantes llesques has menjat?",
+    "answer": 3,
+    "explanation": "1/5 de 15 llesques són 3 llesques."
+  },
+  {
+    "id": 333,
+    "type": "FRACCION",
+    "statement": "Vols 9/10 kg de sucre. Les bosses són d'1/10 kg. Quantes bosses necessites?",
+    "answer": 9,
+    "explanation": "9 bosses d'1/10 kg sumen 9/10 kg."
+  },
+  {
+    "id": 334,
+    "type": "FRACCION",
+    "statement": "Una truita es talla en 16 porcions. Et menges 3/8 de la truita. Quantes porcions has menjat?",
+    "answer": 6,
+    "explanation": "3/8 de 16 porcions són 6 porcions."
+  }
+]

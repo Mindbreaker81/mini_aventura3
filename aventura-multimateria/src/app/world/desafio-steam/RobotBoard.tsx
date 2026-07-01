@@ -1,8 +1,10 @@
 'use client';
 import React from 'react';
+import { useTranslation } from '../../components/I18nProvider';
 import useSteamStore from './useSteamStore';
 
 const RobotBoard: React.FC = () => {
+  const { t } = useTranslation('common');
   const { tasks, currentTask, robot, isExecuting, hasCrashed, robotPath } = useSteamStore();
   
   if (!tasks || !tasks[currentTask] || !robot) return null;
@@ -113,24 +115,24 @@ const RobotBoard: React.FC = () => {
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="mb-4">
         <h3 className="text-xl font-bold text-gray-800 mb-2">
-          Nivel {currentTask + 1}: {task.name}
+          {t('steam.playing.levelTitle', { level: currentTask + 1, name: task.name })}
         </h3>
         <p className="text-sm text-gray-600 mb-2">
           💡 {task.hint}
         </p>
         <p className="text-sm text-gray-500">
-          Máximo bloques: {task.maxBlocks}
+          {t('steam.playing.maxBlocks', { count: task.maxBlocks })}
         </p>
         {isExecuting && (
           <div className="mt-2 flex items-center gap-2 text-blue-600">
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-            <span className="text-sm font-medium">Ejecutando código...</span>
+            <span className="text-sm font-medium">{t('steam.playing.executingCode')}</span>
           </div>
         )}
         {hasCrashed && (
           <div className="mt-2 flex items-center gap-2 text-red-600">
             <span className="text-lg">💥</span>
-            <span className="text-sm font-medium">¡El robot ha chocado!</span>
+            <span className="text-sm font-medium">{t('steam.playing.crashed')}</span>
           </div>
         )}
       </div>

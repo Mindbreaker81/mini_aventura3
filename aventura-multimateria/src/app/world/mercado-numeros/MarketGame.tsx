@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useTranslation } from "../../components/I18nProvider";
 import { useMercadoNumerosStore } from "./useMercadoNumerosStore";
 import { PaymentChallenge } from "./PaymentChallenge";
 import { TimeChallenge } from "./TimeChallenge";
@@ -7,6 +8,7 @@ import { FractionChallenge } from "./FractionChallenge";
 import { ShoppingCart } from "lucide-react";
 
 export const MarketGame: React.FC = () => {
+  const { t } = useTranslation("common");
   const { 
     tasks, 
     currentTask, 
@@ -21,7 +23,7 @@ export const MarketGame: React.FC = () => {
     return (
       <div className="text-center">
         <div className="text-4xl mb-4">🛒</div>
-        <p className="text-gray-600">Cargando desafío...</p>
+        <p className="text-gray-600">{t("mercado.playing.loading")}</p>
       </div>
     );
   }
@@ -31,7 +33,7 @@ export const MarketGame: React.FC = () => {
     return (
       <div className="text-center">
         <div className="text-4xl mb-4">✅</div>
-        <p className="text-gray-600">¡Todos los desafíos completados!</p>
+        <p className="text-gray-600">{t("mercado.playing.allDone")}</p>
       </div>
     );
   }
@@ -45,13 +47,12 @@ export const MarketGame: React.FC = () => {
       case "FRACCION":
         return <FractionChallenge task={task} />;
       default:
-        return <div>Tipo de desafío no reconocido</div>;
+        return <div>{t("mercado.playing.unknownType")}</div>;
     }
   };
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* Progreso de cestas */}
       <div className="flex justify-center mb-6">
         <div className="flex gap-2">
           {[...Array(8)].map((_, i) => (
@@ -73,23 +74,21 @@ export const MarketGame: React.FC = () => {
         </div>
       </div>
 
-      {/* Área del desafío */}
       <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
         <div className="text-center mb-4">
           <h2 className="text-xl font-bold text-orange-800 mb-2">
-            Desafío {currentTask + 1} de {tasks.length}
+            {t("mercado.playing.challengeProgress", { current: currentTask + 1, total: tasks.length })}
           </h2>
           <div className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-orange-100 text-orange-800">
-            {task.type === "PAGO" && "💰 Problema de Dinero"}
-            {task.type === "HORA" && "⏰ Problema de Tiempo"}
-            {task.type === "FRACCION" && "🍰 Problema de Fracciones"}
+            {task.type === "PAGO" && t("mercado.playing.typePayment")}
+            {task.type === "HORA" && t("mercado.playing.typeTime")}
+            {task.type === "FRACCION" && t("mercado.playing.typeFraction")}
           </div>
         </div>
         
         {renderChallenge()}
       </div>
 
-      {/* Feedback */}
       {feedback?.show && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-lg p-6 max-w-md mx-4">
@@ -100,9 +99,9 @@ export const MarketGame: React.FC = () => {
               <div className={`text-lg font-bold mb-2 ${
                 feedback.correct ? "text-green-800" : "text-red-800"
               }`}>
-                {feedback.correct ? "¡Correcto!" : "¡Inténtalo de nuevo!"}
+                {feedback.correct ? t("mercado.playing.correct") : t("mercado.playing.tryAgain")}
               </div>
-              <p className="text-gray-700 mb-4">{feedback.message}</p>
+              <p className="text-gray-700 mb-4">{t(feedback.message, feedback.params)}</p>
               <button
                 onClick={() => {
                   hideFeedback();
@@ -116,7 +115,7 @@ export const MarketGame: React.FC = () => {
                     : "bg-blue-600 hover:bg-blue-700"
                 }`}
               >
-                {feedback.correct ? "Siguiente Desafío" : "Intentar de Nuevo"}
+                {feedback.correct ? t("mercado.playing.nextChallenge") : t("mercado.playing.retryChallenge")}
               </button>
             </div>
           </div>
