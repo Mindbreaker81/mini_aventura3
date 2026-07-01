@@ -53,7 +53,10 @@ aventura-multimateria/
 │   │   │   ├── museo-tiempo/         # Historia (línea temporal)
 │   │   │   ├── fabrica-reciclaje/    # Medio ambiente (reciclaje)
 │   │   │   ├── taller-ortografia/    # Ortografía (quiz)
-│   │   │   └── planetario/           # Sistema Solar (ordenación)
+│   │   │   └── planetario/           # Sistema Solar + exploración espacial (v2)
+│   │   │       ├── page.tsx          # Selector de modo
+│   │   │       ├── [mode]/           # planetas | exploracion
+│   │   │       └── PlanetGame.tsx
 │   │   ├── components/
 │   │   │   └── I18nProvider.tsx      # 🌐 Proveedor de internacionalización (nuevo)
 │   │   ├── globals.css

@@ -509,10 +509,56 @@
   },
   "planetario": {
     "title": "Planetari",
+    "chooseMission": "Tria la teva missió espacial!",
+    "intro": "Ordena planetes del Sistema Solar o fites de l'exploració espacial.",
+    "backToMode": "Tornar al selector",
+    "cards": "{{count}} targetes",
+    "lives": "3 cors",
     "orbit": "Òrbita (del Sol cap a fora)",
     "pool": "Planetes per ordenar",
     "emptySlot": "Arrossega aquí",
     "checkOrder": "Comprovar ordre",
+    "invalidMode": {
+      "title": "Mode no vàlid",
+      "description": "El mode «{{mode}}» no existeix al Planetari.",
+      "hint": "Tria «planetas» o «exploracion» des del selector."
+    },
+    "modes": {
+      "planetas": {
+        "label": "Sistema Solar",
+        "description": "Ordena els 8 planetes segons la distància al Sol.",
+        "badge": "🏅 Astrònom Junior",
+        "orbit": "Òrbita (del Sol cap a fora)",
+        "pool": "Planetes per ordenar",
+        "instructions": {
+          "title": "Benvingut al Planetari!",
+          "mission": "La teva missió: ordena 8 planetes segons la distància al Sol.",
+          "step1": "Llegeix cada targeta amb el seu planeta.",
+          "step2": "Arrossega els planetes a l'òrbita (1 = més proper al Sol).",
+          "step3": "Quan estiguin els 8, prem «Comprovar ordre».",
+          "step4": "Tens 3 cors. Bona sort!",
+          "start": "Comença l'exploració!"
+        },
+        "completed": { "title": "Sistema Solar ordenat!" }
+      },
+      "exploracion": {
+        "label": "Exploració espacial",
+        "description": "Ordena 8 fites cronològiques de la conquista de l'espai.",
+        "badge": "🏅 Explorador Espacial",
+        "orbit": "Línia temporal (de més antic a recent)",
+        "pool": "Fites per ordenar",
+        "instructions": {
+          "title": "Missió d'exploració!",
+          "mission": "Ordena 8 fites de l'exploració espacial en ordre cronològic.",
+          "step1": "Llegeix cada targeta amb la seva fita.",
+          "step2": "Arrossega les fites a la línia temporal (1 = més antic).",
+          "step3": "Quan estiguin les 8, prem «Comprovar ordre».",
+          "step4": "Tens 3 cors. Bona sort!",
+          "start": "Comença la missió!"
+        },
+        "completed": { "title": "Exploració espacial ordenada!" }
+      }
+    },
     "instructions": {
       "title": "Benvingut al Planetari!",
       "mission": "La teva missió: ordena 8 planetes segons la distància al Sol.",
@@ -530,9 +576,9 @@
       "title": "S'han acabat els intents"
     },
     "feedback": {
-      "incomplete": "Col·loca els 8 planetes abans de comprovar.",
-      "completed": "Perfecte! Has ordenat el Sistema Solar correctament.",
-      "wrongOrder": "L'ordre no és correcte. Revisa la distància al Sol i torna-ho a provar.",
+      "incomplete": "Col·loca les {{count}} targetes abans de comprovar.",
+      "completed": "Perfecte! Ho has ordenat correctament.",
+      "wrongOrder": "L'ordre no és correcte. Revisa-ho i torna-ho a provar.",
       "failed": "Has esgotat els teus cors. Torna-ho a intentar!"
     }
   },

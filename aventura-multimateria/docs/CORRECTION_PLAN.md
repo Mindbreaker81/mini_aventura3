@@ -2,7 +2,7 @@
 
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
-**Estado:** ✅ Fases 0–7 implementadas · ✅ Fase 3 deuda menor (v3.2.1)  
+**Estado:** ✅ Fases 0–7 implementadas · ✅ Fase 3 deuda menor (v3.2.1) · ✅ Planetario v2 (v3.3.0)  
 **Alcance actual:** 10 juegos
 
 ---

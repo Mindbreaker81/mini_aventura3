@@ -163,7 +163,7 @@ const PuertoPalabrasPage = () => {
                             ref={prov.innerRef}
                             {...prov.draggableProps}
                             {...prov.dragHandleProps}
-                            onKeyDown={chainKeyboardHandler(prov.dragHandleProps.onKeyDown)}
+                            onKeyDown={chainKeyboardHandler()}
                             className="cursor-move px-3 py-2 rounded-md bg-blue-100 shadow-sm text-blue-900 font-medium border border-blue-200 hover:bg-blue-200 transition-colors"
                             tabIndex={0}
                             role="button"

@@ -509,10 +509,60 @@
   },
   "planetario": {
     "title": "Planetario",
+    "chooseMission": "¡Elige tu misión espacial!",
+    "intro": "Ordena planetas del Sistema Solar o hitos de la exploración espacial.",
+    "backToMode": "Volver al selector",
+    "cards": "{{count}} tarjetas",
+    "lives": "3 corazones",
     "orbit": "Órbita (del Sol hacia afuera)",
     "pool": "Planetas por ordenar",
     "emptySlot": "Arrastra aquí",
     "checkOrder": "Comprobar orden",
+    "invalidMode": {
+      "title": "Modo no válido",
+      "description": "El modo «{{mode}}» no existe en el Planetario.",
+      "hint": "Elige «planetas» u «exploracion» desde el selector."
+    },
+    "modes": {
+      "planetas": {
+        "label": "Sistema Solar",
+        "description": "Ordena los 8 planetas según su distancia al Sol.",
+        "badge": "🏅 Astrónomo Junior",
+        "orbit": "Órbita (del Sol hacia afuera)",
+        "pool": "Planetas por ordenar",
+        "instructions": {
+          "title": "¡Bienvenido al Planetario!",
+          "mission": "Tu misión: ordena 8 planetas según su distancia al Sol.",
+          "step1": "Lee cada tarjeta con su planeta.",
+          "step2": "Arrastra los planetas a la órbita (1 = más cercano al Sol).",
+          "step3": "Cuando estén los 8, pulsa «Comprobar orden».",
+          "step4": "Tienes 3 corazones. ¡Buena suerte!",
+          "start": "¡Empezar la exploración!"
+        },
+        "completed": {
+          "title": "¡Sistema Solar ordenado!"
+        }
+      },
+      "exploracion": {
+        "label": "Exploración espacial",
+        "description": "Ordena 8 hitos cronológicos de la conquista del espacio.",
+        "badge": "🏅 Explorador Espacial",
+        "orbit": "Línea temporal (de más antiguo a reciente)",
+        "pool": "Hitos por ordenar",
+        "instructions": {
+          "title": "¡Misión de exploración!",
+          "mission": "Tu misión: ordena 8 hitos de la exploración espacial en orden cronológico.",
+          "step1": "Lee cada tarjeta con su hito histórico.",
+          "step2": "Arrastra los hitos a la línea temporal (1 = más antiguo).",
+          "step3": "Cuando estén los 8, pulsa «Comprobar orden».",
+          "step4": "Tienes 3 corazones. ¡Buena suerte!",
+          "start": "¡Empezar la misión!"
+        },
+        "completed": {
+          "title": "¡Exploración espacial ordenada!"
+        }
+      }
+    },
     "instructions": {
       "title": "¡Bienvenido al Planetario!",
       "mission": "Tu misión: ordena 8 planetas según su distancia al Sol.",
@@ -530,9 +580,9 @@
       "title": "Se acabaron los intentos"
     },
     "feedback": {
-      "incomplete": "Coloca los 8 planetas antes de comprobar.",
-      "completed": "¡Perfecto! Has ordenado el Sistema Solar correctamente.",
-      "wrongOrder": "El orden no es correcto. Revisa la distancia al Sol e inténtalo otra vez.",
+      "incomplete": "Coloca las {{count}} tarjetas antes de comprobar.",
+      "completed": "¡Perfecto! Has ordenado todo correctamente.",
+      "wrongOrder": "El orden no es correcto. Revísalo e inténtalo otra vez.",
       "failed": "Has agotado tus corazones. ¡Vuelve a intentarlo!"
     }
   },

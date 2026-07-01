@@ -4,13 +4,14 @@ import type { GameStatus } from '../shared/types';
 import { selectRandom } from '../shared/random';
 import {
   CelestialBody,
-  ROUND_SIZE,
+  GameMode,
+  MODE_CONFIG,
   INITIAL_LIVES,
-  XP_PER_CORRECT_ROUND,
-  XP_COMPLETION_BONUS,
 } from './types';
 
 interface PlanetarioStore {
+  mode: GameMode;
+  roundSize: number;
   allBodies: CelestialBody[];
   roundBodies: CelestialBody[];
   correctOrder: string[];
@@ -22,7 +23,7 @@ interface PlanetarioStore {
   showInstructions: boolean;
   feedback: { correct: boolean; message: string } | null;
 
-  loadBodies: (bodies: CelestialBody[]) => void;
+  loadBodies: (mode: GameMode, bodies: CelestialBody[]) => void;
   startGame: () => void;
   moveToSlot: (bodyId: string, slotIndex: number) => void;
   moveToPool: (bodyId: string) => void;
@@ -31,18 +32,24 @@ interface PlanetarioStore {
   resetGame: () => void;
 }
 
-function planetPool(bodies: CelestialBody[]): CelestialBody[] {
-  return bodies.filter((b) => b.type !== 'milestone');
+function modePool(mode: GameMode, bodies: CelestialBody[]): CelestialBody[] {
+  const filter = MODE_CONFIG[mode].poolFilter;
+  return bodies.filter((b) => b.type === filter);
 }
 
-function buildRound(bodies: CelestialBody[]) {
-  const pool = planetPool(bodies);
-  const source = pool.length >= ROUND_SIZE ? pool : bodies;
-  const roundBodies = selectRandom(source, ROUND_SIZE).sort((a, b) => a.order - b.order);
+function buildRound(mode: GameMode, bodies: CelestialBody[]) {
+  const config = MODE_CONFIG[mode];
+  const pool = modePool(mode, bodies);
+  const source = pool.length >= config.roundSize ? pool : pool;
+  const roundBodies = selectRandom(source, Math.min(config.roundSize, source.length)).sort(
+    (a, b) => a.order - b.order
+  );
   return {
+    mode,
+    roundSize: config.roundSize,
     roundBodies,
     correctOrder: roundBodies.map((b) => b.id),
-    timeline: Array<string | null>(ROUND_SIZE).fill(null),
+    timeline: Array<string | null>(config.roundSize).fill(null),
     lives: INITIAL_LIVES,
     xp: 0,
     badge: false,
@@ -54,10 +61,12 @@ function buildRound(bodies: CelestialBody[]) {
 export const usePlanetarioStore = create<PlanetarioStore>()(
   persist(
     (set, get) => ({
+      mode: 'planetas',
+      roundSize: MODE_CONFIG.planetas.roundSize,
       allBodies: [],
       roundBodies: [],
       correctOrder: [],
-      timeline: Array(ROUND_SIZE).fill(null),
+      timeline: Array(MODE_CONFIG.planetas.roundSize).fill(null),
       lives: INITIAL_LIVES,
       xp: 0,
       badge: false,
@@ -65,10 +74,10 @@ export const usePlanetarioStore = create<PlanetarioStore>()(
       showInstructions: true,
       feedback: null,
 
-      loadBodies: (bodies) => {
+      loadBodies: (mode, bodies) => {
         set({
           allBodies: bodies,
-          ...buildRound(bodies),
+          ...buildRound(mode, bodies),
           showInstructions: true,
           gameStatus: 'instructions',
         });
@@ -102,7 +111,8 @@ export const usePlanetarioStore = create<PlanetarioStore>()(
       },
 
       submitTimeline: () => {
-        const { timeline, correctOrder, lives, xp } = get();
+        const { timeline, correctOrder, lives, xp, roundSize, mode } = get();
+        const config = MODE_CONFIG[mode];
 
         if (timeline.some((id) => id === null)) {
           set({
@@ -120,7 +130,7 @@ export const usePlanetarioStore = create<PlanetarioStore>()(
           set({
             gameStatus: 'completed',
             badge: true,
-            xp: xp + XP_PER_CORRECT_ROUND * ROUND_SIZE + XP_COMPLETION_BONUS,
+            xp: xp + config.xpPerCorrect * roundSize + config.completionBonus,
             feedback: {
               correct: true,
               message: 'planetario.feedback.completed',
@@ -153,10 +163,10 @@ export const usePlanetarioStore = create<PlanetarioStore>()(
       hideFeedback: () => set({ feedback: null }),
 
       resetGame: () => {
-        const { allBodies } = get();
+        const { allBodies, mode } = get();
         if (allBodies.length === 0) return;
         set({
-          ...buildRound(allBodies),
+          ...buildRound(mode, allBodies),
           showInstructions: true,
           gameStatus: 'instructions',
         });
@@ -165,6 +175,8 @@ export const usePlanetarioStore = create<PlanetarioStore>()(
     {
       name: 'planetario-storage',
       partialize: (state) => ({
+        mode: state.mode,
+        roundSize: state.roundSize,
         allBodies: state.allBodies,
         roundBodies: state.roundBodies,
         correctOrder: state.correctOrder,
@@ -191,4 +203,4 @@ export function formatOrder(order: number): string {
   return `#${order}`;
 }
 
-export type { CelestialBody };
+export type { CelestialBody, GameMode };

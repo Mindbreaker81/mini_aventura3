@@ -3,6 +3,19 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Dashboard from './page';
 
+const GAME_NAMES = [
+  'Puerto de las Palabras',
+  'Bosc',
+  'Mercado',
+  'Mapamundi',
+  'STEAM',
+  'Flip',
+  'Museo del Tiempo',
+  'Fábrica del Reciclaje',
+  'Taller de Ortografía',
+  'Planetario',
+] as const;
+
 jest.mock('./components/I18nProvider', () => ({
   useTranslation: () => ({
     t: (key: string) => {
@@ -55,11 +68,11 @@ describe('Dashboard', () => {
     expect(screen.getByText(/ExplorAventura 3/i)).toBeInTheDocument();
   });
 
-  it('muestra los 10 minijuegos', () => {
+  it('muestra los 10 minijuegos con enlace Jugar', () => {
     render(<Dashboard />);
-    expect(screen.getByText(/Puerto de las Palabras/i)).toBeInTheDocument();
-    expect(screen.getByText(/Museo del Tiempo/i)).toBeInTheDocument();
-    expect(screen.getByText(/Fábrica del Reciclaje/i)).toBeInTheDocument();
-    expect(screen.getByText(/Planetario/i)).toBeInTheDocument();
+    for (const name of GAME_NAMES) {
+      expect(screen.getByText(new RegExp(name, 'i'))).toBeInTheDocument();
+    }
+    expect(screen.getAllByRole('link', { name: /Jugar/i })).toHaveLength(10);
   });
 });

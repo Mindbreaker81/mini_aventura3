@@ -184,7 +184,7 @@ export default function FabricaReciclajePage() {
                             ref={prov.innerRef}
                             {...prov.draggableProps}
                             {...prov.dragHandleProps}
-                            onKeyDown={chainKeyboardHandler(prov.dragHandleProps.onKeyDown)}
+                            onKeyDown={chainKeyboardHandler()}
                             className="cursor-move px-3 py-2 rounded-md bg-emerald-100 shadow-sm text-emerald-900 font-medium border border-emerald-200 hover:bg-emerald-200 transition-colors"
                             tabIndex={0}
                             role="button"

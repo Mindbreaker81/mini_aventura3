@@ -46,12 +46,33 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [3.3.0] - Julio 2026 — Planetario v2 + CI
+
+### 🪐 Planetario v2
+
+#### Añadido
+- Selector de modo en `/world/planetario` (como Mapamundi)
+- Subrutas `/world/planetario/planetas` y `/world/planetario/exploracion`
+- `PlanetGame.tsx` + `MODE_CONFIG` con sesión por modo (`hasActiveSessionForMode`)
+- i18n es/ca/en para modos, selector e instrucciones por modo
+
+### 🧪 Tests y CI
+
+#### Cambiado
+- `next.config.js`: eliminado `ignoreBuildErrors` / `ignoreDuringBuilds`
+- CI usa `npm run test:ci`; umbrales Jest subidos a 62 % líneas/statements
+- `page.test.tsx`: verifica los 10 enlaces «Jugar»
+- Tests UI Planetario: selector + ambos modos
+- Correcciones TypeScript en tests STEAM/Mapamundi y drag keyboard
+
+---
+
 ## [Unreleased]
 
 ### 📋 Próximos pasos
 
-- Planetario v2: subrutas por modo (`planetas` | `exploracion`)
 - Ampliar contenido ortografía (más temas B/V, G/J)
+- Tests UI más puros (menos fallback storage) en Mercado/Museo
 
 ---
 

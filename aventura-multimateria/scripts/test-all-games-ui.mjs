@@ -829,16 +829,17 @@ async function testOrtografia(page) {
   });
 }
 
-async function testPlanetario(page) {
+async function testPlanetarioMode(page, mode, victoryPattern) {
   return testVictoryDefeat(page, {
-    game: 'planetario',
-    name: 'Planetario',
+    game: `planetario-${mode}`,
+    name: `Planetario (${mode})`,
     storageKey: STORAGE_KEYS.planetario,
-    path: '/world/planetario',
+    path: `/world/planetario/${mode}`,
     smoke: async (p) => (await p.locator('[class*="cursor-move"]').count()) >= 4,
     victory: async (p) => {
       const state = await getStoreState(p, STORAGE_KEYS.planetario);
       await patchStoreState(p, STORAGE_KEYS.planetario, {
+        mode,
         timeline: [...(state?.correctOrder ?? [])],
         gameStatus: 'completed',
         badge: true,
@@ -848,10 +849,11 @@ async function testPlanetario(page) {
       await p.reload({ waitUntil: 'networkidle' });
       await dismissConsent(p);
       const body = await bodyText(p);
-      return { ok: /Sistema Solar ordenado|Astrónomo Junior|Perfecto/i.test(body), mode: 'storage' };
+      return { ok: victoryPattern.test(body), mode: 'storage' };
     },
     defeat: async (p) => {
       await patchStoreState(p, STORAGE_KEYS.planetario, {
+        mode,
         lives: 0,
         gameStatus: 'failed',
         showInstructions: false,
@@ -860,6 +862,38 @@ async function testPlanetario(page) {
       await dismissConsent(p);
       return { ok: DEFEAT_PATTERNS.test(await bodyText(p)), mode: 'storage' };
     },
+  });
+}
+
+async function testPlanetario(page) {
+  await page.goto(`${BASE}/world/planetario`, { waitUntil: 'networkidle' });
+  await dismissConsent(page);
+  const selectorOk = /Elige tu misión|Choose your space mission|Sistema Solar|Exploración espacial/i.test(
+    await bodyText(page)
+  );
+
+  const planetas = await testPlanetarioMode(
+    page,
+    'planetas',
+    /Sistema Solar ordenado|Astrónomo Junior|Junior Astronomer/i
+  );
+  const exploracion = await testPlanetarioMode(
+    page,
+    'exploracion',
+    /Exploración espacial ordenada|Space exploration ordered|Explorador Espacial/i
+  );
+
+  const ok = selectorOk && planetas.status === 'ok' && exploracion.status === 'ok';
+  console.log(
+    `\n=== Planetario (v2) ===\nSelector: ${selectorOk ? '✓' : '✗'} | Planetas: ${planetas.status === 'ok' ? '✓' : '✗'} | Exploración: ${exploracion.status === 'ok' ? '✓' : '✗'}`
+  );
+
+  return result('planetario', ok ? 'ok' : 'fail', {
+    smokeOk: selectorOk,
+    victoryOk: planetas.victoryOk && exploracion.victoryOk,
+    defeatOk: planetas.defeatOk && exploracion.defeatOk,
+    victoryMode: 'storage',
+    defeatMode: 'storage',
   });
 }
 

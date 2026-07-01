@@ -509,10 +509,56 @@
   },
   "planetario": {
     "title": "Planetarium",
+    "chooseMission": "Choose your space mission!",
+    "intro": "Order Solar System planets or milestones of space exploration.",
+    "backToMode": "Back to selector",
+    "cards": "{{count}} cards",
+    "lives": "3 hearts",
     "orbit": "Orbit (from the Sun outward)",
     "pool": "Planets to sort",
     "emptySlot": "Drop here",
     "checkOrder": "Check order",
+    "invalidMode": {
+      "title": "Invalid mode",
+      "description": "Mode «{{mode}}» does not exist in the Planetarium.",
+      "hint": "Choose «planetas» or «exploracion» from the selector."
+    },
+    "modes": {
+      "planetas": {
+        "label": "Solar System",
+        "description": "Order the 8 planets by distance from the Sun.",
+        "badge": "🏅 Junior Astronomer",
+        "orbit": "Orbit (from the Sun outward)",
+        "pool": "Planets to sort",
+        "instructions": {
+          "title": "Welcome to the Planetarium!",
+          "mission": "Your mission: order 8 planets by distance from the Sun.",
+          "step1": "Read each card with its planet.",
+          "step2": "Drag planets to the orbit (1 = closest to the Sun).",
+          "step3": "When all 8 are placed, press «Check order».",
+          "step4": "You have 3 hearts. Good luck!",
+          "start": "Start exploring!"
+        },
+        "completed": { "title": "Solar System ordered!" }
+      },
+      "exploracion": {
+        "label": "Space exploration",
+        "description": "Order 8 chronological milestones of space exploration.",
+        "badge": "🏅 Space Explorer",
+        "orbit": "Timeline (oldest to newest)",
+        "pool": "Milestones to sort",
+        "instructions": {
+          "title": "Exploration mission!",
+          "mission": "Order 8 space exploration milestones chronologically.",
+          "step1": "Read each card with its milestone.",
+          "step2": "Drag milestones to the timeline (1 = oldest).",
+          "step3": "When all 8 are placed, press «Check order».",
+          "step4": "You have 3 hearts. Good luck!",
+          "start": "Start the mission!"
+        },
+        "completed": { "title": "Space exploration ordered!" }
+      }
+    },
     "instructions": {
       "title": "Welcome to the Planetarium!",
       "mission": "Your mission: order 8 planets by distance from the Sun.",
@@ -530,9 +576,9 @@
       "title": "No attempts left"
     },
     "feedback": {
-      "incomplete": "Place all 8 planets before checking.",
-      "completed": "Perfect! You ordered the Solar System correctly.",
-      "wrongOrder": "The order is wrong. Check distance from the Sun and try again.",
+      "incomplete": "Place all {{count}} cards before checking.",
+      "completed": "Perfect! You ordered everything correctly.",
+      "wrongOrder": "The order is wrong. Review and try again.",
       "failed": "You ran out of hearts. Try again!"
     }
   },

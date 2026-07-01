@@ -1,10 +1,11 @@
 import useSteamStore from '../useSteamStore';
 import { getGameData } from '../../../data/gameDataRegistry';
+import type { SteamTask } from '../types';
 
 describe('useSteamStore', () => {
   beforeEach(() => {
     localStorage.clear();
-    useSteamStore.getState().loadTasks(getGameData('es', 'steam-tasks'));
+    useSteamStore.getState().loadTasks(getGameData('es', 'steam-tasks') as SteamTask[]);
     useSteamStore.setState({
       currentTask: 0,
       lives: 3,

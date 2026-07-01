@@ -6,7 +6,7 @@ describe('useMapamundiV2Store', () => {
     localStorage.clear();
     useMapamundiV2Store.getState().initializeGame(
       'continent',
-      getGameData('es', 'mapamundi-tasks')
+      getGameData('es', 'mapamundi-tasks') as import('../types').MapamundiTask[]
     );
   });
 

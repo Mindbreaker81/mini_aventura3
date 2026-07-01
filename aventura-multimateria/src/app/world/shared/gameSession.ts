@@ -10,6 +10,8 @@ export interface SessionCheckable {
   tasks?: unknown[];
   lessons?: unknown[];
   roundWords?: unknown[];
+  roundBodies?: unknown[];
+  timeline?: (string | null)[];
   gameCompleted?: boolean;
   completed?: boolean;
   energy?: number;
@@ -38,6 +40,8 @@ export function hasActiveSession(state: SessionCheckable): boolean {
     if ((state.tasks?.length ?? 0) > 0) return true;
     if ((state.lessons?.length ?? 0) > 0) return true;
     if ((state.roundWords?.length ?? 0) > 0 && state.showInstructions === false) return true;
+    if ((state.roundBodies?.length ?? 0) > 0 && state.showInstructions === false) return true;
+    if (state.timeline?.some((id) => id != null) && state.showInstructions === false) return true;
   }
 
   if (state.gameCompleted || state.completed) {
