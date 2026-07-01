@@ -24,7 +24,7 @@ src/
 ├── app/
 │   ├── data/
 │   │   ├── gameDataRegistry.ts
-│   │   └── locales/{es,ca,en}/  # JSON pedagógicos (7 archivos × 3 idiomas)
+│   │   └── locales/{es,ca,en}/  # JSON pedagógicos (10 archivos × 3 idiomas)
 │   ├── hooks/
 │   │   └── useNavigation.ts     # Hook de navegación centralizado
 │   ├── world/                   # Directorio de minijuegos
@@ -33,7 +33,11 @@ src/
 │   │   ├── mercado-numeros/     # Minijuego de matemáticas
 │   │   ├── mision-mapamundi-v2/ # Minijuego de geografía
 │   │   ├── desafio-steam/       # Minijuego de programación
-│   │   └── laboratorio-flip/    # Minijuego de ciencias
+│   │   ├── laboratorio-flip/    # Minijuego de ciencias
+│   │   ├── museo-tiempo/        # Historia (línea temporal)
+│   │   ├── fabrica-reciclaje/   # Medio ambiente (reciclaje)
+│   │   ├── taller-ortografia/   # Ortografía (quiz)
+│   │   └── planetario/          # Sistema Solar
 │   ├── globals.css              # Estilos globales
 │   ├── layout.tsx               # Layout principal
 │   └── page.tsx                 # Dashboard principal
@@ -140,6 +144,30 @@ Todos los juegos implementan:
 - **Store**: `useLaboratorioFlipStore`
 - **Dependencias**: react-player para reproducción de video
 
+### 7. Museo del Tiempo 🏛️
+**Ruta**: `/world/museo-tiempo`  
+**Materia**: Historia  
+**Mecánica**: Ordenar eventos en línea temporal  
+- **Store**: `useMuseoTiempoStore` · **Datos**: `museo-events.json`
+
+### 8. Fábrica del Reciclaje ♻️
+**Ruta**: `/world/fabrica-reciclaje`  
+**Materia**: Medio ambiente  
+**Mecánica**: Drag-and-drop a contenedores de reciclaje  
+- **Store**: `useFabricaReciclajeStore` · **Datos**: `fabrica-reciclaje-items.json`
+
+### 9. Taller de Ortografía ✏️
+**Ruta**: `/world/taller-ortografia`  
+**Materia**: Lengua  
+**Mecánica**: Quiz de huecos ortográficos  
+- **Store**: `useTallerOrtografiaStore` · **Componente**: `SpellingGame.tsx`
+
+### 10. Planetario 🪐
+**Ruta**: `/world/planetario`  
+**Materia**: Ciencias  
+**Mecánica**: Ordenar planetas por distancia al Sol  
+- **Store**: `usePlanetarioStore` · **Datos**: `planetario-bodies.json`
+
 ## Comandos de Desarrollo
 
 ### Instalación
@@ -155,6 +183,9 @@ npm run dev          # Servidor de desarrollo en localhost:3000
 npm run build        # Build de producción
 npm run start        # Servidor de producción
 npm run lint         # Linting con ESLint
+npm test             # Tests Jest
+npm run test:ci      # Tests con cobertura (CI)
+npm run test:ui      # Humo Playwright 10 juegos (servidor en :3000)
 ```
 
 ### Supabase (Opcional)

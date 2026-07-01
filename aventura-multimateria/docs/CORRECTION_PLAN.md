@@ -2,8 +2,8 @@
 
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
-**Estado:** ✅ Fases 0–6 implementadas · 📋 Fase 7 planificada (v3.2.0)  
-**Alcance actual:** 10 juegos (Fase 7 completada v3.2.0)
+**Estado:** ✅ Fases 0–7 implementadas (v3.2.0)  
+**Alcance actual:** 10 juegos
 
 ---
 
@@ -238,7 +238,7 @@ flowchart LR
 
 ---
 
-## Fase 7 — Tres minijuegos nuevos (v3.2.0) 📋
+## Fase 7 — Tres minijuegos nuevos (v3.2.0) ✅
 
 **Plan detallado:** [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)
 
@@ -250,22 +250,25 @@ flowchart LR
 
 ### Entregables Fase 7
 
-- [ ] 3 rutas `/world/*` con store, tests e i18n es/ca/en
-- [ ] Dashboard con 10 minijuegos
-- [ ] `gameDataRegistry` ampliado (3 claves)
-- [ ] Limpieza legacy (§7 del plan Fase 7)
-- [ ] `CHANGELOG [3.2.0]`
+- [x] 3 rutas `/world/*` con store, tests e i18n es/ca/en
+- [x] Dashboard con 10 minijuegos
+- [x] `gameDataRegistry` ampliado (3 claves)
+- [x] Limpieza legacy (§7 del plan Fase 7)
+- [x] `CHANGELOG [3.2.0]`
+- [x] Humo UI 10/10 (`npm run test:ui`)
+- [x] 85 tests Jest; cobertura stores ≥ 60 %
 
 ---
 
 ## Criterios de «hecho» (Definition of Done)
 
-- [x] Los 7 juegos tienen victoria, derrota y badge funcionales
+- [x] Los 10 juegos tienen victoria, derrota (si aplica) y badge funcionales
 - [x] Recargar la página no pierde una partida en curso
-- [x] ≥ 64 tests pasando en CI con cobertura ≥ 60 %
-- [x] Documentación alineada con implementación
-- [x] Séptimo juego con ≥ 15 ítems de contenido (24 eventos)
-- [x] i18n en pantallas principales de los 7 juegos (es/ca/en)
+- [x] ≥ 85 tests pasando en CI con cobertura ≥ 60 %
+- [x] Documentación alineada con implementación (10 minijuegos)
+- [x] Contenido pedagógico es/ca/en (10 archivos × 3 locales)
+- [x] i18n en pantallas principales de los 10 juegos (es/ca/en)
+- [x] Humo Playwright 10/10 (`scripts/test-all-games-ui.mjs`)
 
 ---
 

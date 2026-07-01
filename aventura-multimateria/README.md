@@ -5,7 +5,7 @@
 ExplorAventura 3 es una plataforma educativa interactiva con **10 minijuegos**. Cada juego aborda una materia específica con mecánicas divertidas, XP y badges.
 
 ### ✨ Características Principales
-- **7 Minijuegos Educativos** (+ 3 planificados): Gramática, lectura, mates, geografía, programación, ciencias e historia
+- **10 Minijuegos Educativos**: Gramática, lectura, mates, geografía, programación, ciencias, historia, reciclaje, ortografía y astronomía
 - **Sistema de Progreso**: XP, badges y seguimiento de avance
 - **Multilingüe**: Soporte para español, catalán e inglés
 - **Responsive**: Adaptado para desktop, tablet y móvil
@@ -50,7 +50,10 @@ aventura-multimateria/
 │   │   │   ├── mision-mapamundi-v2/  # Geografía interactiva
 │   │   │   ├── desafio-steam/        # Programación con bloques
 │   │   │   ├── laboratorio-flip/     # Ciencias con videos
-│   │   │   └── museo-tiempo/        # Historia (línea temporal)
+│   │   │   ├── museo-tiempo/         # Historia (línea temporal)
+│   │   │   ├── fabrica-reciclaje/    # Medio ambiente (reciclaje)
+│   │   │   ├── taller-ortografia/    # Ortografía (quiz)
+│   │   │   └── planetario/           # Sistema Solar (ordenación)
 │   │   ├── components/
 │   │   │   └── I18nProvider.tsx      # 🌐 Proveedor de internacionalización (nuevo)
 │   │   ├── globals.css
@@ -87,6 +90,10 @@ aventura-multimateria/
 ## 🆕 Historial de Cambios Recientes
 
 > Detalle completo en [CHANGELOG.md](CHANGELOG.md).
+
+### v3.2.0 (Julio 2026)
+- **Fase 7:** Fábrica del Reciclaje, Taller de Ortografía, Planetario
+- 10 minijuegos, 85 tests, humo UI 10/10, i18n es/ca/en
 
 ### v3.0.0 (Julio 2026)
 - **Infraestructura:** módulos compartidos (`shared/`, `useGameSession`)
@@ -233,6 +240,38 @@ aventura-multimateria/
 4. Feedback detallado con explicaciones
 5. Sistema de progreso por materia
 
+### 7. 🏛️ Museo del Tiempo
+**Materia**: Historia  
+**Ruta**: `/world/museo-tiempo`  
+**Mecánica**: Ordenar 8 eventos históricos en línea temporal (drag-and-drop)
+
+- **Store**: `useMuseoTiempoStore` · **Datos**: `museo-events.json` (24 eventos, es/ca/en)
+- **Badge**: Historiador Junior · **Persistencia**: `museo-tiempo-storage`
+
+### 8. ♻️ Fábrica del Reciclaje
+**Materia**: Medio ambiente  
+**Ruta**: `/world/fabrica-reciclaje`  
+**Mecánica**: Clasificar residuos en 5 contenedores (drag-and-drop)
+
+- **Store**: `useFabricaReciclajeStore` · **Datos**: `fabrica-reciclaje-items.json` (48 ítems)
+- **Badge**: Eco-Héroe Junior · **Meta**: 8 clasificaciones correctas
+
+### 9. ✏️ Taller de Ortografía
+**Materia**: Lengua / ortografía  
+**Ruta**: `/world/taller-ortografia`  
+**Mecánica**: Completar frases con hueco (quiz, 8 preguntas, 5 corazones)
+
+- **Store**: `useTallerOrtografiaStore` · **Componente**: `SpellingGame.tsx`
+- **Datos**: `taller-ortografia-items.json` (50 ítems) · **Badge**: Maestro de la Ortografía
+
+### 10. 🪐 Planetario
+**Materia**: Ciencias (Sistema Solar)  
+**Ruta**: `/world/planetario`  
+**Mecánica**: Ordenar 8 planetas por distancia al Sol (drag-and-drop)
+
+- **Store**: `usePlanetarioStore` · **Datos**: `planetario-bodies.json` (8 planetas + hitos)
+- **Badge**: Astrónomo Junior · **Persistencia**: `planetario-storage`
+
 ## 🚀 Instalación y Desarrollo
 
 ### Prerrequisitos
@@ -261,6 +300,9 @@ aventura-multimateria/
 | `npm run build` | Compila para producción |
 | `npm run start` | Inicia en modo producción |
 | `npm run lint` | Ejecuta el linter de código |
+| `npm test` | Tests Jest (stores + shared) |
+| `npm run test:ci` | Tests con cobertura (umbral 60 %) |
+| `npm run test:ui` | Humo Playwright de los 10 minijuegos (requiere `npm run start`) |
 | `npm run supabase:start` | Inicia Supabase local |
 | `npm run supabase:stop` | Detiene Supabase local |
 | `npm run db:reset` | Resetea la base de datos |

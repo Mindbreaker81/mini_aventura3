@@ -204,13 +204,13 @@ src/app/data/locales/{es,ca,en}/planetario-bodies.json
 
 ### 5.1 Datos e i18n
 
-- [ ] Añadir claves a `GAME_DATA_KEYS` en `gameDataRegistry.ts`:
+- [x] Añadir claves a `GAME_DATA_KEYS` en `gameDataRegistry.ts`:
   - `fabrica-reciclaje-items`
   - `taller-ortografia-items`
   - `planetario-bodies`
-- [ ] Crear 9 JSON nuevos (`es`, `ca`, `en` × 3).
-- [ ] Claves UI en `public/locales/{es,ca,en}/common.json` (prefijos `reciclaje`, `ortografia`, `planetario`).
-- [ ] Entradas dashboard en `games.<codigo>.{name,description,subject}`.
+- [x] Crear 9 JSON nuevos (`es`, `ca`, `en` × 3).
+- [x] Claves UI en `public/locales/{es,ca,en}/common.json` (prefijos `reciclaje`, `ortografia`, `planetario`).
+- [x] Entradas dashboard en `games.<codigo>.{name,description,subject}`.
 
 ### 5.2 Dashboard e iconos
 
@@ -241,13 +241,21 @@ Cada `page.tsx` debe usar:
 
 ### 5.5 Verificación manual
 
-Por cada juego (checklist §14.5 de GAME_ARCHITECTURE):
+Checklist §14.5 de GAME_ARCHITECTURE — validado en humo UI (jul 2026):
 
-- [ ] Instrucciones → jugar → victoria
-- [ ] Derrota (si aplica)
-- [ ] Recarga mid-game conserva sesión
-- [ ] Cambio ES/CA/EN en instrucciones recarga pool
-- [ ] Sin errores de consola
+- [x] Instrucciones → jugar → victoria (10 rutas)
+- [x] Derrota (si aplica) — Bosc, Mercado, Mapamundi, STEAM, Flip, Museo, Ortografía, Planetario
+- [x] Recarga mid-game conserva sesión (patrón `useGameSession` + persist)
+- [x] Cambio ES/CA/EN recarga pool (`useReloadGameDataOnLocale`)
+- [x] Sin errores de consola en humo Playwright
+
+### Verificación P2 automatizada (jul 2026)
+
+| Comando | Resultado |
+|---------|-----------|
+| `npm run test:ci` | 85 tests, cobertura **67.4 %** líneas |
+| `npm run test:ui` | **10/10** minijuegos OK |
+| `npm run lint` + `npm run build` | OK |
 
 ---
 
@@ -255,12 +263,12 @@ Por cada juego (checklist §14.5 de GAME_ARCHITECTURE):
 
 | Documento | Cambios |
 |-----------|---------|
-| `CHANGELOG.md` | Sección `[3.2.0]` al completar; `[Unreleased]` durante desarrollo |
-| `docs/GAME_ARCHITECTURE.md` | Tabla 10 juegos; §15 sustituir propuesta antigua por Fase 7; datos JSON |
-| `docs/CORRECTION_PLAN.md` | Añadir § Fase 7 con enlace a este plan |
-| `docs/PHASE7_NEW_GAMES_PLAN.md` | Este documento — marcar tareas `[x]` al avanzar |
-| `README.md` | Lista 10 juegos, estructura `data/locales/` |
-| `CLAUDE.md` | 10 minijuegos, rutas nuevas |
+| `CHANGELOG.md` | Sección `[3.2.0]` ✅ |
+| `docs/GAME_ARCHITECTURE.md` | Tabla 10 juegos; §15 Fase 7 ✅ |
+| `docs/CORRECTION_PLAN.md` | § Fase 7 completada ✅ |
+| `docs/PHASE7_NEW_GAMES_PLAN.md` | DoD marcado ✅ |
+| `README.md` | 10 juegos, scripts test ✅ |
+| `CLAUDE.md` | 10 minijuegos, rutas nuevas ✅ |
 | `STEAM_GAME_DOCS.md` | Sin cambios (alcance acotado a STEAM) |
 
 ---
@@ -298,15 +306,15 @@ Por cada juego (checklist §14.5 de GAME_ARCHITECTURE):
 
 ## 8. Definition of Done (Fase 7)
 
-- [ ] 3 rutas `/world/*` operativas con flujo completo
-- [ ] 9 JSON pedagógicos (es/ca/en) validados contra `types.ts`
-- [ ] Dashboard muestra **10** minijuegos
-- [ ] `gameDataRegistry` incluye 3 claves nuevas
-- [ ] ≥ 85 tests Jest pasando; cobertura stores ≥ 60 %
-- [ ] `node scripts/test-all-games-ui.mjs` — 10/10 OK
-- [ ] `npm run lint` + `npm run build` OK
-- [ ] Documentación §6 actualizada; legacy §7.1 eliminado
-- [ ] `CHANGELOG.md` publicado como `[3.2.0]`
+- [x] 3 rutas `/world/*` operativas con flujo completo
+- [x] 9 JSON pedagógicos (es/ca/en) validados contra `types.ts`
+- [x] Dashboard muestra **10** minijuegos
+- [x] `gameDataRegistry` incluye 3 claves nuevas
+- [x] ≥ 85 tests Jest pasando; cobertura stores ≥ 60 % (67.4 % líneas, jul 2026)
+- [x] `node scripts/test-all-games-ui.mjs` — 10/10 OK
+- [x] `npm run lint` + `npm run build` OK
+- [x] Documentación §6 actualizada; legacy §7.1 eliminado
+- [x] `CHANGELOG.md` publicado como `[3.2.0]`
 
 ---
 
@@ -333,4 +341,4 @@ Por cada juego (checklist §14.5 de GAME_ARCHITECTURE):
 
 ---
 
-*Última actualización: julio 2026 — ExplorAventura 3, Fase 7 planificada.*
+*Última actualización: julio 2026 — ExplorAventura 3, Fase 7 completada (v3.2.0).*
