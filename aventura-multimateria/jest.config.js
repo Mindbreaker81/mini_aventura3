@@ -10,6 +10,20 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+  collectCoverageFrom: [
+    'src/app/world/**/use*Store.ts',
+    'src/app/world/shared/**/*.ts',
+    'src/app/hooks/useGameSession.ts',
+    '!**/__tests__/**',
+  ],
+  coverageThreshold: {
+    global: {
+      lines: 60,
+      statements: 60,
+      functions: 55,
+      branches: 50,
+    },
+  },
 };
 
-module.exports = createJestConfig(customJestConfig); 
+module.exports = createJestConfig(customJestConfig);

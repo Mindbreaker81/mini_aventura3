@@ -2,8 +2,8 @@
 
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
-**Estado:** ✅ Fases 0–5 implementadas (julio 2026)  
-**Alcance:** 6 juegos existentes + documentación + (opcional) séptimo juego
+**Estado:** ✅ Fases 0–6 implementadas (julio 2026)  
+**Alcance:** 7 juegos + documentación + i18n + cobertura CI
 
 ---
 
@@ -189,24 +189,28 @@ Umbral inicial 60 %; subir progresivamente.
 
 ---
 
-## Fase 6 — Séptimo juego (opcional)
+## Fase 6 — Séptimo juego e i18n ✅
 
-### Recomendación: **Museo del Tiempo** (Historia)
+### Museo del Tiempo (Historia) — implementado
 
 | Aspecto | Detalle |
 |---------|---------|
 | Ruta | `/world/museo-tiempo` |
 | Mecánica | Ordenar eventos en línea temporal (drag-and-drop) |
-| Datos | `museo-events.json` (20–30 eventos) |
+| Datos | `museo-events.json` (24 eventos) |
 | Victoria | 8 eventos ordenados, 3 vidas |
-| Esfuerzo | Bajo-medio — reutiliza patrón Puerto Palabras |
+| Persistencia | `museo-tiempo-storage` |
 
-### Alternativas
+### i18n unificado — implementado
 
-- **Aeropuerto de Idiomas** — emparejar ES/EN (quiz)
-- **Eco-Aventura** — clasificar residuos (drag-and-drop + quiz)
+- Claves en `public/locales/{es,ca,en}/common.json`
+- Dashboard + 7 juegos con pantallas de instrucciones/victoria/derrota traducidas
+- `I18nProvider` carga desde JSON (fuente única)
 
-Seguir checklist en [GAME_ARCHITECTURE.md §14](./GAME_ARCHITECTURE.md#14-checklist-añadir-un-minijuego-nuevo).
+### CI cobertura ≥ 60 % — implementado
+
+- `jest.config.js` acotado a stores + shared
+- 64+ tests; umbral 60 % en CI
 
 ---
 
@@ -235,11 +239,12 @@ flowchart LR
 
 ## Criterios de «hecho» (Definition of Done)
 
-- [x] Los 6 juegos tienen victoria, derrota y badge funcionales
+- [x] Los 7 juegos tienen victoria, derrota y badge funcionales
 - [x] Recargar la página no pierde una partida en curso
-- [x] ≥ 46 tests pasando en CI
+- [x] ≥ 64 tests pasando en CI con cobertura ≥ 60 %
 - [x] Documentación alineada con implementación
-- [ ] (Opcional) Séptimo juego con ≥ 15 ítems de contenido
+- [x] Séptimo juego con ≥ 15 ítems de contenido (24 eventos)
+- [x] i18n en pantallas principales de los 7 juegos (es/ca/en)
 
 ---
 

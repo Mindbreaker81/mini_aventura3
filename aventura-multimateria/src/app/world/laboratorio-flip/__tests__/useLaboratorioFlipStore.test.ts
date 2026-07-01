@@ -169,18 +169,22 @@ describe('useLaboratorioFlipStore', () => {
     });
   });
 
-  describe('showFeedback / hideFeedback', () => {
-    it('muestra y oculta el feedback', () => {
-      useLaboratorioFlipStore.getState().showFeedback(true, '¡Correcto!', 'Bien hecho');
-      expect(useLaboratorioFlipStore.getState().feedback).toEqual({
-        show: true,
-        success: true,
-        message: '¡Correcto!',
-        explanation: 'Bien hecho',
-      });
+  describe('submitQuiz', () => {
+    it('requiere todas las respuestas', () => {
+      useLaboratorioFlipStore.setState({ lessons: leccionesPrueba, answers: [0, null, null] });
+      useLaboratorioFlipStore.getState().submitQuiz();
+      expect(useLaboratorioFlipStore.getState().feedback?.success).toBe(false);
+    });
 
+    it('aplica pendingQuizAction al ocultar feedback', () => {
+      useLaboratorioFlipStore.setState({
+        lessons: leccionesPrueba,
+        answers: [0, 1, 2],
+        pendingQuizAction: 'nextLesson',
+        completedLessons: 0,
+      });
       useLaboratorioFlipStore.getState().hideFeedback();
-      expect(useLaboratorioFlipStore.getState().feedback).toBeNull();
+      expect(useLaboratorioFlipStore.getState().currentLesson).toBe(1);
     });
   });
 });

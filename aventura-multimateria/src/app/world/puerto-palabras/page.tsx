@@ -1,5 +1,6 @@
 "use client";
 import React, { useCallback } from "react";
+import { useTranslation } from "../../components/I18nProvider";
 import { usePuertoPalabrasStore } from "./usePuertoPalabrasStore";
 import { CATEGORIES, PuertoWord } from "./dragdrop-utils";
 import { Book, Activity, Sparkles, Timer, CornerDownRight, Link, Home, Award, RotateCcw } from "lucide-react";
@@ -14,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 
 const PuertoPalabrasPage = () => {
+  const { t } = useTranslation("common");
   const {
     roundWords,
     assigned,
@@ -64,30 +66,30 @@ const PuertoPalabrasPage = () => {
         <Card className="max-w-2xl w-full text-center border-blue-200 shadow-lg">
           <CardHeader className="pb-2">
             <div className="text-6xl mb-2">🚢</div>
-            <CardTitle className="text-3xl text-blue-800">¡Bienvenido al Puerto de las Palabras!</CardTitle>
+            <CardTitle className="text-3xl text-blue-800">{t("puerto.instructions.title")}</CardTitle>
           </CardHeader>
           <CardContent className="text-lg text-gray-700 space-y-4">
-            <p>🎯 <strong>Tu misión:</strong> Ayuda a reparar el barco colocando cada palabra en su categoría correcta.</p>
+            <p>🎯 {t("puerto.instructions.mission")}</p>
             <Card className="bg-blue-50/60 border-blue-200">
               <CardContent className="pt-4 pb-4">
-                <h3 className="font-bold text-blue-800 mb-2">📖 ¿Cómo jugar?</h3>
+                <h3 className="font-bold text-blue-800 mb-2">📖 {t("puerto.instructions.howToPlay")}</h3>
                 <ol className="text-left space-y-2">
-                  <li>1. 🖱️ <strong>Arrastra</strong> las palabras azules hacia las cajas de colores</li>
-                  <li>2. 🎯 Cada palabra pertenece a una <strong>categoría gramatical</strong></li>
-                  <li>3. ✅ Si aciertas, ¡reparas una parte del barco!</li>
-                  <li>4. 📚 Si no aciertas, inténtalo de nuevo</li>
-                  <li>5. 🏆 Repara 6 partes para completar el barco</li>
+                  <li>1. 🖱️ {t("puerto.instructions.step1")}</li>
+                  <li>2. 🎯 {t("puerto.instructions.step2")}</li>
+                  <li>3. ✅ {t("puerto.instructions.step3")}</li>
+                  <li>4. 📚 {t("puerto.instructions.step4")}</li>
+                  <li>5. 🏆 {t("puerto.instructions.step5")}</li>
                 </ol>
               </CardContent>
             </Card>
           </CardContent>
           <CardFooter className="flex gap-4 justify-center pt-2">
             <Button onClick={startGame} size="xl">
-              🚢 ¡Empezar a Reparar el Barco!
+              🚢 {t("puerto.instructions.start")}
             </Button>
             <Button onClick={goToDashboard} variant="outline" size="lg" className="gap-2">
               <Home size={20} />
-              Inicio
+              {t("common.home")}
             </Button>
           </CardFooter>
         </Card>
@@ -101,21 +103,21 @@ const PuertoPalabrasPage = () => {
         <Card className="max-w-lg w-full text-center shadow-lg border-green-200">
           <CardHeader>
             <Award size={64} className="text-yellow-500 mx-auto mb-2" />
-            <CardTitle className="text-3xl text-green-800">¡Barco reparado!</CardTitle>
+            <CardTitle className="text-3xl text-green-800">{t("puerto.completed.title")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <BarcoSVG repairedCount={6} />
-            {badge && <Badge variant="warning" className="text-base px-4 py-1">🏅 Maestro del Puerto</Badge>}
-            <Badge variant="success" className="text-base px-4 py-1">⭐ {xp} XP</Badge>
+            {badge && <Badge variant="warning" className="text-base px-4 py-1">{t("puerto.completed.badge")}</Badge>}
+            <Badge variant="success" className="text-base px-4 py-1">⭐ {xp} {t("common.xp")}</Badge>
           </CardContent>
           <CardFooter className="flex gap-3 justify-center">
             <Button onClick={resetGame} variant="outline" className="gap-2">
               <RotateCcw size={18} />
-              Nueva partida
+              {t("common.newGame")}
             </Button>
             <Button onClick={goToDashboard} className="gap-2">
               <Home size={18} />
-              Dashboard
+              {t("common.dashboard")}
             </Button>
           </CardFooter>
         </Card>
@@ -129,14 +131,14 @@ const PuertoPalabrasPage = () => {
         <div className="flex items-center gap-3">
           <Badge variant="secondary" className="text-sm px-3 py-1">⭐ XP: {xp}</Badge>
           <div className="flex items-center gap-2 flex-1 min-w-[180px]">
-            <span className="font-semibold text-sm text-muted-foreground whitespace-nowrap">🔧 Barco:</span>
+            <span className="font-semibold text-sm text-muted-foreground whitespace-nowrap">🔧 {t("puerto.playing.ship")}</span>
             <Progress value={repaired} max={6} className="h-3 w-28" indicatorClassName="bg-blue-500" />
             <span className="text-sm font-mono text-blue-700">{repaired}/6</span>
           </div>
         </div>
         <Button onClick={goToDashboard} variant="destructive" size="sm" className="gap-2">
           <Home size={16} />
-          Volver al Inicio
+          {t("common.backToHome")}
         </Button>
       </header>
 
@@ -148,7 +150,7 @@ const PuertoPalabrasPage = () => {
             {(provided) => (
               <Card className="flex-1" ref={provided.innerRef} {...provided.droppableProps}>
                 <CardContent className="pt-4 pb-4">
-                  <h2 className="font-semibold mb-2 text-base">📝 Palabras</h2>
+                  <h2 className="font-semibold mb-2 text-base">📝 {t("puerto.playing.words")}</h2>
                   <div className="flex flex-wrap gap-2 min-h-[60px]">
                     {availableWords.map((w, idx) => (
                       <Draggable key={w.word} draggableId={w.word} index={idx}>
@@ -224,14 +226,13 @@ const PuertoPalabrasPage = () => {
             <CardContent className="pt-4 pb-4">
               {feedback.correct ? (
                 <>
-                  <span className="font-bold text-green-800">✅ ¡Muy bien! </span>
-                  <span className="text-green-700">Has colocado la palabra en la categoría correcta.</span>
+                  <span className="font-bold text-green-800">✅ {t("puerto.playing.feedbackCorrect")} </span>
                   <br />
                   <span className="italic text-green-600 text-sm">💡 {feedback.rule}</span>
                 </>
               ) : (
                 <>
-                  <span className="font-bold text-red-800">🔄 ¡Inténtalo de nuevo! </span>
+                  <span className="font-bold text-red-800">🔄 {t("puerto.playing.feedbackRetry")} </span>
                   <span className="italic text-red-600 text-sm">{feedback.rule}</span>
                 </>
               )}

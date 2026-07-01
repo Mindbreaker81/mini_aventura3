@@ -1,4 +1,65 @@
 {
+  "common": {
+    "dashboard": "Dashboard",
+    "newGame": "New game",
+    "retry": "Retry",
+    "continue": "Continue",
+    "play": "Play",
+    "start": "Start",
+    "exit": "Exit",
+    "correct": "Correct!",
+    "next": "Next",
+    "check": "Check",
+    "true": "True",
+    "false": "False",
+    "home": "Home",
+    "backToHome": "Back to home",
+    "xp": "XP",
+    "xpAccumulated": "{{count}} XP earned"
+  },
+  "dashboard": {
+    "title": "ExplorAventura 3",
+    "subtitle": "7 educational mini-games to learn while playing",
+    "cta": "Pick a mini-game and start your adventure",
+    "footer": "© 2025 Edmundo Rosales Mayor"
+  },
+  "games": {
+    "puerto-palabras": {
+      "name": "Word Harbor",
+      "description": "Drag words into categories and practice spelling.",
+      "subject": "Language"
+    },
+    "bosc-lectura": {
+      "name": "Reading Forest",
+      "description": "Read texts and answer questions to light up the forest!",
+      "subject": "Reading"
+    },
+    "mercado-numeros": {
+      "name": "Number Market",
+      "description": "Solve money, time and fraction problems at the shop.",
+      "subject": "Math"
+    },
+    "mision-mapamundi-v2": {
+      "name": "World Map Mission",
+      "description": "Practice geography: continents, oceans or regions of Spain.",
+      "subject": "Geography"
+    },
+    "desafio-steam": {
+      "name": "STEAM Challenge",
+      "description": "Program an explorer robot with visual blocks.",
+      "subject": "Programming"
+    },
+    "laboratorio-flip": {
+      "name": "Flip Science Lab",
+      "description": "Learn science with educational videos and quizzes.",
+      "subject": "Science"
+    },
+    "museo-tiempo": {
+      "name": "Time Museum",
+      "description": "Order historical events on the museum timeline.",
+      "subject": "History"
+    }
+  },
   "bosc": {
     "completed": "You have completed the Reading Forest!",
     "failed": "You ran out of energy. Try again?",
@@ -8,12 +69,222 @@
     "next": "Next",
     "check": "Check",
     "true": "True",
-    "false": "False"
+    "false": "False",
+    "instructions": {
+      "title": "Welcome to the Reading Forest!",
+      "mission": "Your mission: Read the texts and answer questions to light up the magical forest.",
+      "howToPlay": "How to play?",
+      "step1": "Read each text carefully",
+      "step2": "Answer questions about what you read",
+      "step3": "You have 5 energy hearts",
+      "step4": "Correct answers earn points!",
+      "step5": "Wrong answers lose a heart",
+      "step6": "Complete all texts to earn the badge",
+      "tipsTitle": "Tips:",
+      "tip1": "Read slowly and carefully",
+      "tip2": "Pay attention to important details",
+      "tip3": "Some questions are True/False",
+      "tip4": "Others have multiple choices",
+      "heartsLabel": "You have 5 hearts",
+      "start": "Start the Adventure!"
+    }
   },
-  "exit": "Exit",
-  "correct": "Correct!",
-  "bosc-lectura": {
-    "id": "bosc-lectura",
-    "name": "Reading Forest"
+  "puerto": {
+    "instructions": {
+      "title": "Welcome to Word Harbor!",
+      "mission": "Your mission: Help repair the ship by placing each word in the correct category.",
+      "howToPlay": "How to play?",
+      "step1": "Drag the blue words into the colored boxes",
+      "step2": "Each word belongs to a grammatical category",
+      "step3": "Correct answers repair part of the ship!",
+      "step4": "If you miss, try again",
+      "step5": "Repair 6 parts to complete the ship",
+      "start": "Start Repairing the Ship!"
+    },
+    "completed": {
+      "title": "Ship repaired!",
+      "badge": "🏅 Harbor Master"
+    },
+    "playing": {
+      "ship": "Ship:",
+      "words": "Words",
+      "feedbackCorrect": "Well done! You placed the word in the correct category.",
+      "feedbackRetry": "Try again!"
+    }
+  },
+  "mercado": {
+    "instructions": {
+      "title": "Welcome to the Number Market!",
+      "mission": "Your mission: Help the shopkeeper by solving math problems to fill shopping baskets.",
+      "howToPlay": "How to play?",
+      "step1": "Solve money, time and fraction problems",
+      "step2": "Each correct answer fills a basket",
+      "step3": "You have 3 hearts — don't lose them all!",
+      "step4": "Fill 8 baskets to win",
+      "step5": "Keep all hearts for a special badge!",
+      "problemTypes": "Problem types:",
+      "money": "Money",
+      "moneyDesc": "Pay with coins and bills",
+      "time": "Time",
+      "timeDesc": "Calculate hours and minutes",
+      "fractions": "Fractions",
+      "fractionsDesc": "Divide and count parts",
+      "basketsGoal": "8 baskets to fill",
+      "hearts": "3 hearts",
+      "start": "Start at the Market!"
+    },
+    "completed": {
+      "title": "Congratulations!",
+      "baskets": "You filled {{count}} shopping baskets",
+      "xp": "You earned {{count}} XP",
+      "badge": "Money Master!",
+      "badgeDesc": "You completed all challenges without losing hearts",
+      "playAgain": "Play Again"
+    },
+    "failed": {
+      "title": "Oh no!",
+      "noHearts": "You ran out of hearts",
+      "baskets": "You filled {{count}} baskets",
+      "xp": "You earned {{count}} XP",
+      "encourage": "Don't worry! You can try again.",
+      "retry": "Try Again"
+    },
+    "playing": {
+      "baskets": "Baskets: {{current}} / {{total}}"
+    }
+  },
+  "steam": {
+    "title": "STEAM Challenge",
+    "instructions": {
+      "title": "Welcome to the STEAM Challenge!",
+      "subtitle": "Program an explorer robot with visual blocks",
+      "missionTitle": "Your mission:",
+      "mission": "Program the robot to reach the goal while avoiding obstacles on a 6×6 board.",
+      "howToPlayTitle": "How to play:",
+      "step1": "Drag «move forward», «turn left» and «turn right» blocks",
+      "step2": "Use «repeat» loops to optimize your code",
+      "step3": "Respect the block limit for each level",
+      "step4": "The robot has 3 lives per level!",
+      "goalTitle": "Goal:",
+      "goal": "Complete all 6 challenges to earn +140 XP and the Junior Engineer badge.",
+      "back": "Back",
+      "start": "Start Programming!"
+    },
+    "failed": {
+      "title": "Out of lives!",
+      "subtitle": "The robot needs more attempts. Don't give up!",
+      "reset": "Restart adventure"
+    },
+    "completed": {
+      "title": "Congratulations!",
+      "subtitle": "You completed all STEAM challenges",
+      "earned": "You earned:",
+      "badge": "Badge:",
+      "xpTotal": "Total XP:",
+      "points": "{{count}} points",
+      "praise": "Excellent work programming the robot!",
+      "newAdventure": "New adventure",
+      "backDashboard": "Back to Dashboard"
+    }
+  },
+  "flip": {
+    "title": "Flip Science Lab",
+    "instructions": {
+      "title": "Welcome to Flip Science Lab!",
+      "subtitle": "Learn science by watching videos and answering quizzes",
+      "missionTitle": "Your mission:",
+      "mission": "Complete 4 science experiments by watching educational videos and answering questions.",
+      "howTitle": "How it works:",
+      "step1": "Watch a ~90 second science video",
+      "step2": "Answer 3 questions about the content",
+      "step3": "Get at least 2 correct answers",
+      "step4": "Earn pieces to complete your virtual experiment",
+      "rewardsTitle": "Rewards:",
+      "reward1": "+8 XP per correct answer",
+      "reward2": "+10 bonus XP per completed lesson",
+      "reward3": "Experiment pieces: 🧪 🟦 🟨 🔥",
+      "reward4": "«Novice Scientist» badge when you finish",
+      "back": "Back",
+      "start": "Start Experiments!"
+    },
+    "completed": {
+      "title": "Experiment Complete!",
+      "subtitle": "You completed all science experiments",
+      "virtualExp": "Your Virtual Experiment:",
+      "reaction": "SUCCESSFUL REACTION!",
+      "reactionDesc": "You combined all elements correctly!",
+      "earned": "You earned:",
+      "badgeName": "Novice Scientist",
+      "experiments": "4/4 completed",
+      "praise": "Excellent work learning science!",
+      "backDashboard": "Back to Dashboard"
+    },
+    "playing": {
+      "experiments": "{{current}}/4 experiments",
+      "pieces": "{{current}}/4 pieces",
+      "badgeEarned": "Badge earned",
+      "virtualExp": "Your Virtual Experiment",
+      "startQuiz": "Start Quiz",
+      "quizLocked": "Quiz locked",
+      "quizLockedDesc": "Watch the full video first to unlock the quiz.",
+      "feedbackSuccess": "Excellent!",
+      "feedbackFail": "Oops!"
+    }
+  },
+  "mapamundi": {
+    "title": "World Map Mission v2",
+    "chooseMission": "Choose your geography mission!",
+    "intro": "Pick what to practice: continents, oceans or regions of Spain. Each correct answer adds a stamp to your passport.",
+    "questions": "{{count}} questions",
+    "lives": "5 lives",
+    "footer": "Each correct answer: +12 XP • Complete mission: +100 XP + Badge",
+    "backToMode": "Back to mode selection",
+    "backToSelector": "Back to selector",
+    "modes": {
+      "continent": {
+        "label": "Continents",
+        "description": "Locate the 7 continents of the world",
+        "badge": "🌍 Continent Explorer"
+      },
+      "ocean": {
+        "label": "Oceans",
+        "description": "Identify the 5 main oceans",
+        "badge": "🌊 Ocean Explorer"
+      },
+      "ccaa": {
+        "label": "Regions of Spain",
+        "description": "Locate the 17 autonomous communities",
+        "badge": "🇪🇸 Spain Explorer"
+      }
+    }
+  },
+  "museo": {
+    "title": "Time Museum",
+    "timeline": "Timeline",
+    "pool": "Events to sort",
+    "emptySlot": "Drop here",
+    "checkOrder": "Check order",
+    "instructions": {
+      "title": "Welcome to the Time Museum!",
+      "mission": "Your mission: place 8 historical events in chronological order.",
+      "step1": "Read each card with its date.",
+      "step2": "Drag events onto the timeline (1 = oldest).",
+      "step3": "When all 8 are placed, press «Check order».",
+      "step4": "You have 3 hearts. Good luck!",
+      "start": "Start the visit!"
+    },
+    "completed": {
+      "title": "Timeline complete!",
+      "badge": "🏅 Junior Historian"
+    },
+    "failed": {
+      "title": "Out of attempts"
+    },
+    "feedback": {
+      "incomplete": "Place all 8 events before checking.",
+      "completed": "Perfect! You ordered history correctly.",
+      "wrongOrder": "Wrong order. Check the dates and try again.",
+      "failed": "You ran out of hearts. Try again!"
+    }
   }
 }

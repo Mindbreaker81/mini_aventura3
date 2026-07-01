@@ -35,11 +35,12 @@ describe('useSteamStore', () => {
     expect(useSteamStore.getState().gameStatus).toBe('failed');
   });
 
-  it('avanza de nivel tras hideFeedback cuando pendingAdvance es true', () => {
-    useSteamStore.setState({ pendingAdvance: true, currentTask: 0 });
-    useSteamStore.getState().hideFeedback();
-
-    expect(useSteamStore.getState().currentTask).toBe(1);
-    expect(useSteamStore.getState().pendingAdvance).toBe(false);
+  it('resetAdventure reinicia progreso', () => {
+    useSteamStore.setState({ currentTask: 2, lives: 1, xp: 50, gameStatus: 'failed' });
+    useSteamStore.getState().resetAdventure();
+    const state = useSteamStore.getState();
+    expect(state.currentTask).toBe(0);
+    expect(state.lives).toBe(3);
+    expect(state.gameStatus).toBe('playing');
   });
 });

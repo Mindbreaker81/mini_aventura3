@@ -6,6 +6,42 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [3.1.0] - Julio 2026
+
+### 🏛️ Museo del Tiempo — séptimo minijuego (Fase 6)
+
+#### Añadido
+- Ruta `/world/museo-tiempo` — ordenar 8 eventos históricos en línea temporal
+- `museo-events.json` — 24 eventos históricos
+- Store con persistencia (`museo-tiempo-storage`), 3 vidas, badge «Historiador Junior»
+- Tests en `__tests__/useMuseoTiempoStore.test.ts`
+
+### 🌐 Internacionalización
+
+#### Añadido
+- Claves i18n unificadas en `public/locales/{es,ca,en}/common.json`
+- Dashboard traducido (7 juegos, títulos, materias)
+- Pantallas principales de los 7 juegos traducidas (instrucciones, victoria, derrota)
+- Museo del Tiempo 100 % traducido (es/ca/en)
+- `I18nProvider` carga desde archivos JSON (fuente única)
+
+### 🧪 CI y cobertura
+
+#### Añadido
+- Cobertura Jest ≥ 60 % en stores y módulos compartidos
+- Tests: `useGameSession`, `useMapamundiV2Store`, ampliación Bosc/Mercado/Laboratorio
+- CI ejecuta `jest --coverage`
+
+### 📊 Métricas
+
+| Métrica | v3.0.0 | v3.1.0 |
+|---------|--------|--------|
+| Minijuegos | 6 | **7** |
+| Tests | 46 | **65** |
+| Cobertura stores | — | **63 %** líneas |
+
+---
+
 ## [3.0.0] - Julio 2026
 
 ### 🏗️ Infraestructura compartida (Fase 0)
@@ -176,7 +212,8 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 | Mercado Números | `mercado-numeros-storage` | 3.0.0 |
 | Mapamundi v2 | `mapamundi-v2-session` | 1.0.0 (mejorado 3.0.0) |
 | Desafío STEAM | `steam-v2-storage` | 2.0.0 (mejorado 3.0.0) |
-| Laboratorio Flip | `laboratorio-flip-storage` | 1.0.0 (mejorado 3.0.0) |
+| Laboratorio Flip | `laboratorio-flip-storage` | 3.0.0 |
+| Museo del Tiempo | `museo-tiempo-storage` | 3.1.0 |
 
 ---
 

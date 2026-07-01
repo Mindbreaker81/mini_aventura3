@@ -51,4 +51,14 @@ describe('useBoscLecturaStore', () => {
     expect(useBoscLecturaStore.getState().gameStatus).toBe('failed');
     expect(useBoscLecturaStore.getState().energy).toBe(0);
   });
+
+  it('completa el juego al terminar preguntas', () => {
+    useBoscLecturaStore.getState().initializeGame([pasajesPrueba[0]]);
+    useBoscLecturaStore.getState().nextQuestion();
+    useBoscLecturaStore.getState().nextQuestion();
+    const state = useBoscLecturaStore.getState();
+    expect(state.completed).toBe(true);
+    expect(state.gameStatus).toBe('completed');
+    expect(state.badge).toBe(true);
+  });
 });

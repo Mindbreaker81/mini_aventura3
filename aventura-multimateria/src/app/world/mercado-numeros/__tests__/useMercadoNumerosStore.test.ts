@@ -168,4 +168,18 @@ describe('useMercadoNumerosStore', () => {
       expect(state.hasFractionAnswer).toBe(true);
     });
   });
+
+  describe('nextTask y completeGame integrados', () => {
+    it('avanza tareas tras acierto en pago', () => {
+      useMercadoNumerosStore.getState().loadTasks(tareasPrueba);
+      useMercadoNumerosStore.getState().startGame();
+      useMercadoNumerosStore.setState({
+        tasks: [{ id: 1, type: 'PAGO', statement: 'x', explanation: 'y', amount: 2 } as MercadoTask],
+        selectedCoins: [2],
+      });
+      useMercadoNumerosStore.getState().submitPayment();
+      useMercadoNumerosStore.getState().nextTask();
+      expect(useMercadoNumerosStore.getState().gameStatus).toBe('completed');
+    });
+  });
 });

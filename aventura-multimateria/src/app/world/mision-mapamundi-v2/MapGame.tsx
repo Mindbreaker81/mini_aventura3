@@ -5,6 +5,7 @@ import { Heart, ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 import { useMapamundiV2Store } from "./useMapamundiV2Store";
 import { GameMode, MODE_CONFIG } from "./types";
 import { useGameSessionWhen } from "../../hooks/useGameSession";
+import { useTranslation } from "../../components/I18nProvider";
 import { hasActiveSessionForMode } from "../shared/gameSession";
 import Passport from "./Passport";
 import WorldMap from "./WorldMap";
@@ -15,6 +16,7 @@ interface MapGameProps {
 }
 
 export default function MapGame({ mode }: MapGameProps) {
+  const { t } = useTranslation('common');
   const {
     currentTask,
     lives,
@@ -146,7 +148,7 @@ export default function MapGame({ mode }: MapGameProps) {
               href="/world/mision-mapamundi-v2"
               className="block w-full bg-gray-200 text-gray-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
             >
-              Volver al Selector
+              {t('mapamundi.backToSelector')}
             </Link>
           </div>
         </div>
@@ -183,7 +185,7 @@ export default function MapGame({ mode }: MapGameProps) {
               href="/world/mision-mapamundi-v2"
               className="block w-full bg-gray-200 text-gray-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
             >
-              Volver al Selector
+              {t('mapamundi.backToSelector')}
             </Link>
           </div>
         </div>

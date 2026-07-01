@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Aventura Multimateria - Juegos Educativos",
-  description: "Plataforma educativa con 6 minijuegos interactivos para aprender gramática, matemáticas, geografía, ciencias y programación",
+  description: "Plataforma educativa con 7 minijuegos interactivos para aprender gramática, matemáticas, geografía, historia, ciencias y programación",
 };
 
 export default function RootLayout({

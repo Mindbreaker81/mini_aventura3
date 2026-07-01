@@ -2,6 +2,7 @@
 import React from 'react';
 import { ArrowLeft, Award, CheckCircle, Beaker, Play, RotateCcw } from 'lucide-react';
 import { useNavigation } from '../../hooks/useNavigation';
+import { useTranslation } from '../../components/I18nProvider';
 import useLaboratorioFlipStore from './useLaboratorioFlipStore';
 import VideoCard from './VideoCard';
 import Quiz from './Quiz';
@@ -11,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 
 const LaboratorioFlip: React.FC = () => {
+  const { t } = useTranslation('common');
   const { goToDashboard } = useNavigation();
   const {
     initializeGame,
@@ -52,38 +54,38 @@ const LaboratorioFlip: React.FC = () => {
               <Beaker size={40} className="text-white" />
             </div>
             <CardTitle className="text-3xl text-green-800">
-              ¡Bienvenido al Laboratorio Flip-Ciencia!
+              {t('flip.instructions.title')}
             </CardTitle>
             <CardDescription className="text-lg">
-              Aprende ciencia viendo videos y respondiendo quiz
+              {t('flip.instructions.subtitle')}
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
             <div className="bg-green-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-green-800 mb-2">🎯 Tu misión:</h3>
+              <h3 className="font-semibold text-green-800 mb-2">🎯 {t('flip.instructions.missionTitle')}</h3>
               <p className="text-gray-700">
-                Completa 4 experimentos científicos viendo videos educativos y respondiendo preguntas.
+                {t('flip.instructions.mission')}
               </p>
             </div>
 
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-blue-800 mb-2">🧪 Cómo funciona:</h3>
+              <h3 className="font-semibold text-blue-800 mb-2">🧪 {t('flip.instructions.howTitle')}</h3>
               <ul className="text-gray-700 space-y-1">
-                <li>• Mira un video científico de ~90 segundos</li>
-                <li>• Responde 3 preguntas sobre el contenido</li>
-                <li>• Obtén al menos 2 respuestas correctas</li>
-                <li>• Gana piezas para completar tu experimento virtual</li>
+                <li>• {t('flip.instructions.step1')}</li>
+                <li>• {t('flip.instructions.step2')}</li>
+                <li>• {t('flip.instructions.step3')}</li>
+                <li>• {t('flip.instructions.step4')}</li>
               </ul>
             </div>
 
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-purple-800 mb-2">🏆 Recompensas:</h3>
+              <h3 className="font-semibold text-purple-800 mb-2">🏆 {t('flip.instructions.rewardsTitle')}</h3>
               <div className="text-gray-700 space-y-1">
-                <div>• +8 XP por cada respuesta correcta</div>
-                <div>• +10 XP extra por completar cada lección</div>
-                <div>• Piezas del experimento: 🧪 🟦 🟨 🔥</div>
-                <div>• Badge &quot;Científico Novato&quot; al completar todo</div>
+                <div>• {t('flip.instructions.reward1')}</div>
+                <div>• {t('flip.instructions.reward2')}</div>
+                <div>• {t('flip.instructions.reward3')}</div>
+                <div>• {t('flip.instructions.reward4')}</div>
               </div>
             </div>
           </CardContent>
@@ -96,14 +98,14 @@ const LaboratorioFlip: React.FC = () => {
               className="gap-2"
             >
               <ArrowLeft size={20} />
-              Volver
+              {t('flip.instructions.back')}
             </Button>
             <Button
               size="lg"
               onClick={handleStartGame}
               className="flex-1 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-semibold transition-all transform hover:scale-105"
             >
-              ¡Empezar Experimentos! 🧪
+              {t('flip.instructions.start')} 🧪
             </Button>
           </CardFooter>
         </Card>
@@ -119,17 +121,16 @@ const LaboratorioFlip: React.FC = () => {
           <CardHeader className="pb-2">
             <Award size={80} className="text-yellow-500 mx-auto mb-4" />
             <CardTitle className="text-3xl text-green-800">
-              ¡Experimento Completado!
+              {t('flip.completed.title')}
             </CardTitle>
             <CardDescription className="text-lg">
-              Has completado todos los experimentos científicos
+              {t('flip.completed.subtitle')}
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
-            {/* Experimento virtual completado */}
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-purple-800 mb-4">🧪 Tu Experimento Virtual:</h3>
+              <h3 className="font-semibold text-purple-800 mb-4">🧪 {t('flip.completed.virtualExp')}</h3>
               <div className="flex justify-center items-center gap-4 text-4xl mb-4">
                 {experimentPieces.map((piece) => (
                   <div
@@ -143,28 +144,28 @@ const LaboratorioFlip: React.FC = () => {
                 ))}
               </div>
               <div className="text-center">
-                <div className="text-2xl mb-2">💥 ¡REACCIÓN EXITOSA! 💥</div>
+                <div className="text-2xl mb-2">💥 {t('flip.completed.reaction')} 💥</div>
                 <p className="text-purple-700">
-                  ¡Has combinado todos los elementos correctamente!
+                  {t('flip.completed.reactionDesc')}
                 </p>
               </div>
             </div>
 
             <Card className="bg-yellow-50 border-yellow-200">
               <CardContent className="p-4">
-                <h3 className="font-semibold text-yellow-800 mb-2">🏆 Has obtenido:</h3>
+                <h3 className="font-semibold text-yellow-800 mb-2">🏆 {t('flip.completed.earned')}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Badge variant="success">Badge</Badge>
-                    <span className="text-gray-700">Científico Novato</span>
+                    <span className="text-gray-700">{t('flip.completed.badgeName')}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-teal-500 text-white">XP</Badge>
-                    <span className="text-gray-700">{xp} puntos</span>
+                    <Badge className="bg-teal-500 text-white">{t('common.xp')}</Badge>
+                    <span className="text-gray-700">{t('steam.completed.points', { count: xp })}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge variant="secondary">Experimentos</Badge>
-                    <span className="text-gray-700">4/4 completados</span>
+                    <span className="text-gray-700">{t('flip.completed.experiments')}</span>
                   </div>
                 </div>
               </CardContent>
@@ -172,7 +173,7 @@ const LaboratorioFlip: React.FC = () => {
 
             <div className="bg-green-50 p-4 rounded-lg">
               <p className="text-green-800 font-semibold">
-                ¡Excelente trabajo aprendiendo ciencia! 🔬✨
+                {t('flip.completed.praise')} 🔬✨
               </p>
             </div>
           </CardContent>
@@ -180,14 +181,14 @@ const LaboratorioFlip: React.FC = () => {
           <CardFooter>
             <Button size="lg" onClick={initializeGame} variant="outline" className="gap-2 mr-2">
               <RotateCcw size={18} />
-              Nueva partida
+              {t('common.newGame')}
             </Button>
             <Button
               size="lg"
               onClick={goToDashboard}
               className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold"
             >
-              Volver al Dashboard
+              {t('flip.completed.backDashboard')}
             </Button>
           </CardFooter>
         </Card>
@@ -209,29 +210,29 @@ const LaboratorioFlip: React.FC = () => {
                 className="gap-2"
               >
                 <ArrowLeft size={20} />
-                Dashboard
+                {t('common.dashboard')}
               </Button>
               <h1 className="text-2xl font-bold text-green-800 flex items-center gap-2">
-                🧪 Laboratorio Flip-Ciencia
+                🧪 {t('flip.title')}
               </h1>
             </div>
             
             <div className="flex items-center gap-3 flex-wrap">
               <div className="flex items-center gap-2">
                 <Badge variant="outline" className="text-sm px-3 py-1">
-                  📊 {completedLessons}/4 experimentos
+                  📊 {t('flip.playing.experiments', { current: completedLessons })}
                 </Badge>
               </div>
               <Badge variant="secondary" className="text-sm px-3 py-1">
-                🧩 {piecesObtained}/4 piezas
+                🧩 {t('flip.playing.pieces', { current: piecesObtained })}
               </Badge>
               <Badge className="bg-teal-600 text-white text-sm px-3 py-1">
-                ⭐ {xp} XP
+                ⭐ {xp} {t('common.xp')}
               </Badge>
               {badge && (
                 <Badge variant="warning" className="text-sm px-3 py-1 gap-1">
                   <Award size={14} />
-                  Badge obtenido
+                  {t('flip.playing.badgeEarned')}
                 </Badge>
               )}
             </div>
@@ -252,7 +253,7 @@ const LaboratorioFlip: React.FC = () => {
       {/* Experimento virtual */}
       <Card className="mb-4 border-0 shadow-lg">
         <CardContent className="p-4">
-          <h2 className="text-lg font-bold text-gray-800 mb-3">🧪 Tu Experimento Virtual</h2>
+          <h2 className="text-lg font-bold text-gray-800 mb-3">🧪 {t('flip.playing.virtualExp')}</h2>
           <div className="flex justify-center items-center gap-6">
             {experimentPieces.map((piece) => (
               <div
@@ -288,7 +289,7 @@ const LaboratorioFlip: React.FC = () => {
                 className="gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all transform hover:scale-105"
               >
                 <Play size={20} />
-                Empezar Quiz
+                {t('flip.playing.startQuiz')}
               </Button>
             </div>
           )}
@@ -303,10 +304,10 @@ const LaboratorioFlip: React.FC = () => {
               <CardContent className="p-6">
                 <div className="text-6xl mb-4">🔒</div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">
-                  Quiz bloqueado
+                  {t('flip.playing.quizLocked')}
                 </h3>
                 <p className="text-gray-600">
-                  Primero debes ver el video completo para desbloquear el quiz.
+                  {t('flip.playing.quizLockedDesc')}
                 </p>
               </CardContent>
             </Card>
@@ -330,7 +331,7 @@ const LaboratorioFlip: React.FC = () => {
               <h3 className={`text-xl font-bold mb-2 ${
                 feedback.success ? 'text-green-800' : 'text-red-800'
               }`}>
-                {feedback.success ? '¡Excelente!' : '¡Ups!'}
+                {feedback.success ? t('flip.playing.feedbackSuccess') : t('flip.playing.feedbackFail')}
               </h3>
               
               <p className="text-gray-700 mb-4">
@@ -353,7 +354,7 @@ const LaboratorioFlip: React.FC = () => {
                     : 'bg-red-600 hover:bg-red-700 text-white'
                 }`}
               >
-                Continuar
+                {t('common.continue')}
               </Button>
             </CardContent>
           </Card>

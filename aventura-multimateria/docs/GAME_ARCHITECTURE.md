@@ -10,7 +10,7 @@ Documento de referencia para desarrolladores. Define el patrón estándar de los
 
 ## 1. Visión general
 
-ExplorAventura 3 es una aplicación Next.js 15 (App Router) con **6 minijuegos** independientes. Cada juego sigue la misma estructura conceptual:
+ExplorAventura 3 es una aplicación Next.js 15 (App Router) con **7 minijuegos** independientes. Cada juego sigue la misma estructura conceptual:
 
 ```
 Datos (JSON) → Store (Zustand) → Página (page.tsx) → Componentes de juego
@@ -33,6 +33,7 @@ Los juegos **no comparten estado entre sí**. Solo comparten:
 | `mision-mapamundi-v2` | `/world/mision-mapamundi-v2` | Geografía | `useMapamundiV2Store` |
 | `desafio-steam` | `/world/desafio-steam` | Programación visual | `useSteamStore` |
 | `laboratorio-flip` | `/world/laboratorio-flip` | Ciencias | `useLaboratorioFlipStore` |
+| `museo-tiempo` | `/world/museo-tiempo` | Historia | `useMuseoTiempoStore` |
 
 Mapamundi tiene subrutas dinámicas: `/world/mision-mapamundi-v2/[mode]` con `mode ∈ { continent, ocean, ccaa }`.
 
@@ -417,7 +418,7 @@ src/app/page.test.tsx   ← Dashboard
 
 ---
 
-## 12. Estado actual (v3.0.0 — julio 2026)
+## 12. Estado actual (v3.1.0 — julio 2026)
 
 | Juego | Lógica core | Victoria | Derrota | Persistencia | Clave localStorage |
 |-------|-------------|----------|---------|--------------|-------------------|
@@ -427,13 +428,12 @@ src/app/page.test.tsx   ← Dashboard
 | Mapamundi v2 | ✅ | ✅ | ✅ | ✅ | `mapamundi-v2-session` |
 | Desafío STEAM | ✅ | ✅ | ✅ | ✅ | `steam-v2-storage` |
 | Laboratorio Flip | ✅ | ✅ | ✅ (retry) | ✅ | `laboratorio-flip-storage` |
+| Museo del Tiempo | ✅ | ✅ | ✅ | ✅ | `museo-tiempo-storage` |
 
-### Deuda pendiente (Fase 6+)
+### Deuda pendiente (post v3.1)
 
-1. Séptimo juego (**Museo del Tiempo** — historia)
-2. Cobertura de tests ≥ 60 % en CI
-3. i18n completo en los 6 juegos (solo Bosc usa traducciones de forma consistente)
-4. Unificar tipo `badge` en STEAM (`boolean` vs `{ name: string }`)
+1. Unificar tipo `badge` en STEAM (`boolean` vs `{ name: string }`)
+2. i18n en componentes internos (ReadingGame, Quiz, MarketGame) — pantallas principales ya traducidas
 
 ---
 

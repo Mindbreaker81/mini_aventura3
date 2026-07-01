@@ -7,6 +7,7 @@ import { GameMode } from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from "../../../components/I18nProvider";
 
 const validModes: GameMode[] = ['continent', 'ocean', 'ccaa'];
 
@@ -15,6 +16,7 @@ function isValidMode(mode: string): mode is GameMode {
 }
 
 export default function GamePage() {
+  const { t } = useTranslation('common');
   const params = useParams();
   const mode = params.mode as string;
 
@@ -39,7 +41,7 @@ export default function GamePage() {
             <Button variant="outline" size="lg" asChild>
               <Link href="/world/mision-mapamundi-v2" className="gap-2">
                 <ArrowLeft size={18} />
-                Volver a selección de modo
+                {t('mapamundi.backToMode')}
               </Link>
             </Button>
           </CardFooter>
