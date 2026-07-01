@@ -203,6 +203,16 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
                     <RefreshCw size={16} />
                     {t('common.retry')}
                   </button>
+                  <button
+                    onClick={() => {
+                      finishVideo();
+                      onVideoEnd();
+                    }}
+                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+                  >
+                    <CheckCircle size={16} />
+                    {t('flip.video.continueToQuiz')}
+                  </button>
                   <a
                     href={currentVideo.url}
                     target="_blank"
@@ -250,6 +260,21 @@ const VideoCard: React.FC<VideoCardProps> = ({ onVideoEnd }) => {
             {t('flip.video.openYoutubeDirect')}
           </a>
         </div>
+        {!videoWatched && (
+          <div className="mt-3 text-center">
+            <button
+              type="button"
+              onClick={() => {
+                finishVideo();
+                onVideoEnd();
+              }}
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              <CheckCircle size={16} />
+              {t('flip.video.skipToQuiz')}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Descripción y estado */}

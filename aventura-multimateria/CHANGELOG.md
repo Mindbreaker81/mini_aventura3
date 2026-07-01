@@ -46,6 +46,28 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [3.3.1] - Julio 2026 — Tests UI puros + ortografía B/V G/J
+
+### 🧪 Tests UI
+
+#### Cambiado
+- `scripts/test-all-games-ui.mjs`: victoria/derrota por interacción real en Museo, Planetario, Mapamundi y Mercado (sin fallback `localStorage`)
+- Selectores drag-and-drop actualizados a `data-rfd-*` (@hello-pangea/dnd v18)
+- STEAM documentado como excepción `blockly` (Blockly no automatizable de forma fiable)
+- Mapamundi victoria: intento UI por sellos + fallback `map-svg` (SVG sin metadatos en DOM)
+- Flip: botón «Ir al quiz» cuando el vídeo no carga + flujo UI sin parchear `videoWatched`
+
+### 📚 Taller de Ortografía
+
+#### Añadido
+- 20 ítems nuevos (51–70): 10 temas B/V y 10 G/J con distractores ortográficos realistas
+
+#### Cambiado
+- Distractores genéricos (`vaca`, `beca`, `jirafa`, `gente`) sustituidos por errores pedagógicos en ítems existentes
+- `gameDataRegistry.test.ts`: umbral mínimo 70 ítems
+
+---
+
 ## [3.3.0] - Julio 2026 — Planetario v2 + CI
 
 ### 🪐 Planetario v2

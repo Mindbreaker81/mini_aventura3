@@ -16,20 +16,20 @@
     "sentence": "Mi ___ es muy simpática.",
     "options": [
       "amiga",
-      "vaca",
-      "beca"
+      "amija",
+      "amiba"
     ],
     "answer": 0,
-    "rule": "Amiga se escribe con g, no con b.",
-    "topic": "bv"
+    "rule": "Amiga se escribe con g, no con j ni b.",
+    "topic": "gj"
   },
   {
     "id": 3,
     "sentence": "El ___ brilla en el cielo.",
     "options": [
       "sol",
-      "ora",
-      "umo"
+      "sol",
+      "zol"
     ],
     "answer": 0,
     "rule": "Sol no lleva h ni z.",
@@ -49,14 +49,14 @@
   },
   {
     "id": 5,
-    "sentence": "La ___ es muy dulce.",
+    "sentence": "La ___ da leche en la granja.",
     "options": [
-      "miel",
       "vaca",
-      "beca"
+      "baca",
+      "vaka"
     ],
     "answer": 0,
-    "rule": "Miel se escribe con ie.",
+    "rule": "Vaca se escribe con v, no con b.",
     "topic": "bv"
   },
   {
@@ -76,8 +76,8 @@
     "sentence": "Hay mucha ___ en invierno.",
     "options": [
       "nieve",
-      "vaca",
-      "beca"
+      "niebe",
+      "nibe"
     ],
     "answer": 0,
     "rule": "Nieve se escribe con v, no con b.",
@@ -145,14 +145,14 @@
   },
   {
     "id": 13,
-    "sentence": "Voy al ___ a comprar pan.",
+    "sentence": "El ___ es muy divertido.",
     "options": [
-      "mercado",
-      "jirafa",
-      "gente"
+      "juego",
+      "guego",
+      "juego"
     ],
     "answer": 0,
-    "rule": "Mercado se escribe con c.",
+    "rule": "Juego se escribe con j, no con g.",
     "topic": "gj"
   },
   {
@@ -160,11 +160,11 @@
     "sentence": "El ___ es muy grande.",
     "options": [
       "gigante",
-      "jirafa",
-      "gente"
+      "jigante",
+      "gijante"
     ],
     "answer": 0,
-    "rule": "Gigante se escribe con g.",
+    "rule": "Gigante se escribe con g, no con j.",
     "topic": "gj"
   },
   {
@@ -172,11 +172,11 @@
     "sentence": "La ___ es azul.",
     "options": [
       "bandera",
-      "vaca",
-      "beca"
+      "vandera",
+      "banderra"
     ],
     "answer": 0,
-    "rule": "Bandera se escribe con b.",
+    "rule": "Bandera se escribe con b, no con v.",
     "topic": "bv"
   },
   {
@@ -193,14 +193,14 @@
   },
   {
     "id": 17,
-    "sentence": "Tengo ___ años.",
+    "sentence": "El ___ es muy alto.",
     "options": [
-      "diez",
-      "jirafa",
-      "gente"
+      "gigante",
+      "jigante",
+      "gijante"
     ],
     "answer": 0,
-    "rule": "Diez se escribe con z al final.",
+    "rule": "Gigante se escribe con g, no con j.",
     "topic": "gj"
   },
   {
@@ -208,11 +208,11 @@
     "sentence": "El ___ es muy fuerte.",
     "options": [
       "viento",
-      "vaca",
-      "beca"
+      "biento",
+      "vientto"
     ],
     "answer": 0,
-    "rule": "Viento se escribe con v.",
+    "rule": "Viento se escribe con v, no con b.",
     "topic": "bv"
   },
   {
@@ -220,8 +220,8 @@
     "sentence": "La ___ es bonita.",
     "options": [
       "flor",
-      "ora",
-      "umo"
+      "flor",
+      "hlor"
     ],
     "answer": 0,
     "rule": "Flor no lleva h.",
@@ -232,11 +232,11 @@
     "sentence": "El ___ juega en el equipo.",
     "options": [
       "jugador",
-      "jirafa",
-      "gente"
+      "jujador",
+      "gugador"
     ],
     "answer": 0,
-    "rule": "Jugador se escribe con j.",
+    "rule": "Jugador se escribe con j, no con g.",
     "topic": "gj"
   },
   {
@@ -253,62 +253,62 @@
   },
   {
     "id": 22,
-    "sentence": "El ___ es mi mascota.",
+    "sentence": "El ___ está en la granja.",
     "options": [
-      "perro",
-      "vaca",
-      "beca"
+      "becerro",
+      "vecerro",
+      "becero"
     ],
     "answer": 0,
-    "rule": "Perro se escribe con p.",
+    "rule": "Becerro se escribe con b, no con v.",
     "topic": "bv"
   },
   {
     "id": 23,
-    "sentence": "La ___ es deliciosa.",
+    "sentence": "La ___ es muy grande.",
     "options": [
-      "sopa",
       "jirafa",
-      "gente"
+      "girafa",
+      "jirafa"
     ],
     "answer": 0,
-    "rule": "Sopa se escribe con s.",
+    "rule": "Jirafa se escribe con j, no con g.",
     "topic": "gj"
   },
   {
     "id": 24,
-    "sentence": "El ___ nada en el río.",
+    "sentence": "Hay mucha ___ en la plaza.",
     "options": [
-      "pez",
-      "jirafa",
+      "gente",
+      "jente",
       "gente"
     ],
     "answer": 0,
-    "rule": "Pez lleva z al final.",
+    "rule": "Gente se escribe con g, no con j.",
     "topic": "gj"
   },
   {
     "id": 25,
-    "sentence": "Mi ___ es maestra.",
+    "sentence": "Mi ___ es muy buena.",
     "options": [
-      "profesora",
-      "vaca",
-      "beca"
+      "vecina",
+      "becina",
+      "vesina"
     ],
     "answer": 0,
-    "rule": "Profesora se escribe con f.",
+    "rule": "Vecina se escribe con v, no con b.",
     "topic": "bv"
   },
   {
     "id": 26,
-    "sentence": "El ___ es muy alto.",
+    "sentence": "El ___ es muy fuerte.",
     "options": [
-      "edificio",
-      "jirafa",
-      "gente"
+      "gigante",
+      "jigante",
+      "gijante"
     ],
     "answer": 0,
-    "rule": "Edificio se escribe con f.",
+    "rule": "Gigante se escribe con g, no con j.",
     "topic": "gj"
   },
   {
@@ -340,11 +340,11 @@
     "sentence": "Voy a ___ agua.",
     "options": [
       "beber",
-      "vaca",
-      "beca"
+      "veber",
+      "bever"
     ],
     "answer": 0,
-    "rule": "Beber se escribe con b.",
+    "rule": "Beber se escribe con b, no con v.",
     "topic": "bv"
   },
   {
@@ -352,11 +352,11 @@
     "sentence": "El ___ es rojo.",
     "options": [
       "tomate",
-      "ora",
-      "umo"
+      "tomate",
+      "homate"
     ],
     "answer": 0,
-    "rule": "Tomate se escribe con t.",
+    "rule": "Tomate no lleva h.",
     "topic": "h"
   },
   {
@@ -376,11 +376,11 @@
     "sentence": "El ___ es un instrumento.",
     "options": [
       "violín",
-      "vaca",
-      "beca"
+      "biolín",
+      "violim"
     ],
     "answer": 0,
-    "rule": "Violín se escribe con v.",
+    "rule": "Violín se escribe con v, no con b.",
     "topic": "bv"
   },
   {
@@ -400,11 +400,11 @@
     "sentence": "El ___ es muy largo.",
     "options": [
       "camino",
-      "jirafa",
-      "gente"
+      "jamino",
+      "gamino"
     ],
     "answer": 0,
-    "rule": "Camino se escribe con m.",
+    "rule": "Camino se escribe con c, no con j ni g.",
     "topic": "gj"
   },
   {
@@ -424,11 +424,11 @@
     "sentence": "El ___ es azul.",
     "options": [
       "cielo",
-      "jirafa",
-      "gente"
+      "jielo",
+      "gielo"
     ],
     "answer": 0,
-    "rule": "Cielo se escribe con c.",
+    "rule": "Cielo se escribe con c, no con j ni g.",
     "topic": "gj"
   },
   {
@@ -436,11 +436,11 @@
     "sentence": "Mi ___ es azul.",
     "options": [
       "libro",
-      "vaca",
-      "beca"
+      "livro",
+      "liblo"
     ],
     "answer": 0,
-    "rule": "Libro se escribe con b.",
+    "rule": "Libro se escribe con b, no con v.",
     "topic": "bv"
   },
   {
@@ -460,11 +460,11 @@
     "sentence": "La ___ es blanca.",
     "options": [
       "nube",
-      "vaca",
-      "beca"
+      "numbe",
+      "nuvbe"
     ],
     "answer": 0,
-    "rule": "Nube se escribe con b.",
+    "rule": "Nube se escribe con b, no con m ni v.",
     "topic": "bv"
   },
   {
@@ -472,11 +472,11 @@
     "sentence": "El ___ es mi amigo.",
     "options": [
       "vecino",
-      "vaca",
-      "beca"
+      "becino",
+      "vesino"
     ],
     "answer": 0,
-    "rule": "Vecino se escribe con v.",
+    "rule": "Vecino se escribe con v, no con b.",
     "topic": "bv"
   },
   {
@@ -496,11 +496,11 @@
     "sentence": "El ___ es dulce.",
     "options": [
       "caramelo",
-      "jirafa",
-      "gente"
+      "jaramelo",
+      "garamelo"
     ],
     "answer": 0,
-    "rule": "Caramelo se escribe con c.",
+    "rule": "Caramelo se escribe con c, no con j ni g.",
     "topic": "gj"
   },
   {
@@ -532,11 +532,11 @@
     "sentence": "Mi ___ es roja.",
     "options": [
       "bici",
-      "vaca",
-      "beca"
+      "vici",
+      "bici"
     ],
     "answer": 0,
-    "rule": "Bici (bicicleta) se escribe con b.",
+    "rule": "Bici (bicicleta) se escribe con b, no con v.",
     "topic": "bv"
   },
   {
@@ -579,12 +579,12 @@
     "id": 49,
     "sentence": "Hay un ___ en la clase.",
     "options": [
-      "mapa",
-      "jirafa",
-      "gente"
+      "globo",
+      "jlobo",
+      "glovo"
     ],
     "answer": 0,
-    "rule": "Mapa se escribe con m.",
+    "rule": "Globo se escribe con g, no con j.",
     "topic": "gj"
   },
   {
@@ -592,11 +592,251 @@
     "sentence": "El ___ es mi escuela.",
     "options": [
       "colegio",
-      "jirafa",
-      "gente"
+      "golegio",
+      "jolezio"
     ],
     "answer": 0,
-    "rule": "Colegio se escribe con g.",
+    "rule": "Colegio se escribe con g, no con j.",
+    "topic": "gj"
+  },
+  {
+    "id": 51,
+    "sentence": "Compramos ___ en la tienda.",
+    "options": [
+      "vino",
+      "bino",
+      "vino"
+    ],
+    "answer": 0,
+    "rule": "Vino se escribe con v, no con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 52,
+    "sentence": "El ___ es muy valiente.",
+    "options": [
+      "valiente",
+      "baliente",
+      "valiente"
+    ],
+    "answer": 0,
+    "rule": "Valiente se escribe con v, no con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 53,
+    "sentence": "La ___ es de color rojo.",
+    "options": [
+      "bota",
+      "vota",
+      "bota"
+    ],
+    "answer": 0,
+    "rule": "Bota se escribe con b, no con v.",
+    "topic": "bv"
+  },
+  {
+    "id": 54,
+    "sentence": "El ___ es muy rápido.",
+    "options": [
+      "velero",
+      "belero",
+      "velero"
+    ],
+    "answer": 0,
+    "rule": "Velero se escribe con v, no con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 55,
+    "sentence": "Mi ___ favorita es la manzana.",
+    "options": [
+      "fruta",
+      "vruta",
+      "fruta"
+    ],
+    "answer": 0,
+    "rule": "Fruta se escribe con f; no confundir v/b aquí: vruta es incorrecta.",
+    "topic": "bv"
+  },
+  {
+    "id": 56,
+    "sentence": "El ___ está en el armario.",
+    "options": [
+      "vestido",
+      "bestido",
+      "vestido"
+    ],
+    "answer": 0,
+    "rule": "Vestido se escribe con v, no con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 57,
+    "sentence": "La ___ es muy alta.",
+    "options": [
+      "barrera",
+      "varrera",
+      "barrera"
+    ],
+    "answer": 0,
+    "rule": "Barrera se escribe con b, no con v.",
+    "topic": "bv"
+  },
+  {
+    "id": 58,
+    "sentence": "El ___ huele muy bien.",
+    "options": [
+      "violeta",
+      "bioleta",
+      "violeta"
+    ],
+    "answer": 0,
+    "rule": "Violeta se escribe con v, no con b.",
+    "topic": "bv"
+  },
+  {
+    "id": 59,
+    "sentence": "Guardo los libros en la ___.",
+    "options": [
+      "biblioteca",
+      "viblioteca",
+      "biblioteka"
+    ],
+    "answer": 0,
+    "rule": "Biblioteca se escribe con b, no con v.",
+    "topic": "bv"
+  },
+  {
+    "id": 60,
+    "sentence": "El ___ brilla en la noche.",
+    "options": [
+      "brillo",
+      "vrillo",
+      "brillo"
+    ],
+    "answer": 0,
+    "rule": "Brillo se escribe con b; vrillo confunde b/v.",
+    "topic": "bv"
+  },
+  {
+    "id": 61,
+    "sentence": "El ___ salta muy alto.",
+    "options": [
+      "jabalí",
+      "gabalí",
+      "javalí"
+    ],
+    "answer": 0,
+    "rule": "Jabalí se escribe con j, no con g.",
+    "topic": "gj"
+  },
+  {
+    "id": 62,
+    "sentence": "La ___ es muy sabrosa.",
+    "options": [
+      "gelatina",
+      "jelatina",
+      "gelatina"
+    ],
+    "answer": 0,
+    "rule": "Gelatina se escribe con g, no con j.",
+    "topic": "gj"
+  },
+  {
+    "id": 63,
+    "sentence": "El ___ vive en África.",
+    "options": [
+      "jirafa",
+      "girafa",
+      "jirafa"
+    ],
+    "answer": 0,
+    "rule": "Jirafa se escribe con j, no con g.",
+    "topic": "gj"
+  },
+  {
+    "id": 64,
+    "sentence": "Mi ___ es muy simpático.",
+    "options": [
+      "gemelo",
+      "jemelo",
+      "gemelo"
+    ],
+    "answer": 0,
+    "rule": "Gemelo se escribe con g, no con j.",
+    "topic": "gj"
+  },
+  {
+    "id": 65,
+    "sentence": "El ___ toca la guitarra.",
+    "options": [
+      "músico",
+      "mujico",
+      "músico"
+    ],
+    "answer": 0,
+    "rule": "Músico se escribe con s; mujico confunde g/j.",
+    "topic": "gj"
+  },
+  {
+    "id": 66,
+    "sentence": "El ___ es muy joven.",
+    "options": [
+      "joven",
+      "goven",
+      "joven"
+    ],
+    "answer": 0,
+    "rule": "Joven se escribe con j, no con g.",
+    "topic": "gj"
+  },
+  {
+    "id": 67,
+    "sentence": "Estudiamos ___ en clase.",
+    "options": [
+      "geografía",
+      "jeografía",
+      "geografía"
+    ],
+    "answer": 0,
+    "rule": "Geografía se escribe con g, no con j.",
+    "topic": "gj"
+  },
+  {
+    "id": 68,
+    "sentence": "El ___ es muy ágil.",
+    "options": [
+      "gato",
+      "jato",
+      "gato"
+    ],
+    "answer": 0,
+    "rule": "Gato se escribe con g, no con j.",
+    "topic": "gj"
+  },
+  {
+    "id": 69,
+    "sentence": "El ___ es un animal.",
+    "options": [
+      "jaguar",
+      "gaguar",
+      "jaguar"
+    ],
+    "answer": 0,
+    "rule": "Jaguar se escribe con j, no con g.",
+    "topic": "gj"
+  },
+  {
+    "id": 70,
+    "sentence": "El ___ es muy grande.",
+    "options": [
+      "gigante",
+      "jigante",
+      "gijante"
+    ],
+    "answer": 0,
+    "rule": "Gigante se escribe con g, no con j.",
     "topic": "gj"
   }
 ]

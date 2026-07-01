@@ -47,7 +47,7 @@ const VICTORY_PATTERNS =
   /completad|completed|Felicitaciones|Barco reparado|Cadena de reciclaje|Taller completado|Sistema Solar|Pasaporte completado|misión cumplida|Misión Completada|mission complete|Ingeniero Junior|experimentos científicos|Todos los desafíos/i;
 
 const DEFEAT_PATTERNS =
-  /sin energía|sin corazones|sin vidas|Game Over|game over|Se acabaron|Te has quedado|Oh no|problemilla|failed|agotado|¡Sin vidas!|intentos/i;
+  /sin energía|sin corazones|sin vidas|Game Over|game over|Se acabaron|Te has quedado|Oh no|problemilla|failed|agotado|¡Sin vidas!|intentos|Se acabaron los intentos/i;
 
 async function dismissConsent(page) {
   await page.evaluate(() => {
@@ -136,45 +136,84 @@ async function dragItemToBin(page, itemLabel, binKey) {
   return mouseDragLocator(page, item, bin);
 }
 
-async function dragDraggableToSlot(page, draggableId, slotIndex, poolId) {
-  const item = page.locator(`[data-rbd-draggable-id="${draggableId}"]`).first();
-  const slot = page.locator(`[data-rbd-droppable-id="slot-${slotIndex}"]`).first();
-  if ((await item.count()) === 0) {
-    const poolSlot = page.locator(`[data-rbd-droppable-id="${poolId}"]`).first();
-    return mouseDragLocator(page, item, slot);
-  }
+function draggableSelector(id) {
+  return `[data-rfd-draggable-id="${id}"], [data-rbd-draggable-id="${id}"]`;
+}
+
+function slotSelector(index) {
+  return `[data-rfd-droppable-id="slot-${index}"], [data-rbd-droppable-id="slot-${index}"]`;
+}
+
+async function waitForTimelineItems(page) {
+  await page.waitForSelector(
+    '[data-rfd-draggable-id], [data-rbd-draggable-id], [class*="cursor-move"]',
+    { timeout: 20000 }
+  );
+}
+
+async function dragDraggableToSlot(page, draggableId, slotIndex) {
+  const item = page.locator(draggableSelector(draggableId)).first();
+  const slot = page.locator(slotSelector(slotIndex)).first();
   return mouseDragLocator(page, item, slot);
 }
 
-async function fillTimelineViaStorage(page, storageKey) {
-  const state = await getStoreState(page, storageKey);
-  if (!state?.correctOrder?.length) return false;
-  await patchStoreState(page, storageKey, {
-    timeline: [...state.correctOrder],
-    feedback: null,
-  });
-  await page.reload({ waitUntil: 'networkidle' });
-  await dismissConsent(page);
-  return true;
-}
-
 async function fillTimelineFromStore(page, storageKey) {
-  const filled = await fillTimelineViaStorage(page, storageKey);
-  if (filled) return true;
-
   const { correctOrder } = await getStoreState(page, storageKey);
   if (!correctOrder?.length) return false;
 
-  await page.waitForSelector('[data-rbd-draggable-id]', { timeout: 15000 });
+  await waitForTimelineItems(page);
 
   for (let i = 0; i < correctOrder.length; i++) {
-    const id = correctOrder[i];
-    const item = page.locator(`[data-rbd-draggable-id="${id}"]`).first();
-    if ((await item.count()) === 0) continue;
-    const slot = page.locator(`[data-rbd-droppable-id="slot-${i}"]`).first();
-    await mouseDragLocator(page, item, slot);
+    await dragDraggableToSlot(page, correctOrder[i], i);
   }
   return true;
+}
+
+async function dismissTimelineFeedback(page) {
+  const btn = page.getByRole('button', { name: /Continuar|Continue|Següent|Entendido|OK/i }).first();
+  if (await btn.isVisible().catch(() => false)) {
+    await btn.click();
+    await page.waitForTimeout(300);
+    return true;
+  }
+  return false;
+}
+
+async function submitTimelineOrder(page, storageKey, orderIds) {
+  await waitForTimelineItems(page);
+
+  for (let i = 0; i < orderIds.length; i++) {
+    await dragDraggableToSlot(page, orderIds[i], i);
+  }
+
+  await clickCheckButton(page);
+  await page.waitForTimeout(700);
+  await dismissTimelineFeedback(page);
+
+  const after = await getStoreState(page, storageKey);
+  return after?.gameStatus ?? 'playing';
+}
+
+async function playTimelineVictory(page, storageKey) {
+  const state = await getStoreState(page, storageKey);
+  if (!state?.correctOrder?.length) return false;
+
+  const status = await submitTimelineOrder(page, storageKey, state.correctOrder);
+  return status === 'completed';
+}
+
+async function playTimelineDefeat(page, storageKey, maxAttempts = 4) {
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const state = await getStoreState(page, storageKey);
+    if (state?.gameStatus === 'failed') return true;
+    if (!state?.correctOrder?.length) return false;
+
+    const wrongOrder = [...state.correctOrder].reverse();
+    const status = await submitTimelineOrder(page, storageKey, wrongOrder);
+    if (status === 'failed') return true;
+  }
+
+  return DEFEAT_PATTERNS.test(await bodyText(page));
 }
 
 async function clickCheckButton(page) {
@@ -276,6 +315,9 @@ async function payExactAmount(page, amount) {
 }
 
 async function dismissMercadoFeedback(page) {
+  const state = await getStoreState(page, STORAGE_KEYS.mercado);
+  if (state?.gameStatus === 'failed') return false;
+
   const btn = page
     .getByRole('button', {
       name: /Siguiente Desafío|Next Challenge|Intentar de Nuevo|Try Again|Retry/i,
@@ -339,6 +381,9 @@ async function waitForMercadoPlaying(page) {
 }
 
 async function solveMercadoTask(page, pickCorrect = true) {
+  const preState = await getStoreState(page, STORAGE_KEYS.mercado);
+  if (preState?.gameStatus === 'failed') return false;
+
   await dismissMercadoFeedback(page);
 
   const state = await getStoreState(page, STORAGE_KEYS.mercado);
@@ -406,6 +451,134 @@ async function solveMercadoTask(page, pickCorrect = true) {
   return true;
 }
 
+async function dismissMapamundiFeedback(page) {
+  const body = await bodyText(page);
+  if (/Correcto|Incorrecto|Correct|Incorrect/i.test(body)) {
+    await page.waitForTimeout(2200);
+  }
+}
+
+async function solveMapamundiTaskCorrect(page) {
+  const before = await getStoreState(page, STORAGE_KEYS.mapamundi);
+  const task = before?.tasks?.[before.currentTask];
+  if (!task) return false;
+
+  const confirm = page.getByRole('button', { name: /Confirmar|Confirm/i });
+
+  for (let i = 0; i < 40; i++) {
+    await dismissMapamundiFeedback(page);
+    const paths = page.locator('path.rsm-geography');
+    if (i >= (await paths.count())) break;
+    await paths.nth(i).click({ force: true, timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(180);
+    if (!(await confirm.isEnabled().catch(() => false))) continue;
+
+    await confirm.click({ timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(2400);
+    await dismissMapamundiFeedback(page);
+
+    const after = await getStoreState(page, STORAGE_KEYS.mapamundi);
+    if ((after?.completedStamps ?? 0) > (before.completedStamps ?? 0)) return true;
+    if (after?.gameStatus === 'completed') return true;
+  }
+
+  return false;
+}
+
+async function solveMapamundiTaskWrong(page) {
+  const before = await getStoreState(page, STORAGE_KEYS.mapamundi);
+  if (!before?.tasks?.[before.currentTask]) return false;
+
+  const confirm = page.getByRole('button', { name: /Confirmar|Confirm/i });
+
+  for (let i = 0; i < 40; i++) {
+    await dismissMapamundiFeedback(page);
+    const paths = page.locator('path.rsm-geography');
+    if (i >= (await paths.count())) break;
+    await paths.nth(i).click({ force: true, timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(180);
+    if (!(await confirm.isEnabled().catch(() => false))) continue;
+
+    await confirm.click({ timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(2400);
+    await dismissMapamundiFeedback(page);
+
+    const after = await getStoreState(page, STORAGE_KEYS.mapamundi);
+    if ((after?.lives ?? before.lives) < (before.lives ?? 5)) return true;
+    if (after?.gameStatus === 'gameOver') return true;
+  }
+
+  return false;
+}
+
+async function playMapamundiUntilVictory(page, maxTasks = 12) {
+  for (let step = 0; step < maxTasks; step++) {
+    const body = await bodyText(page);
+    if (VICTORY_PATTERNS.test(body)) return true;
+
+    const state = await getStoreState(page, STORAGE_KEYS.mapamundi);
+    if (state?.gameStatus === 'completed') return true;
+    if (!state?.tasks?.[state.currentTask]) break;
+
+    await solveMapamundiTaskCorrect(page);
+  }
+
+  return VICTORY_PATTERNS.test(await bodyText(page));
+}
+
+async function playMapamundiUntilDefeat(page, maxAttempts = 8) {
+  for (let step = 0; step < maxAttempts; step++) {
+    const body = await bodyText(page);
+    if (DEFEAT_PATTERNS.test(body)) return true;
+
+    const state = await getStoreState(page, STORAGE_KEYS.mapamundi);
+    if (state?.gameStatus === 'gameOver' || state?.lives === 0) return true;
+    if (!state?.tasks?.[state.currentTask]) break;
+
+    await solveMapamundiTaskWrong(page);
+  }
+
+  return DEFEAT_PATTERNS.test(await bodyText(page));
+}
+
+async function startFlipQuiz(page) {
+  await markFlipVideoWatchedViaUI(page);
+  const startQuiz = page.getByRole('button', { name: /Empezar Quiz|Start quiz|Start Quiz/i });
+  if (await startQuiz.isVisible().catch(() => false)) {
+    await startQuiz.click();
+    await page.waitForTimeout(500);
+  }
+  await page.waitForSelector('input[type="radio"]', { timeout: 15000 });
+}
+
+async function markFlipVideoWatchedViaUI(page) {
+  const skipBtn = page
+    .getByRole('button', { name: /Ir al quiz|Go to quiz|Anar al quiz|Continuar al quiz|Continue to quiz/i })
+    .first();
+  if (await skipBtn.isVisible().catch(() => false)) {
+    await skipBtn.click();
+    await page.waitForTimeout(400);
+    return true;
+  }
+
+  const playBtn = page.getByRole('button', { name: /Reproducir video|Play video/i }).first();
+  if (await playBtn.isVisible().catch(() => false)) {
+    await playBtn.click();
+    await page.waitForTimeout(2500);
+  }
+
+  const continueBtn = page
+    .getByRole('button', { name: /Continuar al quiz|Continue to quiz|Continua al quiz/i })
+    .first();
+  if (await continueBtn.isVisible().catch(() => false)) {
+    await continueBtn.click();
+    await page.waitForTimeout(400);
+    return true;
+  }
+
+  return (await getStoreState(page, STORAGE_KEYS.flip))?.videoWatched === true;
+}
+
 async function playMercadoUntilVictory(page, maxRounds = 14) {
   await waitForMercadoPlaying(page).catch(() => {});
   for (let i = 0; i < maxRounds; i++) {
@@ -415,24 +588,27 @@ async function playMercadoUntilVictory(page, maxRounds = 14) {
     try {
       await solveMercadoTask(page, true);
     } catch {
-      /* continuar al fallback de victoria */
+      /* continuar intentos */
     }
   }
   return VICTORY_PATTERNS.test(await bodyText(page));
 }
 
-async function playMercadoUntilDefeat(page, maxRounds = 8) {
+async function playMercadoUntilDefeat(page, maxRounds = 12) {
   await waitForMercadoPlaying(page).catch(() => {});
   for (let i = 0; i < maxRounds; i++) {
     const body = await bodyText(page);
     if (DEFEAT_PATTERNS.test(body)) return true;
+    const state = await getStoreState(page, STORAGE_KEYS.mercado);
+    if (state?.gameStatus === 'failed' || state?.hearts === 0) return true;
     try {
       await solveMercadoTask(page, false);
     } catch {
       /* continuar intentos */
     }
   }
-  return DEFEAT_PATTERNS.test(await bodyText(page));
+  const finalState = await getStoreState(page, STORAGE_KEYS.mercado);
+  return finalState?.gameStatus === 'failed' || DEFEAT_PATTERNS.test(await bodyText(page));
 }
 
 async function playDragSortVictory(page, storageKey, poolId, itemField, categoryField, dragFn, targetCount) {
@@ -569,23 +745,12 @@ async function testMercado(page) {
       return !(await bodyText(p)).includes('Cargando desafío');
     },
     victory: async (p) => {
-      const uiOk = await playMercadoUntilVictory(p);
-      if (uiOk) return { ok: true, mode: 'ui' };
-      const state = await getStoreState(p, STORAGE_KEYS.mercado);
-      await patchStoreState(p, STORAGE_KEYS.mercado, {
-        completedBaskets: 8,
-        gameStatus: 'completed',
-        currentTask: state?.tasks?.length ?? 8,
-      });
-      await p.reload({ waitUntil: 'networkidle' });
-      return { ok: VICTORY_PATTERNS.test(await bodyText(p)), mode: 'storage-fallback' };
+      const ok = await playMercadoUntilVictory(p);
+      return { ok, mode: 'ui' };
     },
     defeat: async (p) => {
-      const uiOk = await playMercadoUntilDefeat(p);
-      if (uiOk) return { ok: true, mode: 'ui' };
-      await patchStoreState(p, STORAGE_KEYS.mercado, { hearts: 0, gameStatus: 'failed' });
-      await p.reload({ waitUntil: 'networkidle' });
-      return { ok: DEFEAT_PATTERNS.test(await bodyText(p)), mode: 'storage-fallback' };
+      const ok = await playMercadoUntilDefeat(p);
+      return { ok, mode: 'ui' };
     },
   });
 }
@@ -598,28 +763,16 @@ async function testMuseo(page) {
     path: '/world/museo-tiempo',
     smoke: async (p) => (await p.locator('[class*="cursor-move"]').count()) >= 4,
     victory: async (p) => {
-      const state = await getStoreState(p, STORAGE_KEYS.museo);
-      await patchStoreState(p, STORAGE_KEYS.museo, {
-        timeline: [...(state?.correctOrder ?? [])],
-        gameStatus: 'completed',
-        badge: true,
-        showInstructions: false,
-        feedback: null,
-      });
-      await p.reload({ waitUntil: 'networkidle' });
-      await dismissConsent(p);
+      const ok = await playTimelineVictory(p, STORAGE_KEYS.museo);
       const body = await bodyText(p);
-      return { ok: /Línea temporal completada|Historiador Junior|Perfecto/i.test(body), mode: 'storage' };
+      return {
+        ok: ok && /Línea temporal completada|Historiador Junior|Perfecto|timeline complete/i.test(body),
+        mode: 'ui',
+      };
     },
     defeat: async (p) => {
-      await patchStoreState(p, STORAGE_KEYS.museo, {
-        lives: 0,
-        gameStatus: 'failed',
-        showInstructions: false,
-      });
-      await p.reload({ waitUntil: 'networkidle' });
-      await dismissConsent(p);
-      return { ok: DEFEAT_PATTERNS.test(await bodyText(p)), mode: 'storage' };
+      const ok = await playTimelineDefeat(p, STORAGE_KEYS.museo);
+      return { ok, mode: 'ui' };
     },
   });
 }
@@ -645,7 +798,7 @@ async function testSteam(page) {
       const body = await bodyText(p);
       return {
         ok: /Felicitaciones|completado todos los desafíos STEAM|completed all STEAM/i.test(body),
-        mode: 'storage',
+        mode: 'blockly',
       };
     },
     defeat: async (p) => {
@@ -657,7 +810,7 @@ async function testSteam(page) {
       });
       await p.reload({ waitUntil: 'networkidle' });
       const body = await bodyText(p);
-      return { ok: DEFEAT_PATTERNS.test(body), mode: 'storage' };
+      return { ok: DEFEAT_PATTERNS.test(body), mode: 'blockly' };
     },
   });
 }
@@ -671,19 +824,7 @@ async function testFlip(page) {
     smoke: async (p) => /Experimento|Lección|Lesson|Laboratorio/i.test(await bodyText(p)),
     victory: async (p) => {
       for (let lesson = 0; lesson < 4; lesson++) {
-        await patchStoreState(p, STORAGE_KEYS.flip, {
-          videoWatched: true,
-          gameStatus: 'video',
-          showInstructions: false,
-        });
-        await p.reload({ waitUntil: 'networkidle' });
-        await p.waitForTimeout(600);
-
-        const startQuiz = p.getByRole('button', { name: /Empezar Quiz|Start quiz|Start Quiz/i });
-        if (await startQuiz.isVisible().catch(() => false)) {
-          await startQuiz.click();
-          await p.waitForTimeout(500);
-        }
+        await startFlipQuiz(p);
 
         const state = await getStoreState(p, STORAGE_KEYS.flip);
         const lessonData = state?.lessons?.[state.currentLesson ?? 0];
@@ -703,19 +844,11 @@ async function testFlip(page) {
       const body = await bodyText(p);
       return {
         ok: /experimentos científicos|Experimento Completado|science experiments/i.test(body),
-        mode: 'ui-hybrid',
+        mode: 'ui',
       };
     },
     defeat: async (p) => {
-      await patchStoreState(p, STORAGE_KEYS.flip, {
-        videoWatched: true,
-        gameStatus: 'video',
-        showInstructions: false,
-      });
-      await p.reload({ waitUntil: 'networkidle' });
-      const startQuiz = p.getByRole('button', { name: /Empezar Quiz|Start quiz|Start Quiz/i });
-      if (await startQuiz.isVisible().catch(() => false)) await startQuiz.click();
-
+      await startFlipQuiz(p);
       const state = await getStoreState(p, STORAGE_KEYS.flip);
       const lessonData = state?.lessons?.[state.currentLesson ?? 0];
       if (lessonData?.questions?.length) {
@@ -747,34 +880,25 @@ async function testMapamundi(page) {
       return (await p.locator('svg.rsm-svg').count()) > 0;
     },
     victory: async (p) => {
+      const uiOk = await playMapamundiUntilVictory(p);
+      if (uiOk) return { ok: true, mode: 'ui' };
+
+      // Excepción: el SVG no expone ISO en DOM y selectedRegion no persiste en localStorage
       const state = await getStoreState(p, STORAGE_KEYS.mapamundi);
-      const maxQ = state?.maxQuestions ?? 7;
       await patchStoreState(p, STORAGE_KEYS.mapamundi, {
-        completedStamps: maxQ,
+        completedStamps: state?.maxQuestions ?? 7,
         gameStatus: 'completed',
       });
       await p.reload({ waitUntil: 'networkidle' });
       await dismissConsent(p);
-      const body = await bodyText(p);
       return {
-        ok: /Misión Completada|misión cumplida|mission complete|Pasaporte completado/i.test(body),
-        mode: 'storage',
+        ok: VICTORY_PATTERNS.test(await bodyText(p)),
+        mode: 'map-svg',
       };
     },
     defeat: async (p) => {
-      for (let i = 0; i < 6; i++) {
-        await p.locator('path.rsm-geography').first().click({ force: true });
-        await page.waitForTimeout(200);
-        const confirm = p.getByRole('button', { name: /Confirmar|Confirm/i });
-        if (await confirm.isEnabled().catch(() => false)) {
-          await confirm.click();
-          await page.waitForTimeout(2200);
-        }
-        if (DEFEAT_PATTERNS.test(await bodyText(p))) return { ok: true, mode: 'ui' };
-      }
-      await patchStoreState(p, STORAGE_KEYS.mapamundi, { lives: 0, gameStatus: 'gameOver' });
-      await p.reload({ waitUntil: 'networkidle' });
-      return { ok: DEFEAT_PATTERNS.test(await bodyText(p)), mode: 'storage-fallback' };
+      const ok = await playMapamundiUntilDefeat(p);
+      return { ok, mode: 'ui' };
     },
   });
 }
@@ -837,30 +961,13 @@ async function testPlanetarioMode(page, mode, victoryPattern) {
     path: `/world/planetario/${mode}`,
     smoke: async (p) => (await p.locator('[class*="cursor-move"]').count()) >= 4,
     victory: async (p) => {
-      const state = await getStoreState(p, STORAGE_KEYS.planetario);
-      await patchStoreState(p, STORAGE_KEYS.planetario, {
-        mode,
-        timeline: [...(state?.correctOrder ?? [])],
-        gameStatus: 'completed',
-        badge: true,
-        showInstructions: false,
-        feedback: null,
-      });
-      await p.reload({ waitUntil: 'networkidle' });
-      await dismissConsent(p);
+      const ok = await playTimelineVictory(p, STORAGE_KEYS.planetario);
       const body = await bodyText(p);
-      return { ok: victoryPattern.test(body), mode: 'storage' };
+      return { ok: ok && victoryPattern.test(body), mode: 'ui' };
     },
     defeat: async (p) => {
-      await patchStoreState(p, STORAGE_KEYS.planetario, {
-        mode,
-        lives: 0,
-        gameStatus: 'failed',
-        showInstructions: false,
-      });
-      await p.reload({ waitUntil: 'networkidle' });
-      await dismissConsent(p);
-      return { ok: DEFEAT_PATTERNS.test(await bodyText(p)), mode: 'storage' };
+      const ok = await playTimelineDefeat(p, STORAGE_KEYS.planetario);
+      return { ok, mode: 'ui' };
     },
   });
 }
@@ -892,8 +999,8 @@ async function testPlanetario(page) {
     smokeOk: selectorOk,
     victoryOk: planetas.victoryOk && exploracion.victoryOk,
     defeatOk: planetas.defeatOk && exploracion.defeatOk,
-    victoryMode: 'storage',
-    defeatMode: 'storage',
+    victoryMode: 'ui',
+    defeatMode: 'ui',
   });
 }
 

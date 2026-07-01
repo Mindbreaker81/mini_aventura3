@@ -355,6 +355,8 @@
       "aboutLesson": "About this lesson:",
       "afterVideo": "When the video ends, you will answer 3 questions about the content.",
       "readyForQuiz": "Ready for the quiz!",
+      "continueToQuiz": "Continue to quiz",
+      "skipToQuiz": "Go to quiz (skip video)",
       "defaultChannel": "Educational Channel",
       "defaultDescription": "Educational video about {{title}}"
     },

@@ -75,7 +75,7 @@ describe('useLaboratorioFlipStore', () => {
       useLaboratorioFlipStore.getState().initializeGame();
       const state = useLaboratorioFlipStore.getState();
 
-      expect(state.gameStatus).toBe('playing');
+      expect(state.gameStatus).toBe('video');
       expect(state.lessons.length).toBeGreaterThan(0);
       expect(state.lessons.length).toBeLessThanOrEqual(4);
       expect(state.currentLesson).toBe(0);

@@ -355,6 +355,8 @@
       "aboutLesson": "Sobre aquesta lliçó:",
       "afterVideo": "En acabar el vídeo, respondràs 3 preguntes sobre el contingut.",
       "readyForQuiz": "A punt per al quiz!",
+      "continueToQuiz": "Continua al quiz",
+      "skipToQuiz": "Anar al quiz (sense veure el vídeo)",
       "defaultChannel": "Canal Educatiu",
       "defaultDescription": "Vídeo educatiu sobre {{title}}"
     },

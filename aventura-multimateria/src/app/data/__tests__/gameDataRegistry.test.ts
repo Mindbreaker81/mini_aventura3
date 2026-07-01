@@ -15,7 +15,7 @@ describe('gameDataRegistry Fase 7', () => {
       expect(Array.isArray(reciclaje)).toBe(true);
       expect(reciclaje.length).toBeGreaterThanOrEqual(40);
       expect(Array.isArray(ortografia)).toBe(true);
-      expect(ortografia.length).toBeGreaterThanOrEqual(50);
+      expect(ortografia.length).toBeGreaterThanOrEqual(70);
       expect(Array.isArray(planetario)).toBe(true);
       expect(planetario.length).toBeGreaterThanOrEqual(20);
     }

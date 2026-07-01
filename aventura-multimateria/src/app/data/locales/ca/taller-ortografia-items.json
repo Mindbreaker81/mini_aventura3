@@ -16,12 +16,12 @@
     "sentence": "Mi ___ es muy simpática.",
     "options": [
       "amiga",
-      "vaca",
-      "beca"
+      "amija",
+      "amiba"
     ],
     "answer": 0,
-    "rule": "Amiga se escribe con g, no con b.",
-    "topic": "bv"
+    "rule": "Amiga s'escriu amb g, no amb j ni b.",
+    "topic": "gj"
   },
   {
     "id": 3,
@@ -49,14 +49,14 @@
   },
   {
     "id": 5,
-    "sentence": "La ___ es muy dulce.",
+    "sentence": "La ___ dóna llet a la granja.",
     "options": [
-      "miel",
       "vaca",
-      "beca"
+      "baca",
+      "vaka"
     ],
     "answer": 0,
-    "rule": "Miel se escribe con ie.",
+    "rule": "Vaca s'escriu amb v, no amb b.",
     "topic": "bv"
   },
   {
@@ -75,12 +75,12 @@
     "id": 7,
     "sentence": "Hay mucha ___ en invierno.",
     "options": [
-      "nieve",
-      "vaca",
-      "beca"
+      "neu",
+      "neu",
+      "beu"
     ],
     "answer": 0,
-    "rule": "Nieve se escribe con v, no con b.",
+    "rule": "Neu s'escriu amb n; beu confon b/v.",
     "topic": "bv"
   },
   {
@@ -145,26 +145,26 @@
   },
   {
     "id": 13,
-    "sentence": "Voy al ___ a comprar pan.",
+    "sentence": "El ___ és molt divertit.",
     "options": [
-      "mercado",
-      "jirafa",
-      "gente"
+      "joc",
+      "goc",
+      "joc"
     ],
     "answer": 0,
-    "rule": "Mercado se escribe con c.",
+    "rule": "Joc s'escriu amb j, no amb g.",
     "topic": "gj"
   },
   {
     "id": 14,
     "sentence": "El ___ es muy grande.",
     "options": [
-      "gigante",
-      "jirafa",
-      "gente"
+      "gegant",
+      "jegant",
+      "gejant"
     ],
     "answer": 0,
-    "rule": "Gigante se escribe con g.",
+    "rule": "Gegant s'escriu amb g, no amb j.",
     "topic": "gj"
   },
   {
@@ -172,11 +172,11 @@
     "sentence": "La ___ es azul.",
     "options": [
       "bandera",
-      "vaca",
-      "beca"
+      "vandera",
+      "banderra"
     ],
     "answer": 0,
-    "rule": "Bandera se escribe con b.",
+    "rule": "Bandera s'escriu amb b, no amb v.",
     "topic": "bv"
   },
   {
@@ -207,12 +207,12 @@
     "id": 18,
     "sentence": "El ___ es muy fuerte.",
     "options": [
-      "viento",
-      "vaca",
-      "beca"
+      "vent",
+      "bent",
+      "ventt"
     ],
     "answer": 0,
-    "rule": "Viento se escribe con v.",
+    "rule": "Vent s'escriu amb v, no amb b.",
     "topic": "bv"
   },
   {
@@ -232,11 +232,11 @@
     "sentence": "El ___ juega en el equipo.",
     "options": [
       "jugador",
-      "jirafa",
-      "gente"
+      "jujador",
+      "gugador"
     ],
     "answer": 0,
-    "rule": "Jugador se escribe con j.",
+    "rule": "Jugador s'escriu amb j, no amb g.",
     "topic": "gj"
   },
   {
@@ -339,12 +339,12 @@
     "id": 29,
     "sentence": "Voy a ___ agua.",
     "options": [
-      "beber",
-      "vaca",
-      "beca"
+      "beure",
+      "veure",
+      "beure"
     ],
     "answer": 0,
-    "rule": "Beber se escribe con b.",
+    "rule": "Beure s'escriu amb b; veure és un altre verb.",
     "topic": "bv"
   },
   {
@@ -471,12 +471,12 @@
     "id": 40,
     "sentence": "El ___ es mi amigo.",
     "options": [
-      "vecino",
-      "vaca",
-      "beca"
+      "veí",
+      "beí",
+      "vesí"
     ],
     "answer": 0,
-    "rule": "Vecino se escribe con v.",
+    "rule": "Veí s'escriu amb v, no amb b.",
     "topic": "bv"
   },
   {
@@ -591,12 +591,252 @@
     "id": 50,
     "sentence": "El ___ es mi escuela.",
     "options": [
-      "colegio",
-      "jirafa",
-      "gente"
+      "col·legi",
+      "gol·legi",
+      "jol·lezi"
     ],
     "answer": 0,
-    "rule": "Colegio se escribe con g.",
+    "rule": "Col·legi s'escriu amb g, no amb j.",
+    "topic": "gj"
+  },
+  {
+    "id": 51,
+    "sentence": "Comprem ___ a la botiga.",
+    "options": [
+      "vi",
+      "bi",
+      "vi"
+    ],
+    "answer": 0,
+    "rule": "Vi s'escriu amb v, no amb b.",
+    "topic": "bv"
+  },
+  {
+    "id": 52,
+    "sentence": "El ___ és molt valent.",
+    "options": [
+      "valent",
+      "balent",
+      "valent"
+    ],
+    "answer": 0,
+    "rule": "Valent s'escriu amb v, no amb b.",
+    "topic": "bv"
+  },
+  {
+    "id": 53,
+    "sentence": "La ___ és vermella.",
+    "options": [
+      "bota",
+      "vota",
+      "bota"
+    ],
+    "answer": 0,
+    "rule": "Bota s'escriu amb b, no amb v.",
+    "topic": "bv"
+  },
+  {
+    "id": 54,
+    "sentence": "El ___ és molt ràpid.",
+    "options": [
+      "veler",
+      "beler",
+      "veler"
+    ],
+    "answer": 0,
+    "rule": "Veler s'escriu amb v, no amb b.",
+    "topic": "bv"
+  },
+  {
+    "id": 55,
+    "sentence": "La meva ___ preferida és la poma.",
+    "options": [
+      "fruita",
+      "vruita",
+      "fruita"
+    ],
+    "answer": 0,
+    "rule": "Fruita s'escriu amb f; vruita és incorrecta.",
+    "topic": "bv"
+  },
+  {
+    "id": 56,
+    "sentence": "El ___ és a l'armari.",
+    "options": [
+      "vestit",
+      "bestit",
+      "vestit"
+    ],
+    "answer": 0,
+    "rule": "Vestit s'escriu amb v, no amb b.",
+    "topic": "bv"
+  },
+  {
+    "id": 57,
+    "sentence": "La ___ és molt alta.",
+    "options": [
+      "barrera",
+      "varrera",
+      "barrera"
+    ],
+    "answer": 0,
+    "rule": "Barrera s'escriu amb b, no amb v.",
+    "topic": "bv"
+  },
+  {
+    "id": 58,
+    "sentence": "La ___ fa bona olor.",
+    "options": [
+      "violeta",
+      "bioleta",
+      "violeta"
+    ],
+    "answer": 0,
+    "rule": "Violeta s'escriu amb v, no amb b.",
+    "topic": "bv"
+  },
+  {
+    "id": 59,
+    "sentence": "Guardo els llibres a la ___.",
+    "options": [
+      "biblioteca",
+      "viblioteca",
+      "biblioteka"
+    ],
+    "answer": 0,
+    "rule": "Biblioteca s'escriu amb b, no amb v.",
+    "topic": "bv"
+  },
+  {
+    "id": 60,
+    "sentence": "El ___ brilla a la nit.",
+    "options": [
+      "brill",
+      "vrill",
+      "brill"
+    ],
+    "answer": 0,
+    "rule": "Brill s'escriu amb b; vrill confon b/v.",
+    "topic": "bv"
+  },
+  {
+    "id": 61,
+    "sentence": "El ___ salta molt.",
+    "options": [
+      "senglar",
+      "genglar",
+      "senglar"
+    ],
+    "answer": 0,
+    "rule": "Senglar s'escriu amb s; genglar confon g/j.",
+    "topic": "gj"
+  },
+  {
+    "id": 62,
+    "sentence": "La ___ és molt bona.",
+    "options": [
+      "gelatina",
+      "jelatina",
+      "gelatina"
+    ],
+    "answer": 0,
+    "rule": "Gelatina s'escriu amb g, no amb j.",
+    "topic": "gj"
+  },
+  {
+    "id": 63,
+    "sentence": "La ___ viu a Àfrica.",
+    "options": [
+      "girafa",
+      "jirafa",
+      "girafa"
+    ],
+    "answer": 0,
+    "rule": "Girafa s'escriu amb g, no amb j.",
+    "topic": "gj"
+  },
+  {
+    "id": 64,
+    "sentence": "El meu ___ és simpàtic.",
+    "options": [
+      "germà",
+      "jermà",
+      "germà"
+    ],
+    "answer": 0,
+    "rule": "Germà s'escriu amb g, no amb j.",
+    "topic": "gj"
+  },
+  {
+    "id": 65,
+    "sentence": "El ___ toca la guitarra.",
+    "options": [
+      "músic",
+      "mujic",
+      "músic"
+    ],
+    "answer": 0,
+    "rule": "Músic s'escriu amb s; mujic confon g/j.",
+    "topic": "gj"
+  },
+  {
+    "id": 66,
+    "sentence": "El ___ és molt jove.",
+    "options": [
+      "jove",
+      "gove",
+      "jove"
+    ],
+    "answer": 0,
+    "rule": "Jove s'escriu amb j, no amb g.",
+    "topic": "gj"
+  },
+  {
+    "id": 67,
+    "sentence": "Estudiem ___ a classe.",
+    "options": [
+      "geografia",
+      "jeografia",
+      "geografia"
+    ],
+    "answer": 0,
+    "rule": "Geografia s'escriu amb g, no amb j.",
+    "topic": "gj"
+  },
+  {
+    "id": 68,
+    "sentence": "El ___ és molt àgil.",
+    "options": [
+      "gat",
+      "jat",
+      "gat"
+    ],
+    "answer": 0,
+    "rule": "Gat s'escriu amb g, no amb j.",
+    "topic": "gj"
+  },
+  {
+    "id": 69,
+    "sentence": "El ___ és un animal.",
+    "options": [
+      "jaguar",
+      "gaguar",
+      "jaguar"
+    ],
+    "answer": 0,
+    "rule": "Jaguar s'escriu amb j, no amb g.",
+    "topic": "gj"
+  },
+  {
+    "id": 70,
+    "sentence": "El ___ és molt gran.",
+    "options": [
+      "gegant",
+      "jegant",
+      "gejant"
+    ],
+    "answer": 0,
+    "rule": "Gegant s'escriu amb g, no amb j.",
     "topic": "gj"
   }
 ]

@@ -68,7 +68,7 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
           lessons: randomLessons,
           experimentPieces: EXPERIMENT_PIECES.map((piece) => ({ ...piece, obtained: false })),
           feedback: null,
-          gameStatus: 'playing',
+          gameStatus: 'video',
           badge: false,
           videoWatched: false,
           quizStarted: false,

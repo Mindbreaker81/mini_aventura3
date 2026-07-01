@@ -265,15 +265,16 @@ aventura-multimateria/
 **Mecánica**: Completar frases con hueco (quiz, 8 preguntas, 5 corazones)
 
 - **Store**: `useTallerOrtografiaStore` · **Componente**: `SpellingGame.tsx`
-- **Datos**: `taller-ortografia-items.json` (50 ítems) · **Badge**: Maestro de la Ortografía
+- **Datos**: `taller-ortografia-items.json` (70 ítems) · **Badge**: Maestro de la Ortografía
 
 ### 10. 🪐 Planetario
-**Materia**: Ciencias (Sistema Solar)  
-**Ruta**: `/world/planetario`  
-**Mecánica**: Ordenar 8 planetas por distancia al Sol (drag-and-drop)
+**Materia**: Ciencias (Sistema Solar y exploración espacial)  
+**Rutas**: `/world/planetario` (selector) · `/world/planetario/planetas` · `/world/planetario/exploracion`  
+**Mecánica**: Ordenar tarjetas en línea temporal (drag-and-drop)
 
-- **Store**: `usePlanetarioStore` · **Datos**: `planetario-bodies.json` (8 planetas + hitos)
-- **Badge**: Astrónomo Junior · **Persistencia**: `planetario-storage`
+- **Modos**: `planetas` (8 planetas) · `exploracion` (8 hitos cronológicos)
+- **Store**: `usePlanetarioStore` · **Datos**: `planetario-bodies.json` (planetas + hitos)
+- **Badges**: Astrónomo Junior · Explorador Espacial · **Persistencia**: `planetario-storage`
 
 ## 🚀 Instalación y Desarrollo
 
