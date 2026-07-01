@@ -9,6 +9,7 @@ import { useGameSession } from "../../hooks/useGameSession";
 import { useGameData } from "../../hooks/useGameData";
 import { useReloadGameDataOnLocale } from "../../hooks/useReloadGameDataOnLocale";
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
+import { chainKeyboardHandler } from "../shared/keyboard";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
@@ -162,6 +163,7 @@ const PuertoPalabrasPage = () => {
                             ref={prov.innerRef}
                             {...prov.draggableProps}
                             {...prov.dragHandleProps}
+                            onKeyDown={chainKeyboardHandler(prov.dragHandleProps.onKeyDown)}
                             className="cursor-move px-3 py-2 rounded-md bg-blue-100 shadow-sm text-blue-900 font-medium border border-blue-200 hover:bg-blue-200 transition-colors"
                             tabIndex={0}
                             role="button"
