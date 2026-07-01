@@ -1,12 +1,15 @@
 {
   "name": "aventura-multimateria",
-  "version": "0.1.0",
+  "version": "3.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest --passWithNoTests",
+    "test:ci": "jest --ci --coverage",
+    "test:ui": "node scripts/test-all-games-ui.mjs",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
     "db:reset": "supabase db reset",
