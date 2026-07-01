@@ -1,7 +1,7 @@
 # ExplorAventura 3: Minijuegos Educativos
 
 ## Descripción del Proyecto
-ExplorAventura 3 es una plataforma de minijuegos educativos desarrollada en Next.js 15 con React 18. El proyecto incluye 6 minijuegos interactivos que cubren diferentes materias: gramática, lectura comprensiva, matemáticas, geografía, programación y ciencias.
+ExplorAventura 3 es una plataforma de minijuegos educativos en Next.js 15 + React 18. Incluye **7 minijuegos** activos (objetivo **10** tras [Fase 7](docs/PHASE7_NEW_GAMES_PLAN.md)): gramática, lectura, mates, geografía, programación, ciencias e historia.
 
 ## Arquitectura del Proyecto
 
@@ -22,13 +22,9 @@ ExplorAventura 3 es una plataforma de minijuegos educativos desarrollada en Next
 ```
 src/
 ├── app/
-│   ├── data/                    # Archivos JSON con datos de los juegos
-│   │   ├── bosc-passages.json   # Textos y preguntas para Bosc de Lectura
-│   │   ├── puerto-words.json    # Palabras para Puerto de las Palabras
-│   │   ├── mercado-tasks.json   # Tareas matemáticas para Mercado de Números
-│   │   ├── mapamundi-tasks.json # Ubicaciones para Misión Mapamundi
-│   │   ├── steam-tasks.json     # Desafíos para Desafío STEAM
-│   │   └── flip-lessons.json    # Lecciones científicas para Laboratorio Flip
+│   ├── data/
+│   │   ├── gameDataRegistry.ts
+│   │   └── locales/{es,ca,en}/  # JSON pedagógicos (7 archivos × 3 idiomas)
 │   ├── hooks/
 │   │   └── useNavigation.ts     # Hook de navegación centralizado
 │   ├── world/                   # Directorio de minijuegos

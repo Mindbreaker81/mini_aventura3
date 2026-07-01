@@ -6,6 +6,50 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [Unreleased] — Fase 7 (v3.2.0 planificada)
+
+### 📋 Planificado
+
+Ver detalle en [`docs/PHASE7_NEW_GAMES_PLAN.md`](docs/PHASE7_NEW_GAMES_PLAN.md).
+
+#### Tres minijuegos nuevos (7 → 10)
+
+| Juego | Ruta | Materia | Mecánica |
+|-------|------|---------|----------|
+| **Fábrica del Reciclaje** | `/world/fabrica-reciclaje` | Medio ambiente | Drag-and-drop a contenedores (clon Puerto) |
+| **Taller de Ortografía** | `/world/taller-ortografia` | Lengua | Quiz de huecos ortográficos (clon Bosc) |
+| **Planetario** | `/world/planetario` | Ciencias | Ordenar planetas / hitos espaciales (clon Museo) |
+
+#### Integración prevista
+
+- JSON pedagógicos en `data/locales/{es,ca,en}/` (3 archivos × 3 idiomas)
+- Registro en `gameDataRegistry.ts` + `useGameData`
+- Dashboard, i18n (`reciclaje.*`, `ortografia.*`, `planetario.*`)
+- Tests store + ampliación `test-all-games-ui.mjs`
+- Objetivo: **≥ 85 tests**, cobertura stores **≥ 60 %**
+
+#### Documentación y limpieza
+
+- Actualizar `GAME_ARCHITECTURE.md`, `CORRECTION_PLAN.md`, `README.md`, `CLAUDE.md`
+- Eliminar docs/scripts legacy (ver §7 del plan Fase 7)
+
+---
+
+## [3.1.2] - Julio 2026
+
+### 🐛 Mapamundi
+
+#### Corregido
+- Partida atascada en «Cargando tareas del juego…» al entrar sin sesión (`hasActiveSession` + `playing` sin tareas)
+- Botón «Reintentar» tras game over no pasaba datos localizados a `initializeGame`
+
+### 🧪 Tests
+
+#### Añadido
+- `scripts/test-all-games-ui.mjs` — humo Playwright para los 7 minijuegos
+
+---
+
 ## [3.1.1] - Julio 2026
 
 ### 🌐 Contenido pedagógico multilingüe

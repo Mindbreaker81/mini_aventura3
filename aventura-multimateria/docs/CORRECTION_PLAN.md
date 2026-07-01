@@ -2,8 +2,8 @@
 
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
-**Estado:** ✅ Fases 0–6 implementadas (julio 2026)  
-**Alcance:** 7 juegos + documentación + i18n + cobertura CI
+**Estado:** ✅ Fases 0–6 implementadas · 📋 Fase 7 planificada (v3.2.0)  
+**Alcance actual:** 7 juegos · **Objetivo Fase 7:** 10 juegos
 
 ---
 
@@ -183,7 +183,7 @@ Umbral inicial 60 %; subir progresivamente.
 | `docs/CORRECTION_PLAN.md` | ✅ Este documento |
 | `README.md` | Actualizar tras cada fase (tabla estado juegos) |
 | `CLAUDE.md` (raíz y subproyecto) | Sincronizar persistencia y patrones |
-| `ANALISIS_REVISION.md` | Marcar ítems resueltos o archivar |
+| `ANALISIS_REVISION.md` | ~~Eliminado~~ — sustituido por este plan y GAME_ARCHITECTURE |
 | `CHANGELOG.md` | Entrada por fase completada |
 | `STEAM_GAME_DOCS.md` | Flujo victoria/game over |
 
@@ -234,6 +234,27 @@ flowchart LR
 4. Fase 4 en paralelo con Fase 2
 5. Fase 5 cuando Fase 2 esté estable
 6. Fase 6 solo si se quiere expandir contenido
+7. **Fase 7** — tres minijuegos (Reciclaje, Ortografía, Planetario) → ver [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)
+
+---
+
+## Fase 7 — Tres minijuegos nuevos (v3.2.0) 📋
+
+**Plan detallado:** [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)
+
+| Juego | Materia | Referencia de código |
+|-------|---------|---------------------|
+| Fábrica del Reciclaje | Medio ambiente | `puerto-palabras` |
+| Taller de Ortografía | Lengua | `bosc-lectura` (quiz) |
+| Planetario | Ciencias | `museo-tiempo` |
+
+### Entregables Fase 7
+
+- [ ] 3 rutas `/world/*` con store, tests e i18n es/ca/en
+- [ ] Dashboard con 10 minijuegos
+- [ ] `gameDataRegistry` ampliado (3 claves)
+- [ ] Limpieza legacy (§7 del plan Fase 7)
+- [ ] `CHANGELOG [3.2.0]`
 
 ---
 
@@ -252,8 +273,9 @@ flowchart LR
 
 | Origen | Documento |
 |--------|-----------|
-| Revisión técnica julio 2026 | `/workspace/ANALISIS_REVISION.md` |
+| ~~Revisión técnica abril 2026~~ | ~~`ANALISIS_REVISION.md`~~ (eliminado — obsoleto) |
 | Contrato de arquitectura | [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md) |
+| Plan Fase 7 (v3.2.0) | [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md) |
 | Plan de implementación | Este archivo |
 | PR documentación arquitectura | [#4](https://github.com/Mindbreaker81/mini_aventura3/pull/4) |
 

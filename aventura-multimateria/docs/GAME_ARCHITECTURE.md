@@ -10,7 +10,7 @@ Documento de referencia para desarrolladores. Define el patrón estándar de los
 
 ## 1. Visión general
 
-ExplorAventura 3 es una aplicación Next.js 15 (App Router) con **7 minijuegos** independientes. Cada juego sigue la misma estructura conceptual:
+ExplorAventura 3 es una aplicación Next.js 15 (App Router) con **7 minijuegos** (objetivo **10** tras Fase 7). Cada juego sigue la misma estructura conceptual:
 
 ```
 Datos (JSON) → Store (Zustand) → Página (page.tsx) → Componentes de juego
@@ -34,6 +34,16 @@ Los juegos **no comparten estado entre sí**. Solo comparten:
 | `desafio-steam` | `/world/desafio-steam` | Programación visual | `useSteamStore` |
 | `laboratorio-flip` | `/world/laboratorio-flip` | Ciencias | `useLaboratorioFlipStore` |
 | `museo-tiempo` | `/world/museo-tiempo` | Historia | `useMuseoTiempoStore` |
+
+### Mapa planificado (Fase 7 — v3.2.0)
+
+| Código | Ruta | Materia | Store (planificado) |
+|--------|------|---------|---------------------|
+| `fabrica-reciclaje` | `/world/fabrica-reciclaje` | Medio ambiente | `useFabricaReciclajeStore` |
+| `taller-ortografia` | `/world/taller-ortografia` | Lengua / ortografía | `useTallerOrtografiaStore` |
+| `planetario` | `/world/planetario` | Ciencias (Sistema Solar) | `usePlanetarioStore` |
+
+Detalle de implementación: [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md).
 
 Mapamundi tiene subrutas dinámicas: `/world/mision-mapamundi-v2/[mode]` con `mode ∈ { continent, ocean, ccaa }`.
 
@@ -304,6 +314,9 @@ Los archivos viven en `src/app/data/locales/{es,ca,en}/`:
 | `steam-tasks.json` | STEAM | Niveles con tablero, muros, meta |
 | `flip-lessons.json` | Laboratorio Flip | Lecciones con vídeos y quiz |
 | `museo-events.json` | Museo del Tiempo | Eventos históricos con año |
+| `fabrica-reciclaje-items.json` | Fábrica Reciclaje *(Fase 7)* | `{ item, bin, rule }[]` |
+| `taller-ortografia-items.json` | Taller Ortografía *(Fase 7)* | `{ sentence, options, answer, rule }[]` |
+| `planetario-bodies.json` | Planetario *(Fase 7)* | `{ id, name, order, fact }[]` |
 
 Acceso en runtime:
 
@@ -504,17 +517,17 @@ src/app/hooks/useGameSession.ts  # Hook de montaje seguro
 
 ---
 
-## 15. Propuesta: séptimo juego (referencia)
+## 15. Fase 7 — Tres minijuegos (v3.2.0)
 
-Materias no cubiertas: **historia**, **inglés L2**, **medio ambiente**.
+Plan de implementación completo: **[PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)**
 
-| Propuesta | Mecánica | Reutiliza |
-|-----------|----------|-----------|
-| **Museo del Tiempo** (recomendado) | Ordenar eventos en línea temporal | drag-and-drop de Puerto Palabras |
-| **Aeropuerto de Idiomas** | Emparejar ES ↔ EN | Quiz de Mercado/Bosc |
-| **Eco-Aventura** | Clasificar residuos | drag-and-drop + quiz |
+| Juego | Mecánica | Clona |
+|-------|----------|-------|
+| **Fábrica del Reciclaje** | Clasificar residuos (drag-and-drop) | `puerto-palabras` |
+| **Taller de Ortografía** | Hueco + opciones múltiples | `bosc-lectura` (quiz) |
+| **Planetario** | Ordenar cuerpos celestes | `museo-tiempo` |
 
-Seguir el checklist §14. Priorizar juegos que **no solapen** mecánicas/materias existentes.
+Seguir el checklist §14 por cada juego. Priorizar contenido es/ca/en desde el primer commit de datos.
 
 ---
 
@@ -522,12 +535,12 @@ Seguir el checklist §14. Priorizar juegos que **no solapen** mecánicas/materia
 
 | Documento | Contenido |
 |-----------|-----------|
-| [CORRECTION_PLAN.md](./CORRECTION_PLAN.md) | **Plan de implementación:** fases 0–6, prioridades, DoD |
+| [CORRECTION_PLAN.md](./CORRECTION_PLAN.md) | **Plan de implementación:** fases 0–7, prioridades, DoD |
+| [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md) | **Fase 7:** Reciclaje, Ortografía, Planetario (v3.2.0) |
 | [README.md](../README.md) | Instalación, comandos, visión general |
 | [CLAUDE.md](../CLAUDE.md) | Guía técnica para agentes IA |
 | [STEAM_GAME_DOCS.md](../STEAM_GAME_DOCS.md) | Detalle Blockly y robot |
 | [CHANGELOG.md](../CHANGELOG.md) | Historial de cambios |
-| `/workspace/ANALISIS_REVISION.md` | Informe de revisión completa |
 
 ---
 

@@ -2,10 +2,10 @@
 
 ## 🎮 Descripción del Proyecto
 
-ExplorAventura 3 es una plataforma educativa interactiva que presenta 6 minijuegos diseñados para estudiantes de primaria. Cada juego aborda una materia específica utilizando mecánicas divertidas y educativas, con un sistema de progreso, XP y badges para motivar el aprendizaje.
+ExplorAventura 3 es una plataforma educativa interactiva con **7 minijuegos** (objetivo **10** tras [Fase 7](docs/PHASE7_NEW_GAMES_PLAN.md)). Cada juego aborda una materia específica con mecánicas divertidas, XP y badges.
 
 ### ✨ Características Principales
-- **6 Minijuegos Educativos**: Gramática, lectura, matemáticas, geografía, programación y ciencias
+- **7 Minijuegos Educativos** (+ 3 planificados): Gramática, lectura, mates, geografía, programación, ciencias e historia
 - **Sistema de Progreso**: XP, badges y seguimiento de avance
 - **Multilingüe**: Soporte para español, catalán e inglés
 - **Responsive**: Adaptado para desktop, tablet y móvil
@@ -38,13 +38,9 @@ Reproducción de Video: react-player 3.1.0
 aventura-multimateria/
 ├── src/
 │   ├── app/
-│   │   ├── data/                     # 📊 Datos de los juegos (JSON)
-│   │   │   ├── puerto-words.json     # Palabras categorizadas
-│   │   │   ├── bosc-passages.json    # Textos y preguntas de lectura
-│   │   │   ├── mercado-tasks.json    # Problemas matemáticos
-│   │   │   ├── mapamundi-tasks.json  # Ubicaciones geográficas
-│   │   │   ├── steam-tasks.json      # Desafíos de programación
-│   │   │   └── flip-lessons.json     # Lecciones científicas
+│   │   ├── data/
+│   │   │   ├── gameDataRegistry.ts   # Registro i18n es/ca/en
+│   │   │   └── locales/{es,ca,en}/   # JSON pedagógicos por idioma
 │   │   ├── hooks/
 │   │   │   └── useNavigation.ts      # 🧭 Hook de navegación centralizado
 │   │   ├── world/                    # 🌍 Directorio de minijuegos
@@ -53,7 +49,8 @@ aventura-multimateria/
 │   │   │   ├── mercado-numeros/      # Matemáticas aplicadas
 │   │   │   ├── mision-mapamundi-v2/  # Geografía interactiva
 │   │   │   ├── desafio-steam/        # Programación con bloques
-│   │   │   └── laboratorio-flip/     # Ciencias con videos
+│   │   │   ├── laboratorio-flip/     # Ciencias con videos
+│   │   │   └── museo-tiempo/        # Historia (línea temporal)
 │   │   ├── components/
 │   │   │   └── I18nProvider.tsx      # 🌐 Proveedor de internacionalización (nuevo)
 │   │   ├── globals.css
@@ -80,11 +77,12 @@ aventura-multimateria/
 
 | Documento | Descripción |
 |-----------|-------------|
-| [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) | **Referencia principal:** patrón de minijuegos, contrato de stores, persistencia, checklist para juegos nuevos |
-| [docs/CORRECTION_PLAN.md](docs/CORRECTION_PLAN.md) | **Plan de trabajo:** fases 0–6 para corregir bugs, tests, docs y séptimo juego |
-| [CLAUDE.md](CLAUDE.md) | Guía para agentes IA y convenciones del repo |
-| [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle del juego Blockly/robot |
-| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones (v3.0.0 — julio 2026) |
+| [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) | **Referencia principal:** patrón de minijuegos, contrato de stores, persistencia |
+| [docs/PHASE7_NEW_GAMES_PLAN.md](docs/PHASE7_NEW_GAMES_PLAN.md) | **Fase 7 (v3.2.0):** Reciclaje, Ortografía, Planetario |
+| [docs/CORRECTION_PLAN.md](docs/CORRECTION_PLAN.md) | Plan de trabajo fases 0–7 |
+| [CLAUDE.md](CLAUDE.md) | Guía para agentes IA |
+| [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle Blockly/robot |
+| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones |
 
 ## 🆕 Historial de Cambios Recientes
 
