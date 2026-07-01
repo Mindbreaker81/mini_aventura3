@@ -21,7 +21,7 @@ describe('useGameSession', () => {
     const initialize = jest.fn();
     renderHook(() =>
       useGameSession(
-        () => ({ gameStatus: 'playing' as const }),
+        () => ({ gameStatus: 'playing' as const, tasks: [{ id: 1 }] }),
         initialize
       )
     );

@@ -187,7 +187,7 @@ export default function MapGame({ mode }: MapGameProps) {
 
           <div className="space-y-3">
             <button
-              onClick={() => initializeGame(mode)}
+              onClick={() => initializeGame(mode, mapTasks as MapamundiTask[])}
               className="w-full bg-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition-colors"
             >
               {t('common.retry')}

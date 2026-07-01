@@ -17,8 +17,12 @@ describe('shared/random', () => {
 });
 
 describe('shared/gameSession', () => {
-  it('detecta sesión playing', () => {
-    expect(hasActiveSession({ gameStatus: 'playing' })).toBe(true);
+  it('detecta sesión playing con contenido cargado', () => {
+    expect(hasActiveSession({ gameStatus: 'playing', tasks: [{ id: 1 }] })).toBe(true);
+  });
+
+  it('no detecta sesión playing sin tareas cargadas', () => {
+    expect(hasActiveSession({ gameStatus: 'playing', tasks: [] })).toBe(false);
   });
 
   it('detecta sesión completed', () => {

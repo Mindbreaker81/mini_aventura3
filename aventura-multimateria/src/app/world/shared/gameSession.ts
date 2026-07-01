@@ -24,7 +24,6 @@ export function hasActiveSession(state: SessionCheckable): boolean {
   const status = state.gameStatus;
 
   if (
-    status === 'playing' ||
     status === 'completed' ||
     status === 'failed' ||
     status === 'gameOver' ||
@@ -33,6 +32,12 @@ export function hasActiveSession(state: SessionCheckable): boolean {
     status === 'retrying'
   ) {
     return true;
+  }
+
+  if (status === 'playing') {
+    if ((state.tasks?.length ?? 0) > 0) return true;
+    if ((state.lessons?.length ?? 0) > 0) return true;
+    if ((state.roundWords?.length ?? 0) > 0 && state.showInstructions === false) return true;
   }
 
   if (state.gameCompleted || state.completed) {
