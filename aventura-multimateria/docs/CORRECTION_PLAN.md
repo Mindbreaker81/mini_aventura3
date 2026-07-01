@@ -2,8 +2,8 @@
 
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
-**Estado:** ✅ Fases 0–7 implementadas · ✅ Fase 3 deuda menor (v3.2.1) · ✅ Planetario v2 (v3.3.0)  
-**Alcance actual:** 10 juegos
+**Estado:** ✅ Fases 0–7 implementadas · ✅ v3.3.2 (tests UI puros, ortografía 70 ítems, Mapamundi `data-region-id`)  
+**Alcance actual:** 10 juegos · documentación viva en `GAME_ARCHITECTURE.md` + `CHANGELOG.md`
 
 ---
 
@@ -234,13 +234,13 @@ flowchart LR
 4. Fase 4 en paralelo con Fase 2
 5. Fase 5 cuando Fase 2 esté estable
 6. Fase 6 solo si se quiere expandir contenido
-7. **Fase 7** — tres minijuegos (Reciclaje, Ortografía, Planetario) → ver [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)
+7. **Fase 7** — tres minijuegos (Reciclaje, Ortografía, Planetario) — ver [CHANGELOG.md](../CHANGELOG.md) §3.2.0
 
 ---
 
 ## Fase 7 — Tres minijuegos nuevos (v3.2.0) ✅
 
-**Plan detallado:** [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)
+Detalle de release: [CHANGELOG.md](../CHANGELOG.md) § `[3.2.0]`.
 
 | Juego | Materia | Referencia de código |
 |-------|---------|---------------------|
@@ -256,7 +256,7 @@ flowchart LR
 - [x] Limpieza legacy (§7 del plan Fase 7)
 - [x] `CHANGELOG [3.2.0]`
 - [x] Humo UI 10/10 (`npm run test:ui`)
-- [x] 85 tests Jest; cobertura stores ≥ 60 %
+- [x] 88 tests Jest; cobertura stores ≥ 60 %
 
 ---
 
@@ -264,7 +264,7 @@ flowchart LR
 
 - [x] Los 10 juegos tienen victoria, derrota (si aplica) y badge funcionales
 - [x] Recargar la página no pierde una partida en curso
-- [x] ≥ 85 tests pasando en CI con cobertura ≥ 60 %
+- [x] ≥ 88 tests pasando en CI con cobertura ≥ 60 %
 - [x] Documentación alineada con implementación (10 minijuegos)
 - [x] Contenido pedagógico es/ca/en (10 archivos × 3 locales)
 - [x] i18n en pantallas principales de los 10 juegos (es/ca/en)
@@ -278,7 +278,7 @@ flowchart LR
 |--------|-----------|
 | ~~Revisión técnica abril 2026~~ | ~~`ANALISIS_REVISION.md`~~ (eliminado — obsoleto) |
 | Contrato de arquitectura | [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md) |
-| Plan Fase 7 (v3.2.0) | [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md) |
+| Plan Fase 7 (v3.2.0) | [CHANGELOG.md](../CHANGELOG.md) §3.2.0 |
 | Plan de implementación | Este archivo |
 | PR documentación arquitectura | [#4](https://github.com/Mindbreaker81/mini_aventura3/pull/4) |
 

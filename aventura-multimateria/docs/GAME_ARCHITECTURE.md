@@ -38,7 +38,7 @@ Los juegos **no comparten estado entre sí**. Solo comparten:
 | `taller-ortografia` | `/world/taller-ortografia` | Lengua / ortografía | `useTallerOrtografiaStore` |
 | `planetario` | `/world/planetario` | Ciencias (Sistema Solar) | `usePlanetarioStore` |
 
-Detalle Fase 7 (v3.2.0): [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md).
+Los tres juegos de Fase 7 (v3.2.0) siguen el checklist §14. Detalle en [CHANGELOG.md](../CHANGELOG.md) §3.2.0.
 
 Mapamundi tiene subrutas dinámicas: `/world/mision-mapamundi-v2/[mode]` con `mode ∈ { continent, ocean, ccaa }`.
 
@@ -518,7 +518,7 @@ src/app/hooks/useGameSession.ts  # Hook de montaje seguro
 
 ## 15. Fase 7 — Tres minijuegos (v3.2.0) ✅
 
-Implementado en v3.2.0. Plan: **[PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)**
+Implementado en v3.2.0. Ver [CHANGELOG.md](../CHANGELOG.md) §3.2.0.
 
 | Juego | Mecánica | Clona |
 |-------|----------|-------|
@@ -532,12 +532,8 @@ Implementado en v3.2.0. Plan: **[PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PL
 
 | Documento | Contenido |
 |-----------|-----------|
-| [CORRECTION_PLAN.md](./CORRECTION_PLAN.md) | **Plan de implementación:** fases 0–7, prioridades, DoD |
-| [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md) | **Fase 7:** Reciclaje, Ortografía, Planetario (v3.2.0) |
-| [README.md](../README.md) | Instalación, comandos, visión general |
-| [CLAUDE.md](../CLAUDE.md) | Guía técnica para agentes IA |
-| [STEAM_GAME_DOCS.md](../STEAM_GAME_DOCS.md) | Detalle Blockly y robot |
-| [CHANGELOG.md](../CHANGELOG.md) | Historial de cambios |
+| [CORRECTION_PLAN.md](./CORRECTION_PLAN.md) | **Histórico:** fases 0–7 completadas, DoD del proyecto |
+| [CHANGELOG.md](../CHANGELOG.md) | Historial de versiones (incl. Fase 7 v3.2.0) |
 
 ---
 

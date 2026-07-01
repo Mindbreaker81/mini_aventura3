@@ -7,7 +7,7 @@ La guía técnica actualizada para agentes y desarrolladores está en:
 Documentación adicional:
 
 - [aventura-multimateria/docs/GAME_ARCHITECTURE.md](./aventura-multimateria/docs/GAME_ARCHITECTURE.md)
-- [aventura-multimateria/docs/PHASE7_NEW_GAMES_PLAN.md](./aventura-multimateria/docs/PHASE7_NEW_GAMES_PLAN.md)
 - [aventura-multimateria/docs/CORRECTION_PLAN.md](./aventura-multimateria/docs/CORRECTION_PLAN.md)
+- [aventura-multimateria/CHANGELOG.md](./aventura-multimateria/CHANGELOG.md)
 
 **Directorio de trabajo:** siempre `aventura-multimateria/` para `npm run dev`, `build` y `lint`.

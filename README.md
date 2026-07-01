@@ -18,7 +18,7 @@ El archivo `/package.json` del repositorio es un **contenedor legacy** con scrip
 |-----------|-------------|
 | [aventura-multimateria/README.md](./aventura-multimateria/README.md) | Guía principal del proyecto |
 | [aventura-multimateria/docs/GAME_ARCHITECTURE.md](./aventura-multimateria/docs/GAME_ARCHITECTURE.md) | Arquitectura de minijuegos |
-| [aventura-multimateria/docs/PHASE7_NEW_GAMES_PLAN.md](./aventura-multimateria/docs/PHASE7_NEW_GAMES_PLAN.md) | Plan Fase 7 (3 juegos nuevos, v3.2.0) |
+| [aventura-multimateria/docs/CORRECTION_PLAN.md](./aventura-multimateria/docs/CORRECTION_PLAN.md) | Histórico fases 0–7 |
 | [aventura-multimateria/CHANGELOG.md](./aventura-multimateria/CHANGELOG.md) | Historial de versiones |
 
-**Estado:** 10 minijuegos en producción (v3.2.0).
+**Estado:** 10 minijuegos (v3.3.2).

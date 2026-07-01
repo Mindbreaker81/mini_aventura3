@@ -102,10 +102,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ## [Unreleased]
 
-### 📋 Próximos pasos
-
-- Ampliar contenido ortografía (más temas B/V, G/J)
-- Tests UI más puros (menos fallback storage) en Mercado/Museo
+_Sin cambios pendientes de documentar._
 
 ---
 

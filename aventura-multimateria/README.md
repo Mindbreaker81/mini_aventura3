@@ -72,10 +72,10 @@ aventura-multimateria/
 ├── tailwind.config.js
 ├── tsconfig.json
 ├── docs/
-│   └── GAME_ARCHITECTURE.md          # 🏗️ Arquitectura de minijuegos (contrato stores, persistencia)
-├── CLAUDE.md                         # 🤖 Documentación técnica y de cambios
-├── FIXES_APPLIED.md                  # 🛠️ Registro de fixes y migraciones
-├── CHAT_SUMMARY_STEAM_IMPROVEMENTS.md # 📝 Resumen de mejoras STEAM
+│   ├── GAME_ARCHITECTURE.md          # 🏗️ Arquitectura (contrato stores, persistencia)
+│   └── CORRECTION_PLAN.md            # 📋 Histórico fases 0–7 (completadas)
+├── CLAUDE.md                         # 🤖 Guía para agentes IA
+├── STEAM_GAME_DOCS.md                # 🤖 Detalle Blockly/robot
 └── README.md                         # 📖 Este archivo
 ```
 
@@ -84,8 +84,7 @@ aventura-multimateria/
 | Documento | Descripción |
 |-----------|-------------|
 | [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) | **Referencia principal:** patrón de minijuegos, contrato de stores, persistencia |
-| [docs/PHASE7_NEW_GAMES_PLAN.md](docs/PHASE7_NEW_GAMES_PLAN.md) | **Fase 7 (v3.2.0):** Reciclaje, Ortografía, Planetario |
-| [docs/CORRECTION_PLAN.md](docs/CORRECTION_PLAN.md) | Plan de trabajo fases 0–7 |
+| [docs/CORRECTION_PLAN.md](docs/CORRECTION_PLAN.md) | Histórico del plan de fases 0–7 (completado) |
 | [CLAUDE.md](CLAUDE.md) | Guía para agentes IA |
 | [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle Blockly/robot |
 | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones |
@@ -94,9 +93,13 @@ aventura-multimateria/
 
 > Detalle completo en [CHANGELOG.md](CHANGELOG.md).
 
+### v3.3.2 (Julio 2026)
+- Mapamundi: `data-region-id` en mapa; tests UI 100 % interacción
+- v3.3.1: tests UI puros, ortografía 70 ítems (B/V, G/J)
+
 ### v3.2.0 (Julio 2026)
 - **Fase 7:** Fábrica del Reciclaje, Taller de Ortografía, Planetario
-- 10 minijuegos, 85 tests, humo UI 10/10, i18n es/ca/en
+- 10 minijuegos, 88 tests Jest, humo UI 10/10, i18n es/ca/en
 
 ### v3.0.0 (Julio 2026)
 - **Infraestructura:** módulos compartidos (`shared/`, `useGameSession`)
