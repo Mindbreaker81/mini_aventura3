@@ -451,7 +451,7 @@ src/app/world/shared/
 └── useGameSession.ts  # Hook de montaje seguro
 ```
 
-Estos módulos **no existen aún**; este documento los define como contrato para la Fase 0 del plan de corrección.
+Estos módulos **no existen aún**; este documento los define como contrato para la Fase 0 del [plan de corrección](./CORRECTION_PLAN.md).
 
 ---
 
@@ -513,6 +513,7 @@ Seguir el checklist §14. Priorizar juegos que **no solapen** mecánicas/materia
 
 | Documento | Contenido |
 |-----------|-----------|
+| [CORRECTION_PLAN.md](./CORRECTION_PLAN.md) | **Plan de implementación:** fases 0–6, prioridades, DoD |
 | [README.md](../README.md) | Instalación, comandos, visión general |
 | [CLAUDE.md](../CLAUDE.md) | Guía técnica para agentes IA |
 | [STEAM_GAME_DOCS.md](../STEAM_GAME_DOCS.md) | Detalle Blockly y robot |

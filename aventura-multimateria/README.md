@@ -81,6 +81,7 @@ aventura-multimateria/
 | Documento | Descripción |
 |-----------|-------------|
 | [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) | **Referencia principal:** patrón de minijuegos, contrato de stores, persistencia, checklist para juegos nuevos |
+| [docs/CORRECTION_PLAN.md](docs/CORRECTION_PLAN.md) | **Plan de trabajo:** fases 0–6 para corregir bugs, tests, docs y séptimo juego |
 | [CLAUDE.md](CLAUDE.md) | Guía para agentes IA y convenciones del repo |
 | [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle del juego Blockly/robot |
 | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones |
