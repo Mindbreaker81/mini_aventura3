@@ -50,6 +50,8 @@ src/
 
 ### Patrones de Desarrollo
 
+> **Documento de referencia:** ver [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) para el contrato completo de stores, persistencia, ciclo de partida y checklist de juegos nuevos.
+
 #### 1. Estructura de Minijuego
 Cada minijuego sigue una estructura consistente:
 ```
@@ -185,28 +187,28 @@ npm run types:generate    # Generar tipos TypeScript
 - **ReactPlayer**: Importar con `dynamic` y `ssr: false`
 
 ### Persistencia
-- Zustand con middleware `persist`
-- localStorage para estado de juegos
-- Claves de almacenamiento:
-  - `puerto-palabras-storage`
-  - `bosc-lectura-storage`
-  - `mercado-numeros-storage`
-  - `mision-mapamundi-v2-storage`
-  - `steam-storage`
+- Objetivo: Zustand con middleware `persist` en **todos** los minijuegos
+- Estado actual (julio 2026): persistencia completa o parcial solo en Mapamundi, STEAM y Laboratorio Flip; ver tabla en `docs/GAME_ARCHITECTURE.md` §5.3
+- Claves en uso:
+  - `bosc-session` (manual, solo escritura — migrar a persist)
+  - `mapamundi-v2-session`
+  - `steam-v2-storage`
   - `laboratorio-flip-storage`
+- Claves objetivo pendientes: `puerto-palabras-storage`, `bosc-lectura-storage`, `mercado-numeros-storage`
+- **Regla:** no llamar `initializeGame()` / `loadWords()` / `loadTasks()` en montaje si hay sesión activa
 
 ## Extensibilidad
 
 ### Añadir Nuevo Minijuego
+Seguir el checklist completo en [docs/GAME_ARCHITECTURE.md §14](docs/GAME_ARCHITECTURE.md#14-checklist-añadir-un-minijuego-nuevo). Resumen:
+
 1. **Crear directorio**: `/src/app/world/nuevo-juego/`
-2. **Crear archivos base**:
-   - `types.ts` - Interfaces del juego
-   - `useNuevoJuegoStore.ts` - Store de Zustand
-   - `page.tsx` - Página principal
-   - Componentes específicos
-3. **Añadir datos**: Crear archivo JSON en `/src/app/data/`
-4. **Actualizar dashboard**: Modificar `/src/app/page.tsx`
-5. **Añadir traducciones**: Actualizar archivos en `/public/locales/`
+2. **Crear archivos base**: `types.ts`, `useNuevoJuegoStore.ts` (con `persist`), `page.tsx`, componentes
+3. **Añadir datos**: JSON en `/src/app/data/`
+4. **Implementar ciclo completo**: instrucciones → playing → completed/failed
+5. **Actualizar dashboard**: `/src/app/page.tsx`
+6. **Traducciones**: `/public/locales/{es,ca,en}/`
+7. **Tests**: `__tests__/useNuevoJuegoStore.test.ts`
 
 ## Actualizaciones Recientes
 

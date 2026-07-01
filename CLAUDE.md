@@ -162,12 +162,15 @@ Translation keys follow the pattern: `game.feature.specific_key`
 ## Development Guidelines
 
 ### Adding New Games
+Follow the full checklist in `aventura-multimateria/docs/GAME_ARCHITECTURE.md` (store contract, persistence, game lifecycle). Summary:
+
 1. Create directory in `src/app/world/[game-name]/`
-2. Implement store with Zustand pattern
-3. Create main page component
+2. Implement store with Zustand + `persist` pattern
+3. Create main page component (instructions / playing / completed / failed)
 4. Add game data to `src/app/data/`
 5. Update dashboard in `src/app/page.tsx`
 6. Add translations to locale files
+7. Add store unit tests in `__tests__/`
 
 ### Code Quality
 - Run `npm run lint` before committing changes

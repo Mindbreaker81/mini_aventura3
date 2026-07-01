@@ -68,19 +68,30 @@ aventura-multimateria/
 ├── next.config.js
 ├── tailwind.config.js
 ├── tsconfig.json
+├── docs/
+│   └── GAME_ARCHITECTURE.md          # 🏗️ Arquitectura de minijuegos (contrato stores, persistencia)
 ├── CLAUDE.md                         # 🤖 Documentación técnica y de cambios
 ├── FIXES_APPLIED.md                  # 🛠️ Registro de fixes y migraciones
 ├── CHAT_SUMMARY_STEAM_IMPROVEMENTS.md # 📝 Resumen de mejoras STEAM
 └── README.md                         # 📖 Este archivo
 ```
 
+## 📚 Documentación
+
+| Documento | Descripción |
+|-----------|-------------|
+| [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) | **Referencia principal:** patrón de minijuegos, contrato de stores, persistencia, checklist para juegos nuevos |
+| [CLAUDE.md](CLAUDE.md) | Guía para agentes IA y convenciones del repo |
+| [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle del juego Blockly/robot |
+| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones |
+
 ## 🆕 Historial de Cambios Recientes
 
 - **Internacionalización (i18n):** Migración de `next-i18next` a un `I18nProvider` propio usando `i18next` y `react-i18next` para compatibilidad total con App Router. Ver detalles en `FIXES_APPLIED.md`.
 - **Desafío STEAM:** Refactorización completa: animaciones más lentas y visibles, rastro visual del robot, feedback visual mejorado, comunicación entre componentes basada en callbacks, y supresión de warnings de Blockly. Ver detalles en `CHAT_SUMMARY_STEAM_IMPROVEMENTS.md` y `CLAUDE.md`.
 - **Limpieza y Organización:** Eliminación de archivos y versiones obsoletas, estructura de minijuegos y stores unificada, documentación exhaustiva.
-- **Persistencia y Estado:** Zustand con persistencia en localStorage para todos los minijuegos, claves de almacenamiento documentadas.
-- **Documentación:** Se añadieron y actualizaron archivos de referencia: `CLAUDE.md`, `FIXES_APPLIED.md`, `CHAT_SUMMARY_STEAM_IMPROVEMENTS.md`.
+- **Persistencia y Estado:** Zustand con persistencia parcial en localStorage (ver estado real por juego en `docs/GAME_ARCHITECTURE.md`).
+- **Documentación:** `docs/GAME_ARCHITECTURE.md` define el contrato objetivo de stores, sesiones y ciclo de partida.
 
 ## 🎯 Descripción Detallada de Minijuegos
 
