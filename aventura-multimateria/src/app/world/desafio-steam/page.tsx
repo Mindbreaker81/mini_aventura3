@@ -21,15 +21,16 @@ const DesafioSteamV2: React.FC = () => {
   const {
     showInstructions,
     gameCompleted,
+    gameStatus,
     feedback,
     xp,
     badge,
     tasks,
     currentTask,
     isExecuting,
-    initializeGame,
     hideInstructions,
-    hideFeedback
+    hideFeedback,
+    resetAdventure,
   } = useSteamStore();
 
   // Callback para cuando BlocklyGame esté listo
@@ -51,14 +52,7 @@ const DesafioSteamV2: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [blocklyFunctions]); // Solo depende de blocklyFunctions
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      initializeGame();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Solo ejecutar una vez al montar
+  }, [blocklyFunctions]);
 
   // Pantalla de instrucciones
   if (showInstructions) {
@@ -126,6 +120,35 @@ const DesafioSteamV2: React.FC = () => {
     );
   }
 
+  // Pantalla de game over
+  if (gameStatus === 'failed') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-100 to-orange-200 flex items-center justify-center p-4">
+        <Card className="max-w-lg w-full text-center shadow-2xl">
+          <CardHeader>
+            <CardTitle className="text-3xl text-red-800">¡Sin vidas!</CardTitle>
+            <CardDescription className="text-lg">
+              El robot necesita más intentos. ¡No te rindas!
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Badge variant="secondary" className="text-base px-4 py-1">⭐ {xp} XP acumulados</Badge>
+          </CardContent>
+          <CardFooter className="flex gap-3">
+            <Button onClick={resetAdventure} variant="outline" className="gap-2 flex-1">
+              <RotateCcw size={18} />
+              Reiniciar aventura
+            </Button>
+            <Button onClick={goToDashboard} className="flex-1 gap-2">
+              <Home size={18} />
+              Dashboard
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    );
+  }
+
   // Pantalla de juego completado
   if (gameCompleted) {
     return (
@@ -164,6 +187,10 @@ const DesafioSteamV2: React.FC = () => {
           </CardContent>
 
           <CardFooter className="flex gap-3">
+            <Button onClick={resetAdventure} variant="outline" className="gap-2">
+              <RotateCcw size={18} />
+              Nueva aventura
+            </Button>
             <Button
               onClick={goToDashboard}
               size="lg"

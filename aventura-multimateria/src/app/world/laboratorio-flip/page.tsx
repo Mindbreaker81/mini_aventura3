@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect } from 'react';
-import { ArrowLeft, Award, CheckCircle, Beaker, Play } from 'lucide-react';
+import React from 'react';
+import { ArrowLeft, Award, CheckCircle, Beaker, Play, RotateCcw } from 'lucide-react';
 import { useNavigation } from '../../hooks/useNavigation';
 import useLaboratorioFlipStore from './useLaboratorioFlipStore';
 import VideoCard from './VideoCard';
@@ -27,10 +27,6 @@ const LaboratorioFlip: React.FC = () => {
     piecesObtained,
     videoWatched,
   } = useLaboratorioFlipStore();
-
-  useEffect(() => {
-    initializeGame();
-  }, [initializeGame]);
 
   const handleStartGame = () => {
     hideInstructionsScreen();
@@ -182,10 +178,14 @@ const LaboratorioFlip: React.FC = () => {
           </CardContent>
 
           <CardFooter>
+            <Button size="lg" onClick={initializeGame} variant="outline" className="gap-2 mr-2">
+              <RotateCcw size={18} />
+              Nueva partida
+            </Button>
             <Button
               size="lg"
               onClick={goToDashboard}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold"
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold"
             >
               Volver al Dashboard
             </Button>

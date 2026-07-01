@@ -1,9 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import { Heart, ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 import { useMapamundiV2Store } from "./useMapamundiV2Store";
 import { GameMode, MODE_CONFIG } from "./types";
+import { useGameSessionWhen } from "../../hooks/useGameSession";
+import { hasActiveSessionForMode } from "../shared/gameSession";
 import Passport from "./Passport";
 import WorldMap from "./WorldMap";
 import SpainMap from "./SpainMap";
@@ -23,35 +25,31 @@ export default function MapGame({ mode }: MapGameProps) {
     feedbackMessage,
     feedbackType,
     gameStatus,
+    xp,
     initializeGame,
     selectRegion,
     submitAnswer,
     nextTask,
     showFeedbackAction,
     hideFeedback,
-    gainXP,
     completeWorld
   } = useMapamundiV2Store();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Inicializar el juego cuando se monta el componente
-  useEffect(() => {
-    initializeGame(mode);
-  }, [mode, initializeGame]);
+  const shouldInit = useCallback(
+    () => !hasActiveSessionForMode(useMapamundiV2Store.getState(), mode),
+    [mode]
+  );
 
-  // Obtener la tarea actual
+  useGameSessionWhen(shouldInit, () => initializeGame(mode));
+
   const currentTaskData = tasks[currentTask];
   const config = MODE_CONFIG[mode];
 
-  // Verificar si el juego está completado
   const isGameCompleted = completedStamps >= config.maxQuestions;
   const isGameOver = lives <= 0;
 
-  // Debug: mostrar estado actual
-  console.log(`MapGame Debug: completedStamps=${completedStamps}, maxQuestions=${config.maxQuestions}, isGameCompleted=${isGameCompleted}`);
-
-  // Verificar si las tareas están cargadas
   if (!tasks.length || !currentTaskData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 flex items-center justify-center">
@@ -66,40 +64,29 @@ export default function MapGame({ mode }: MapGameProps) {
   // Manejar selección de región
   const handleRegionClick = (regionId: string) => {
     if (gameStatus !== 'playing' || isSubmitting) return;
-    console.log("MapGame: Region clicked:", regionId); // Debug
     selectRegion(regionId);
   };
 
-  // Manejar envío de respuesta
   const handleSubmit = () => {
     if (!selectedRegion || isSubmitting) return;
-    
+
     setIsSubmitting(true);
-    
-    // Validar respuesta
+
     const isCorrect = selectedRegion === currentTaskData?.targetId;
-    
+
     if (isCorrect) {
-      // Acierto
-      gainXP(config.xpPerCorrect);
       showFeedbackAction('success', `¡Correcto! ${currentTaskData?.explanation}`);
-      
-      // Usar la lógica del store para actualizar estado
       submitAnswer();
-      
-      // Avanzar a la siguiente pregunta
+
       setTimeout(() => {
         nextTask();
         setIsSubmitting(false);
         hideFeedback();
       }, 2000);
     } else {
-      // Error
       showFeedbackAction('error', `Incorrecto. ${currentTaskData?.explanation}`);
-      
-      // Usar la lógica del store para actualizar estado
       submitAnswer();
-      
+
       setTimeout(() => {
         setIsSubmitting(false);
         hideFeedback();
@@ -130,10 +117,8 @@ export default function MapGame({ mode }: MapGameProps) {
                 <span className="font-bold">+{config.bonusXP} XP</span>
               </div>
               <div className="flex justify-between border-t pt-2">
-                <span>Total:</span>
-                <span className="font-bold text-green-800">
-                  +{(completedStamps * config.xpPerCorrect) + config.bonusXP} XP
-                </span>
+                <span>Total XP:</span>
+                <span className="font-bold text-green-800">+{xp} XP</span>
               </div>
             </div>
           </div>

@@ -84,15 +84,20 @@ aventura-multimateria/
 | [docs/CORRECTION_PLAN.md](docs/CORRECTION_PLAN.md) | **Plan de trabajo:** fases 0–6 para corregir bugs, tests, docs y séptimo juego |
 | [CLAUDE.md](CLAUDE.md) | Guía para agentes IA y convenciones del repo |
 | [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle del juego Blockly/robot |
-| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones |
+| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones (v3.0.0 — julio 2026) |
 
 ## 🆕 Historial de Cambios Recientes
 
-- **Internacionalización (i18n):** Migración de `next-i18next` a un `I18nProvider` propio usando `i18next` y `react-i18next` para compatibilidad total con App Router. Ver detalles en `FIXES_APPLIED.md`.
-- **Desafío STEAM:** Refactorización completa: animaciones más lentas y visibles, rastro visual del robot, feedback visual mejorado, comunicación entre componentes basada en callbacks, y supresión de warnings de Blockly. Ver detalles en `CHAT_SUMMARY_STEAM_IMPROVEMENTS.md` y `CLAUDE.md`.
-- **Limpieza y Organización:** Eliminación de archivos y versiones obsoletas, estructura de minijuegos y stores unificada, documentación exhaustiva.
-- **Persistencia y Estado:** Zustand con persistencia parcial en localStorage (ver estado real por juego en `docs/GAME_ARCHITECTURE.md`).
-- **Documentación:** `docs/GAME_ARCHITECTURE.md` define el contrato objetivo de stores, sesiones y ciclo de partida.
+> Detalle completo en [CHANGELOG.md](CHANGELOG.md).
+
+### v3.0.0 (Julio 2026)
+- **Infraestructura:** módulos compartidos (`shared/`, `useGameSession`)
+- **6 juegos:** victoria/derrota, persistencia fiable, 46 tests
+- **Docs:** `GAME_ARCHITECTURE.md`, `CORRECTION_PLAN.md`, CHANGELOG revisado
+
+### v2.0.0 (Diciembre 2024)
+- **Desafío STEAM:** animaciones paso a paso, rastro visual, comunicación callback-based
+- **Limpieza:** eliminación de STEAM v1 y archivos obsoletos
 
 ## 🎯 Descripción Detallada de Minijuegos
 

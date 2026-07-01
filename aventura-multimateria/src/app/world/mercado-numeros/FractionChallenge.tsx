@@ -10,7 +10,8 @@ interface FractionChallengeProps {
 
 export const FractionChallenge: React.FC<FractionChallengeProps> = ({ task }) => {
   const { 
-    currentAnswer, 
+    currentAnswer,
+    hasFractionAnswer,
     setFractionAnswer, 
     submitFractionAnswer 
   } = useMercadoNumerosStore();
@@ -173,10 +174,10 @@ export const FractionChallenge: React.FC<FractionChallengeProps> = ({ task }) =>
       <div className="text-center">
         <button
           onClick={submitFractionAnswer}
-          disabled={currentAnswer === null}
+          disabled={!hasFractionAnswer && currentAnswer === null}
           className={`
             px-8 py-3 rounded-lg font-bold text-white text-lg transition-colors
-            ${currentAnswer === null
+            ${!hasFractionAnswer && currentAnswer === null
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-purple-600 hover:bg-purple-700"
             }

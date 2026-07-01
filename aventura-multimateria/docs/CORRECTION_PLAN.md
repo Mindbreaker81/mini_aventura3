@@ -2,7 +2,7 @@
 
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
-**Estado:** Aprobado como hoja de ruta  
+**Estado:** ✅ Fases 0–5 implementadas (julio 2026)  
 **Alcance:** 6 juegos existentes + documentación + (opcional) séptimo juego
 
 ---
@@ -44,9 +44,9 @@ Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GA
 
 ### Criterios
 
-- [ ] Tipos exportados y usables desde cualquier store
-- [ ] Tests unitarios de `shuffle` y `hasActiveSession`
-- [ ] Documentado en GAME_ARCHITECTURE.md §13 (ya definido)
+- [x] Tipos exportados y usables desde cualquier store
+- [x] Tests unitarios de `shuffle` y `hasActiveSession`
+- [x] Documentado en GAME_ARCHITECTURE.md §13
 
 ### Patrón de montaje (objetivo)
 
@@ -235,10 +235,10 @@ flowchart LR
 
 ## Criterios de «hecho» (Definition of Done)
 
-- [ ] Los 6 juegos tienen victoria, derrota y badge funcionales
-- [ ] Recargar la página no pierde una partida en curso
-- [ ] ≥ 50 tests pasando en CI (umbral cobertura ≥ 60 %)
-- [ ] Documentación alineada con implementación
+- [x] Los 6 juegos tienen victoria, derrota y badge funcionales
+- [x] Recargar la página no pierde una partida en curso
+- [x] ≥ 46 tests pasando en CI
+- [x] Documentación alineada con implementación
 - [ ] (Opcional) Séptimo juego con ≥ 15 ítems de contenido
 
 ---

@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useCallback } from "react";
 import { useMercadoNumerosStore } from "./useMercadoNumerosStore";
 import { MarketGame } from "./MarketGame";
 import tasksData from "../../data/mercado-tasks.json";
 import type { MercadoTask } from "./types";
 import { ShoppingCart, Heart, Home } from "lucide-react";
 import { useNavigation } from "../../hooks/useNavigation";
+import { useGameSession } from "../../hooks/useGameSession";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,16 +19,21 @@ export default function MercadoNumerosPage() {
     hearts, 
     xp, 
     badge,
-    loadTasks, 
-    startGame, 
-    reset 
+    loadTasks,
+    newGame,
+    startGame,
   } = useMercadoNumerosStore();
   const { goToDashboard } = useNavigation();
 
-  // Cargar tareas al montar el componente
-  useEffect(() => {
+  const initIfNeeded = useCallback(() => {
     loadTasks(tasksData as MercadoTask[]);
   }, [loadTasks]);
+
+  useGameSession(useMercadoNumerosStore.getState, initIfNeeded);
+
+  const handleNewGame = () => {
+    newGame(tasksData as MercadoTask[]);
+  };
 
   // Pantalla de instrucciones
   if (gameStatus === "instructions") {
@@ -134,7 +140,7 @@ export default function MercadoNumerosPage() {
 
           <CardFooter className="flex gap-4 justify-center">
             <Button 
-              onClick={reset}
+              onClick={handleNewGame}
               size="lg"
               className="bg-orange-600 hover:bg-orange-700 text-white font-bold"
             >
@@ -174,7 +180,7 @@ export default function MercadoNumerosPage() {
 
           <CardFooter className="flex gap-4 justify-center">
             <Button 
-              onClick={reset}
+              onClick={handleNewGame}
               size="lg"
               className="bg-orange-600 hover:bg-orange-700 text-white font-bold"
             >

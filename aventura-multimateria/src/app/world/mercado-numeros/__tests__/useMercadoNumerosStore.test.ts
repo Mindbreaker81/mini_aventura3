@@ -29,7 +29,7 @@ const tareasPrueba: MercadoTask[] = [
 
 describe('useMercadoNumerosStore', () => {
   beforeEach(() => {
-    // Resetear el store a su estado inicial
+    localStorage.clear();
     useMercadoNumerosStore.setState({
       currentTask: 0,
       completedBaskets: 0,
@@ -38,6 +38,7 @@ describe('useMercadoNumerosStore', () => {
       tasks: [],
       selectedCoins: [],
       currentAnswer: null,
+      hasFractionAnswer: false,
       feedback: null,
       gameStatus: 'instructions',
       badge: false,
@@ -159,6 +160,12 @@ describe('useMercadoNumerosStore', () => {
       expect(state.gameStatus).toBe('completed');
       expect(state.xp).toBe(0);
       expect(state.badge).toBe(false);
+    });
+    it('permite responder fracción con valor 0', () => {
+      useMercadoNumerosStore.getState().setFractionAnswer(0);
+      const state = useMercadoNumerosStore.getState();
+      expect(state.currentAnswer).toBe(0);
+      expect(state.hasFractionAnswer).toBe(true);
     });
   });
 });

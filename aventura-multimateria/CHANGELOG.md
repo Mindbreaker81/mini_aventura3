@@ -1,78 +1,183 @@
 # 📝 Changelog - ExplorAventura 3
 
+Todos los cambios notables del proyecto se documentan en este archivo.
+
+Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
+
+---
+
+## [3.0.0] - Julio 2026
+
+### 🏗️ Infraestructura compartida (Fase 0)
+
+#### Añadido
+- `src/app/world/shared/types.ts` — tipos base `GameStatus`, `BaseGameState`, `WIN_REPAIRED_TARGET`
+- `src/app/world/shared/random.ts` — `shuffle` (Fisher-Yates) y `selectRandom`
+- `src/app/world/shared/gameSession.ts` — `hasActiveSession`, `hasActiveSessionForMode`
+- `src/app/hooks/useGameSession.ts` — hooks de montaje seguro sin resetear sesiones
+- Tests compartidos en `src/app/world/shared/__tests__/shared.test.ts`
+- Documentación: `docs/GAME_ARCHITECTURE.md`, `docs/CORRECTION_PLAN.md`
+
+### 🎮 Puerto de las Palabras (Fase 1)
+
+#### Añadido
+- Persistencia con clave `puerto-palabras-storage`
+- `gameStatus`, `correctWords`, pantalla de victoria con badge «Maestro del Puerto»
+- Botones «Nueva partida» y «Dashboard» al completar
+
+#### Corregido
+- Victoria al alcanzar 6 aciertos (`repaired >= 6`)
+- Doble conteo de XP al reasignar palabras ya correctas
+- Palabras que desaparecían al soltar en el pool `"words"`
+- Respuestas incorrectas ya no bloquean el reintento
+- Progreso conservado entre recargas
+
+### 🤖 Desafío STEAM (Fase 1)
+
+#### Añadido
+- `gameStatus` (`playing` | `completed` | `failed`)
+- Pantalla de game over con «Reiniciar aventura»
+- `resetAdventure()` para nueva partida
+- Avance de nivel tras cerrar modal de éxito (`pendingAdvance`)
+
+#### Corregido
+- `gameCompleted` y badge «Ingeniero Junior» al terminar nivel 6
+- Game over real cuando `lives === 0`
+- Ya no avanza de nivel automáticamente sin confirmación del usuario
+
+### 📖 Bosc de Lectura (Fase 2)
+
+#### Añadido
+- Persistencia Zustand (`bosc-lectura-storage`)
+- `currentQuestionIndex` y `selectedPassages` en el store
+- Tests en `__tests__/useBoscLecturaStore.test.ts`
+
+#### Corregido
+- Eliminado `localStorage` manual que solo escribía y nunca restauraba
+- Navegación de preguntas flexible (ya no depende de `step % 2`)
+- Pasajes aleatorios persistidos entre sesiones
+
+### 🧮 Mercado de Números (Fase 2)
+
+#### Añadido
+- Persistencia con clave `mercado-numeros-storage`
+- Flag `hasFractionAnswer` para respuestas numéricas
+- `newGame()` para reiniciar con tareas nuevas
+- `useGameSession` — no resetea partida en curso al recargar
+
+#### Corregido
+- Respuesta fracción con valor `0` ahora es válida
+
+### 🗺️ Misión Mapamundi v2 (Fase 2)
+
+#### Añadido
+- Campo `xp` persistido en el store
+- `gainXP()` funcional (antes solo `console.log`)
+
+#### Corregido
+- `initializeGame()` condicionado — no borra sesión al remontar
+- Eliminados `console.log` de depuración en `MapGame`
+- XP mostrado desde el store en pantalla de victoria
+
+### 🧪 Laboratorio Flip (Fase 2)
+
+#### Añadido
+- Persistencia ampliada (lecciones, progreso, piezas, estado de quiz)
+- `pendingQuizAction` — avance controlado desde botón «Continuar» (sin `setTimeout` huérfanos)
+- Botón «Nueva partida» en pantalla de victoria
+
+#### Corregido
+- `initializeGame()` ya no se ejecuta en cada montaje
+- Race conditions con auto-avance de 3 segundos eliminadas
+
+### 🧪 Tests y calidad (Fases 3–4)
+
+#### Añadido
+- Tests STEAM: victoria, game over, `pendingAdvance`
+- Tests Bosc: init, `nextQuestion`, failed
+- Tests Puerto: victoria, idempotencia, reintento
+- Test Mercado: fracción con valor 0
+
+#### Corregido
+- Imports no usados en `error.tsx` y `world/error.tsx`
+- Warning de lockfiles duplicados: `outputFileTracingRoot` en `next.config.js`
+
+### 📚 Documentación (Fase 5)
+
+#### Añadido
+- `docs/GAME_ARCHITECTURE.md` — contrato de arquitectura
+- `docs/CORRECTION_PLAN.md` — plan de implementación por fases
+- Sección «Documentación» en README con enlaces cruzados
+
+#### Actualizado
+- `README.md`, `CLAUDE.md` (raíz y subproyecto) — persistencia real por juego
+- Tabla de claves localStorage alineada con implementación
+
+### 📊 Métricas de esta versión
+
+| Métrica | Antes (revisión jul 2026) | Después |
+|---------|---------------------------|---------|
+| Tests Jest | 34 | **46** |
+| Juegos con victoria funcional | 4/6 | **6/6** |
+| Juegos con persistencia fiable | 0–1/6 | **6/6** |
+| ESLint warnings | 2 | **0** |
+
+---
+
 ## [2.0.0] - Diciembre 2024
 
 ### 🎮 Desafío STEAM - Mejoras de Experiencia del Jugador
 
 #### ✨ Nuevas Características
-- **Animaciones de movimiento paso a paso**: El robot se mueve visiblemente de casilla en casilla
-- **Timing optimizado**: 1500ms para movimientos, 1200ms para giros (muy lento para visualización clara)
-- **Rastro visual del robot**: El camino del robot se muestra con un rastro azul claro en tiempo real
-- **Estados visuales del robot**:
-  - Normal: 🤖 (emoji según dirección)
-  - Ejecutando: 🤖 + pulse + scale-110 + ring azul
-  - Crash: 💥 + bounce + celda roja + ring rojo
-- **Feedback visual mejorado**:
-  - Meta rebota durante la ejecución
-  - Indicador "Ejecutando código..." con spinner
-  - Mensaje de crash con emoji 💥
-  - Rastro del camino visible celda por celda
-- **Pausas estratégicas**:
-  - 1000ms al chocar para mostrar el error
-  - 2000ms adicional antes del feedback
-  - 1500ms para celebrar el éxito
+- Animaciones de movimiento paso a paso del robot
+- Rastro visual del camino (trail azul)
+- Estados visuales: normal, ejecutando, crash
+- Feedback visual mejorado con pausas estratégicas
 
 #### 🔧 Mejoras Técnicas
-- **Comunicación entre componentes**: Cambio de ref-based a callback-based
-- **Wrapper para dynamic import**: `BlocklyGame.tsx` para mejor carga de Blockly
-- **Estado de crash**: Nuevo estado `hasCrashed` para feedback visual
-- **Transiciones CSS**: `transition-all duration-200` para todas las celdas
-- **Animaciones Tailwind**: `animate-pulse`, `animate-bounce`, `scale-110`
+- Comunicación callback-based entre BlocklyGame y página
+- Wrapper `BlocklyGame.tsx` para dynamic import
+- Estado `hasCrashed` para feedback visual
+- Persistencia parcial de código en localStorage
 
 #### 🐛 Correcciones
-- **Botones no funcionales**: Solucionado problema de comunicación entre editor y página
-- **Props no pasados**: Arreglado wrapper que no pasaba props correctamente
-- **Logs de debug**: Limpiados logs innecesarios para mejor rendimiento
-- **Interfaz limpia**: Eliminados botones de debug y force update
-
-#### 📱 Mejoras de UX
-- **Interfaz más limpia**: Sin elementos de debug visibles
-- **Feedback inmediato**: Estados claros durante la ejecución
-- **Mejor accesibilidad**: Indicadores visuales claros del estado del juego
-- **Experiencia inmersiva**: Animaciones que hacen el aprendizaje más divertido
-
-### 🏗️ Arquitectura
-- **Separación de responsabilidades**: Editor y visualización claramente separados
-- **Estado global mejorado**: Nuevos estados para mejor control de la UI
-- **Persistencia**: Código guardado automáticamente en localStorage
-- **Error handling**: Mejor manejo de errores con feedback visual
-
-### 📊 Impacto en el Aprendizaje
-- **Visualización clara**: Los estudiantes pueden ver exactamente qué hace cada comando
-- **Feedback inmediato**: Entienden inmediatamente si su código funciona o no
-- **Motivación**: Animaciones hacen el aprendizaje más atractivo
-- **Comprensión**: Movimiento paso a paso ayuda a entender la lógica de programación
+- Botones del editor no funcionaban (comunicación rota)
+- Props no pasados en wrapper de Blockly
+- Logs de debug innecesarios
 
 ---
 
-## [1.0.0] - Versión Inicial
+## [1.0.0] - Lanzamiento inicial
 
-### 🎮 Juegos Implementados
+### 🎮 Juegos implementados
 - Puerto de las Palabras (Gramática)
 - Bosc de Lectura (Comprensión lectora)
 - Mercado de Números (Matemáticas)
 - Misión Mapamundi (Geografía)
-- Desafío STEAM (Programación) - Versión básica
+- Desafío STEAM (Programación visual)
 - Laboratorio Flip-Ciencia (Ciencias)
 
-### 🏗️ Arquitectura Base
+### 🏗️ Arquitectura base
 - Next.js 15 con App Router
 - React 18 y TypeScript
 - Zustand para estado global
-- Tailwind CSS para estilos
-- Sistema de internacionalización
-- Persistencia en localStorage
+- Tailwind CSS
+- i18n con i18next (parcial)
+- Dashboard con 6 minijuegos
 
 ---
 
-*Este changelog documenta las mejoras significativas del proyecto ExplorAventura 3* 
+## Claves localStorage por versión
+
+| Juego | Clave | Desde |
+|-------|-------|-------|
+| Puerto Palabras | `puerto-palabras-storage` | 3.0.0 |
+| Bosc Lectura | `bosc-lectura-storage` | 3.0.0 |
+| Mercado Números | `mercado-numeros-storage` | 3.0.0 |
+| Mapamundi v2 | `mapamundi-v2-session` | 1.0.0 (mejorado 3.0.0) |
+| Desafío STEAM | `steam-v2-storage` | 2.0.0 (mejorado 3.0.0) |
+| Laboratorio Flip | `laboratorio-flip-storage` | 1.0.0 (mejorado 3.0.0) |
+
+---
+
+*Mantenido junto con `docs/CORRECTION_PLAN.md` y `docs/GAME_ARCHITECTURE.md`.*

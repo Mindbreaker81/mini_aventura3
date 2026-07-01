@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic';
 import { useTranslation } from '../../components/I18nProvider';
 import { useBoscLecturaStore } from './useBoscLecturaStore';
 import { useNavigation } from '../../hooks/useNavigation';
+import passagesData from '../../data/bosc-passages.json';
+import type { BoscPassage } from './useBoscLecturaStore';
 import { Home } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
@@ -15,8 +17,12 @@ export default function BoscLecturaPage() {
   const { t } = useTranslation('common');
   const energy = useBoscLecturaStore((s) => s.energy);
   const showInstructions = useBoscLecturaStore((s) => s.showInstructions);
-  const startGame = useBoscLecturaStore((s) => s.startGame);
+  const initializeGame = useBoscLecturaStore((s) => s.initializeGame);
   const { goToDashboard } = useNavigation();
+
+  const handleStart = () => {
+    initializeGame(passagesData as BoscPassage[]);
+  };
 
   // Componente de instrucciones
   if (showInstructions) {
@@ -64,7 +70,7 @@ export default function BoscLecturaPage() {
 
           <CardFooter className="flex gap-4 justify-center pt-2">
             <Button 
-              onClick={startGame}
+              onClick={handleStart}
               size="xl"
               className="bg-green-600 hover:bg-green-700"
             >

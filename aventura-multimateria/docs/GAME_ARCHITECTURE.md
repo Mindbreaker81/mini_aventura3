@@ -417,41 +417,39 @@ src/app/page.test.tsx   ← Dashboard
 
 ---
 
-## 12. Estado actual vs. deuda técnica conocida
+## 12. Estado actual (v3.0.0 — julio 2026)
 
-Resumen de la revisión de julio 2026. **Este documento describe el objetivo; la implementación está en curso.**
+| Juego | Lógica core | Victoria | Derrota | Persistencia | Clave localStorage |
+|-------|-------------|----------|---------|--------------|-------------------|
+| Puerto Palabras | ✅ | ✅ | — | ✅ | `puerto-palabras-storage` |
+| Bosc Lectura | ✅ | ✅ | ✅ | ✅ | `bosc-lectura-storage` |
+| Mercado Números | ✅ | ✅ | ✅ | ✅ | `mercado-numeros-storage` |
+| Mapamundi v2 | ✅ | ✅ | ✅ | ✅ | `mapamundi-v2-session` |
+| Desafío STEAM | ✅ | ✅ | ✅ | ✅ | `steam-v2-storage` |
+| Laboratorio Flip | ✅ | ✅ | ✅ (retry) | ✅ | `laboratorio-flip-storage` |
 
-| Juego | Lógica core | Victoria | Derrota | Persistencia | Prioridad fix |
-|-------|-------------|----------|---------|--------------|---------------|
-| Puerto Palabras | ⚠️ Parcial | ❌ | — | ❌ | Alta |
-| Bosc Lectura | ✅ | ✅ | ✅ | ⚠️ Rota | Media |
-| Mercado Números | ✅ | ✅ | ✅ | ❌ | Media |
-| Mapamundi v2 | ✅ | ✅ | ✅ | ⚠️ Conflicto | Media |
-| Desafío STEAM | ⚠️ Parcial | ❌ | ❌ | ⚠️ Parcial | Alta |
-| Laboratorio Flip | ✅ | ✅ | ✅ (retry) | ⚠️ Conflicto | Media |
+### Deuda pendiente (Fase 6+)
 
-### Bugs transversales a resolver
-
-1. **`initializeGame()` / `loadWords()` / `loadTasks()` incondicional en `useEffect` de montaje**
-2. **Falta de `gameStatus` unificado** en Puerto Palabras y STEAM
-3. **Tests que no cubren victoria/derrota/persistencia**
-4. **Lockfiles duplicados** en raíz y subproyecto (warning de Next.js)
+1. Séptimo juego (**Museo del Tiempo** — historia)
+2. Cobertura de tests ≥ 60 % en CI
+3. i18n completo en los 6 juegos (solo Bosc usa traducciones de forma consistente)
+4. Unificar tipo `badge` en STEAM (`boolean` vs `{ name: string }`)
 
 ---
 
-## 13. Plan de módulos compartidos (próximos pasos)
+## 13. Módulos compartidos
 
-Tras aprobar esta arquitectura, crear:
+Implementados en v3.0.0:
 
 ```
 src/app/world/shared/
 ├── types.ts           # BaseGameState, GameStatus, GameFeedback
 ├── random.ts          # shuffle, selectRandom (Fisher-Yates)
 ├── gameSession.ts     # hasActiveSession()
-└── useGameSession.ts  # Hook de montaje seguro
-```
+└── __tests__/shared.test.ts
 
-Estos módulos **no existen aún**; este documento los define como contrato para la Fase 0 del [plan de corrección](./CORRECTION_PLAN.md).
+src/app/hooks/useGameSession.ts  # Hook de montaje seguro
+```
 
 ---
 
