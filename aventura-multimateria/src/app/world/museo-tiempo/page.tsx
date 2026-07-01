@@ -3,9 +3,10 @@
 import React, { useCallback } from "react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 import { Home, Award, RotateCcw, Clock, Heart } from "lucide-react";
-import eventsData from "../../data/museo-events.json";
 import { useNavigation } from "../../hooks/useNavigation";
 import { useGameSession } from "../../hooks/useGameSession";
+import { useGameData } from "../../hooks/useGameData";
+import { useReloadGameDataOnLocale } from "../../hooks/useReloadGameDataOnLocale";
 import { useTranslation } from "../../components/I18nProvider";
 import {
   useMuseoTiempoStore,
@@ -48,11 +49,14 @@ export default function MuseoTiempoPage() {
     resetGame,
   } = useMuseoTiempoStore();
 
+  const eventsData = useGameData("museo-events");
+
   const initIfNeeded = useCallback(() => {
     loadEvents(eventsData as HistoricalEvent[]);
-  }, [loadEvents]);
+  }, [loadEvents, eventsData]);
 
   useGameSession(useMuseoTiempoStore.getState, initIfNeeded);
+  useReloadGameDataOnLocale(useMuseoTiempoStore.getState, initIfNeeded);
 
   const eventById = Object.fromEntries(roundEvents.map((e) => [e.id, e]));
   const poolIds = getPoolEventIds(roundEvents, timeline);

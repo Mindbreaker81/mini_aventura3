@@ -1,9 +1,11 @@
 "use client";
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { ArrowLeft, Award, CheckCircle, Beaker, Play, RotateCcw } from 'lucide-react';
 import { useNavigation } from '../../hooks/useNavigation';
 import { useTranslation } from '../../components/I18nProvider';
 import useLaboratorioFlipStore from './useLaboratorioFlipStore';
+import { useGameData } from '../../hooks/useGameData';
+import type { FlipLesson } from './types';
 import VideoCard from './VideoCard';
 import Quiz from './Quiz';
 import { Button } from '@/components/ui/button';
@@ -28,7 +30,18 @@ const LaboratorioFlip: React.FC = () => {
     experimentPieces,
     piecesObtained,
     videoWatched,
+    setLessonPool,
   } = useLaboratorioFlipStore();
+
+  const flipLessons = useGameData('flip-lessons');
+
+  const reloadLessons = useCallback(() => {
+    setLessonPool(flipLessons as FlipLesson[]);
+  }, [setLessonPool, flipLessons]);
+
+  useEffect(() => {
+    reloadLessons();
+  }, [reloadLessons]);
 
   const handleStartGame = () => {
     hideInstructionsScreen();

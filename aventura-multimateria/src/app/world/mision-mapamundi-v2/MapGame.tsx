@@ -5,8 +5,11 @@ import { Heart, ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 import { useMapamundiV2Store } from "./useMapamundiV2Store";
 import { GameMode, MODE_CONFIG } from "./types";
 import { useGameSessionWhen } from "../../hooks/useGameSession";
+import { useGameData } from "../../hooks/useGameData";
+import { useReloadGameDataOnLocale } from "../../hooks/useReloadGameDataOnLocale";
 import { useTranslation } from "../../components/I18nProvider";
 import { hasActiveSessionForMode } from "../shared/gameSession";
+import { MapamundiTask } from "./types";
 import Passport from "./Passport";
 import WorldMap from "./WorldMap";
 import SpainMap from "./SpainMap";
@@ -40,12 +43,19 @@ export default function MapGame({ mode }: MapGameProps) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const mapTasks = useGameData('mapamundi-tasks');
+
+  const initGame = useCallback(() => {
+    initializeGame(mode, mapTasks as MapamundiTask[]);
+  }, [initializeGame, mode, mapTasks]);
+
   const shouldInit = useCallback(
     () => !hasActiveSessionForMode(useMapamundiV2Store.getState(), mode),
     [mode]
   );
 
-  useGameSessionWhen(shouldInit, () => initializeGame(mode));
+  useGameSessionWhen(shouldInit, initGame);
+  useReloadGameDataOnLocale(useMapamundiV2Store.getState, initGame);
 
   const currentTaskData = tasks[currentTask];
   const config = MODE_CONFIG[mode];

@@ -36,6 +36,7 @@ jest.mock('./components/I18nProvider', () => ({
       };
       return map[key] ?? key;
     },
+    i18n: { language: 'es', changeLanguage: jest.fn() },
   }),
 }));
 

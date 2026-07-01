@@ -6,6 +6,24 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [3.1.1] - Julio 2026
+
+### 🌐 Contenido pedagógico multilingüe
+
+#### Añadido
+- Datos de juego por locale en `src/app/data/locales/{es,ca,en}/` (7 archivos × 3 idiomas)
+- `gameDataRegistry.ts` — registro estático es/ca/en
+- Hook `useGameData(key)` — resuelve JSON según idioma activo
+- Hook `useReloadGameDataOnLocale` — recarga pool al cambiar idioma sin partida activa
+- `LanguageSwitcher` (ES / CA / EN) en el dashboard
+- Persistencia de locale en `localStorage` (`exploraventura-locale`)
+
+#### Cambiado
+- Todos los minijuegos cargan contenido pedagógico desde `useGameData` (palabras, pasajes, tareas, eventos, lecciones)
+- Eliminados JSON monolíticos en `src/app/data/*.json` (sustituidos por `data/locales/`)
+
+---
+
 ## [3.1.0] - Julio 2026
 
 ### 🏛️ Museo del Tiempo — séptimo minijuego (Fase 6)

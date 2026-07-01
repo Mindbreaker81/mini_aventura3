@@ -6,7 +6,8 @@ import { CATEGORIES, PuertoWord } from "./dragdrop-utils";
 import { Book, Activity, Sparkles, Timer, CornerDownRight, Link, Home, Award, RotateCcw } from "lucide-react";
 import { useNavigation } from "../../hooks/useNavigation";
 import { useGameSession } from "../../hooks/useGameSession";
-import wordsData from "../../data/puerto-words.json";
+import { useGameData } from "../../hooks/useGameData";
+import { useReloadGameDataOnLocale } from "../../hooks/useReloadGameDataOnLocale";
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 
 import { Button } from "@/components/ui/button";
@@ -32,12 +33,14 @@ const PuertoPalabrasPage = () => {
     startGame,
   } = usePuertoPalabrasStore();
   const { goToDashboard } = useNavigation();
+  const wordsData = useGameData("puerto-words");
 
   const initIfNeeded = useCallback(() => {
     loadWords(wordsData as PuertoWord[]);
-  }, [loadWords]);
+  }, [loadWords, wordsData]);
 
   useGameSession(usePuertoPalabrasStore.getState, initIfNeeded);
+  useReloadGameDataOnLocale(usePuertoPalabrasStore.getState, initIfNeeded);
 
   const availableWords = roundWords.filter(
     (w) => !correctWords.includes(w.word)

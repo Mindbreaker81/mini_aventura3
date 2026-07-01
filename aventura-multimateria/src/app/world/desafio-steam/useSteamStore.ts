@@ -2,7 +2,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import steamTasksData from '../../data/steam-tasks.json';
 import type { GameStatus } from '../shared/types';
 
 interface RobotState {
@@ -40,6 +39,7 @@ interface SteamState {
   feedback: { show: boolean; type: 'success' | 'error'; message: string } | null;
   badge: { name: string } | null;
 
+  loadTasks: (tasks: SteamTask[]) => void;
   initialize: (taskId?: number) => void;
   resetAdventure: () => void;
   setBlocklyCode: (code: string) => void;
@@ -56,7 +56,7 @@ const STEAM_BADGE = { name: 'Ingeniero Junior' };
 const useSteamStore = create<SteamState>()(
   persist(
     immer((set, get) => ({
-      tasks: steamTasksData as SteamTask[],
+      tasks: [] as SteamTask[],
       currentTask: 0,
       robot: { x: 0, y: 0, dir: 'E' },
       lives: 3,
@@ -71,6 +71,10 @@ const useSteamStore = create<SteamState>()(
       pendingAdvance: false,
       feedback: null,
       badge: null,
+
+      loadTasks: (tasks) => {
+        set({ tasks });
+      },
 
       initialize: (taskId) => {
         const { tasks } = get();

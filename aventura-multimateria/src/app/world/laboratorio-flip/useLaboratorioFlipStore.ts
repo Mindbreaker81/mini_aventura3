@@ -1,13 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { GameState, FlipLesson, EXPERIMENT_PIECES } from './types';
-import flipLessons from '../../data/flip-lessons.json';
 import { selectRandom } from '../shared/random';
 
 type PendingQuizAction = 'nextLesson' | 'retry' | 'complete' | null;
 
 interface LaboratorioFlipStore extends GameState {
   pendingQuizAction: PendingQuizAction;
+  lessonPool: FlipLesson[];
+  setLessonPool: (lessons: FlipLesson[]) => void;
   initializeGame: () => void;
   showInstructionsScreen: () => void;
   hideInstructionsScreen: () => void;
@@ -50,6 +51,11 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
       videoWatched: false,
       quizStarted: false,
       pendingQuizAction: null,
+      lessonPool: [],
+
+      setLessonPool: (lessons) => {
+        set({ lessonPool: lessons });
+      },
 
       initializeGame: () => {
         const randomLessons = get().getRandomLessons();
@@ -242,7 +248,9 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
       },
 
       getRandomLessons: () => {
-        return selectRandom(flipLessons as FlipLesson[], 4);
+        const pool = get().lessonPool;
+        if (pool.length === 0) return [];
+        return selectRandom(pool, Math.min(4, pool.length));
       },
 
       getCorrectAnswersCount: () => {

@@ -1,9 +1,13 @@
 import { useMapamundiV2Store } from '../useMapamundiV2Store';
+import { getGameData } from '../../../data/gameDataRegistry';
 
 describe('useMapamundiV2Store', () => {
   beforeEach(() => {
     localStorage.clear();
-    useMapamundiV2Store.getState().initializeGame('continent');
+    useMapamundiV2Store.getState().initializeGame(
+      'continent',
+      getGameData('es', 'mapamundi-tasks')
+    );
   });
 
   it('inicializa tareas para el modo continente', () => {

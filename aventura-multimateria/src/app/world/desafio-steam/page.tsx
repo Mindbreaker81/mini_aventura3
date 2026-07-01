@@ -7,6 +7,8 @@ import RobotBoard from './RobotBoard';
 import BlocklyGame, { BlocklyGameRef } from './BlocklyGame';
 import { useNavigation } from '../../hooks/useNavigation';
 import { useTranslation } from '../../components/I18nProvider';
+import { useGameData } from '../../hooks/useGameData';
+import { useReloadGameDataOnLocale } from '../../hooks/useReloadGameDataOnLocale';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -30,10 +32,23 @@ const DesafioSteamV2: React.FC = () => {
     tasks,
     currentTask,
     isExecuting,
+    loadTasks,
     hideInstructions,
     hideFeedback,
     resetAdventure,
   } = useSteamStore();
+
+  const steamTasks = useGameData('steam-tasks');
+
+  const reloadTasks = useCallback(() => {
+    loadTasks(steamTasks as Parameters<typeof loadTasks>[0]);
+  }, [loadTasks, steamTasks]);
+
+  useEffect(() => {
+    reloadTasks();
+  }, [reloadTasks]);
+
+  useReloadGameDataOnLocale(useSteamStore.getState, reloadTasks);
 
   // Callback para cuando BlocklyGame esté listo
   const handleBlocklyReady = useCallback((functions: BlocklyGameRef) => {

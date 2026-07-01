@@ -7,8 +7,17 @@ import esCommon from '../../../public/locales/es/common.json';
 import caCommon from '../../../public/locales/ca/common.json';
 import enCommon from '../../../public/locales/en/common.json';
 
+const LOCALE_STORAGE_KEY = 'exploraventura-locale';
+
+function getInitialLocale(): string {
+  if (typeof window === 'undefined') return 'es';
+  const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
+  if (stored === 'ca' || stored === 'en' || stored === 'es') return stored;
+  return 'es';
+}
+
 i18n.use(initReactI18next).init({
-  lng: 'es',
+  lng: getInitialLocale(),
   fallbackLng: 'es',
   interpolation: { escapeValue: false },
   resources: {
@@ -24,6 +33,9 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
+    const locale = getInitialLocale();
+    i18n.changeLanguage(locale);
+    document.documentElement.lang = locale;
     setIsInitialized(true);
   }, []);
 

@@ -3,8 +3,8 @@ import dynamic from 'next/dynamic';
 import { useTranslation } from '../../components/I18nProvider';
 import { useBoscLecturaStore } from './useBoscLecturaStore';
 import { useNavigation } from '../../hooks/useNavigation';
-import passagesData from '../../data/bosc-passages.json';
 import type { BoscPassage } from './useBoscLecturaStore';
+import { useGameData } from '../../hooks/useGameData';
 import { Home } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ export default function BoscLecturaPage() {
   const showInstructions = useBoscLecturaStore((s) => s.showInstructions);
   const initializeGame = useBoscLecturaStore((s) => s.initializeGame);
   const { goToDashboard } = useNavigation();
+  const passagesData = useGameData('bosc-passages');
 
   const handleStart = () => {
     initializeGame(passagesData as BoscPassage[]);

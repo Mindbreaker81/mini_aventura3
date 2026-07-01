@@ -3,8 +3,9 @@ import React, { useCallback } from "react";
 import { useTranslation } from "../../components/I18nProvider";
 import { useMercadoNumerosStore } from "./useMercadoNumerosStore";
 import { MarketGame } from "./MarketGame";
-import tasksData from "../../data/mercado-tasks.json";
 import type { MercadoTask } from "./types";
+import { useGameData } from "../../hooks/useGameData";
+import { useReloadGameDataOnLocale } from "../../hooks/useReloadGameDataOnLocale";
 import { ShoppingCart, Heart, Home } from "lucide-react";
 import { useNavigation } from "../../hooks/useNavigation";
 import { useGameSession } from "../../hooks/useGameSession";
@@ -26,12 +27,14 @@ export default function MercadoNumerosPage() {
     startGame,
   } = useMercadoNumerosStore();
   const { goToDashboard } = useNavigation();
+  const tasksData = useGameData("mercado-tasks");
 
   const initIfNeeded = useCallback(() => {
     loadTasks(tasksData as MercadoTask[]);
-  }, [loadTasks]);
+  }, [loadTasks, tasksData]);
 
   useGameSession(useMercadoNumerosStore.getState, initIfNeeded);
+  useReloadGameDataOnLocale(useMercadoNumerosStore.getState, initIfNeeded);
 
   const handleNewGame = () => {
     newGame(tasksData as MercadoTask[]);

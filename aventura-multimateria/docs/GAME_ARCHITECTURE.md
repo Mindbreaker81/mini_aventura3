@@ -93,7 +93,7 @@ src/app/world/<codigo-juego>/
 Datos en paralelo:
 
 ```
-src/app/data/<codigo-juego>.json
+src/app/data/locales/<locale>/<codigo-juego>.json
 ```
 
 ---
@@ -293,7 +293,7 @@ Deben incluir:
 
 ## 7. Capa de datos (JSON)
 
-Los archivos viven en `src/app/data/`:
+Los archivos viven en `src/app/data/locales/{es,ca,en}/`:
 
 | Archivo | Juego | Contenido |
 |---------|-------|-----------|
@@ -303,6 +303,17 @@ Los archivos viven en `src/app/data/`:
 | `mapamundi-tasks.json` | Mapamundi | `{ mode, id, name, ... }[]` |
 | `steam-tasks.json` | STEAM | Niveles con tablero, muros, meta |
 | `flip-lessons.json` | Laboratorio Flip | Lecciones con vídeos y quiz |
+| `museo-events.json` | Museo del Tiempo | Eventos históricos con año |
+
+Acceso en runtime:
+
+```typescript
+import { useGameData } from '@/app/hooks/useGameData';
+
+const words = useGameData('puerto-words'); // según i18n.language
+```
+
+Registro estático: `src/app/data/gameDataRegistry.ts`.
 
 ### 7.1 Convenciones de datos
 
@@ -458,7 +469,7 @@ src/app/hooks/useGameSession.ts  # Hook de montaje seguro
 ### 14.1 Contenido y datos
 
 - [ ] Definir materia, mecánica y público objetivo
-- [ ] Crear `src/app/data/<codigo>.json` con ≥15 ítems
+- [ ] Crear `src/app/data/locales/es/<codigo>.json` (y traducir a `ca/`, `en/`) con ≥15 ítems
 - [ ] Definir `types.ts` con interfaces alineadas al JSON
 
 ### 14.2 Store

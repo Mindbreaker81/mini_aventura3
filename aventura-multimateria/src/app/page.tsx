@@ -17,6 +17,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "./components/I18nProvider";
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
 
 const minigames = [
   { code: "puerto-palabras", icon: Gamepad2, path: "/world/puerto-palabras", color: "text-blue-600", bgGradient: "from-blue-500 to-cyan-400", bgLight: "bg-blue-50" },
@@ -34,6 +35,9 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <header className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white">
+        <div className="absolute top-4 right-4 z-10">
+          <LanguageSwitcher />
+        </div>
         <div className="relative max-w-7xl mx-auto px-6 py-10 text-center">
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm">

@@ -1,0 +1,858 @@
+[
+  {
+    "id": 101,
+    "type": "PAGO",
+    "statement": "Pay exactly €3.65 for a loaf of bread and a juice.",
+    "amount": 3.65,
+    "explanation": "3 € (bill) + 50 c + 10 c + 5 c."
+  },
+  {
+    "id": 102,
+    "type": "PAGO",
+    "statement": "Buy milk for €1.85. How can you pay for it?",
+    "amount": 1.85,
+    "explanation": "1 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 103,
+    "type": "PAGO",
+    "statement": "The price of some apples is €2.40.",
+    "amount": 2.4,
+    "explanation": "2 € + 20 c + 20 c."
+  },
+  {
+    "id": 104,
+    "type": "PAGO",
+    "statement": "Pay €5.20 for a sandwich.",
+    "amount": 5.2,
+    "explanation": "5 € + 20 c."
+  },
+  {
+    "id": 105,
+    "type": "PAGO",
+    "statement": "A bottle of water costs €0.75.",
+    "amount": 0.75,
+    "explanation": "50 c + 20 c + 5 c."
+  },
+  {
+    "id": 106,
+    "type": "PAGO",
+    "statement": "Buy chocolate for €4.15.",
+    "amount": 4.15,
+    "explanation": "2 € + 2 € + 10 c + 5 c."
+  },
+  {
+    "id": 107,
+    "type": "PAGO",
+    "statement": "The yogurt costs €1.20.",
+    "amount": 1.2,
+    "explanation": "1 € + 20 c."
+  },
+  {
+    "id": 108,
+    "type": "PAGO",
+    "statement": "Pay €6.50 for cheese.",
+    "amount": 6.5,
+    "explanation": "5 € + 1 € + 50 c."
+  },
+  {
+    "id": 109,
+    "type": "PAGO",
+    "statement": "The cookies cost €2.95.",
+    "amount": 2.95,
+    "explanation": "2 € + 50 c + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 110,
+    "type": "PAGO",
+    "statement": "Buy fruit for €3.30.",
+    "amount": 3.3,
+    "explanation": "2 € + 1 € + 20 c + 10 c."
+  },
+  {
+    "id": 111,
+    "type": "PAGO",
+    "statement": "The ham costs €7.85.",
+    "amount": 7.85,
+    "explanation": "5 € + 2 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 112,
+    "type": "PAGO",
+    "statement": "Pay €1.55 for candies.",
+    "amount": 1.55,
+    "explanation": "1 € + 50 c + 5 c."
+  },
+  {
+    "id": 113,
+    "type": "PAGO",
+    "statement": "The potatoes cost €2.10.",
+    "amount": 2.1,
+    "explanation": "2 € + 10 c."
+  },
+  {
+    "id": 114,
+    "type": "PAGO",
+    "statement": "Buy oil for €4.75.",
+    "amount": 4.75,
+    "explanation": "2 € + 2 € + 50 c + 20 c + 5 c."
+  },
+  {
+    "id": 115,
+    "type": "PAGO",
+    "statement": "The rice costs €1.35.",
+    "amount": 1.35,
+    "explanation": "1 € + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 116,
+    "type": "PAGO",
+    "statement": "Pay €8.25 for meat.",
+    "amount": 8.25,
+    "explanation": "5 € + 2 € + 1 € + 20 c + 5 c."
+  },
+  {
+    "id": 117,
+    "type": "PAGO",
+    "statement": "The cherries cost €3.05.",
+    "amount": 3.05,
+    "explanation": "2 € + 1 € + 5 c."
+  },
+  {
+    "id": 118,
+    "type": "PAGO",
+    "statement": "Buy pasta for €1.90.",
+    "amount": 1.9,
+    "explanation": "1 € + 50 c + 20 c + 20 c."
+  },
+  {
+    "id": 202,
+    "type": "HORA",
+    "statement": "It is 17:10 and the shop closes at 18:00. How much time is left?",
+    "options": [
+      "50 min",
+      "40 min",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "From 17:10 to 18:00 there is 50 min."
+  },
+  {
+    "id": 203,
+    "type": "HORA",
+    "statement": "It is 15:30 and they close at 17:00. How much time is left?",
+    "options": [
+      "1 h 30 min",
+      "2 h",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "From 15:30 to 17:00 there is 1 hour and 30 minutes."
+  },
+  {
+    "id": 204,
+    "type": "HORA",
+    "statement": "It is 16:45 and the shop closes at 18:30. How much time is left?",
+    "options": [
+      "1 h 45 min",
+      "2 h 15 min",
+      "1 h 15 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:45 to 18:30 there is 1 hour and 45 minutes."
+  },
+  {
+    "id": 205,
+    "type": "HORA",
+    "statement": "It is 14:20 and they close at 16:00. How much time is left?",
+    "options": [
+      "1 h 40 min",
+      "2 h 20 min",
+      "1 h 20 min"
+    ],
+    "answer": 0,
+    "explanation": "From 14:20 to 16:00 there is 1 hour and 40 minutes."
+  },
+  {
+    "id": 206,
+    "type": "HORA",
+    "statement": "It is 17:25 and the shop closes at 18:15. How much time is left?",
+    "options": [
+      "50 min",
+      "45 min",
+      "1 h 10 min"
+    ],
+    "answer": 0,
+    "explanation": "From 17:25 to 18:15 there is 50 minutes."
+  },
+  {
+    "id": 207,
+    "type": "HORA",
+    "statement": "It is 16:10 and they close at 17:30. How much time is left?",
+    "options": [
+      "1 h 20 min",
+      "1 h 40 min",
+      "1 h 10 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:10 to 17:30 there is 1 hour and 20 minutes."
+  },
+  {
+    "id": 208,
+    "type": "HORA",
+    "statement": "It is 15:15 and the shop closes at 17:45. How much time is left?",
+    "options": [
+      "2 h 30 min",
+      "2 h 15 min",
+      "2 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "From 15:15 to 17:45 there is 2 hours and 30 minutes."
+  },
+  {
+    "id": 209,
+    "type": "HORA",
+    "statement": "It is 16:35 and they close at 18:00. How much time is left?",
+    "options": [
+      "1 h 25 min",
+      "1 h 35 min",
+      "1 h 15 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:35 to 18:00 there is 1 hour and 25 minutes."
+  },
+  {
+    "id": 210,
+    "type": "HORA",
+    "statement": "It is 17:05 and the shop closes at 18:20. How much time is left?",
+    "options": [
+      "1 h 15 min",
+      "1 h 25 min",
+      "1 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "From 17:05 to 18:20 there is 1 hour and 15 minutes."
+  },
+  {
+    "id": 211,
+    "type": "HORA",
+    "statement": "It is 14:50 and they close at 16:30. How much time is left?",
+    "options": [
+      "1 h 40 min",
+      "1 h 30 min",
+      "1 h 50 min"
+    ],
+    "answer": 0,
+    "explanation": "From 14:50 to 16:30 there is 1 hour and 40 minutes."
+  },
+  {
+    "id": 212,
+    "type": "HORA",
+    "statement": "It is 15:45 and the shop closes at 17:15. How much time is left?",
+    "options": [
+      "1 h 30 min",
+      "1 h 15 min",
+      "1 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "From 15:45 to 17:15 there is 1 hour and 30 minutes."
+  },
+  {
+    "id": 213,
+    "type": "HORA",
+    "statement": "It is 16:20 and they close at 18:45. How much time is left?",
+    "options": [
+      "2 h 25 min",
+      "2 h 15 min",
+      "2 h 35 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:20 to 18:45 there is 2 hours and 25 minutes."
+  },
+  {
+    "id": 214,
+    "type": "HORA",
+    "statement": "It is 17:30 and the shop closes at 18:15. How much time is left?",
+    "options": [
+      "45 min",
+      "30 min",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "From 17:30 to 18:15 there is 45 minutes."
+  },
+  {
+    "id": 215,
+    "type": "HORA",
+    "statement": "It is 14:15 and they close at 16:45. How much time is left?",
+    "options": [
+      "2 h 30 min",
+      "2 h 15 min",
+      "2 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "From 14:15 to 16:45 there is 2 hours and 30 minutes."
+  },
+  {
+    "id": 216,
+    "type": "HORA",
+    "statement": "It is 15:55 and the shop closes at 17:10. How much time is left?",
+    "options": [
+      "1 h 15 min",
+      "1 h 5 min",
+      "1 h 25 min"
+    ],
+    "answer": 0,
+    "explanation": "From 15:55 to 17:10 there is 1 hour and 15 minutes."
+  },
+  {
+    "id": 217,
+    "type": "HORA",
+    "statement": "It is 16:40 and they close at 18:25. How much time is left?",
+    "options": [
+      "1 h 45 min",
+      "1 h 25 min",
+      "1 h 55 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:40 to 18:25 there is 1 hour and 45 minutes."
+  },
+  {
+    "id": 303,
+    "type": "FRACCION",
+    "statement": "You need 3/4 kg of sugar. If each bag weighs 1/4 kg, how many bags do you buy?",
+    "answer": 3,
+    "explanation": "3 bags of 1/4 kg add up to 3/4 kg."
+  },
+  {
+    "id": 304,
+    "type": "FRACCION",
+    "statement": "You want to buy 1/2 kg of flour. The bags are 1/4 kg each. How many do you need?",
+    "answer": 2,
+    "explanation": "2 bags of 1/4 kg add up to 1/2 kg."
+  },
+  {
+    "id": 305,
+    "type": "FRACCION",
+    "statement": "A pizza is divided into 8 equal slices. You eat 3 slices. What fraction did you eat?",
+    "options": [
+      "3/8",
+      "1/4",
+      "1/2"
+    ],
+    "answer": 0,
+    "explanation": "3 slices out of 8 is 3/8 of the pizza."
+  },
+  {
+    "id": 306,
+    "type": "FRACCION",
+    "statement": "You need 1 kg of rice. The bags are 1/2 kg each. How many bags do you buy?",
+    "answer": 2,
+    "explanation": "2 bags of 1/2 kg add up to 1 full kg."
+  },
+  {
+    "id": 307,
+    "type": "FRACCION",
+    "statement": "A cake is cut into 4 equal parts. You eat 1 part. What fraction is left?",
+    "options": [
+      "3/4",
+      "1/4",
+      "1/2"
+    ],
+    "answer": 0,
+    "explanation": "If you eat 1/4, 3/4 of the cake remains."
+  },
+  {
+    "id": 308,
+    "type": "FRACCION",
+    "statement": "You want 3/8 kg of cheese. The portions are 1/8 kg each. How many portions do you need?",
+    "answer": 3,
+    "explanation": "3 portions of 1/8 kg add up to 3/8 kg."
+  },
+  {
+    "id": 309,
+    "type": "FRACCION",
+    "statement": "A chocolate bar has 8 squares. You eat half. How many squares did you eat?",
+    "answer": 4,
+    "explanation": "Half of 8 squares is 4 squares."
+  },
+  {
+    "id": 310,
+    "type": "FRACCION",
+    "statement": "You need 1/4 kg of ham. Each slice weighs 1/8 kg. How many slices do you buy?",
+    "answer": 2,
+    "explanation": "2 slices of 1/8 kg add up to 1/4 kg."
+  },
+  {
+    "id": 311,
+    "type": "FRACCION",
+    "statement": "A chocolate bar has 12 pieces. You eat 1/4 of the bar. How many pieces did you eat?",
+    "answer": 3,
+    "explanation": "1/4 of 12 pieces is 3 pieces."
+  },
+  {
+    "id": 312,
+    "type": "FRACCION",
+    "statement": "You buy 1/2 dozen eggs. How many eggs is that?",
+    "answer": 6,
+    "explanation": "1/2 of 12 eggs (one dozen) is 6 eggs."
+  },
+  {
+    "id": 313,
+    "type": "FRACCION",
+    "statement": "A loaf of bread is cut into 8 slices. You use 1/2 of the loaf. How many slices did you use?",
+    "answer": 4,
+    "explanation": "1/2 of 8 slices is 4 slices."
+  },
+  {
+    "id": 314,
+    "type": "FRACCION",
+    "statement": "You want 5/8 kg of meat. The portions are 1/8 kg each. How many portions do you need?",
+    "answer": 5,
+    "explanation": "5 portions of 1/8 kg add up to 5/8 kg."
+  },
+  {
+    "id": 315,
+    "type": "FRACCION",
+    "statement": "A large pizza is divided into 8 slices. You share 3/4 of the pizza. How many slices do you share?",
+    "answer": 6,
+    "explanation": "3/4 of 8 slices is 6 slices."
+  },
+  {
+    "id": 316,
+    "type": "FRACCION",
+    "statement": "You need 7/8 kg of vegetables. The bags are 1/8 kg each. How many bags do you buy?",
+    "answer": 7,
+    "explanation": "7 bags of 1/8 kg add up to 7/8 kg."
+  },
+  {
+    "id": 317,
+    "type": "FRACCION",
+    "statement": "A sponge cake is cut into 6 equal portions. You eat 1/3 of the cake. How many portions did you eat?",
+    "answer": 2,
+    "explanation": "1/3 of 6 portions is 2 portions."
+  },
+  {
+    "id": 119,
+    "type": "PAGO",
+    "statement": "Buy sardines for €5.75.",
+    "amount": 5.75,
+    "explanation": "5 € + 50 c + 20 c + 5 c."
+  },
+  {
+    "id": 120,
+    "type": "PAGO",
+    "statement": "The tuna costs €6.90.",
+    "amount": 6.9,
+    "explanation": "5 € + 1 € + 50 c + 20 c + 20 c."
+  },
+  {
+    "id": 121,
+    "type": "PAGO",
+    "statement": "Pay €4.05 for tomatoes.",
+    "amount": 4.05,
+    "explanation": "2 € + 2 € + 5 c."
+  },
+  {
+    "id": 122,
+    "type": "PAGO",
+    "statement": "The pears cost €3.80.",
+    "amount": 3.8,
+    "explanation": "2 € + 1 € + 50 c + 20 c + 10 c."
+  },
+  {
+    "id": 123,
+    "type": "PAGO",
+    "statement": "Buy lettuce for €1.45.",
+    "amount": 1.45,
+    "explanation": "1 € + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 124,
+    "type": "PAGO",
+    "statement": "The salmon costs €9.15.",
+    "amount": 9.15,
+    "explanation": "5 € + 2 € + 2 € + 10 c + 5 c."
+  },
+  {
+    "id": 125,
+    "type": "PAGO",
+    "statement": "Pay €2.65 for carrots.",
+    "amount": 2.65,
+    "explanation": "2 € + 50 c + 10 c + 5 c."
+  },
+  {
+    "id": 126,
+    "type": "PAGO",
+    "statement": "The oranges cost €4.20.",
+    "amount": 4.2,
+    "explanation": "2 € + 2 € + 20 c."
+  },
+  {
+    "id": 127,
+    "type": "PAGO",
+    "statement": "Buy hake for €7.35.",
+    "amount": 7.35,
+    "explanation": "5 € + 2 € + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 128,
+    "type": "PAGO",
+    "statement": "The celery costs €1.25.",
+    "amount": 1.25,
+    "explanation": "1 € + 20 c + 5 c."
+  },
+  {
+    "id": 129,
+    "type": "PAGO",
+    "statement": "Pay €5.60 for chicken.",
+    "amount": 5.6,
+    "explanation": "5 € + 50 c + 10 c."
+  },
+  {
+    "id": 130,
+    "type": "PAGO",
+    "statement": "The onions cost €0.95.",
+    "amount": 0.95,
+    "explanation": "50 c + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 131,
+    "type": "PAGO",
+    "statement": "Buy bananas for €2.85.",
+    "amount": 2.85,
+    "explanation": "2 € + 50 c + 20 c + 10 c + 5 c."
+  },
+  {
+    "id": 132,
+    "type": "PAGO",
+    "statement": "The cod costs €8.70.",
+    "amount": 8.7,
+    "explanation": "5 € + 2 € + 1 € + 50 c + 20 c."
+  },
+  {
+    "id": 133,
+    "type": "PAGO",
+    "statement": "Pay €3.15 for cucumbers.",
+    "amount": 3.15,
+    "explanation": "2 € + 1 € + 10 c + 5 c."
+  },
+  {
+    "id": 134,
+    "type": "PAGO",
+    "statement": "The grapes cost €6.45.",
+    "amount": 6.45,
+    "explanation": "5 € + 1 € + 20 c + 20 c + 5 c."
+  },
+  {
+    "id": 218,
+    "type": "HORA",
+    "statement": "It is 14:40 and the shop closes at 16:20. How much time is left?",
+    "options": [
+      "1 h 40 min",
+      "1 h 20 min",
+      "2 h"
+    ],
+    "answer": 0,
+    "explanation": "From 14:40 to 16:20 there is 1 hour and 40 minutes."
+  },
+  {
+    "id": 219,
+    "type": "HORA",
+    "statement": "It is 15:25 and they close at 17:50. How much time is left?",
+    "options": [
+      "2 h 25 min",
+      "2 h 35 min",
+      "2 h 15 min"
+    ],
+    "answer": 0,
+    "explanation": "From 15:25 to 17:50 there is 2 hours and 25 minutes."
+  },
+  {
+    "id": 220,
+    "type": "HORA",
+    "statement": "It is 16:15 and the shop closes at 17:00. How much time is left?",
+    "options": [
+      "45 min",
+      "1 h 15 min",
+      "30 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:15 to 17:00 there is 45 minutes."
+  },
+  {
+    "id": 221,
+    "type": "HORA",
+    "statement": "It is 17:20 and they close at 18:35. How much time is left?",
+    "options": [
+      "1 h 15 min",
+      "1 h 25 min",
+      "1 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "From 17:20 to 18:35 there is 1 hour and 15 minutes."
+  },
+  {
+    "id": 222,
+    "type": "HORA",
+    "statement": "It is 14:35 and the shop closes at 16:10. How much time is left?",
+    "options": [
+      "1 h 35 min",
+      "1 h 25 min",
+      "1 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "From 14:35 to 16:10 there is 1 hour and 35 minutes."
+  },
+  {
+    "id": 223,
+    "type": "HORA",
+    "statement": "It is 15:50 and they close at 18:05. How much time is left?",
+    "options": [
+      "2 h 15 min",
+      "2 h 25 min",
+      "2 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "From 15:50 to 18:05 there is 2 hours and 15 minutes."
+  },
+  {
+    "id": 224,
+    "type": "HORA",
+    "statement": "It is 16:25 and the shop closes at 17:40. How much time is left?",
+    "options": [
+      "1 h 15 min",
+      "1 h 25 min",
+      "1 h 5 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:25 to 17:40 there is 1 hour and 15 minutes."
+  },
+  {
+    "id": 225,
+    "type": "HORA",
+    "statement": "It is 17:15 and they close at 18:50. How much time is left?",
+    "options": [
+      "1 h 35 min",
+      "1 h 25 min",
+      "1 h 45 min"
+    ],
+    "answer": 0,
+    "explanation": "From 17:15 to 18:50 there is 1 hour and 35 minutes."
+  },
+  {
+    "id": 226,
+    "type": "HORA",
+    "statement": "It is 14:25 and the shop closes at 16:55. How much time is left?",
+    "options": [
+      "2 h 30 min",
+      "2 h 20 min",
+      "2 h 40 min"
+    ],
+    "answer": 0,
+    "explanation": "From 14:25 to 16:55 there is 2 hours and 30 minutes."
+  },
+  {
+    "id": 227,
+    "type": "HORA",
+    "statement": "It is 15:05 and they close at 17:25. How much time is left?",
+    "options": [
+      "2 h 20 min",
+      "2 h 10 min",
+      "2 h 30 min"
+    ],
+    "answer": 0,
+    "explanation": "From 15:05 to 17:25 there is 2 hours and 20 minutes."
+  },
+  {
+    "id": 228,
+    "type": "HORA",
+    "statement": "It is 16:50 and the shop closes at 18:10. How much time is left?",
+    "options": [
+      "1 h 20 min",
+      "1 h 10 min",
+      "1 h 30 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:50 to 18:10 there is 1 hour and 20 minutes."
+  },
+  {
+    "id": 229,
+    "type": "HORA",
+    "statement": "It is 17:35 and they close at 18:45. How much time is left?",
+    "options": [
+      "1 h 10 min",
+      "1 h 20 min",
+      "1 h"
+    ],
+    "answer": 0,
+    "explanation": "From 17:35 to 18:45 there is 1 hour and 10 minutes."
+  },
+  {
+    "id": 230,
+    "type": "HORA",
+    "statement": "It is 14:45 and the shop closes at 17:15. How much time is left?",
+    "options": [
+      "2 h 30 min",
+      "2 h 20 min",
+      "2 h 40 min"
+    ],
+    "answer": 0,
+    "explanation": "From 14:45 to 17:15 there is 2 hours and 30 minutes."
+  },
+  {
+    "id": 231,
+    "type": "HORA",
+    "statement": "It is 15:35 and they close at 18:20. How much time is left?",
+    "options": [
+      "2 h 45 min",
+      "2 h 35 min",
+      "2 h 55 min"
+    ],
+    "answer": 0,
+    "explanation": "From 15:35 to 18:20 there is 2 hours and 45 minutes."
+  },
+  {
+    "id": 232,
+    "type": "HORA",
+    "statement": "It is 16:05 and the shop closes at 17:30. How much time is left?",
+    "options": [
+      "1 h 25 min",
+      "1 h 15 min",
+      "1 h 35 min"
+    ],
+    "answer": 0,
+    "explanation": "From 16:05 to 17:30 there is 1 hour and 25 minutes."
+  },
+  {
+    "id": 233,
+    "type": "HORA",
+    "statement": "It is 17:00 and they close at 18:40. How much time is left?",
+    "options": [
+      "1 h 40 min",
+      "1 h 30 min",
+      "1 h 50 min"
+    ],
+    "answer": 0,
+    "explanation": "From 17:00 to 18:40 there is 1 hour and 40 minutes."
+  },
+  {
+    "id": 318,
+    "type": "FRACCION",
+    "statement": "A tart is divided into 10 portions. You eat 3/10 of the tart. How many portions did you eat?",
+    "answer": 3,
+    "explanation": "3/10 of 10 portions is 3 portions."
+  },
+  {
+    "id": 319,
+    "type": "FRACCION",
+    "statement": "You need 2/3 kg of fish. The portions are 1/3 kg each. How many portions do you buy?",
+    "answer": 2,
+    "explanation": "2 portions of 1/3 kg add up to 2/3 kg."
+  },
+  {
+    "id": 320,
+    "type": "FRACCION",
+    "statement": "A watermelon is cut into 16 pieces. You eat 1/4 of the watermelon. How many pieces did you eat?",
+    "answer": 4,
+    "explanation": "1/4 of 16 pieces is 4 pieces."
+  },
+  {
+    "id": 321,
+    "type": "FRACCION",
+    "statement": "You want 5/6 kg of vegetables. The bags are 1/6 kg each. How many bags do you need?",
+    "answer": 5,
+    "explanation": "5 bags of 1/6 kg add up to 5/6 kg."
+  },
+  {
+    "id": 322,
+    "type": "FRACCION",
+    "statement": "A melon is divided into 8 wedges. You eat 3/8 of the melon. How many wedges did you eat?",
+    "answer": 3,
+    "explanation": "3/8 of 8 wedges is 3 wedges."
+  },
+  {
+    "id": 323,
+    "type": "FRACCION",
+    "statement": "You need 3/5 kg of meat. The portions are 1/5 kg each. How many portions do you buy?",
+    "answer": 3,
+    "explanation": "3 portions of 1/5 kg add up to 3/5 kg."
+  },
+  {
+    "id": 324,
+    "type": "FRACCION",
+    "statement": "A chocolate bar has 20 squares. You eat 1/5 of the bar. How many squares did you eat?",
+    "answer": 4,
+    "explanation": "1/5 of 20 squares is 4 squares."
+  },
+  {
+    "id": 325,
+    "type": "FRACCION",
+    "statement": "You want 4/5 kg of apples. The bags are 1/5 kg each. How many bags do you need?",
+    "answer": 4,
+    "explanation": "4 bags of 1/5 kg add up to 4/5 kg."
+  },
+  {
+    "id": 326,
+    "type": "FRACCION",
+    "statement": "An empanada is cut into 12 portions. You eat 1/3 of the empanada. How many portions did you eat?",
+    "answer": 4,
+    "explanation": "1/3 of 12 portions is 4 portions."
+  },
+  {
+    "id": 327,
+    "type": "FRACCION",
+    "statement": "You need 7/10 kg of potatoes. The bags are 1/10 kg each. How many bags do you buy?",
+    "answer": 7,
+    "explanation": "7 bags of 1/10 kg add up to 7/10 kg."
+  },
+  {
+    "id": 328,
+    "type": "FRACCION",
+    "statement": "A cake is divided into 14 pieces. You eat 1/7 of the cake. How many pieces did you eat?",
+    "answer": 2,
+    "explanation": "1/7 of 14 pieces is 2 pieces."
+  },
+  {
+    "id": 329,
+    "type": "FRACCION",
+    "statement": "You want 6/7 kg of rice. The bags are 1/7 kg each. How many bags do you need?",
+    "answer": 6,
+    "explanation": "6 bags of 1/7 kg add up to 6/7 kg."
+  },
+  {
+    "id": 330,
+    "type": "FRACCION",
+    "statement": "A family pizza is cut into 18 slices. You eat 1/6 of the pizza. How many slices did you eat?",
+    "answer": 3,
+    "explanation": "1/6 of 18 slices is 3 slices."
+  },
+  {
+    "id": 331,
+    "type": "FRACCION",
+    "statement": "You need 8/9 kg of flour. The bags are 1/9 kg each. How many bags do you buy?",
+    "answer": 8,
+    "explanation": "8 bags of 1/9 kg add up to 8/9 kg."
+  },
+  {
+    "id": 332,
+    "type": "FRACCION",
+    "statement": "A cheese is cut into 15 slices. You eat 1/5 of the cheese. How many slices did you eat?",
+    "answer": 3,
+    "explanation": "1/5 of 15 slices is 3 slices."
+  },
+  {
+    "id": 333,
+    "type": "FRACCION",
+    "statement": "You want 9/10 kg of sugar. The bags are 1/10 kg each. How many bags do you need?",
+    "answer": 9,
+    "explanation": "9 bags of 1/10 kg add up to 9/10 kg."
+  },
+  {
+    "id": 334,
+    "type": "FRACCION",
+    "statement": "An omelette is cut into 16 portions. You eat 3/8 of the omelette. How many portions did you eat?",
+    "answer": 6,
+    "explanation": "3/8 of 16 portions is 6 portions."
+  }
+]

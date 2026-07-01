@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "The Dog and the Bear",
+    "paragraph": "A small dog found a honey bear in the forest. The bear looked at him with curiosity, but the dog, instead of getting scared, offered to share his cookie...",
+    "questions": [
+      {
+        "q": "What animal does the dog find?",
+        "type": "single",
+        "options": ["A cat", "A bear", "A fox"],
+        "answer": 1,
+        "explanation": "The text says: 'The bear looked at him with curiosity'."
+      },
+      {
+        "q": "The dog gets scared when he sees the bear.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "The text shows he does not get scared; instead he offers a cookie."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "The Hardworking Ant",
+    "paragraph": "An ant worked all day to gather food for the winter. The other ants laughed at her, but when winter came, she had enough food to survive.",
+    "questions": [
+      {
+        "q": "What did the ant do during the day?",
+        "type": "single",
+        "options": ["She slept", "She worked to gather food", "She played with the others"],
+        "answer": 1,
+        "explanation": "The text says she 'worked all day to gather food'."
+      },
+      {
+        "q": "The other ants helped the hardworking ant.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "The text says 'the other ants laughed at her'."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "The Rabbit and the Turtle",
+    "paragraph": "A very fast rabbit challenged a turtle to a race. The rabbit was so sure he would win that he stopped halfway to rest. The turtle, slow but steady, reached the finish line first.",
+    "questions": [
+      {
+        "q": "Which animal was faster?",
+        "type": "single",
+        "options": ["The turtle", "The rabbit", "They were equally fast"],
+        "answer": 1,
+        "explanation": "The text says the rabbit was 'very fast'."
+      },
+      {
+        "q": "The turtle won the race because she was faster.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "The turtle won because she was steady, not because she was faster."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "The Sun and the Wind",
+    "paragraph": "The sun and the wind argued about who was stronger. They decided on a test: who could make a traveler take off his coat. The wind blew hard, but the traveler wrapped himself more tightly in his coat. The sun shone warmly and the traveler took off his coat.",
+    "questions": [
+      {
+        "q": "What did the sun and the wind want to test?",
+        "type": "single",
+        "options": ["Who was stronger", "Who could make a traveler take off his coat", "Who shone brighter"],
+        "answer": 1,
+        "explanation": "The text says they wanted to test 'who could make a traveler take off his coat'."
+      },
+      {
+        "q": "The wind made the traveler take off his coat.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "The text says the traveler 'wrapped himself more tightly in his coat' when the wind blew."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "The Hare and Her Young",
+    "paragraph": "A mother hare taught her young to jump. The little one was afraid of jumping too high, but the mother encouraged him patiently. Finally, the young hare learned to jump with confidence.",
+    "questions": [
+      {
+        "q": "What was the mother hare doing?",
+        "type": "single",
+        "options": ["Sleeping", "Teaching her young to jump", "Looking for food"],
+        "answer": 1,
+        "explanation": "The text says she was 'teaching her young to jump'."
+      },
+      {
+        "q": "The young hare was confident from the start.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "The text says he 'was afraid of jumping too high' at first."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "The Sparrow and the Stork",
+    "paragraph": "A small sparrow saw a stork eating a frog. The sparrow wanted to eat the frog too, but it was too big for him. The stork explained that each bird has its own food.",
+    "questions": [
+      {
+        "q": "What was the stork eating?",
+        "type": "single",
+        "options": ["A frog", "A sparrow", "A stork"],
+        "answer": 0,
+        "explanation": "The text says the stork was eating 'a frog'."
+      },
+      {
+        "q": "The sparrow managed to eat the frog.",
+        "type": "true_false",
+        "answer": false,
+        "explanation": "The text says the frog was 'too big for him'."
+      }
+    ]
+  }
+]

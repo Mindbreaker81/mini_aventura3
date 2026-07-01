@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { MapamundiTask, GameMode, MODE_CONFIG } from './types';
-import tasksData from '../../data/mapamundi-tasks.json';
 import { shuffle } from '../shared/random';
 
 interface MapamundiV2Store {
@@ -10,6 +9,7 @@ interface MapamundiV2Store {
   completedStamps: number;
   xp: number;
   tasks: MapamundiTask[];
+  taskPool: MapamundiTask[];
   selectedRegion: string | null;
   showFeedback: boolean;
   feedbackMessage: string;
@@ -19,7 +19,7 @@ interface MapamundiV2Store {
   mode: GameMode;
   maxQuestions: number;
 
-  initializeGame: (mode: GameMode) => void;
+  initializeGame: (mode: GameMode, allTasks: MapamundiTask[]) => void;
   selectRegion: (regionId: string) => void;
   submitAnswer: () => void;
   nextTask: () => void;
@@ -38,6 +38,7 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
       completedStamps: 0,
       xp: 0,
       tasks: [],
+      taskPool: [],
       selectedRegion: null,
       showFeedback: false,
       feedbackMessage: '',
@@ -46,13 +47,14 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
       mode: 'continent',
       maxQuestions: 7,
 
-      initializeGame: (mode: GameMode) => {
+      initializeGame: (mode: GameMode, allTasks: MapamundiTask[]) => {
         const config = MODE_CONFIG[mode];
-        const modeTasks = (tasksData as MapamundiTask[]).filter((task) => task.mode === mode);
+        const modeTasks = allTasks.filter((task) => task.mode === mode);
         const shuffledTasks = shuffle(modeTasks).slice(0, config.maxQuestions);
 
         set({
           mode,
+          taskPool: allTasks,
           maxQuestions: config.maxQuestions,
           currentTask: 0,
           lives: 5,
@@ -115,7 +117,10 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
       },
 
       resetGame: () => {
-        get().initializeGame(get().mode);
+        const { mode, taskPool } = get();
+        if (taskPool.length > 0) {
+          get().initializeGame(mode, taskPool);
+        }
       },
 
       showFeedbackAction: (type: 'success' | 'error', message: string, params?: Record<string, string | number>) => {
@@ -151,6 +156,7 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
         completedStamps: state.completedStamps,
         xp: state.xp,
         tasks: state.tasks,
+        taskPool: state.taskPool,
         mode: state.mode,
         maxQuestions: state.maxQuestions,
         gameStatus: state.gameStatus,

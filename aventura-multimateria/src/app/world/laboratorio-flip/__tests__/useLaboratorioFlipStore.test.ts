@@ -71,6 +71,7 @@ describe('useLaboratorioFlipStore', () => {
 
   describe('initializeGame - inicializar juego', () => {
     it('configura el juego con lecciones aleatorias', () => {
+      useLaboratorioFlipStore.getState().setLessonPool([...leccionesPrueba, ...leccionesPrueba]);
       useLaboratorioFlipStore.getState().initializeGame();
       const state = useLaboratorioFlipStore.getState();
 
