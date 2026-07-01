@@ -87,6 +87,11 @@
       "tip4": "Otras tienen varias opciones para elegir",
       "heartsLabel": "Tienes 5 corazones",
       "start": "¡Empezar la Aventura!"
+    },
+    "playing": {
+      "passageProgress": "{{current}}/{{total}}",
+      "errorPassage": "Error: datos del pasaje no disponibles",
+      "errorQuestion": "Error: pregunta no disponible"
     }
   },
   "puerto": {
@@ -110,6 +115,14 @@
       "words": "Palabras",
       "feedbackCorrect": "¡Muy bien! Has colocado la palabra en la categoría correcta.",
       "feedbackRetry": "¡Inténtalo de nuevo!"
+    },
+    "categories": {
+      "sustantivo": "Sustantivo",
+      "verbo": "Verbo",
+      "adjetivo": "Adjetivo",
+      "adverbio": "Adverbo",
+      "preposición": "Preposición",
+      "conjunción": "Conjunción"
     }
   },
   "mercado": {
@@ -150,7 +163,57 @@
       "retry": "Intentar de Nuevo"
     },
     "playing": {
-      "baskets": "Cestas: {{current}} / {{total}}"
+      "baskets": "Cestas: {{current}} / {{total}}",
+      "loading": "Cargando desafío...",
+      "allDone": "¡Todos los desafíos completados!",
+      "unknownType": "Tipo de desafío no reconocido",
+      "challengeProgress": "Desafío {{current}} de {{total}}",
+      "correct": "¡Correcto!",
+      "tryAgain": "¡Inténtalo de nuevo!",
+      "nextChallenge": "Siguiente Desafío",
+      "retryChallenge": "Intentar de Nuevo",
+      "typePayment": "💰 Problema de Dinero",
+      "typeTime": "⏰ Problema de Tiempo",
+      "typeFraction": "🍰 Problema de Fracciones"
+    },
+    "challenge": {
+      "payment": {
+        "price": "Precio:",
+        "selectCoins": "Selecciona monedas y billetes:",
+        "bill": "billete",
+        "currentPayment": "Tu pago actual:",
+        "selectHint": "Selecciona monedas y billetes arriba",
+        "removeCoin": "Eliminar moneda",
+        "total": "Total:",
+        "exactAmount": "¡Cantidad exacta!",
+        "overpaid": "Te pasaste por {{amount}}",
+        "missing": "Faltan {{amount}}",
+        "pay": "Pagar"
+      },
+      "time": {
+        "clockAria": "Reloj analógico mostrando las {{time}}",
+        "currentTime": "Hora actual:",
+        "timeLeft": "¿Cuánto tiempo falta?",
+        "tipTitle": "Consejo:",
+        "tip": "Para calcular el tiempo que falta, cuenta las horas y minutos desde la hora actual hasta la hora de cierre. Recuerda que cada hora tiene 60 minutos.",
+        "confirm": "Confirmar Respuesta"
+      },
+      "fraction": {
+        "visualization": "Visualización:",
+        "yourAnswer": "Tu respuesta:",
+        "decrease": "Disminuir respuesta",
+        "increase": "Aumentar respuesta",
+        "adjustHint": "Usa los botones + y - para ajustar tu respuesta",
+        "tipTitle": "Consejo:",
+        "tip": "Una fracción como ½ significa «1 parte de 2 partes iguales». Para sumar fracciones iguales: ¼ + ¼ = 2/4 = ½",
+        "confirm": "Confirmar Respuesta"
+      }
+    },
+    "feedback": {
+      "paymentExact": "¡Perfecto! Pagaste exactamente {{amount}}",
+      "timeCorrect": "¡Correcto! Calculaste bien el tiempo restante.",
+      "fractionCorrect": "¡Excelente! Resolviste la fracción correctamente.",
+      "incorrect": "No es correcto. {{explanation}}"
     }
   },
   "steam": {
@@ -185,6 +248,29 @@
       "praise": "¡Excelente trabajo programando el robot!",
       "newAdventure": "Nueva aventura",
       "backDashboard": "Volver al Dashboard"
+    },
+    "playing": {
+      "badgeEarned": "Insignia obtenida",
+      "levelProgress": "Nivel {{current}} / {{total}}",
+      "blocks": "Bloques:",
+      "reset": "Reiniciar",
+      "executing": "Ejecutando...",
+      "run": "Ejecutar",
+      "levelTitle": "Nivel {{level}}: {{name}}",
+      "maxBlocks": "Máximo bloques: {{count}}",
+      "executingCode": "Ejecutando código...",
+      "crashed": "¡El robot ha chocado!",
+      "feedbackSuccess": "¡Excelente!",
+      "feedbackFail": "¡Ups!"
+    },
+    "feedback": {
+      "crashed": "¡El robot ha chocado! Intenta de nuevo.",
+      "levelComplete": "¡Excelente! Has completado el nivel.",
+      "missedGoal": "¡No has llegado a la meta! Intenta de nuevo."
+    },
+    "blockly": {
+      "maxBlocks": "¡Usa máximo {{max}} bloques! Actualmente usas {{count}}.",
+      "addBlocks": "¡Agrega algunos bloques para programar el robot!"
     }
   },
   "flip": {
@@ -229,6 +315,40 @@
       "quizLockedDesc": "Primero debes ver el video completo para desbloquear el quiz.",
       "feedbackSuccess": "¡Excelente!",
       "feedbackFail": "¡Ups!"
+    },
+    "quiz": {
+      "title": "Quiz: {{title}}",
+      "questionsCount": "3 preguntas",
+      "minCorrect": "Mínimo 2 correctas para continuar",
+      "questionN": "Pregunta {{n}}",
+      "progress": "Progreso del quiz",
+      "answered": "{{count}}/3 respondidas",
+      "submit": "Comprobar respuestas",
+      "answerAll": "Responde todas las preguntas",
+      "reminderTitle": "Recordatorio:",
+      "reminder": "Si no recuerdas alguna respuesta, puedes volver a ver el video. Necesitas al menos 2 respuestas correctas para obtener una pieza del experimento."
+    },
+    "video": {
+      "completed": "Video completado",
+      "playAria": "Reproducir video: {{title}}",
+      "clickToPlay": "Haz clic para reproducir",
+      "loadError": "No se pudo cargar el video",
+      "loadErrorHint": "Comprueba tu conexión a internet o prueba de nuevo.",
+      "openYoutube": "Abrir en YouTube",
+      "videoHelp": "¿Problemas para ver el video?",
+      "openYoutubeDirect": "Ábrelo directamente en YouTube",
+      "aboutLesson": "Sobre esta lección:",
+      "afterVideo": "Al finalizar el video, responderás 3 preguntas sobre el contenido.",
+      "readyForQuiz": "¡Listo para el quiz!",
+      "defaultChannel": "Canal Educativo",
+      "defaultDescription": "Video educativo sobre {{title}}"
+    },
+    "feedback": {
+      "success": "¡Excelente! Has obtenido {{count}}/3 respuestas correctas.",
+      "pieceAdded": "Has añadido una pieza al experimento: {{name}} {{icon}}",
+      "fail": "Has obtenido {{count}}/3 respuestas correctas. Necesitas al menos 2 para continuar.",
+      "retryHint": "Vuelve a ver el vídeo y repite el quiz.",
+      "answerAll": "Por favor, responde todas las preguntas antes de continuar."
     }
   },
   "mapamundi": {
@@ -256,6 +376,62 @@
         "description": "Localiza las 17 comunidades autónomas",
         "badge": "🇪🇸 Explorador de España"
       }
+    },
+    "invalidMode": {
+      "title": "Modo no válido",
+      "description": "El modo «{{mode}}» no está disponible.",
+      "hint": "Los modos disponibles son: Continentes, Océanos y Comunidades de España."
+    },
+    "playing": {
+      "selector": "Selector",
+      "questionProgress": "Pregunta {{current}} de {{total}}",
+      "typeContinent": "🌍 Continente",
+      "typeOcean": "🌊 Océano",
+      "typeCcaa": "🇪🇸 Comunidad Autónoma",
+      "verifying": "Verificando...",
+      "confirmSelection": "Confirmar Selección",
+      "missionComplete": "¡Misión Completada!",
+      "missionCompleteDesc": "Has completado todas las preguntas de {{badge}}",
+      "rewards": "Recompensas:",
+      "correctAnswers": "Aciertos:",
+      "bonus": "Bonus:",
+      "totalXp": "Total XP:",
+      "saveProgress": "Guardar Progreso",
+      "gameOver": "¡Game Over!",
+      "gameOverDesc": "Te has quedado sin vidas. ¡Inténtalo de nuevo!",
+      "progressLabel": "Progreso:",
+      "progressQuestions": "Completaste {{current}} de {{total}} preguntas",
+      "feedbackCorrect": "¡Correcto! {{explanation}}",
+      "feedbackIncorrect": "Incorrecto. {{explanation}}"
+    },
+    "passport": {
+      "continent": "Pasaporte de Continentes",
+      "ocean": "Pasaporte de Océanos",
+      "ccaa": "Pasaporte de España",
+      "progress": "Progreso: {{current}} de {{total}} sellos",
+      "next": "Próximo",
+      "completed": "🎉 ¡Pasaporte completado! ¡Misión cumplida!",
+      "remaining": "¡Excelente progreso! {{count}} sellos restantes",
+      "start": "¡Comienza tu aventura! Haz clic en las regiones correctas para ganar sellos"
+    },
+    "maps": {
+      "loadingWorld": "Cargando mapa mundial...",
+      "loadingSpain": "Cargando mapa de España...",
+      "offlineTitle": "El mapa necesita conexión a internet",
+      "offlineHint": "Comprueba tu conexión e inténtalo de nuevo.",
+      "retry": "Reintentar",
+      "clickContinent": "🌍 Haz clic en el continente",
+      "clickOcean": "🌊 Haz clic en el océano",
+      "ocean": "Océano",
+      "region": "Región",
+      "community": "Comunidad Autónoma",
+      "legendOceans": "Océanos",
+      "legendClickPoints": "Puntos clickeables",
+      "legendSelected": "Seleccionado",
+      "legendRegions": "Regiones",
+      "instructions": "Instrucciones:",
+      "oceanHint": "Haz clic en el punto azul del océano correcto para seleccionarlo.",
+      "regionHint": "Haz clic en la región correcta del mapa y luego confirma tu selección."
     }
   },
   "museo": {

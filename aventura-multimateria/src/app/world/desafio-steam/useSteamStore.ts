@@ -192,7 +192,7 @@ const useSteamStore = create<SteamState>()(
             state.feedback = {
               show: true,
               type: 'error',
-              message: '¡El robot ha chocado! Intenta de nuevo.',
+              message: 'steam.feedback.crashed',
             };
           });
           get().loseLife();
@@ -207,7 +207,7 @@ const useSteamStore = create<SteamState>()(
               state.feedback = {
                 show: true,
                 type: 'success',
-                message: '¡Excelente! Has completado el nivel.',
+                message: 'steam.feedback.levelComplete',
               };
               state.pendingAdvance = true;
             });
@@ -217,7 +217,7 @@ const useSteamStore = create<SteamState>()(
               state.feedback = {
                 show: true,
                 type: 'error',
-                message: '¡No has llegado a la meta! Intenta de nuevo.',
+                message: 'steam.feedback.missedGoal',
               };
             });
             get().loseLife();

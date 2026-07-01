@@ -1,33 +1,32 @@
 import React from "react";
+import { useTranslation } from "../../components/I18nProvider";
 import { PassportProps } from "./types";
 
 export default function Passport({ completedStamps, totalStamps, mode }: PassportProps) {
-  // Configurar colores y emojis según el modo
+  const { t } = useTranslation('common');
+
   const getModeConfig = () => {
     switch (mode) {
       case "continent":
         return {
           color: "bg-blue-500",
-          hoverColor: "hover:bg-blue-600",
           borderColor: "border-blue-200",
           emoji: "🌍",
-          title: "Pasaporte de Continentes"
+          title: t('mapamundi.passport.continent')
         };
       case "ocean":
         return {
           color: "bg-cyan-500",
-          hoverColor: "hover:bg-cyan-600",
           borderColor: "border-cyan-200",
           emoji: "🌊",
-          title: "Pasaporte de Océanos"
+          title: t('mapamundi.passport.ocean')
         };
       case "ccaa":
         return {
           color: "bg-green-500",
-          hoverColor: "hover:bg-green-600",
           borderColor: "border-green-200",
           emoji: "🇪🇸",
-          title: "Pasaporte de España"
+          title: t('mapamundi.passport.ccaa')
         };
     }
   };
@@ -36,16 +35,14 @@ export default function Passport({ completedStamps, totalStamps, mode }: Passpor
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-100">
-      {/* Header del pasaporte */}
       <div className="text-center mb-6">
         <div className="text-4xl mb-2">{config.emoji}</div>
         <h3 className="text-lg font-bold text-gray-800">{config.title}</h3>
         <p className="text-sm text-gray-600">
-          Progreso: {completedStamps} de {totalStamps} sellos
+          {t('mapamundi.passport.progress', { current: completedStamps, total: totalStamps })}
         </p>
       </div>
 
-      {/* Sellos */}
       <div className="grid grid-cols-5 gap-3 mb-4">
         {Array.from({ length: totalStamps }, (_, index) => {
           const isCompleted = index < completedStamps;
@@ -73,7 +70,7 @@ export default function Passport({ completedStamps, totalStamps, mode }: Passpor
               ) : isNext ? (
                 <div className="text-center">
                   <div className="text-2xl text-gray-400">📋</div>
-                  <div className="text-xs text-gray-500">Próximo</div>
+                  <div className="text-xs text-gray-500">{t('mapamundi.passport.next')}</div>
                 </div>
               ) : (
                 <div className="text-center">
@@ -86,7 +83,6 @@ export default function Passport({ completedStamps, totalStamps, mode }: Passpor
         })}
       </div>
 
-      {/* Barra de progreso */}
       <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
         <div
           className={`${config.color} h-3 rounded-full transition-all duration-500 ease-out`}
@@ -94,24 +90,20 @@ export default function Passport({ completedStamps, totalStamps, mode }: Passpor
         ></div>
       </div>
 
-      {/* Información adicional */}
       <div className="text-center text-sm text-gray-600">
         {completedStamps === totalStamps ? (
           <div className="text-green-600 font-semibold">
-            🎉 ¡Pasaporte completado! ¡Misión cumplida!
+            {t('mapamundi.passport.completed')}
           </div>
         ) : completedStamps > 0 ? (
           <div>
-            ¡Excelente progreso! {totalStamps - completedStamps} sellos restantes
+            {t('mapamundi.passport.remaining', { count: totalStamps - completedStamps })}
           </div>
         ) : (
-          <div>
-            ¡Comienza tu aventura! Haz clic en las regiones correctas para ganar sellos
-          </div>
+          <div>{t('mapamundi.passport.start')}</div>
         )}
       </div>
 
-      {/* Badge preview */}
       {completedStamps === totalStamps && (
         <div className="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
           <div className="flex items-center justify-center space-x-2">
@@ -119,13 +111,11 @@ export default function Passport({ completedStamps, totalStamps, mode }: Passpor
               🏆
             </div>
             <span className="text-sm font-medium text-yellow-800">
-              {mode === "continent" && "Explorador de Continentes"}
-              {mode === "ocean" && "Explorador de Océanos"}
-              {mode === "ccaa" && "Explorador de España"}
+              {t(`mapamundi.modes.${mode}.badge`)}
             </span>
           </div>
         </div>
       )}
     </div>
   );
-} 
+}

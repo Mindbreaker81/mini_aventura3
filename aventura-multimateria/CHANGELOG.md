@@ -22,7 +22,8 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - Claves i18n unificadas en `public/locales/{es,ca,en}/common.json`
 - Dashboard traducido (7 juegos, títulos, materias)
 - Pantallas principales de los 7 juegos traducidas (instrucciones, victoria, derrota)
-- Museo del Tiempo 100 % traducido (es/ca/en)
+- **Componentes internos** traducidos: `ReadingGame`, `MarketGame`, `PaymentChallenge`, `TimeChallenge`, `FractionChallenge`, `Quiz`, `VideoCard`, `MapGame`, `Passport`, `WorldMap`, `SpainMap`, `RobotBoard`, `BlocklyGame`
+- Mensajes de feedback en stores (Mercado, STEAM, Laboratorio Flip, Mapamundi) via claves i18n
 - `I18nProvider` carga desde archivos JSON (fuente única)
 
 ### 🧪 CI y cobertura

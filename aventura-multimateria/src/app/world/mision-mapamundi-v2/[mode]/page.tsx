@@ -27,14 +27,14 @@ export default function GamePage() {
         <Card className="max-w-md w-full shadow-xl border-0 text-center">
           <CardHeader>
             <div className="text-5xl mb-2">🚫</div>
-            <CardTitle className="text-2xl text-red-800">Modo no válido</CardTitle>
+            <CardTitle className="text-2xl text-red-800">{t('mapamundi.invalidMode.title')}</CardTitle>
             <CardDescription className="text-red-600">
-              El modo &quot;{mode}&quot; no está disponible.
+              {t('mapamundi.invalidMode.description', { mode })}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-gray-600 text-sm">
-              Los modos disponibles son: Continentes, Océanos y Comunidades de España.
+              {t('mapamundi.invalidMode.hint')}
             </p>
           </CardContent>
           <CardFooter className="justify-center">

@@ -15,7 +15,7 @@ interface MercadoNumerosState extends GameState {
   setFractionAnswer: (answer: number) => void;
   submitFractionAnswer: () => void;
   nextTask: () => void;
-  showFeedback: (correct: boolean, message: string) => void;
+  showFeedback: (correct: boolean, message: string, params?: Record<string, string | number>) => void;
   hideFeedback: () => void;
   loseHeart: () => void;
   gainXP: (amount: number) => void;
@@ -90,10 +90,10 @@ export const useMercadoNumerosStore = create<MercadoNumerosState>()(
         if (correct) {
           get().completeBasket();
           get().gainXP(15);
-          get().showFeedback(true, `¡Perfecto! Pagaste exactamente €${task.amount.toFixed(2)}`);
+          get().showFeedback(true, 'mercado.feedback.paymentExact', { amount: `€${task.amount.toFixed(2)}` });
         } else {
           get().loseHeart();
-          get().showFeedback(false, `No es correcto. ${task.explanation}`);
+          get().showFeedback(false, 'mercado.feedback.incorrect', { explanation: task.explanation });
         }
       },
 
@@ -109,10 +109,10 @@ export const useMercadoNumerosStore = create<MercadoNumerosState>()(
         if (correct) {
           get().completeBasket();
           get().gainXP(15);
-          get().showFeedback(true, "¡Correcto! Calculaste bien el tiempo restante.");
+          get().showFeedback(true, 'mercado.feedback.timeCorrect');
         } else {
           get().loseHeart();
-          get().showFeedback(false, `No es correcto. ${task.explanation}`);
+          get().showFeedback(false, 'mercado.feedback.incorrect', { explanation: task.explanation });
         }
       },
 
@@ -130,10 +130,10 @@ export const useMercadoNumerosStore = create<MercadoNumerosState>()(
         if (correct) {
           get().completeBasket();
           get().gainXP(15);
-          get().showFeedback(true, "¡Excelente! Resolviste la fracción correctamente.");
+          get().showFeedback(true, 'mercado.feedback.fractionCorrect');
         } else {
           get().loseHeart();
-          get().showFeedback(false, `No es correcto. ${task.explanation}`);
+          get().showFeedback(false, 'mercado.feedback.incorrect', { explanation: task.explanation });
         }
       },
 
@@ -154,8 +154,8 @@ export const useMercadoNumerosStore = create<MercadoNumerosState>()(
         }
       },
 
-      showFeedback: (correct: boolean, message: string) => {
-        set({ feedback: { show: true, correct, message } });
+      showFeedback: (correct: boolean, message: string, params?: Record<string, string | number>) => {
+        set({ feedback: { show: true, correct, message, params } });
       },
 
       hideFeedback: () => {

@@ -1,9 +1,11 @@
 "use client";
 import React from 'react';
 import { CheckCircle, Clock } from 'lucide-react';
+import { useTranslation } from '../../components/I18nProvider';
 import useLaboratorioFlipStore from './useLaboratorioFlipStore';
 
 const Quiz: React.FC = () => {
+  const { t } = useTranslation('common');
   const { 
     lessons, 
     currentLesson, 
@@ -22,14 +24,14 @@ const Quiz: React.FC = () => {
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="mb-6">
         <h2 className="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-          🧠 Quiz: {lesson.title}
+          🧠 {t('flip.quiz.title', { title: lesson.title })}
         </h2>
         <div className="flex items-center gap-4 text-sm text-gray-600">
           <span className="flex items-center gap-1">
             <Clock size={16} />
-            3 preguntas
+            {t('flip.quiz.questionsCount')}
           </span>
-          <span>Mínimo 2 correctas para continuar</span>
+          <span>{t('flip.quiz.minCorrect')}</span>
         </div>
       </div>
 
@@ -38,7 +40,7 @@ const Quiz: React.FC = () => {
           <div key={questionIndex} className="border border-gray-200 rounded-lg p-4">
             <div className="mb-4">
               <h3 className="font-semibold text-gray-800 mb-2">
-                Pregunta {questionIndex + 1}
+                {t('flip.quiz.questionN', { n: questionIndex + 1 })}
               </h3>
               <p className="text-gray-700">{question.q}</p>
             </div>
@@ -72,11 +74,10 @@ const Quiz: React.FC = () => {
         ))}
       </div>
 
-      {/* Progreso de respuestas */}
       <div className="mt-6 mb-4">
         <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-          <span>Progreso del quiz</span>
-          <span>{answers.filter(a => a !== null).length}/3 respondidas</span>
+          <span>{t('flip.quiz.progress')}</span>
+          <span>{t('flip.quiz.answered', { count: answers.filter(a => a !== null).length })}</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
           <div 
@@ -86,7 +87,6 @@ const Quiz: React.FC = () => {
         </div>
       </div>
 
-      {/* Botón de envío */}
       <div className="flex justify-center">
         <button
           onClick={submitQuiz}
@@ -100,24 +100,20 @@ const Quiz: React.FC = () => {
           {allQuestionsAnswered ? (
             <>
               <CheckCircle size={20} />
-              Comprobar respuestas
+              {t('flip.quiz.submit')}
             </>
           ) : (
             <>
               <Clock size={20} />
-              Responde todas las preguntas
+              {t('flip.quiz.answerAll')}
             </>
           )}
         </button>
       </div>
 
-      {/* Ayuda */}
       <div className="mt-4 bg-yellow-50 p-4 rounded-lg">
-        <h4 className="font-semibold text-yellow-800 mb-2">💡 Recordatorio:</h4>
-        <p className="text-yellow-700 text-sm">
-          Si no recuerdas alguna respuesta, puedes volver a ver el video. 
-          Necesitas al menos 2 respuestas correctas para obtener una pieza del experimento.
-        </p>
+        <h4 className="font-semibold text-yellow-800 mb-2">💡 {t('flip.quiz.reminderTitle')}</h4>
+        <p className="text-yellow-700 text-sm">{t('flip.quiz.reminder')}</p>
       </div>
     </div>
   );

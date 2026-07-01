@@ -21,7 +21,13 @@ interface LaboratorioFlipStore extends GameState {
   nextLesson: () => void;
   awardXP: (amount: number) => void;
   awardPiece: (pieceIndex: number) => void;
-  showFeedback: (success: boolean, message: string, explanation?: string) => void;
+  showFeedback: (
+    success: boolean,
+    message: string,
+    explanation?: string,
+    messageParams?: Record<string, string | number>,
+    explanationParams?: Record<string, string | number>
+  ) => void;
   hideFeedback: () => void;
   getRandomLessons: () => FlipLesson[];
   getCorrectAnswersCount: () => number;
@@ -109,7 +115,7 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
         const { answers } = get();
 
         if (answers.some((answer) => answer === null)) {
-          get().showFeedback(false, 'Por favor, responde todas las preguntas antes de continuar.');
+          get().showFeedback(false, 'flip.feedback.answerAll');
           return;
         }
 
@@ -124,10 +130,13 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
           const { completedLessons } = get();
           const willComplete = completedLessons + 1 >= 4;
 
+          const piece = EXPERIMENT_PIECES[pieceIndex];
           get().showFeedback(
             true,
-            `¡Excelente! Has obtenido ${correctCount}/3 respuestas correctas.`,
-            `Has añadido una pieza al experimento: ${EXPERIMENT_PIECES[pieceIndex].name} ${EXPERIMENT_PIECES[pieceIndex].icon}`
+            'flip.feedback.success',
+            'flip.feedback.pieceAdded',
+            { count: correctCount },
+            { name: piece.name, icon: piece.icon }
           );
 
           if (willComplete) {
@@ -139,8 +148,9 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
         } else {
           get().showFeedback(
             false,
-            `Has obtenido ${correctCount}/3 respuestas correctas. Necesitas al menos 2 para continuar.`,
-            'Vuelve a ver el vídeo y repite el quiz.'
+            'flip.feedback.fail',
+            'flip.feedback.retryHint',
+            { count: correctCount }
           );
           set({ pendingQuizAction: 'retry' });
         }
@@ -211,9 +221,15 @@ const useLaboratorioFlipStore = create<LaboratorioFlipStore>()(
         });
       },
 
-      showFeedback: (success: boolean, message: string, explanation?: string) => {
+      showFeedback: (
+        success: boolean,
+        message: string,
+        explanation?: string,
+        messageParams?: Record<string, string | number>,
+        explanationParams?: Record<string, string | number>
+      ) => {
         set({
-          feedback: { show: true, success, message, explanation },
+          feedback: { show: true, success, message, explanation, messageParams, explanationParams },
         });
       },
 

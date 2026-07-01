@@ -335,13 +335,13 @@ const LaboratorioFlip: React.FC = () => {
               </h3>
               
               <p className="text-gray-700 mb-4">
-                {feedback.message}
+                {t(feedback.message, feedback.messageParams)}
               </p>
 
               {feedback.explanation && (
                 <div className="bg-blue-50 p-3 rounded-lg mb-4">
                   <p className="text-blue-800 text-sm">
-                    {feedback.explanation}
+                    {t(feedback.explanation, feedback.explanationParams)}
                   </p>
                 </div>
               )}

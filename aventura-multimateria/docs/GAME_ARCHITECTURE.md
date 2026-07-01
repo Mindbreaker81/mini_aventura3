@@ -433,7 +433,7 @@ src/app/page.test.tsx   ← Dashboard
 ### Deuda pendiente (post v3.1)
 
 1. Unificar tipo `badge` en STEAM (`boolean` vs `{ name: string }`)
-2. i18n en componentes internos (ReadingGame, Quiz, MarketGame) — pantallas principales ya traducidas
+2. Contenido pedagógico en JSON (preguntas, enunciados, pistas) — permanece en español; solo UI traducida
 
 ---
 

@@ -25,6 +25,7 @@ export default function MapGame({ mode }: MapGameProps) {
     selectedRegion,
     showFeedback,
     feedbackMessage,
+    feedbackParams,
     feedbackType,
     gameStatus,
     xp,
@@ -77,7 +78,7 @@ export default function MapGame({ mode }: MapGameProps) {
     const isCorrect = selectedRegion === currentTaskData?.targetId;
 
     if (isCorrect) {
-      showFeedbackAction('success', `¡Correcto! ${currentTaskData?.explanation}`);
+      showFeedbackAction('success', 'mapamundi.playing.feedbackCorrect', { explanation: currentTaskData?.explanation ?? '' });
       submitAnswer();
 
       setTimeout(() => {
@@ -86,7 +87,7 @@ export default function MapGame({ mode }: MapGameProps) {
         hideFeedback();
       }, 2000);
     } else {
-      showFeedbackAction('error', `Incorrecto. ${currentTaskData?.explanation}`);
+      showFeedbackAction('error', 'mapamundi.playing.feedbackIncorrect', { explanation: currentTaskData?.explanation ?? '' });
       submitAnswer();
 
       setTimeout(() => {
@@ -102,24 +103,24 @@ export default function MapGame({ mode }: MapGameProps) {
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center">
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
           <div className="text-6xl mb-4">🏆</div>
-          <h1 className="text-3xl font-bold text-green-800 mb-4">¡Misión Completada!</h1>
+          <h1 className="text-3xl font-bold text-green-800 mb-4">{t('mapamundi.playing.missionComplete')}</h1>
           <p className="text-lg text-gray-600 mb-6">
-            Has completado todas las preguntas de {config.badge.name}
+            {t('mapamundi.playing.missionCompleteDesc', { badge: config.badge.name })}
           </p>
           
           <div className="bg-green-50 rounded-lg p-4 mb-6">
-            <h3 className="font-bold text-green-800 mb-2">Recompensas:</h3>
+            <h3 className="font-bold text-green-800 mb-2">{t('mapamundi.playing.rewards')}</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span>Aciertos:</span>
+                <span>{t('mapamundi.playing.correctAnswers')}</span>
                 <span className="font-bold">+{completedStamps * config.xpPerCorrect} XP</span>
               </div>
               <div className="flex justify-between">
-                <span>Bonus:</span>
+                <span>{t('mapamundi.playing.bonus')}</span>
                 <span className="font-bold">+{config.bonusXP} XP</span>
               </div>
               <div className="flex justify-between border-t pt-2">
-                <span>Total XP:</span>
+                <span>{t('mapamundi.playing.totalXp')}</span>
                 <span className="font-bold text-green-800">+{xp} XP</span>
               </div>
             </div>
@@ -142,7 +143,7 @@ export default function MapGame({ mode }: MapGameProps) {
               }}
               className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors"
             >
-              Guardar Progreso
+              {t('mapamundi.playing.saveProgress')}
             </button>
             <Link
               href="/world/mision-mapamundi-v2"
@@ -162,15 +163,15 @@ export default function MapGame({ mode }: MapGameProps) {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-100 flex items-center justify-center">
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
           <div className="text-6xl mb-4">💔</div>
-          <h1 className="text-3xl font-bold text-red-800 mb-4">¡Game Over!</h1>
+          <h1 className="text-3xl font-bold text-red-800 mb-4">{t('mapamundi.playing.gameOver')}</h1>
           <p className="text-lg text-gray-600 mb-6">
-            Te has quedado sin vidas. ¡Inténtalo de nuevo!
+            {t('mapamundi.playing.gameOverDesc')}
           </p>
           
           <div className="bg-red-50 rounded-lg p-4 mb-6">
-            <h3 className="font-bold text-red-800 mb-2">Progreso:</h3>
+            <h3 className="font-bold text-red-800 mb-2">{t('mapamundi.playing.progressLabel')}</h3>
             <p className="text-sm">
-              Completaste {completedStamps} de {config.maxQuestions} preguntas
+              {t('mapamundi.playing.progressQuestions', { current: completedStamps, total: config.maxQuestions })}
             </p>
           </div>
 
@@ -179,7 +180,7 @@ export default function MapGame({ mode }: MapGameProps) {
               onClick={() => initializeGame(mode)}
               className="w-full bg-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition-colors"
             >
-              Reintentar
+              {t('common.retry')}
             </button>
             <Link
               href="/world/mision-mapamundi-v2"
@@ -205,7 +206,7 @@ export default function MapGame({ mode }: MapGameProps) {
               className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors"
             >
               <ArrowLeft size={20} />
-              <span>Selector</span>
+              <span>{t('mapamundi.playing.selector')}</span>
             </Link>
           </div>
           
@@ -223,7 +224,7 @@ export default function MapGame({ mode }: MapGameProps) {
             
             {/* Progreso */}
             <div className="text-sm text-gray-600">
-              Pregunta {currentTask + 1} de {config.maxQuestions}
+              {t('mapamundi.playing.questionProgress', { current: currentTask + 1, total: config.maxQuestions })}
             </div>
           </div>
           
@@ -246,9 +247,9 @@ export default function MapGame({ mode }: MapGameProps) {
           {/* Pregunta */}
           <div className="text-center mb-6">
             <div className="inline-block px-4 py-2 rounded-full text-lg font-medium bg-indigo-100 text-indigo-800 mb-4">
-              {mode === "continent" && "🌍 Continente"}
-              {mode === "ocean" && "🌊 Océano"}
-              {mode === "ccaa" && "🇪🇸 Comunidad Autónoma"}
+              {mode === "continent" && t('mapamundi.playing.typeContinent')}
+              {mode === "ocean" && t('mapamundi.playing.typeOcean')}
+              {mode === "ccaa" && t('mapamundi.playing.typeCcaa')}
             </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               {currentTaskData?.question}
@@ -287,7 +288,7 @@ export default function MapGame({ mode }: MapGameProps) {
                 }
               `}
             >
-              {isSubmitting ? "Verificando..." : "Confirmar Selección"}
+              {isSubmitting ? t('mapamundi.playing.verifying') : t('mapamundi.playing.confirmSelection')}
             </button>
           </div>
 
@@ -307,7 +308,7 @@ export default function MapGame({ mode }: MapGameProps) {
                 ) : (
                   <XCircle size={20} className="text-red-600" />
                 )}
-                <span className="font-medium">{feedbackMessage}</span>
+                <span className="font-medium">{t(feedbackMessage, feedbackParams)}</span>
               </div>
             </div>
           )}

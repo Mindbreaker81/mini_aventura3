@@ -87,6 +87,11 @@
       "tip4": "Others have multiple choices",
       "heartsLabel": "You have 5 hearts",
       "start": "Start the Adventure!"
+    },
+    "playing": {
+      "passageProgress": "{{current}}/{{total}}",
+      "errorPassage": "Error: passage data unavailable",
+      "errorQuestion": "Error: question unavailable"
     }
   },
   "puerto": {
@@ -110,6 +115,14 @@
       "words": "Words",
       "feedbackCorrect": "Well done! You placed the word in the correct category.",
       "feedbackRetry": "Try again!"
+    },
+    "categories": {
+      "sustantivo": "Noun",
+      "verbo": "Verb",
+      "adjetivo": "Adjective",
+      "adverbio": "Adverb",
+      "preposición": "Preposition",
+      "conjunción": "Conjunction"
     }
   },
   "mercado": {
@@ -150,7 +163,57 @@
       "retry": "Try Again"
     },
     "playing": {
-      "baskets": "Baskets: {{current}} / {{total}}"
+      "baskets": "Baskets: {{current}} / {{total}}",
+      "loading": "Loading challenge...",
+      "allDone": "All challenges completed!",
+      "unknownType": "Unrecognized challenge type",
+      "challengeProgress": "Challenge {{current}} of {{total}}",
+      "correct": "Correct!",
+      "tryAgain": "Try again!",
+      "nextChallenge": "Next Challenge",
+      "retryChallenge": "Try Again",
+      "typePayment": "💰 Money Problem",
+      "typeTime": "⏰ Time Problem",
+      "typeFraction": "🍰 Fraction Problem"
+    },
+    "challenge": {
+      "payment": {
+        "price": "Price:",
+        "selectCoins": "Select coins and bills:",
+        "bill": "bill",
+        "currentPayment": "Your current payment:",
+        "selectHint": "Select coins and bills above",
+        "removeCoin": "Remove coin",
+        "total": "Total:",
+        "exactAmount": "Exact amount!",
+        "overpaid": "You overpaid by {{amount}}",
+        "missing": "Missing {{amount}}",
+        "pay": "Pay"
+      },
+      "time": {
+        "clockAria": "Analog clock showing {{time}}",
+        "currentTime": "Current time:",
+        "timeLeft": "How much time is left?",
+        "tipTitle": "Tip:",
+        "tip": "To calculate the remaining time, count the hours and minutes from the current time until closing time. Remember that each hour has 60 minutes.",
+        "confirm": "Confirm Answer"
+      },
+      "fraction": {
+        "visualization": "Visualization:",
+        "yourAnswer": "Your answer:",
+        "decrease": "Decrease answer",
+        "increase": "Increase answer",
+        "adjustHint": "Use the + and - buttons to adjust your answer",
+        "tipTitle": "Tip:",
+        "tip": "A fraction like ½ means «1 part of 2 equal parts». To add equal fractions: ¼ + ¼ = 2/4 = ½",
+        "confirm": "Confirm Answer"
+      }
+    },
+    "feedback": {
+      "paymentExact": "Perfect! You paid exactly {{amount}}",
+      "timeCorrect": "Correct! You calculated the remaining time correctly.",
+      "fractionCorrect": "Excellent! You solved the fraction correctly.",
+      "incorrect": "Not correct. {{explanation}}"
     }
   },
   "steam": {
@@ -185,6 +248,29 @@
       "praise": "Excellent work programming the robot!",
       "newAdventure": "New adventure",
       "backDashboard": "Back to Dashboard"
+    },
+    "playing": {
+      "badgeEarned": "Badge earned",
+      "levelProgress": "Level {{current}} / {{total}}",
+      "blocks": "Blocks:",
+      "reset": "Reset",
+      "executing": "Running...",
+      "run": "Run",
+      "levelTitle": "Level {{level}}: {{name}}",
+      "maxBlocks": "Max blocks: {{count}}",
+      "executingCode": "Running code...",
+      "crashed": "The robot crashed!",
+      "feedbackSuccess": "Excellent!",
+      "feedbackFail": "Oops!"
+    },
+    "feedback": {
+      "crashed": "The robot crashed! Try again.",
+      "levelComplete": "Excellent! You completed the level.",
+      "missedGoal": "You didn't reach the goal! Try again."
+    },
+    "blockly": {
+      "maxBlocks": "Use at most {{max}} blocks! You currently use {{count}}.",
+      "addBlocks": "Add some blocks to program the robot!"
     }
   },
   "flip": {
@@ -229,6 +315,40 @@
       "quizLockedDesc": "Watch the full video first to unlock the quiz.",
       "feedbackSuccess": "Excellent!",
       "feedbackFail": "Oops!"
+    },
+    "quiz": {
+      "title": "Quiz: {{title}}",
+      "questionsCount": "3 questions",
+      "minCorrect": "Minimum 2 correct to continue",
+      "questionN": "Question {{n}}",
+      "progress": "Quiz progress",
+      "answered": "{{count}}/3 answered",
+      "submit": "Check answers",
+      "answerAll": "Answer all questions",
+      "reminderTitle": "Reminder:",
+      "reminder": "If you don't remember an answer, you can watch the video again. You need at least 2 correct answers to earn an experiment piece."
+    },
+    "video": {
+      "completed": "Video completed",
+      "playAria": "Play video: {{title}}",
+      "clickToPlay": "Click to play",
+      "loadError": "Could not load the video",
+      "loadErrorHint": "Check your internet connection or try again.",
+      "openYoutube": "Open on YouTube",
+      "videoHelp": "Having trouble watching the video?",
+      "openYoutubeDirect": "Open it directly on YouTube",
+      "aboutLesson": "About this lesson:",
+      "afterVideo": "When the video ends, you will answer 3 questions about the content.",
+      "readyForQuiz": "Ready for the quiz!",
+      "defaultChannel": "Educational Channel",
+      "defaultDescription": "Educational video about {{title}}"
+    },
+    "feedback": {
+      "success": "Excellent! You got {{count}}/3 correct answers.",
+      "pieceAdded": "You added a piece to the experiment: {{name}} {{icon}}",
+      "fail": "You got {{count}}/3 correct answers. You need at least 2 to continue.",
+      "retryHint": "Watch the video again and retry the quiz.",
+      "answerAll": "Please answer all questions before continuing."
     }
   },
   "mapamundi": {
@@ -256,6 +376,62 @@
         "description": "Locate the 17 autonomous communities",
         "badge": "🇪🇸 Spain Explorer"
       }
+    },
+    "invalidMode": {
+      "title": "Invalid mode",
+      "description": "Mode «{{mode}}» is not available.",
+      "hint": "Available modes are: Continents, Oceans and Regions of Spain."
+    },
+    "playing": {
+      "selector": "Selector",
+      "questionProgress": "Question {{current}} of {{total}}",
+      "typeContinent": "🌍 Continent",
+      "typeOcean": "🌊 Ocean",
+      "typeCcaa": "🇪🇸 Autonomous Community",
+      "verifying": "Verifying...",
+      "confirmSelection": "Confirm Selection",
+      "missionComplete": "Mission Complete!",
+      "missionCompleteDesc": "You completed all questions for {{badge}}",
+      "rewards": "Rewards:",
+      "correctAnswers": "Correct:",
+      "bonus": "Bonus:",
+      "totalXp": "Total XP:",
+      "saveProgress": "Save Progress",
+      "gameOver": "Game Over!",
+      "gameOverDesc": "You ran out of lives. Try again!",
+      "progressLabel": "Progress:",
+      "progressQuestions": "You completed {{current}} of {{total}} questions",
+      "feedbackCorrect": "Correct! {{explanation}}",
+      "feedbackIncorrect": "Incorrect. {{explanation}}"
+    },
+    "passport": {
+      "continent": "Continents Passport",
+      "ocean": "Oceans Passport",
+      "ccaa": "Spain Passport",
+      "progress": "Progress: {{current}} of {{total}} stamps",
+      "next": "Next",
+      "completed": "🎉 Passport complete! Mission accomplished!",
+      "remaining": "Great progress! {{count}} stamps remaining",
+      "start": "Start your adventure! Click the correct regions to earn stamps"
+    },
+    "maps": {
+      "loadingWorld": "Loading world map...",
+      "loadingSpain": "Loading map of Spain...",
+      "offlineTitle": "The map needs an internet connection",
+      "offlineHint": "Check your connection and try again.",
+      "retry": "Retry",
+      "clickContinent": "🌍 Click on the continent",
+      "clickOcean": "🌊 Click on the ocean",
+      "ocean": "Ocean",
+      "region": "Region",
+      "community": "Autonomous Community",
+      "legendOceans": "Oceans",
+      "legendClickPoints": "Clickable points",
+      "legendSelected": "Selected",
+      "legendRegions": "Regions",
+      "instructions": "Instructions:",
+      "oceanHint": "Click the blue point on the correct ocean to select it.",
+      "regionHint": "Click the correct region on the map and then confirm your selection."
     }
   },
   "museo": {

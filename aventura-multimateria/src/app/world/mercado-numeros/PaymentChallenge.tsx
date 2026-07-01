@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useTranslation } from "../../components/I18nProvider";
 import { useMercadoNumerosStore } from "./useMercadoNumerosStore";
 import { AVAILABLE_MONEY } from "./types";
 import type { PaymentTask } from "./types";
@@ -10,6 +11,7 @@ interface PaymentChallengeProps {
 }
 
 export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
+  const { t } = useTranslation("common");
   const { 
     selectedCoins, 
     selectCoin, 
@@ -23,26 +25,23 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
   const formatAmount = (amount: number) => {
     if (amount >= 1) {
       return `€${amount.toFixed(2)}`;
-    } else {
-      return `${Math.round(amount * 100)}c`;
     }
+    return `${Math.round(amount * 100)}c`;
   };
 
   return (
     <div className="space-y-6">
-      {/* Enunciado del problema */}
       <div className="text-center">
         <div className="text-4xl mb-3">🛍️</div>
         <p className="text-lg text-gray-700 mb-4">{task.statement}</p>
         <div className="text-2xl font-bold text-orange-800">
-          Precio: {formatAmount(targetAmount)}
+          {t("mercado.challenge.payment.price")} {formatAmount(targetAmount)}
         </div>
       </div>
 
-      {/* Monedas y billetes disponibles */}
       <div>
         <h3 className="font-bold text-gray-800 mb-3 text-center">
-          💰 Selecciona monedas y billetes:
+          💰 {t("mercado.challenge.payment.selectCoins")}
         </h3>
         <div className="grid grid-cols-4 md:grid-cols-7 gap-3">
           {AVAILABLE_MONEY.map((money) => (
@@ -60,22 +59,21 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
             >
               <div className="text-sm">{money.label}</div>
               {money.type === 'bill' && (
-                <div className="text-xs mt-1">billete</div>
+                <div className="text-xs mt-1">{t("mercado.challenge.payment.bill")}</div>
               )}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Monedas seleccionadas */}
       <div>
         <h3 className="font-bold text-gray-800 mb-3 text-center">
-          🧾 Tu pago actual:
+          🧾 {t("mercado.challenge.payment.currentPayment")}
         </h3>
         <div className="bg-gray-50 rounded-lg p-4 min-h-[100px]">
           {selectedCoins.length === 0 ? (
             <p className="text-gray-500 text-center">
-              Selecciona monedas y billetes arriba
+              {t("mercado.challenge.payment.selectHint")}
             </p>
           ) : (
             <div className="space-y-2">
@@ -94,7 +92,7 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
                       <button
                         onClick={() => removeCoin(index)}
                         className="text-red-600 hover:text-red-800"
-                        aria-label="Eliminar moneda"
+                        aria-label={t("mercado.challenge.payment.removeCoin")}
                       >
                         <Trash2 size={12} />
                       </button>
@@ -104,7 +102,7 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
               </div>
               <div className="border-t pt-2 mt-2">
                 <div className="flex justify-between items-center">
-                  <span className="font-bold">Total:</span>
+                  <span className="font-bold">{t("mercado.challenge.payment.total")}</span>
                   <span className={`font-bold text-lg ${
                     Math.abs(total - targetAmount) < 0.01 
                       ? "text-green-600" 
@@ -117,17 +115,17 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
                 </div>
                 {Math.abs(total - targetAmount) < 0.01 && (
                   <div className="text-green-600 text-sm mt-1">
-                    ✅ ¡Cantidad exacta!
+                    ✅ {t("mercado.challenge.payment.exactAmount")}
                   </div>
                 )}
                 {total > targetAmount && (
                   <div className="text-red-600 text-sm mt-1">
-                    ❌ Te pasaste por {formatAmount(total - targetAmount)}
+                    ❌ {t("mercado.challenge.payment.overpaid", { amount: formatAmount(total - targetAmount) })}
                   </div>
                 )}
                 {total < targetAmount && total > 0 && (
                   <div className="text-orange-600 text-sm mt-1">
-                    Faltan {formatAmount(targetAmount - total)}
+                    {t("mercado.challenge.payment.missing", { amount: formatAmount(targetAmount - total) })}
                   </div>
                 )}
               </div>
@@ -136,7 +134,6 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
         </div>
       </div>
 
-      {/* Botón de envío */}
       <div className="text-center">
         <button
           onClick={submitPayment}
@@ -149,7 +146,7 @@ export const PaymentChallenge: React.FC<PaymentChallengeProps> = ({ task }) => {
             }
           `}
         >
-          💳 Pagar
+          💳 {t("mercado.challenge.payment.pay")}
         </button>
       </div>
     </div>

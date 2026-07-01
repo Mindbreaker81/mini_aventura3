@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // @ts-expect-error - react-simple-maps types are not available
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from "react-simple-maps";
 import { MapComponentProps } from "./types";
+import { useTranslation } from "../../components/I18nProvider";
 // Añadir import para cargar oceans.geojson
 // Quitar import estático de oceansData
 // import oceansData from "../../../../public/oceans.geojson";
@@ -81,6 +82,7 @@ const OCEAN_CENTROIDS: { [key: string]: [number, number] } = {
 
 
 export default function WorldMap({ task, selectedRegion, onRegionClick }: MapComponentProps) {
+  const { t } = useTranslation('common');
   const [geography, setGeography] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
@@ -217,7 +219,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
       <div className="flex items-center justify-center h-96">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Cargando mapa mundial...</p>
+          <p className="text-gray-600">{t('mapamundi.maps.loadingWorld')}</p>
         </div>
       </div>
     );
@@ -228,13 +230,13 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
       <div className="flex items-center justify-center h-96">
         <div className="text-center px-6">
           <div className="text-6xl mb-4">🗺️</div>
-          <p className="text-gray-800 font-semibold text-lg mb-1">El mapa necesita conexión a internet</p>
-          <p className="text-gray-500 text-sm mb-4">Comprueba tu conexión e inténtalo de nuevo.</p>
+          <p className="text-gray-800 font-semibold text-lg mb-1">{t('mapamundi.maps.offlineTitle')}</p>
+          <p className="text-gray-500 text-sm mb-4">{t('mapamundi.maps.offlineHint')}</p>
           <button
             onClick={loadMapData}
             className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
           >
-            🔄 Reintentar
+            🔄 {t('mapamundi.maps.retry')}
           </button>
         </div>
       </div>
@@ -246,7 +248,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
       {/* Información del modo */}
       <div className="text-center mb-4">
         <div className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
-          {isContinentQuestion ? "🌍 Haz clic en el continente" : "🌊 Haz clic en el océano"}
+          {isContinentQuestion ? t('mapamundi.maps.clickContinent') : t('mapamundi.maps.clickOcean')}
         </div>
       </div>
 
@@ -272,7 +274,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
                       hover: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" },
                       pressed: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" }
                     } : getRegionStyle(geo)}
-                    title={isOceanQuestion ? (geo.properties?.name || geo.properties?.NAME || "Océano") : (geo.properties?.NAME || geo.properties?.name || "Región")}
+                    title={isOceanQuestion ? (geo.properties?.name || geo.properties?.NAME || t('mapamundi.maps.ocean')) : (geo.properties?.NAME || geo.properties?.name || t('mapamundi.maps.region'))}
                   />
                 ))
               }
@@ -322,26 +324,26 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
             <>
               <div className="flex items-center space-x-1">
                 <div className="w-3 h-3 bg-sky-200 rounded"></div>
-                <span>Océanos</span>
+                <span>{t('mapamundi.maps.legendOceans')}</span>
               </div>
               <div className="flex items-center space-x-1">
                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                <span>Puntos clickeables</span>
+                <span>{t('mapamundi.maps.legendClickPoints')}</span>
               </div>
               <div className="flex items-center space-x-1">
                 <div className="w-3 h-3 bg-blue-800 rounded-full"></div>
-                <span>Seleccionado</span>
+                <span>{t('mapamundi.maps.legendSelected')}</span>
               </div>
             </>
           ) : (
             <>
               <div className="flex items-center space-x-1">
                 <div className="w-3 h-3 bg-gray-300 rounded"></div>
-                <span>Regiones</span>
+                <span>{t('mapamundi.maps.legendRegions')}</span>
               </div>
               <div className="flex items-center space-x-1">
                 <div className="w-3 h-3 bg-blue-500 rounded"></div>
-                <span>Seleccionado</span>
+                <span>{t('mapamundi.maps.legendSelected')}</span>
               </div>
             </>
           )}
@@ -351,9 +353,9 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
       {/* Instrucciones */}
       <div className="mt-4 p-3 bg-blue-50 rounded-lg">
         <p className="text-sm text-blue-800 text-center">
-          <strong>Instrucciones:</strong> {isOceanQuestion 
-            ? "Haz clic en el punto azul del océano correcto para seleccionarlo." 
-            : "Haz clic en la región correcta del mapa y luego confirma tu selección."}
+          <strong>{t('mapamundi.maps.instructions')}</strong> {isOceanQuestion 
+            ? t('mapamundi.maps.oceanHint')
+            : t('mapamundi.maps.regionHint')}
         </p>
       </div>
     </div>

@@ -191,7 +191,7 @@ const PuertoPalabrasPage = () => {
                       {cat.icon === "timer" && <Timer size={18} />}
                       {cat.icon === "corner-down-right" && <CornerDownRight size={18} />}
                       {cat.icon === "link" && <Link size={18} />}
-                      {cat.label}
+                      {t(`puerto.categories.${cat.key}`)}
                     </span>
                     <div className="flex flex-wrap gap-1">
                       {Object.entries(assigned)

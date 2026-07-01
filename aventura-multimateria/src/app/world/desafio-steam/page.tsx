@@ -235,11 +235,11 @@ const DesafioSteamV2: React.FC = () => {
               {badge && (
                 <Badge variant="warning" className="gap-1.5 px-3 py-1 text-sm">
                   <Award size={14} />
-                  Insignia obtenida
+                  {t('steam.playing.badgeEarned')}
                 </Badge>
               )}
               <Badge variant="outline" className="px-3 py-1 text-sm">
-                Nivel {currentTask + 1} / {tasks.length || 6}
+                {t('steam.playing.levelProgress', { current: currentTask + 1, total: tasks.length || 6 })}
               </Badge>
             </div>
           </div>
@@ -262,7 +262,7 @@ const DesafioSteamV2: React.FC = () => {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
               <Badge variant="outline" className="px-3 py-1 text-sm">
-                🧩 Bloques: <span className="font-semibold">{blockCount}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
+                🧩 {t('steam.playing.blocks')} <span className="font-semibold">{blockCount}</span> / {tasks[currentTask]?.maxBlocks || '∞'}
               </Badge>
             </div>
           
@@ -279,7 +279,7 @@ const DesafioSteamV2: React.FC = () => {
                 className="gap-2"
               >
                 <RotateCcw size={16} />
-                Reiniciar
+                {t('steam.playing.reset')}
               </Button>
             
               <Button
@@ -293,7 +293,7 @@ const DesafioSteamV2: React.FC = () => {
                 className="gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold"
               >
                 <Play size={16} />
-                {isExecuting ? 'Ejecutando...' : 'Ejecutar'}
+                {isExecuting ? t('steam.playing.executing') : t('steam.playing.run')}
               </Button>
             </div>
           </div>
@@ -335,11 +335,11 @@ const DesafioSteamV2: React.FC = () => {
                 <h3 className={`text-xl font-bold mb-2 ${
                   feedback.type === 'success' ? 'text-green-800' : 'text-red-800'
                 }`}>
-                  {feedback.type === 'success' ? '¡Excelente!' : '¡Ups!'}
+                  {feedback.type === 'success' ? t('steam.playing.feedbackSuccess') : t('steam.playing.feedbackFail')}
                 </h3>
               
                 <p className="text-gray-700 mb-6">
-                  {feedback.message}
+                  {t(feedback.message)}
                 </p>
               
                 <Button
@@ -351,7 +351,7 @@ const DesafioSteamV2: React.FC = () => {
                       : 'bg-red-600 hover:bg-red-700 text-white font-semibold'
                   }
                 >
-                  Continuar
+                  {t('common.continue')}
                 </Button>
               </div>
             </CardContent>

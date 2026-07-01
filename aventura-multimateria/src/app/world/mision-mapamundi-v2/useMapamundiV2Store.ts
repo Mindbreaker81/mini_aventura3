@@ -13,6 +13,7 @@ interface MapamundiV2Store {
   selectedRegion: string | null;
   showFeedback: boolean;
   feedbackMessage: string;
+  feedbackParams?: Record<string, string | number>;
   feedbackType: 'success' | 'error';
   gameStatus: 'playing' | 'completed' | 'gameOver';
   mode: GameMode;
@@ -23,7 +24,7 @@ interface MapamundiV2Store {
   submitAnswer: () => void;
   nextTask: () => void;
   resetGame: () => void;
-  showFeedbackAction: (type: 'success' | 'error', message: string) => void;
+  showFeedbackAction: (type: 'success' | 'error', message: string, params?: Record<string, string | number>) => void;
   hideFeedback: () => void;
   gainXP: (amount: number) => void;
   completeWorld: () => void;
@@ -117,11 +118,12 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
         get().initializeGame(get().mode);
       },
 
-      showFeedbackAction: (type: 'success' | 'error', message: string) => {
+      showFeedbackAction: (type: 'success' | 'error', message: string, params?: Record<string, string | number>) => {
         set({
           showFeedback: true,
           feedbackType: type,
           feedbackMessage: message,
+          feedbackParams: params,
         });
       },
 
@@ -129,6 +131,7 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
         set({
           showFeedback: false,
           feedbackMessage: '',
+          feedbackParams: undefined,
         });
       },
 

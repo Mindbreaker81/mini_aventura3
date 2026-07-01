@@ -87,6 +87,11 @@
       "tip4": "Altres tenen diverses opcions per triar",
       "heartsLabel": "Tens 5 cors",
       "start": "Començar l'Aventura!"
+    },
+    "playing": {
+      "passageProgress": "{{current}}/{{total}}",
+      "errorPassage": "Error: dades del passatge no disponibles",
+      "errorQuestion": "Error: pregunta no disponible"
     }
   },
   "puerto": {
@@ -110,6 +115,14 @@
       "words": "Paraules",
       "feedbackCorrect": "Molt bé! Has col·locat la paraula a la categoria correcta.",
       "feedbackRetry": "Torna-ho a provar!"
+    },
+    "categories": {
+      "sustantivo": "Substantiu",
+      "verbo": "Verb",
+      "adjetivo": "Adjectiu",
+      "adverbio": "Adverbi",
+      "preposición": "Preposició",
+      "conjunción": "Conjunció"
     }
   },
   "mercado": {
@@ -150,7 +163,57 @@
       "retry": "Tornar-ho a Provar"
     },
     "playing": {
-      "baskets": "Cistelles: {{current}} / {{total}}"
+      "baskets": "Cistelles: {{current}} / {{total}}",
+      "loading": "Carregant repte...",
+      "allDone": "Tots els reptes completats!",
+      "unknownType": "Tipus de repte no reconegut",
+      "challengeProgress": "Repte {{current}} de {{total}}",
+      "correct": "Correcte!",
+      "tryAgain": "Torna-ho a provar!",
+      "nextChallenge": "Següent Repte",
+      "retryChallenge": "Tornar-ho a Provar",
+      "typePayment": "💰 Problema de Diners",
+      "typeTime": "⏰ Problema de Temps",
+      "typeFraction": "🍰 Problema de Fraccions"
+    },
+    "challenge": {
+      "payment": {
+        "price": "Preu:",
+        "selectCoins": "Selecciona monedes i bitllets:",
+        "bill": "bitllet",
+        "currentPayment": "El teu pagament actual:",
+        "selectHint": "Selecciona monedes i bitllets a dalt",
+        "removeCoin": "Eliminar moneda",
+        "total": "Total:",
+        "exactAmount": "Quantitat exacta!",
+        "overpaid": "T'has passat per {{amount}}",
+        "missing": "Falten {{amount}}",
+        "pay": "Pagar"
+      },
+      "time": {
+        "clockAria": "Rellotge analògic que marca les {{time}}",
+        "currentTime": "Hora actual:",
+        "timeLeft": "Quant temps falta?",
+        "tipTitle": "Consell:",
+        "tip": "Per calcular el temps que falta, compta les hores i minuts des de l'hora actual fins a l'hora de tancament. Recorda que cada hora té 60 minuts.",
+        "confirm": "Confirmar Resposta"
+      },
+      "fraction": {
+        "visualization": "Visualització:",
+        "yourAnswer": "La teva resposta:",
+        "decrease": "Disminuir resposta",
+        "increase": "Augmentar resposta",
+        "adjustHint": "Usa els botons + i - per ajustar la resposta",
+        "tipTitle": "Consell:",
+        "tip": "Una fracció com ½ vol dir «1 part de 2 parts iguals». Per sumar fraccions iguals: ¼ + ¼ = 2/4 = ½",
+        "confirm": "Confirmar Resposta"
+      }
+    },
+    "feedback": {
+      "paymentExact": "Perfecte! Has pagat exactament {{amount}}",
+      "timeCorrect": "Correcte! Has calculat bé el temps restant.",
+      "fractionCorrect": "Excel·lent! Has resolt la fracció correctament.",
+      "incorrect": "No és correcte. {{explanation}}"
     }
   },
   "steam": {
@@ -185,6 +248,29 @@
       "praise": "Excel·lent feina programant el robot!",
       "newAdventure": "Nova aventura",
       "backDashboard": "Tornar al Tauler"
+    },
+    "playing": {
+      "badgeEarned": "Insígnia obtinguda",
+      "levelProgress": "Nivell {{current}} / {{total}}",
+      "blocks": "Blocs:",
+      "reset": "Reiniciar",
+      "executing": "Executant...",
+      "run": "Executar",
+      "levelTitle": "Nivell {{level}}: {{name}}",
+      "maxBlocks": "Màxim blocs: {{count}}",
+      "executingCode": "Executant codi...",
+      "crashed": "El robot ha xocat!",
+      "feedbackSuccess": "Excel·lent!",
+      "feedbackFail": "Ups!"
+    },
+    "feedback": {
+      "crashed": "El robot ha xocat! Torna-ho a provar.",
+      "levelComplete": "Excel·lent! Has completat el nivell.",
+      "missedGoal": "No has arribat a la meta! Torna-ho a provar."
+    },
+    "blockly": {
+      "maxBlocks": "Usa com a màxim {{max}} blocs! Actualment n'uses {{count}}.",
+      "addBlocks": "Afegeix alguns blocs per programar el robot!"
     }
   },
   "flip": {
@@ -229,6 +315,40 @@
       "quizLockedDesc": "Primer has de veure el vídeo complet per desbloquejar el quiz.",
       "feedbackSuccess": "Excel·lent!",
       "feedbackFail": "Ups!"
+    },
+    "quiz": {
+      "title": "Quiz: {{title}}",
+      "questionsCount": "3 preguntes",
+      "minCorrect": "Mínim 2 correctes per continuar",
+      "questionN": "Pregunta {{n}}",
+      "progress": "Progrés del quiz",
+      "answered": "{{count}}/3 respostes",
+      "submit": "Comprovar respostes",
+      "answerAll": "Respon totes les preguntes",
+      "reminderTitle": "Recordatori:",
+      "reminder": "Si no recordes alguna resposta, pots tornar a veure el vídeo. Necessites almenys 2 respostes correctes per obtenir una peça de l'experiment."
+    },
+    "video": {
+      "completed": "Vídeo completat",
+      "playAria": "Reproduir vídeo: {{title}}",
+      "clickToPlay": "Fes clic per reproduir",
+      "loadError": "No s'ha pogut carregar el vídeo",
+      "loadErrorHint": "Comprova la teva connexió a internet o torna-ho a provar.",
+      "openYoutube": "Obrir a YouTube",
+      "videoHelp": "Problemes per veure el vídeo?",
+      "openYoutubeDirect": "Obre'l directament a YouTube",
+      "aboutLesson": "Sobre aquesta lliçó:",
+      "afterVideo": "En acabar el vídeo, respondràs 3 preguntes sobre el contingut.",
+      "readyForQuiz": "A punt per al quiz!",
+      "defaultChannel": "Canal Educatiu",
+      "defaultDescription": "Vídeo educatiu sobre {{title}}"
+    },
+    "feedback": {
+      "success": "Excel·lent! Has obtingut {{count}}/3 respostes correctes.",
+      "pieceAdded": "Has afegit una peça a l'experiment: {{name}} {{icon}}",
+      "fail": "Has obtingut {{count}}/3 respostes correctes. Necessites almenys 2 per continuar.",
+      "retryHint": "Torna a veure el vídeo i repeteix el quiz.",
+      "answerAll": "Si us plau, respon totes les preguntes abans de continuar."
     }
   },
   "mapamundi": {
@@ -256,6 +376,62 @@
         "description": "Localitza les 17 comunitats autònomes",
         "badge": "🇪🇸 Explorador d'Espanya"
       }
+    },
+    "invalidMode": {
+      "title": "Mode no vàlid",
+      "description": "El mode «{{mode}}» no està disponible.",
+      "hint": "Els modes disponibles són: Continents, Oceans i Comunitats d'Espanya."
+    },
+    "playing": {
+      "selector": "Selector",
+      "questionProgress": "Pregunta {{current}} de {{total}}",
+      "typeContinent": "🌍 Continent",
+      "typeOcean": "🌊 Oceà",
+      "typeCcaa": "🇪🇸 Comunitat Autònoma",
+      "verifying": "Verificant...",
+      "confirmSelection": "Confirmar Selecció",
+      "missionComplete": "Missió Completada!",
+      "missionCompleteDesc": "Has completat totes les preguntes de {{badge}}",
+      "rewards": "Recompenses:",
+      "correctAnswers": "Encerts:",
+      "bonus": "Bonus:",
+      "totalXp": "XP total:",
+      "saveProgress": "Desar Progrés",
+      "gameOver": "Game Over!",
+      "gameOverDesc": "T'has quedat sense vides. Torna-ho a provar!",
+      "progressLabel": "Progrés:",
+      "progressQuestions": "Has completat {{current}} de {{total}} preguntes",
+      "feedbackCorrect": "Correcte! {{explanation}}",
+      "feedbackIncorrect": "Incorrecte. {{explanation}}"
+    },
+    "passport": {
+      "continent": "Passaport de Continents",
+      "ocean": "Passaport d'Oceans",
+      "ccaa": "Passaport d'Espanya",
+      "progress": "Progrés: {{current}} de {{total}} segells",
+      "next": "Pròxim",
+      "completed": "🎉 Passaport completat! Missió complerta!",
+      "remaining": "Excel·lent progrés! {{count}} segells restants",
+      "start": "Comença la teva aventura! Fes clic a les regions correctes per guanyar segells"
+    },
+    "maps": {
+      "loadingWorld": "Carregant mapa mundial...",
+      "loadingSpain": "Carregant mapa d'Espanya...",
+      "offlineTitle": "El mapa necessita connexió a internet",
+      "offlineHint": "Comprova la teva connexió i torna-ho a provar.",
+      "retry": "Torna-ho a provar",
+      "clickContinent": "🌍 Fes clic al continent",
+      "clickOcean": "🌊 Fes clic a l'oceà",
+      "ocean": "Oceà",
+      "region": "Regió",
+      "community": "Comunitat Autònoma",
+      "legendOceans": "Oceans",
+      "legendClickPoints": "Punts clicables",
+      "legendSelected": "Seleccionat",
+      "legendRegions": "Regions",
+      "instructions": "Instruccions:",
+      "oceanHint": "Fes clic al punt blau de l'oceà correcte per seleccionar-lo.",
+      "regionHint": "Fes clic a la regió correcta del mapa i després confirma la selecció."
     }
   },
   "museo": {

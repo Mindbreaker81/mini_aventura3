@@ -63,8 +63,8 @@ export default function ReadingGame() {
     return (
       <Card className="max-w-md mx-auto text-center border-red-200">
         <CardContent className="pt-6 pb-6 space-y-3">
-          <h2 className="text-xl font-bold text-red-800">Error: datos del pasaje no disponibles</h2>
-          <Button variant="destructive" onClick={reset}>Reintentar</Button>
+          <h2 className="text-xl font-bold text-red-800">{t('bosc.playing.errorPassage')}</h2>
+          <Button variant="destructive" onClick={reset}>{t('bosc.retry')}</Button>
         </CardContent>
       </Card>
     );
@@ -75,8 +75,8 @@ export default function ReadingGame() {
     return (
       <Card className="max-w-md mx-auto text-center border-red-200">
         <CardContent className="pt-6 pb-6 space-y-3">
-          <h2 className="text-xl font-bold text-red-800">Error: pregunta no disponible</h2>
-          <Button variant="destructive" onClick={reset}>Reintentar</Button>
+          <h2 className="text-xl font-bold text-red-800">{t('bosc.playing.errorQuestion')}</h2>
+          <Button variant="destructive" onClick={reset}>{t('bosc.retry')}</Button>
         </CardContent>
       </Card>
     );
@@ -96,7 +96,7 @@ export default function ReadingGame() {
 
     if (correct) {
       addXp(10);
-      setFeedback({ correct: true, explanation: t('correct') });
+      setFeedback({ correct: true, explanation: t('common.correct') });
     } else {
       loseHeart();
       setFeedback({ correct: false, explanation: currentQuestion.explanation });
