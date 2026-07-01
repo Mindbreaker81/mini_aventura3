@@ -532,8 +532,7 @@ Implementado en v3.2.0. Ver [CHANGELOG.md](../CHANGELOG.md) §3.2.0.
 
 | Documento | Contenido |
 |-----------|-----------|
-| [CORRECTION_PLAN.md](./CORRECTION_PLAN.md) | **Histórico:** fases 0–7 completadas, DoD del proyecto |
-| [CHANGELOG.md](../CHANGELOG.md) | Historial de versiones (incl. Fase 7 v3.2.0) |
+| [CHANGELOG.md](../CHANGELOG.md) | Historial de versiones + plan histórico fases 0–7 |
 
 ---
 

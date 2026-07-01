@@ -72,10 +72,10 @@ aventura-multimateria/
 ├── tailwind.config.js
 ├── tsconfig.json
 ├── docs/
-│   ├── GAME_ARCHITECTURE.md          # 🏗️ Arquitectura (contrato stores, persistencia)
-│   └── CORRECTION_PLAN.md            # 📋 Histórico fases 0–7 (completadas)
+│   └── GAME_ARCHITECTURE.md          # 🏗️ Arquitectura (contrato stores, persistencia)
 ├── CLAUDE.md                         # 🤖 Guía para agentes IA
 ├── STEAM_GAME_DOCS.md                # 🤖 Detalle Blockly/robot
+├── CHANGELOG.md                      # 📝 Versiones + plan histórico fases 0–7
 └── README.md                         # 📖 Este archivo
 ```
 
@@ -84,10 +84,9 @@ aventura-multimateria/
 | Documento | Descripción |
 |-----------|-------------|
 | [docs/GAME_ARCHITECTURE.md](docs/GAME_ARCHITECTURE.md) | **Referencia principal:** patrón de minijuegos, contrato de stores, persistencia |
-| [docs/CORRECTION_PLAN.md](docs/CORRECTION_PLAN.md) | Histórico del plan de fases 0–7 (completado) |
+| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones + plan de implementación (fases 0–7) |
 | [CLAUDE.md](CLAUDE.md) | Guía para agentes IA |
 | [STEAM_GAME_DOCS.md](STEAM_GAME_DOCS.md) | Detalle Blockly/robot |
-| [CHANGELOG.md](CHANGELOG.md) | Historial de versiones |
 
 ## 🆕 Historial de Cambios Recientes
 
@@ -104,7 +103,7 @@ aventura-multimateria/
 ### v3.0.0 (Julio 2026)
 - **Infraestructura:** módulos compartidos (`shared/`, `useGameSession`)
 - **6 juegos:** victoria/derrota, persistencia fiable, 46 tests
-- **Docs:** `GAME_ARCHITECTURE.md`, `CORRECTION_PLAN.md`, CHANGELOG revisado
+- **Docs:** `GAME_ARCHITECTURE.md`, CHANGELOG (plan fases 0–7)
 
 ### v2.0.0 (Diciembre 2024)
 - **Desafío STEAM:** animaciones paso a paso, rastro visual, comunicación callback-based

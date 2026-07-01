@@ -23,7 +23,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 #### Integración
 - Dashboard con 10 minijuegos (iconos Recycle, SpellCheck, Orbit)
 - `scripts/test-all-games-ui.mjs` ampliado a 10 juegos
-- **85 tests** Jest (stores + registry)
+- **88 tests** Jest (stores + registry; ampliado en 3.3.x)
 
 ---
 
@@ -41,7 +41,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 #### Documentación
 - `STEAM_GAME_DOCS.md` — sección ejecución con `new Function()` y sandbox futuro
-- `CORRECTION_PLAN.md` — Fase 3 completada
+- Plan de fases 0–7 consolidado en este CHANGELOG (§ Plan de implementación)
 - `README.md` raíz — aclaración del `package.json` legacy
 
 ---
@@ -186,7 +186,7 @@ _Sin cambios pendientes de documentar._
 - `src/app/world/shared/gameSession.ts` — `hasActiveSession`, `hasActiveSessionForMode`
 - `src/app/hooks/useGameSession.ts` — hooks de montaje seguro sin resetear sesiones
 - Tests compartidos en `src/app/world/shared/__tests__/shared.test.ts`
-- Documentación: `docs/GAME_ARCHITECTURE.md`, `docs/CORRECTION_PLAN.md`
+- Documentación: `docs/GAME_ARCHITECTURE.md`; plan de fases en este CHANGELOG
 
 ### 🎮 Puerto de las Palabras (Fase 1)
 
@@ -276,7 +276,7 @@ _Sin cambios pendientes de documentar._
 
 #### Añadido
 - `docs/GAME_ARCHITECTURE.md` — contrato de arquitectura
-- `docs/CORRECTION_PLAN.md` — plan de implementación por fases
+- Plan de implementación por fases (ahora § Plan de implementación en este CHANGELOG)
 - Sección «Documentación» en README con enlaces cruzados
 
 #### Actualizado
@@ -337,6 +337,92 @@ _Sin cambios pendientes de documentar._
 
 ---
 
+## Plan de implementación (histórico — fases 0–7)
+
+Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [`docs/GAME_ARCHITECTURE.md`](docs/GAME_ARCHITECTURE.md) (contrato técnico). **Estado final:** ✅ fases 0–7 completadas · v3.3.2 (10 minijuegos).
+
+### Objetivos originales
+
+1. Cerrar el ciclo de partida en todos los juegos (victoria, derrota, badge).
+2. Unificar persistencia para que el progreso sobreviva a recargas.
+3. Añadir tests que cubran bugs de integración detectados.
+4. Alinear documentación con el comportamiento real del código.
+5. Expandir contenido (Museo del Tiempo → 10 minijuegos).
+
+### Línea base (julio 2026)
+
+| Verificación | Resultado inicial |
+|--------------|-------------------|
+| `npm ci` / `tsc` / `lint` / `build` | ✅ OK |
+| Jest | 34 tests |
+| Rutas HTTP | 6 juegos + dashboard |
+| Victoria/derrota | ⚠️ Incompleta en Puerto Palabras y STEAM |
+| Persistencia | ⚠️ Rota o inconsistente en 4+ juegos |
+
+### Índice de fases → versiones
+
+| Fase | Alcance | Versión |
+|------|---------|---------|
+| **0** | Infra compartida (`shared/`, `useGameSession`) | [3.0.0] |
+| **1** | Puerto Palabras + STEAM (ciclo de juego) | [3.0.0] |
+| **2** | Persistencia Bosc, Mercado, Mapamundi, Flip | [3.0.0] |
+| **3** | Deuda menor (ESLint, accesibilidad, STEAM docs) | [3.2.1] |
+| **4** | Tests por juego + CI con cobertura ≥ 60 % | [3.0.0], [3.1.0], [3.3.0] |
+| **5** | Documentación viva (README, CLAUDE, arquitectura) | [3.0.0] |
+| **6** | Museo del Tiempo + i18n unificado | [3.1.0], [3.1.1] |
+| **7** | Reciclaje, Ortografía, Planetario (7 → 10 juegos) | [3.2.0] |
+
+Posteriores mejoras fuera del plan original: Planetario v2 ([3.3.0]), tests UI puros + ortografía ([3.3.1]), Mapamundi `data-region-id` ([3.3.2]).
+
+### Orden de ejecución
+
+```mermaid
+flowchart LR
+  F0[Fase 0 Infra] --> F1[Fase 1 Puerto + STEAM]
+  F1 --> F2[Fase 2 Persistencia]
+  F2 --> F3[Fase 3 Deuda menor]
+  F1 --> F4[Fase 4 Tests]
+  F2 --> F5[Fase 5 Docs]
+  F5 --> F6[Fase 6 Museo del Tiempo]
+  F6 --> F7[Fase 7 Tres juegos]
+```
+
+1. Fase 0 → Fase 1 (Puerto + STEAM en paralelo)
+2. Fase 2 (Bosc → Mercado → Mapamundi → Laboratorio Flip)
+3. Fase 4 en paralelo con Fase 2
+4. Fase 5 cuando Fase 2 estable
+5. Fase 6 (Museo del Tiempo)
+6. Fase 7 (Reciclaje, Ortografía, Planetario)
+
+### Fase 7 — resumen
+
+| Juego | Materia | Patrón de código |
+|-------|---------|------------------|
+| Fábrica del Reciclaje | Medio ambiente | `puerto-palabras` |
+| Taller de Ortografía | Lengua | `bosc-lectura` (quiz) |
+| Planetario | Ciencias | `museo-tiempo` |
+
+### Definition of Done (proyecto)
+
+- [x] Los 10 juegos tienen victoria, derrota (si aplica) y badge funcionales
+- [x] Recargar la página no pierde una partida en curso
+- [x] ≥ 88 tests Jest en CI con cobertura stores ≥ 60 %
+- [x] Documentación alineada con implementación (10 minijuegos)
+- [x] Contenido pedagógico es/ca/en (10 archivos × 3 locales)
+- [x] i18n en pantallas principales de los 10 juegos
+- [x] Humo Playwright 10/10 (`npm run test:ui`)
+
+### Trazabilidad
+
+| Origen | Documento |
+|--------|-----------|
+| ~~Revisión técnica abril 2026~~ | ~~`ANALISIS_REVISION.md`~~ (eliminado) |
+| Contrato de arquitectura | [`docs/GAME_ARCHITECTURE.md`](docs/GAME_ARCHITECTURE.md) |
+| Historial de versiones | Este archivo |
+| Detalle STEAM / Blockly | [`STEAM_GAME_DOCS.md`](STEAM_GAME_DOCS.md) |
+
+---
+
 ## Claves localStorage por versión
 
 | Juego | Clave | Desde |
@@ -351,4 +437,4 @@ _Sin cambios pendientes de documentar._
 
 ---
 
-*Mantenido junto con `docs/CORRECTION_PLAN.md` y `docs/GAME_ARCHITECTURE.md`.*
+*Mantenido junto con `docs/GAME_ARCHITECTURE.md`.*

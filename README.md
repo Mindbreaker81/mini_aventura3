@@ -18,7 +18,6 @@ El archivo `/package.json` del repositorio es un **contenedor legacy** con scrip
 |-----------|-------------|
 | [aventura-multimateria/README.md](./aventura-multimateria/README.md) | Guía principal del proyecto |
 | [aventura-multimateria/docs/GAME_ARCHITECTURE.md](./aventura-multimateria/docs/GAME_ARCHITECTURE.md) | Arquitectura de minijuegos |
-| [aventura-multimateria/docs/CORRECTION_PLAN.md](./aventura-multimateria/docs/CORRECTION_PLAN.md) | Histórico fases 0–7 |
-| [aventura-multimateria/CHANGELOG.md](./aventura-multimateria/CHANGELOG.md) | Historial de versiones |
+| [aventura-multimateria/CHANGELOG.md](./aventura-multimateria/CHANGELOG.md) | Historial de versiones + plan fases 0–7 |
 
 **Estado:** 10 minijuegos (v3.3.2).
