@@ -10,7 +10,7 @@ Documento de referencia para desarrolladores. Define el patrón estándar de los
 
 ## 1. Visión general
 
-ExplorAventura 3 es una aplicación Next.js 15 (App Router) con **7 minijuegos** (objetivo **10** tras Fase 7). Cada juego sigue la misma estructura conceptual:
+ExplorAventura 3 es una aplicación Next.js 15 (App Router) con **10 minijuegos**. Cada juego sigue la misma estructura conceptual:
 
 ```
 Datos (JSON) → Store (Zustand) → Página (page.tsx) → Componentes de juego
@@ -34,16 +34,11 @@ Los juegos **no comparten estado entre sí**. Solo comparten:
 | `desafio-steam` | `/world/desafio-steam` | Programación visual | `useSteamStore` |
 | `laboratorio-flip` | `/world/laboratorio-flip` | Ciencias | `useLaboratorioFlipStore` |
 | `museo-tiempo` | `/world/museo-tiempo` | Historia | `useMuseoTiempoStore` |
-
-### Mapa planificado (Fase 7 — v3.2.0)
-
-| Código | Ruta | Materia | Store (planificado) |
-|--------|------|---------|---------------------|
 | `fabrica-reciclaje` | `/world/fabrica-reciclaje` | Medio ambiente | `useFabricaReciclajeStore` |
 | `taller-ortografia` | `/world/taller-ortografia` | Lengua / ortografía | `useTallerOrtografiaStore` |
 | `planetario` | `/world/planetario` | Ciencias (Sistema Solar) | `usePlanetarioStore` |
 
-Detalle de implementación: [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md).
+Detalle Fase 7 (v3.2.0): [PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md).
 
 Mapamundi tiene subrutas dinámicas: `/world/mision-mapamundi-v2/[mode]` con `mode ∈ { continent, ocean, ccaa }`.
 
@@ -314,9 +309,9 @@ Los archivos viven en `src/app/data/locales/{es,ca,en}/`:
 | `steam-tasks.json` | STEAM | Niveles con tablero, muros, meta |
 | `flip-lessons.json` | Laboratorio Flip | Lecciones con vídeos y quiz |
 | `museo-events.json` | Museo del Tiempo | Eventos históricos con año |
-| `fabrica-reciclaje-items.json` | Fábrica Reciclaje *(Fase 7)* | `{ item, bin, rule }[]` |
-| `taller-ortografia-items.json` | Taller Ortografía *(Fase 7)* | `{ sentence, options, answer, rule }[]` |
-| `planetario-bodies.json` | Planetario *(Fase 7)* | `{ id, name, order, fact }[]` |
+| `fabrica-reciclaje-items.json` | Fábrica Reciclaje | `{ item, bin, rule }[]` |
+| `taller-ortografia-items.json` | Taller Ortografía | `{ sentence, options, answer, rule }[]` |
+| `planetario-bodies.json` | Planetario | `{ id, name, order, fact }[]` |
 
 Acceso en runtime:
 
@@ -442,7 +437,7 @@ src/app/page.test.tsx   ← Dashboard
 
 ---
 
-## 12. Estado actual (v3.1.0 — julio 2026)
+## 12. Estado actual (v3.2.0 — julio 2026)
 
 | Juego | Lógica core | Victoria | Derrota | Persistencia | Clave localStorage |
 |-------|-------------|----------|---------|--------------|-------------------|
@@ -453,6 +448,9 @@ src/app/page.test.tsx   ← Dashboard
 | Desafío STEAM | ✅ | ✅ | ✅ | ✅ | `steam-v2-storage` |
 | Laboratorio Flip | ✅ | ✅ | ✅ (retry) | ✅ | `laboratorio-flip-storage` |
 | Museo del Tiempo | ✅ | ✅ | ✅ | ✅ | `museo-tiempo-storage` |
+| Fábrica Reciclaje | ✅ | ✅ | — | ✅ | `fabrica-reciclaje-storage` |
+| Taller Ortografía | ✅ | ✅ | ✅ | ✅ | `taller-ortografia-storage` |
+| Planetario | ✅ | ✅ | ✅ | ✅ | `planetario-storage` |
 
 ### Deuda pendiente (post v3.1)
 
@@ -517,17 +515,15 @@ src/app/hooks/useGameSession.ts  # Hook de montaje seguro
 
 ---
 
-## 15. Fase 7 — Tres minijuegos (v3.2.0)
+## 15. Fase 7 — Tres minijuegos (v3.2.0) ✅
 
-Plan de implementación completo: **[PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)**
+Implementado en v3.2.0. Plan: **[PHASE7_NEW_GAMES_PLAN.md](./PHASE7_NEW_GAMES_PLAN.md)**
 
 | Juego | Mecánica | Clona |
 |-------|----------|-------|
 | **Fábrica del Reciclaje** | Clasificar residuos (drag-and-drop) | `puerto-palabras` |
 | **Taller de Ortografía** | Hueco + opciones múltiples | `bosc-lectura` (quiz) |
-| **Planetario** | Ordenar cuerpos celestes | `museo-tiempo` |
-
-Seguir el checklist §14 por cada juego. Priorizar contenido es/ca/en desde el primer commit de datos.
+| **Planetario** | Ordenar planetas por distancia al Sol | `museo-tiempo` |
 
 ---
 

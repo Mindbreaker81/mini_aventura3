@@ -10,6 +10,9 @@ import {
   Bot,
   Beaker,
   Landmark,
+  Recycle,
+  SpellCheck,
+  Orbit,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
@@ -27,6 +30,9 @@ const minigames = [
   { code: "desafio-steam", icon: Bot, path: "/world/desafio-steam", color: "text-violet-600", bgGradient: "from-violet-500 to-purple-400", bgLight: "bg-violet-50" },
   { code: "laboratorio-flip", icon: Beaker, path: "/world/laboratorio-flip", color: "text-teal-600", bgGradient: "from-teal-500 to-cyan-400", bgLight: "bg-teal-50" },
   { code: "museo-tiempo", icon: Landmark, path: "/world/museo-tiempo", color: "text-rose-600", bgGradient: "from-rose-500 to-red-400", bgLight: "bg-rose-50" },
+  { code: "fabrica-reciclaje", icon: Recycle, path: "/world/fabrica-reciclaje", color: "text-green-600", bgGradient: "from-green-500 to-emerald-400", bgLight: "bg-green-50" },
+  { code: "taller-ortografia", icon: SpellCheck, path: "/world/taller-ortografia", color: "text-indigo-600", bgGradient: "from-indigo-500 to-violet-400", bgLight: "bg-indigo-50" },
+  { code: "planetario", icon: Orbit, path: "/world/planetario", color: "text-purple-600", bgGradient: "from-purple-500 to-violet-400", bgLight: "bg-purple-50" },
 ] as const;
 
 export default function Dashboard() {

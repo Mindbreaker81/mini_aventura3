@@ -3,7 +3,7 @@
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
 **Estado:** ✅ Fases 0–6 implementadas · 📋 Fase 7 planificada (v3.2.0)  
-**Alcance actual:** 7 juegos · **Objetivo Fase 7:** 10 juegos
+**Alcance actual:** 10 juegos (Fase 7 completada v3.2.0)
 
 ---
 

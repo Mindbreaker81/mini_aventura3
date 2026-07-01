@@ -19,7 +19,7 @@
   },
   "dashboard": {
     "title": "ExplorAventura 3",
-    "subtitle": "7 educational mini-games to learn while playing",
+    "subtitle": "10 educational mini-games to learn while playing",
     "cta": "Pick a mini-game and start your adventure",
     "footer": "© 2025 Edmundo Rosales Mayor"
   },
@@ -58,6 +58,21 @@
       "name": "Time Museum",
       "description": "Order historical events on the museum timeline.",
       "subject": "History"
+    },
+    "fabrica-reciclaje": {
+      "name": "Recycling Factory",
+      "description": "Sort waste into the correct bins and learn to recycle.",
+      "subject": "Environment"
+    },
+    "taller-ortografia": {
+      "name": "Spelling Workshop",
+      "description": "Complete sentences by choosing the correct spelling.",
+      "subject": "Language"
+    },
+    "planetario": {
+      "name": "Planetarium",
+      "description": "Order the planets of the Solar System by distance from the Sun.",
+      "subject": "Science"
     }
   },
   "bosc": {
@@ -432,6 +447,93 @@
       "instructions": "Instructions:",
       "oceanHint": "Click the blue point on the correct ocean to select it.",
       "regionHint": "Click the correct region on the map and then confirm your selection."
+    }
+  },
+  "reciclaje": {
+    "instructions": {
+      "title": "Welcome to the Recycling Factory!",
+      "mission": "Your mission: sort each item into the correct bin to complete the recycling chain.",
+      "howToPlay": "How to play?",
+      "step1": "Drag items to the colored bins",
+      "step2": "Each item goes to a bin based on its material",
+      "step3": "If you're right, you advance the recycling chain",
+      "step4": "If you're wrong, read the rule and try again",
+      "step5": "Sort 8 items to win",
+      "start": "Start recycling!"
+    },
+    "completed": {
+      "title": "Recycling chain complete!",
+      "badge": "🏅 Eco-Hero Junior"
+    },
+    "playing": {
+      "progress": "Recycled:",
+      "items": "Items",
+      "feedbackCorrect": "Well done! You sorted the item correctly.",
+      "feedbackRetry": "Try again!"
+    },
+    "bins": {
+      "amarillo": "Yellow (packaging)",
+      "azul": "Blue (paper)",
+      "verde": "Green (glass)",
+      "marron": "Brown (organic)",
+      "organico": "Organic (garden)"
+    }
+  },
+  "ortografia": {
+    "instructions": {
+      "title": "Welcome to the Spelling Workshop!",
+      "mission": "Your mission: complete sentences by choosing the correctly spelled word.",
+      "howToPlay": "How to play?",
+      "step1": "Read the sentence with the blank (___)",
+      "step2": "Choose the correctly spelled option",
+      "step3": "You have 5 hearts — take care of them!",
+      "step4": "Answer 8 questions to win",
+      "step5": "Complete without losing hearts to earn a badge!",
+      "heartsLabel": "5 hearts",
+      "start": "Start the workshop!"
+    },
+    "completed": {
+      "title": "Workshop complete!",
+      "badge": "Spelling Master"
+    },
+    "failed": {
+      "title": "You ran out of hearts"
+    },
+    "playing": {
+      "choose": "Choose the correct answer:",
+      "check": "Check",
+      "next": "Next",
+      "feedbackCorrect": "Correct!",
+      "feedbackWrong": "Incorrect. Check the rule:"
+    }
+  },
+  "planetario": {
+    "title": "Planetarium",
+    "orbit": "Orbit (from the Sun outward)",
+    "pool": "Planets to sort",
+    "emptySlot": "Drop here",
+    "checkOrder": "Check order",
+    "instructions": {
+      "title": "Welcome to the Planetarium!",
+      "mission": "Your mission: order 8 planets by distance from the Sun.",
+      "step1": "Read each card with its planet.",
+      "step2": "Drag planets to the orbit (1 = closest to the Sun).",
+      "step3": "When all 8 are placed, press «Check order».",
+      "step4": "You have 3 hearts. Good luck!",
+      "start": "Start exploring!"
+    },
+    "completed": {
+      "title": "Solar System ordered!",
+      "badge": "🏅 Junior Astronomer"
+    },
+    "failed": {
+      "title": "No attempts left"
+    },
+    "feedback": {
+      "incomplete": "Place all 8 planets before checking.",
+      "completed": "Perfect! You ordered the Solar System correctly.",
+      "wrongOrder": "The order is wrong. Check distance from the Sun and try again.",
+      "failed": "You ran out of hearts. Try again!"
     }
   },
   "museo": {

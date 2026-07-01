@@ -19,7 +19,7 @@
   },
   "dashboard": {
     "title": "ExplorAventura 3",
-    "subtitle": "7 minijocs educatius per aprendre jugant",
+    "subtitle": "10 minijocs educatius per aprendre jugant",
     "cta": "Tria un minijoc i comença l'aventura",
     "footer": "© 2025 Edmundo Rosales Mayor"
   },
@@ -58,6 +58,21 @@
       "name": "Museu del Temps",
       "description": "Ordena esdeveniments històrics a la línia temporal del museu.",
       "subject": "Història"
+    },
+    "fabrica-reciclaje": {
+      "name": "Fàbrica del Reciclatge",
+      "description": "Classifica residus als contenidors correctes i aprèn a reciclar.",
+      "subject": "Medi ambient"
+    },
+    "taller-ortografia": {
+      "name": "Taller d'Ortografia",
+      "description": "Completa frases triant la forma ortogràfica correcta.",
+      "subject": "Llengua"
+    },
+    "planetario": {
+      "name": "Planetari",
+      "description": "Ordena els planetes del Sistema Solar segons la distància al Sol.",
+      "subject": "Ciències"
     }
   },
   "bosc": {
@@ -432,6 +447,93 @@
       "instructions": "Instruccions:",
       "oceanHint": "Fes clic al punt blau de l'oceà correcte per seleccionar-lo.",
       "regionHint": "Fes clic a la regió correcta del mapa i després confirma la selecció."
+    }
+  },
+  "reciclaje": {
+    "instructions": {
+      "title": "Benvingut a la Fàbrica del Reciclatge!",
+      "mission": "La teva missió: classifica cada residu al contenidor correcte per completar la cadena de reciclatge.",
+      "howToPlay": "Com jugar?",
+      "step1": "Arrossega els objectes cap als contenidors de colors",
+      "step2": "Cada residu va a un contenidor segons el seu material",
+      "step3": "Si encertes, avances a la cadena de reciclatge",
+      "step4": "Si no encertes, llegeix la regla i torna-ho a provar",
+      "step5": "Classifica 8 residus per guanyar",
+      "start": "Comença a reciclar!"
+    },
+    "completed": {
+      "title": "Cadena de reciclatge completada!",
+      "badge": "🏅 Eco-Hèroe Junior"
+    },
+    "playing": {
+      "progress": "Reciclats:",
+      "items": "Residus",
+      "feedbackCorrect": "Molt bé! Has classificat el residu correctament.",
+      "feedbackRetry": "Torna-ho a provar!"
+    },
+    "bins": {
+      "amarillo": "Groc (envasos)",
+      "azul": "Blau (paper)",
+      "verde": "Verd (vidre)",
+      "marron": "Marró (orgànic)",
+      "organico": "Orgànic (jardí)"
+    }
+  },
+  "ortografia": {
+    "instructions": {
+      "title": "Benvingut al Taller d'Ortografia!",
+      "mission": "La teva missió: completa les frases triant la paraula ben escrita.",
+      "howToPlay": "Com jugar?",
+      "step1": "Llegeix la frase amb el buit (___)",
+      "step2": "Tria l'opció ortogràficament correcta",
+      "step3": "Tens 5 cors — cuida'ls!",
+      "step4": "Respon 8 preguntes per guanyar",
+      "step5": "Si completes sense perdre cors, aconsegueixes medalla!",
+      "heartsLabel": "5 cors",
+      "start": "Comença el taller!"
+    },
+    "completed": {
+      "title": "Taller completat!",
+      "badge": "Mestre de l'Ortografia"
+    },
+    "failed": {
+      "title": "T'has quedat sense cors"
+    },
+    "playing": {
+      "choose": "Tria la resposta correcta:",
+      "check": "Comprova",
+      "next": "Següent",
+      "feedbackCorrect": "Correcte!",
+      "feedbackWrong": "Incorrecte. Revisa la regla:"
+    }
+  },
+  "planetario": {
+    "title": "Planetari",
+    "orbit": "Òrbita (del Sol cap a fora)",
+    "pool": "Planetes per ordenar",
+    "emptySlot": "Arrossega aquí",
+    "checkOrder": "Comprovar ordre",
+    "instructions": {
+      "title": "Benvingut al Planetari!",
+      "mission": "La teva missió: ordena 8 planetes segons la distància al Sol.",
+      "step1": "Llegeix cada targeta amb el seu planeta.",
+      "step2": "Arrossega els planetes a l'òrbita (1 = més proper al Sol).",
+      "step3": "Quan estiguin els 8, prem «Comprovar ordre».",
+      "step4": "Tens 3 cors. Bona sort!",
+      "start": "Comença l'exploració!"
+    },
+    "completed": {
+      "title": "Sistema Solar ordenat!",
+      "badge": "🏅 Astrònom Junior"
+    },
+    "failed": {
+      "title": "S'han acabat els intents"
+    },
+    "feedback": {
+      "incomplete": "Col·loca els 8 planetes abans de comprovar.",
+      "completed": "Perfecte! Has ordenat el Sistema Solar correctament.",
+      "wrongOrder": "L'ordre no és correcte. Revisa la distància al Sol i torna-ho a provar.",
+      "failed": "Has esgotat els teus cors. Torna-ho a intentar!"
     }
   },
   "museo": {

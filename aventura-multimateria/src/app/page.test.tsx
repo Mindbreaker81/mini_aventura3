@@ -8,7 +8,7 @@ jest.mock('./components/I18nProvider', () => ({
     t: (key: string) => {
       const map: Record<string, string> = {
         'dashboard.title': 'ExplorAventura 3',
-        'dashboard.subtitle': '7 minijuegos',
+        'dashboard.subtitle': '10 minijuegos',
         'dashboard.cta': 'Elige un minijuego',
         'dashboard.footer': 'Footer',
         'games.puerto-palabras.name': 'Puerto de las Palabras',
@@ -32,6 +32,15 @@ jest.mock('./components/I18nProvider', () => ({
         'games.museo-tiempo.name': 'Museo del Tiempo',
         'games.museo-tiempo.description': 'Desc',
         'games.museo-tiempo.subject': 'Historia',
+        'games.fabrica-reciclaje.name': 'Fábrica del Reciclaje',
+        'games.fabrica-reciclaje.description': 'Desc',
+        'games.fabrica-reciclaje.subject': 'Medio ambiente',
+        'games.taller-ortografia.name': 'Taller de Ortografía',
+        'games.taller-ortografia.description': 'Desc',
+        'games.taller-ortografia.subject': 'Lengua',
+        'games.planetario.name': 'Planetario',
+        'games.planetario.description': 'Desc',
+        'games.planetario.subject': 'Ciencias',
         'common.play': 'Jugar',
       };
       return map[key] ?? key;
@@ -46,9 +55,11 @@ describe('Dashboard', () => {
     expect(screen.getByText(/ExplorAventura 3/i)).toBeInTheDocument();
   });
 
-  it('muestra los 7 minijuegos', () => {
+  it('muestra los 10 minijuegos', () => {
     render(<Dashboard />);
     expect(screen.getByText(/Puerto de las Palabras/i)).toBeInTheDocument();
     expect(screen.getByText(/Museo del Tiempo/i)).toBeInTheDocument();
+    expect(screen.getByText(/Fábrica del Reciclaje/i)).toBeInTheDocument();
+    expect(screen.getByText(/Planetario/i)).toBeInTheDocument();
   });
 });

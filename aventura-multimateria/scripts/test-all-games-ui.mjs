@@ -10,6 +10,9 @@ const STORAGE_KEYS = {
   steam: 'steam-v2-storage',
   flip: 'laboratorio-flip-storage',
   mapamundi: 'mapamundi-v2-session',
+  reciclaje: 'fabrica-reciclaje-storage',
+  ortografia: 'taller-ortografia-storage',
+  planetario: 'planetario-storage',
 };
 
 async function dismissConsent(page) {
@@ -196,6 +199,84 @@ async function testMapamundiQuick(page) {
   return result('mision-mapamundi-v2', !stuck && hasMap ? 'ok' : 'fail', { stuck, hasMap });
 }
 
+async function testReciclaje(page) {
+  console.log('\n=== Fábrica del Reciclaje ===');
+  await clearStorage(page, STORAGE_KEYS.reciclaje);
+  await page.goto(`${BASE}/world/fabrica-reciclaje`, { waitUntil: 'networkidle' });
+  await dismissConsent(page);
+  await clickStart(page);
+  await page.waitForTimeout(800);
+
+  const item = page.locator('[role="button"][aria-label]').first();
+  const bin = page.locator('[class*="border-dashed"]').first();
+  const itemBox = await item.boundingBox();
+  const binBox = await bin.boundingBox();
+
+  let dragWorked = false;
+  if (itemBox && binBox) {
+    await page.mouse.move(itemBox.x + itemBox.width / 2, itemBox.y + itemBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(binBox.x + binBox.width / 2, binBox.y + binBox.height / 2, { steps: 10 });
+    await page.mouse.up();
+    await page.waitForTimeout(800);
+    const body = await page.locator('body').innerText();
+    dragWorked = body.includes('✅') || body.includes('🔄') || body.includes('Correct') || body.includes('Inténtalo');
+  }
+
+  const itemCount = await page.locator('[role="button"][aria-label]').count();
+  const ok = itemCount >= 5;
+  console.log(`Residuos: ${itemCount} | Drag: ${dragWorked ? 'feedback' : 'sin feedback'}`);
+  return result('fabrica-reciclaje', ok ? 'ok' : 'fail', { itemCount, dragWorked });
+}
+
+async function testOrtografia(page) {
+  console.log('\n=== Taller de Ortografía ===');
+  await clearStorage(page, STORAGE_KEYS.ortografia);
+  await page.goto(`${BASE}/world/taller-ortografia`, { waitUntil: 'networkidle' });
+  await dismissConsent(page);
+  await clickStart(page);
+  await page.waitForTimeout(1000);
+
+  await page.locator('input[type="radio"]').first().check();
+  await page.getByRole('button', { name: /Comprobar|Check|Comprova/i }).click();
+  await page.waitForTimeout(500);
+
+  const body = await page.locator('body').innerText();
+  const hasFeedback = /✅|❌|Correct|Incorrect|Siguiente|Next|Següent/i.test(body);
+  const ok = hasFeedback && (await page.locator('fieldset').count()) > 0;
+  console.log(`Feedback tras responder: ${hasFeedback}`);
+  return result('taller-ortografia', ok ? 'ok' : 'fail', { hasFeedback });
+}
+
+async function testPlanetario(page) {
+  console.log('\n=== Planetario ===');
+  await clearStorage(page, STORAGE_KEYS.planetario);
+  await page.goto(`${BASE}/world/planetario`, { waitUntil: 'networkidle' });
+  await dismissConsent(page);
+  await clickStart(page);
+  await page.waitForTimeout(800);
+
+  const poolItem = page.locator('[class*="cursor-move"]').first();
+  const slot = page.locator('[class*="border-dashed"]').first();
+  const poolBox = await poolItem.boundingBox();
+  const slotBox = await slot.boundingBox();
+
+  let dragWorked = false;
+  if (poolBox && slotBox) {
+    await page.mouse.move(poolBox.x + poolBox.width / 2, poolBox.y + poolBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(slotBox.x + slotBox.width / 2, slotBox.y + slotBox.height / 2, { steps: 12 });
+    await page.mouse.up();
+    await page.waitForTimeout(500);
+    dragWorked = !(await slot.innerText()).includes('Arrastra') && !(await slot.innerText()).match(/vacío|empty|Drop/i);
+  }
+
+  const poolCount = await page.locator('[class*="cursor-move"]').count();
+  const hasCheck = await page.getByRole('button', { name: /Comprobar|Check|Comprovar|orden/i }).isVisible();
+  console.log(`Planetas: ${poolCount} | Drag a slot: ${dragWorked}`);
+  return result('planetario', poolCount >= 4 && hasCheck ? 'ok' : 'fail', { poolCount, dragWorked });
+}
+
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
 const page = await context.newPage();
@@ -211,6 +292,9 @@ try {
   results.push(await testSteam(page));
   results.push(await testFlip(page));
   results.push(await testMapamundiQuick(page));
+  results.push(await testReciclaje(page));
+  results.push(await testOrtografia(page));
+  results.push(await testPlanetario(page));
 
   console.log('\n=== Errores JS ===');
   if (consoleErrors.length) consoleErrors.forEach((e) => console.log('-', e));

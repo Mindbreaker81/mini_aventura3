@@ -6,32 +6,33 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
-## [Unreleased] — Fase 7 (v3.2.0 planificada)
+## [3.2.0] - Julio 2026 — Fase 7
 
-### 📋 Planificado
+### 🎮 Tres minijuegos nuevos (7 → 10)
 
-Ver detalle en [`docs/PHASE7_NEW_GAMES_PLAN.md`](docs/PHASE7_NEW_GAMES_PLAN.md).
+#### Añadido
+- **Fábrica del Reciclaje** (`/world/fabrica-reciclaje`) — drag-and-drop a 5 contenedores, badge «Eco-Héroe Junior»
+- **Taller de Ortografía** (`/world/taller-ortografia`) — quiz de huecos ortográficos, 5 corazones, badge «Maestro de la Ortografía»
+- **Planetario** (`/world/planetario`) — ordenar 8 planetas por distancia al Sol, badge «Astrónomo Junior»
 
-#### Tres minijuegos nuevos (7 → 10)
+#### Datos e i18n
+- JSON pedagógicos: `fabrica-reciclaje-items`, `taller-ortografia-items`, `planetario-bodies` (es/ca/en)
+- Claves en `gameDataRegistry.ts` + hooks `useGameData` / `useReloadGameDataOnLocale`
+- Traducciones UI: `reciclaje.*`, `ortografia.*`, `planetario.*`, entradas dashboard
 
-| Juego | Ruta | Materia | Mecánica |
-|-------|------|---------|----------|
-| **Fábrica del Reciclaje** | `/world/fabrica-reciclaje` | Medio ambiente | Drag-and-drop a contenedores (clon Puerto) |
-| **Taller de Ortografía** | `/world/taller-ortografia` | Lengua | Quiz de huecos ortográficos (clon Bosc) |
-| **Planetario** | `/world/planetario` | Ciencias | Ordenar planetas / hitos espaciales (clon Museo) |
+#### Integración
+- Dashboard con 10 minijuegos (iconos Recycle, SpellCheck, Orbit)
+- `scripts/test-all-games-ui.mjs` ampliado a 10 juegos
+- **85 tests** Jest (stores + registry)
 
-#### Integración prevista
+---
 
-- JSON pedagógicos en `data/locales/{es,ca,en}/` (3 archivos × 3 idiomas)
-- Registro en `gameDataRegistry.ts` + `useGameData`
-- Dashboard, i18n (`reciclaje.*`, `ortografia.*`, `planetario.*`)
-- Tests store + ampliación `test-all-games-ui.mjs`
-- Objetivo: **≥ 85 tests**, cobertura stores **≥ 60 %**
+## [Unreleased]
 
-#### Documentación y limpieza
+### 📋 Próximos pasos
 
-- Actualizar `GAME_ARCHITECTURE.md`, `CORRECTION_PLAN.md`, `README.md`, `CLAUDE.md`
-- Eliminar docs/scripts legacy (ver §7 del plan Fase 7)
+- Planetario v2: subrutas por modo (`planetas` | `exploracion`)
+- Ampliar contenido ortografía (más temas B/V, G/J)
 
 ---
 

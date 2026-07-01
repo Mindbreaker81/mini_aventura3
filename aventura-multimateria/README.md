@@ -2,7 +2,7 @@
 
 ## 🎮 Descripción del Proyecto
 
-ExplorAventura 3 es una plataforma educativa interactiva con **7 minijuegos** (objetivo **10** tras [Fase 7](docs/PHASE7_NEW_GAMES_PLAN.md)). Cada juego aborda una materia específica con mecánicas divertidas, XP y badges.
+ExplorAventura 3 es una plataforma educativa interactiva con **10 minijuegos**. Cada juego aborda una materia específica con mecánicas divertidas, XP y badges.
 
 ### ✨ Características Principales
 - **7 Minijuegos Educativos** (+ 3 planificados): Gramática, lectura, mates, geografía, programación, ciencias e historia

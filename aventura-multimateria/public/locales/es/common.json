@@ -19,7 +19,7 @@
   },
   "dashboard": {
     "title": "ExplorAventura 3",
-    "subtitle": "7 minijuegos educativos para aprender jugando",
+    "subtitle": "10 minijuegos educativos para aprender jugando",
     "cta": "Elige un minijuego y empieza tu aventura",
     "footer": "© 2025 Edmundo Rosales Mayor"
   },
@@ -58,6 +58,21 @@
       "name": "Museo del Tiempo",
       "description": "Ordena eventos históricos en la línea temporal del museo.",
       "subject": "Historia"
+    },
+    "fabrica-reciclaje": {
+      "name": "Fábrica del Reciclaje",
+      "description": "Clasifica residuos en los contenedores correctos y aprende a reciclar.",
+      "subject": "Medio ambiente"
+    },
+    "taller-ortografia": {
+      "name": "Taller de Ortografía",
+      "description": "Completa frases eligiendo la forma ortográfica correcta.",
+      "subject": "Lengua"
+    },
+    "planetario": {
+      "name": "Planetario",
+      "description": "Ordena los planetas del Sistema Solar según su distancia al Sol.",
+      "subject": "Ciencias"
     }
   },
   "bosc": {
@@ -432,6 +447,93 @@
       "instructions": "Instrucciones:",
       "oceanHint": "Haz clic en el punto azul del océano correcto para seleccionarlo.",
       "regionHint": "Haz clic en la región correcta del mapa y luego confirma tu selección."
+    }
+  },
+  "reciclaje": {
+    "instructions": {
+      "title": "¡Bienvenido a la Fábrica del Reciclaje!",
+      "mission": "Tu misión: clasifica cada residuo en el contenedor correcto para completar la cadena de reciclaje.",
+      "howToPlay": "¿Cómo jugar?",
+      "step1": "Arrastra los objetos hacia los contenedores de colores",
+      "step2": "Cada residuo va a un contenedor según su material",
+      "step3": "Si aciertas, avanzas en la cadena de reciclaje",
+      "step4": "Si no aciertas, lee la regla e inténtalo de nuevo",
+      "step5": "Clasifica 8 residuos para ganar",
+      "start": "¡Empezar a reciclar!"
+    },
+    "completed": {
+      "title": "¡Cadena de reciclaje completada!",
+      "badge": "🏅 Eco-Héroe Junior"
+    },
+    "playing": {
+      "progress": "Reciclados:",
+      "items": "Residuos",
+      "feedbackCorrect": "¡Muy bien! Has clasificado el residuo correctamente.",
+      "feedbackRetry": "¡Inténtalo de nuevo!"
+    },
+    "bins": {
+      "amarillo": "Amarillo (envases)",
+      "azul": "Azul (papel)",
+      "verde": "Verde (vidrio)",
+      "marron": "Marrón (orgánico)",
+      "organico": "Orgánico (jardín)"
+    }
+  },
+  "ortografia": {
+    "instructions": {
+      "title": "¡Bienvenido al Taller de Ortografía!",
+      "mission": "Tu misión: completa las frases eligiendo la palabra bien escrita.",
+      "howToPlay": "¿Cómo jugar?",
+      "step1": "Lee la frase con el hueco (___)",
+      "step2": "Elige la opción ortográficamente correcta",
+      "step3": "Tienes 5 corazones — ¡cuídalos!",
+      "step4": "Responde 8 preguntas para ganar",
+      "step5": "Si completas sin perder corazones, ¡consigues medalla!",
+      "heartsLabel": "5 corazones",
+      "start": "¡Empezar el taller!"
+    },
+    "completed": {
+      "title": "¡Taller completado!",
+      "badge": "Maestro de la Ortografía"
+    },
+    "failed": {
+      "title": "Te has quedado sin corazones"
+    },
+    "playing": {
+      "choose": "Elige la respuesta correcta:",
+      "check": "Comprobar",
+      "next": "Siguiente",
+      "feedbackCorrect": "¡Correcto!",
+      "feedbackWrong": "Incorrecto. Revisa la regla:"
+    }
+  },
+  "planetario": {
+    "title": "Planetario",
+    "orbit": "Órbita (del Sol hacia afuera)",
+    "pool": "Planetas por ordenar",
+    "emptySlot": "Arrastra aquí",
+    "checkOrder": "Comprobar orden",
+    "instructions": {
+      "title": "¡Bienvenido al Planetario!",
+      "mission": "Tu misión: ordena 8 planetas según su distancia al Sol.",
+      "step1": "Lee cada tarjeta con su planeta.",
+      "step2": "Arrastra los planetas a la órbita (1 = más cercano al Sol).",
+      "step3": "Cuando estén los 8, pulsa «Comprobar orden».",
+      "step4": "Tienes 3 corazones. ¡Buena suerte!",
+      "start": "¡Empezar la exploración!"
+    },
+    "completed": {
+      "title": "¡Sistema Solar ordenado!",
+      "badge": "🏅 Astrónomo Junior"
+    },
+    "failed": {
+      "title": "Se acabaron los intentos"
+    },
+    "feedback": {
+      "incomplete": "Coloca los 8 planetas antes de comprobar.",
+      "completed": "¡Perfecto! Has ordenado el Sistema Solar correctamente.",
+      "wrongOrder": "El orden no es correcto. Revisa la distancia al Sol e inténtalo otra vez.",
+      "failed": "Has agotado tus corazones. ¡Vuelve a intentarlo!"
     }
   },
   "museo": {

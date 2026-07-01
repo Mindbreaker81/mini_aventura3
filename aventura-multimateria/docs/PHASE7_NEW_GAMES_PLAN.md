@@ -3,7 +3,7 @@
 Plan de implementación para pasar de **7 a 10 minijuegos**, con documentación alineada, i18n es/ca/en y limpieza de artefactos legacy.
 
 **Versión objetivo:** `3.2.0`  
-**Estado:** 📋 Planificado (julio 2026)  
+**Estado:** ✅ Completado (julio 2026)  
 **Prerrequisitos:** Fases 0–6 completadas, i18n pedagógico v3.1.1, cobertura stores ≥ 60 %
 
 ---

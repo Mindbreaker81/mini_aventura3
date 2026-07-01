@@ -17,4 +17,4 @@ npm run dev
 | [aventura-multimateria/docs/PHASE7_NEW_GAMES_PLAN.md](./aventura-multimateria/docs/PHASE7_NEW_GAMES_PLAN.md) | Plan Fase 7 (3 juegos nuevos, v3.2.0) |
 | [aventura-multimateria/CHANGELOG.md](./aventura-multimateria/CHANGELOG.md) | Historial de versiones |
 
-**Estado:** 7 minijuegos en producción · Fase 7 planificada (10 minijuegos).
+**Estado:** 10 minijuegos en producción (v3.2.0).

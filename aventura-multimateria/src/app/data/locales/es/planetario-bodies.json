@@ -1,0 +1,162 @@
+[
+  {
+    "id": "mercurio",
+    "name": "Mercurio",
+    "order": 1,
+    "fact": "El planeta más cercano al Sol.",
+    "emoji": "☿️",
+    "type": "planet"
+  },
+  {
+    "id": "venus",
+    "name": "Venus",
+    "order": 2,
+    "fact": "El planeta más caliente del Sistema Solar.",
+    "emoji": "♀️",
+    "type": "planet"
+  },
+  {
+    "id": "tierra",
+    "name": "Tierra",
+    "order": 3,
+    "fact": "Nuestro hogar, el único con vida conocida.",
+    "emoji": "🌍",
+    "type": "planet"
+  },
+  {
+    "id": "marte",
+    "name": "Marte",
+    "order": 4,
+    "fact": "Conocido como el planeta rojo.",
+    "emoji": "♂️",
+    "type": "planet"
+  },
+  {
+    "id": "jupiter",
+    "name": "Júpiter",
+    "order": 5,
+    "fact": "El planeta más grande del Sistema Solar.",
+    "emoji": "♃",
+    "type": "planet"
+  },
+  {
+    "id": "saturno",
+    "name": "Saturno",
+    "order": 6,
+    "fact": "Famoso por sus anillos de hielo y roca.",
+    "emoji": "♄",
+    "type": "planet"
+  },
+  {
+    "id": "urano",
+    "name": "Urano",
+    "order": 7,
+    "fact": "Gira de lado, como una bola de boliche.",
+    "emoji": "♅",
+    "type": "planet"
+  },
+  {
+    "id": "neptuno",
+    "name": "Neptuno",
+    "order": 8,
+    "fact": "El planeta más lejano del Sol.",
+    "emoji": "♆",
+    "type": "planet"
+  },
+  {
+    "id": "sputnik",
+    "name": "Sputnik 1",
+    "order": 9,
+    "fact": "Primer satélite artificial (1957).",
+    "emoji": "🛰️",
+    "type": "milestone"
+  },
+  {
+    "id": "gagarin",
+    "name": "Gagarin",
+    "order": 10,
+    "fact": "Primer humano en el espacio (1961).",
+    "emoji": "👨‍🚀",
+    "type": "milestone"
+  },
+  {
+    "id": "apollo11",
+    "name": "Apolo 11",
+    "order": 11,
+    "fact": "Primera llegada del ser humano a la Luna (1969).",
+    "emoji": "🌙",
+    "type": "milestone"
+  },
+  {
+    "id": "voyager",
+    "name": "Voyager 1",
+    "order": 12,
+    "fact": "Sonda que salió del Sistema Solar.",
+    "emoji": "🚀",
+    "type": "milestone"
+  },
+  {
+    "id": "hubble",
+    "name": "Telescopio Hubble",
+    "order": 13,
+    "fact": "Observa el universo desde la órbita terrestre.",
+    "emoji": "🔭",
+    "type": "milestone"
+  },
+  {
+    "id": "iss",
+    "name": "Estación Espacial",
+    "order": 14,
+    "fact": "Laboratorio orbital donde viven astronautas.",
+    "emoji": "🛸",
+    "type": "milestone"
+  },
+  {
+    "id": "curiosity",
+    "name": "Curiosity",
+    "order": 15,
+    "fact": "Robot que explora la superficie de Marte.",
+    "emoji": "🤖",
+    "type": "milestone"
+  },
+  {
+    "id": "pluton",
+    "name": "Plutón",
+    "order": 16,
+    "fact": "Planeta enano en el cinturón de Kuiper.",
+    "emoji": "❄️",
+    "type": "milestone"
+  },
+  {
+    "id": "cassini",
+    "name": "Cassini",
+    "order": 17,
+    "fact": "Misión que estudió Saturno y sus lunas.",
+    "emoji": "🪐",
+    "type": "milestone"
+  },
+  {
+    "id": "newhorizons",
+    "name": "New Horizons",
+    "order": 18,
+    "fact": "Primera sonda en visitar Plutón de cerca.",
+    "emoji": "🌠",
+    "type": "milestone"
+  },
+  {
+    "id": "jwst",
+    "name": "Telescopio James Webb",
+    "order": 19,
+    "fact": "Observa galaxias muy lejanas en infrarrojo.",
+    "emoji": "✨",
+    "type": "milestone"
+  },
+  {
+    "id": "artemis",
+    "name": "Artemis",
+    "order": 20,
+    "fact": "Programa para volver a la Luna.",
+    "emoji": "🌕",
+    "type": "milestone"
+  }
+]

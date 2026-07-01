@@ -1,0 +1,338 @@
+[
+  {
+    "id": "r01",
+    "item": "Botella de plástico",
+    "emoji": "🥤",
+    "bin": "amarillo",
+    "rule": "El plástico de envases va al contenedor amarillo"
+  },
+  {
+    "id": "r02",
+    "item": "Lata de refresco",
+    "emoji": "🥫",
+    "bin": "amarillo",
+    "rule": "Las latas de metal van al contenedor amarillo"
+  },
+  {
+    "id": "r03",
+    "item": "Brick de leche",
+    "emoji": "🧃",
+    "bin": "amarillo",
+    "rule": "Los briks de cartón plastificado van al amarillo"
+  },
+  {
+    "id": "r04",
+    "item": "Envase de yogur",
+    "emoji": "🫙",
+    "bin": "amarillo",
+    "rule": "Los envases de plástico van al contenedor amarillo"
+  },
+  {
+    "id": "r05",
+    "item": "Bolsa de plástico limpia",
+    "emoji": "🛍️",
+    "bin": "amarillo",
+    "rule": "El plástico de bolsas limpias va al amarillo"
+  },
+  {
+    "id": "r06",
+    "item": "Botella de champú",
+    "emoji": "🧴",
+    "bin": "amarillo",
+    "rule": "Los envases de plástico del baño van al amarillo"
+  },
+  {
+    "id": "r07",
+    "item": "Envase de gel",
+    "emoji": "🧼",
+    "bin": "amarillo",
+    "rule": "Los flacons de plástico van al contenedor amarillo"
+  },
+  {
+    "id": "r08",
+    "item": "Envoltorio de chocolate",
+    "emoji": "🍫",
+    "bin": "amarillo",
+    "rule": "Los envases plásticos de dulces van al amarillo"
+  },
+  {
+    "id": "r09",
+    "item": "Botella de detergente",
+    "emoji": "🧴",
+    "bin": "amarillo",
+    "rule": "Los envases de limpieza de plástico van al amarillo"
+  },
+  {
+    "id": "r10",
+    "item": "Vaso de plástico",
+    "emoji": "🥤",
+    "bin": "amarillo",
+    "rule": "Los vasos y envases de plástico van al amarillo"
+  },
+  {
+    "id": "r11",
+    "item": "Periódico",
+    "emoji": "📰",
+    "bin": "azul",
+    "rule": "El papel y cartón van al contenedor azul"
+  },
+  {
+    "id": "r12",
+    "item": "Caja de cartón",
+    "emoji": "📦",
+    "bin": "azul",
+    "rule": "El cartón va al contenedor azul"
+  },
+  {
+    "id": "r13",
+    "item": "Folios de papel",
+    "emoji": "📄",
+    "bin": "azul",
+    "rule": "El papel va al contenedor azul"
+  },
+  {
+    "id": "r14",
+    "item": "Sobre de carta",
+    "emoji": "✉️",
+    "bin": "azul",
+    "rule": "Los sobres de papel van al contenedor azul"
+  },
+  {
+    "id": "r15",
+    "item": "Revista usada",
+    "emoji": "📚",
+    "bin": "azul",
+    "rule": "El papel de revistas va al contenedor azul"
+  },
+  {
+    "id": "r16",
+    "item": "Caja de zapatos",
+    "emoji": "👟",
+    "bin": "azul",
+    "rule": "Las cajas de cartón van al contenedor azul"
+  },
+  {
+    "id": "r17",
+    "item": "Caja de pizza",
+    "emoji": "🍕",
+    "bin": "azul",
+    "rule": "El cartón limpio va al contenedor azul"
+  },
+  {
+    "id": "r18",
+    "item": "Cuaderno viejo",
+    "emoji": "📖",
+    "bin": "azul",
+    "rule": "El papel va al contenedor azul"
+  },
+  {
+    "id": "r19",
+    "item": "Caja de cereales",
+    "emoji": "🥣",
+    "bin": "azul",
+    "rule": "Las cajas de cartón van al contenedor azul"
+  },
+  {
+    "id": "r20",
+    "item": "Papel de regalo",
+    "emoji": "🎁",
+    "bin": "azul",
+    "rule": "El papel sin plástico va al contenedor azul"
+  },
+  {
+    "id": "r21",
+    "item": "Botella de vidrio",
+    "emoji": "🍾",
+    "bin": "verde",
+    "rule": "El vidrio va al contenedor verde"
+  },
+  {
+    "id": "r22",
+    "item": "Tarro de mermelada",
+    "emoji": "🫙",
+    "bin": "verde",
+    "rule": "Los tarros de vidrio van al contenedor verde"
+  },
+  {
+    "id": "r23",
+    "item": "Botella de aceite",
+    "emoji": "🫒",
+    "bin": "verde",
+    "rule": "Las botellas de vidrio van al contenedor verde"
+  },
+  {
+    "id": "r24",
+    "item": "Botella de vino",
+    "emoji": "🍷",
+    "bin": "verde",
+    "rule": "El vidrio va al contenedor verde"
+  },
+  {
+    "id": "r25",
+    "item": "Botella de cerveza",
+    "emoji": "🍺",
+    "bin": "verde",
+    "rule": "El vidrio va al contenedor verde"
+  },
+  {
+    "id": "r26",
+    "item": "Frasco de conserva",
+    "emoji": "🥫",
+    "bin": "verde",
+    "rule": "Los frascos de vidrio van al contenedor verde"
+  },
+  {
+    "id": "r27",
+    "item": "Botella de perfume vacía",
+    "emoji": "🧴",
+    "bin": "verde",
+    "rule": "El vidrio va al contenedor verde"
+  },
+  {
+    "id": "r28",
+    "item": "Tarro de miel",
+    "emoji": "🍯",
+    "bin": "verde",
+    "rule": "Los tarros de vidrio van al contenedor verde"
+  },
+  {
+    "id": "r29",
+    "item": "Bote de kétchup de vidrio",
+    "emoji": "🫙",
+    "bin": "verde",
+    "rule": "El vidrio va al contenedor verde"
+  },
+  {
+    "id": "r30",
+    "item": "Frasco de especias",
+    "emoji": "🧂",
+    "bin": "verde",
+    "rule": "Los frascos de vidrio van al contenedor verde"
+  },
+  {
+    "id": "r31",
+    "item": "Cáscara de plátano",
+    "emoji": "🍌",
+    "bin": "marron",
+    "rule": "Los restos de comida van al contenedor marrón"
+  },
+  {
+    "id": "r32",
+    "item": "Posos de café",
+    "emoji": "☕",
+    "bin": "marron",
+    "rule": "Los restos orgánicos van al contenedor marrón"
+  },
+  {
+    "id": "r33",
+    "item": "Cáscara de huevo",
+    "emoji": "🥚",
+    "bin": "marron",
+    "rule": "Los restos de comida van al contenedor marrón"
+  },
+  {
+    "id": "r34",
+    "item": "Piel de naranja",
+    "emoji": "🍊",
+    "bin": "marron",
+    "rule": "Los restos de fruta van al contenedor marrón"
+  },
+  {
+    "id": "r35",
+    "item": "Restos de ensalada",
+    "emoji": "🥗",
+    "bin": "marron",
+    "rule": "Los restos de comida van al contenedor marrón"
+  },
+  {
+    "id": "r36",
+    "item": "Hueso de pollo",
+    "emoji": "🍗",
+    "bin": "marron",
+    "rule": "Los restos de comida van al contenedor marrón"
+  },
+  {
+    "id": "r37",
+    "item": "Pan duro",
+    "emoji": "🍞",
+    "bin": "marron",
+    "rule": "Los restos de comida van al contenedor marrón"
+  },
+  {
+    "id": "r38",
+    "item": "Restos de arroz",
+    "emoji": "🍚",
+    "bin": "marron",
+    "rule": "Los restos de comida van al contenedor marrón"
+  },
+  {
+    "id": "r39",
+    "item": "Corazón de manzana",
+    "emoji": "🍎",
+    "bin": "marron",
+    "rule": "Los restos de fruta van al contenedor marrón"
+  },
+  {
+    "id": "r40",
+    "item": "Cáscara de patata",
+    "emoji": "🥔",
+    "bin": "marron",
+    "rule": "Los restos de verdura van al contenedor marrón"
+  },
+  {
+    "id": "r41",
+    "item": "Hojas secas",
+    "emoji": "🍃",
+    "bin": "organico",
+    "rule": "Los restos vegetales del jardín van al orgánico"
+  },
+  {
+    "id": "r42",
+    "item": "Restos de poda",
+    "emoji": "🌿",
+    "bin": "organico",
+    "rule": "Las plantas van al contenedor orgánico"
+  },
+  {
+    "id": "r43",
+    "item": "Tallos de flores",
+    "emoji": "🌻",
+    "bin": "organico",
+    "rule": "Los restos vegetales van al orgánico"
+  },
+  {
+    "id": "r44",
+    "item": "Tierra de maceta",
+    "emoji": "🪴",
+    "bin": "organico",
+    "rule": "Los restos del jardín van al orgánico"
+  },
+  {
+    "id": "r45",
+    "item": "Hierba cortada",
+    "emoji": "🌾",
+    "bin": "organico",
+    "rule": "Los restos del jardín van al orgánico"
+  },
+  {
+    "id": "r46",
+    "item": "Hojas de lechuga marchitas",
+    "emoji": "🥬",
+    "bin": "organico",
+    "rule": "Los restos vegetales van al orgánico"
+  },
+  {
+    "id": "r47",
+    "item": "Hojas de maíz",
+    "emoji": "🌽",
+    "bin": "organico",
+    "rule": "Los restos vegetales van al orgánico"
+  },
+  {
+    "id": "r48",
+    "item": "Cáscara de sandía",
+    "emoji": "🍉",
+    "bin": "organico",
+    "rule": "Los restos vegetales van al orgánico"
+  }
+]

@@ -1,0 +1,338 @@
+[
+  {
+    "id": "r01",
+    "item": "Plastic bottle",
+    "emoji": "🥤",
+    "bin": "amarillo",
+    "rule": "Plastic containers go in the yellow bin"
+  },
+  {
+    "id": "r02",
+    "item": "Soda can",
+    "emoji": "🥫",
+    "bin": "amarillo",
+    "rule": "Metal cans go in the yellow bin"
+  },
+  {
+    "id": "r03",
+    "item": "Milk carton",
+    "emoji": "🧃",
+    "bin": "amarillo",
+    "rule": "Tetra paks go in the yellow bin"
+  },
+  {
+    "id": "r04",
+    "item": "Yogurt pot",
+    "emoji": "🫙",
+    "bin": "amarillo",
+    "rule": "Plastic pots go in the yellow bin"
+  },
+  {
+    "id": "r05",
+    "item": "Clean plastic bag",
+    "emoji": "🛍️",
+    "bin": "amarillo",
+    "rule": "Clean plastic goes in the yellow bin"
+  },
+  {
+    "id": "r06",
+    "item": "Shampoo bottle",
+    "emoji": "🧴",
+    "bin": "amarillo",
+    "rule": "Plastic bathroom bottles go in the yellow bin"
+  },
+  {
+    "id": "r07",
+    "item": "Shower gel bottle",
+    "emoji": "🧼",
+    "bin": "amarillo",
+    "rule": "Plastic bottles go in the yellow bin"
+  },
+  {
+    "id": "r08",
+    "item": "Chocolate wrapper",
+    "emoji": "🍫",
+    "bin": "amarillo",
+    "rule": "Plastic wrappers go in the yellow bin"
+  },
+  {
+    "id": "r09",
+    "item": "Detergent bottle",
+    "emoji": "🧴",
+    "bin": "amarillo",
+    "rule": "Plastic cleaning bottles go in the yellow bin"
+  },
+  {
+    "id": "r10",
+    "item": "Plastic cup",
+    "emoji": "🥤",
+    "bin": "amarillo",
+    "rule": "Plastic cups go in the yellow bin"
+  },
+  {
+    "id": "r11",
+    "item": "Newspaper",
+    "emoji": "📰",
+    "bin": "azul",
+    "rule": "Paper and cardboard go in the blue bin"
+  },
+  {
+    "id": "r12",
+    "item": "Cardboard box",
+    "emoji": "📦",
+    "bin": "azul",
+    "rule": "Cardboard goes in the blue bin"
+  },
+  {
+    "id": "r13",
+    "item": "Sheets of paper",
+    "emoji": "📄",
+    "bin": "azul",
+    "rule": "Paper goes in the blue bin"
+  },
+  {
+    "id": "r14",
+    "item": "Envelope",
+    "emoji": "✉️",
+    "bin": "azul",
+    "rule": "Paper envelopes go in the blue bin"
+  },
+  {
+    "id": "r15",
+    "item": "Used magazine",
+    "emoji": "📚",
+    "bin": "azul",
+    "rule": "Paper goes in the blue bin"
+  },
+  {
+    "id": "r16",
+    "item": "Shoe box",
+    "emoji": "👟",
+    "bin": "azul",
+    "rule": "Cardboard boxes go in the blue bin"
+  },
+  {
+    "id": "r17",
+    "item": "Pizza box",
+    "emoji": "🍕",
+    "bin": "azul",
+    "rule": "Clean cardboard goes in the blue bin"
+  },
+  {
+    "id": "r18",
+    "item": "Old notebook",
+    "emoji": "📖",
+    "bin": "azul",
+    "rule": "Paper goes in the blue bin"
+  },
+  {
+    "id": "r19",
+    "item": "Cereal box",
+    "emoji": "🥣",
+    "bin": "azul",
+    "rule": "Cardboard goes in the blue bin"
+  },
+  {
+    "id": "r20",
+    "item": "Wrapping paper",
+    "emoji": "🎁",
+    "bin": "azul",
+    "rule": "Paper goes in the blue bin"
+  },
+  {
+    "id": "r21",
+    "item": "Glass bottle",
+    "emoji": "🍾",
+    "bin": "verde",
+    "rule": "Glass goes in the green bin"
+  },
+  {
+    "id": "r22",
+    "item": "Jam jar",
+    "emoji": "🫙",
+    "bin": "verde",
+    "rule": "Glass jars go in the green bin"
+  },
+  {
+    "id": "r23",
+    "item": "Oil bottle",
+    "emoji": "🫒",
+    "bin": "verde",
+    "rule": "Glass bottles go in the green bin"
+  },
+  {
+    "id": "r24",
+    "item": "Wine bottle",
+    "emoji": "🍷",
+    "bin": "verde",
+    "rule": "Glass goes in the green bin"
+  },
+  {
+    "id": "r25",
+    "item": "Beer bottle",
+    "emoji": "🍺",
+    "bin": "verde",
+    "rule": "Glass goes in the green bin"
+  },
+  {
+    "id": "r26",
+    "item": "Preserve jar",
+    "emoji": "🥫",
+    "bin": "verde",
+    "rule": "Glass jars go in the green bin"
+  },
+  {
+    "id": "r27",
+    "item": "Empty perfume bottle",
+    "emoji": "🧴",
+    "bin": "verde",
+    "rule": "Glass goes in the green bin"
+  },
+  {
+    "id": "r28",
+    "item": "Honey jar",
+    "emoji": "🍯",
+    "bin": "verde",
+    "rule": "Glass jars go in the green bin"
+  },
+  {
+    "id": "r29",
+    "item": "Glass ketchup bottle",
+    "emoji": "🫙",
+    "bin": "verde",
+    "rule": "Glass goes in the green bin"
+  },
+  {
+    "id": "r30",
+    "item": "Spice jar",
+    "emoji": "🧂",
+    "bin": "verde",
+    "rule": "Glass jars go in the green bin"
+  },
+  {
+    "id": "r31",
+    "item": "Banana peel",
+    "emoji": "🍌",
+    "bin": "marron",
+    "rule": "Food scraps go in the brown bin"
+  },
+  {
+    "id": "r32",
+    "item": "Coffee grounds",
+    "emoji": "☕",
+    "bin": "marron",
+    "rule": "Organic waste goes in the brown bin"
+  },
+  {
+    "id": "r33",
+    "item": "Eggshell",
+    "emoji": "🥚",
+    "bin": "marron",
+    "rule": "Food scraps go in the brown bin"
+  },
+  {
+    "id": "r34",
+    "item": "Orange peel",
+    "emoji": "🍊",
+    "bin": "marron",
+    "rule": "Fruit waste goes in the brown bin"
+  },
+  {
+    "id": "r35",
+    "item": "Salad leftovers",
+    "emoji": "🥗",
+    "bin": "marron",
+    "rule": "Food scraps go in the brown bin"
+  },
+  {
+    "id": "r36",
+    "item": "Chicken bone",
+    "emoji": "🍗",
+    "bin": "marron",
+    "rule": "Food scraps go in the brown bin"
+  },
+  {
+    "id": "r37",
+    "item": "Stale bread",
+    "emoji": "🍞",
+    "bin": "marron",
+    "rule": "Food scraps go in the brown bin"
+  },
+  {
+    "id": "r38",
+    "item": "Rice leftovers",
+    "emoji": "🍚",
+    "bin": "marron",
+    "rule": "Food scraps go in the brown bin"
+  },
+  {
+    "id": "r39",
+    "item": "Apple core",
+    "emoji": "🍎",
+    "bin": "marron",
+    "rule": "Fruit waste goes in the brown bin"
+  },
+  {
+    "id": "r40",
+    "item": "Potato peel",
+    "emoji": "🥔",
+    "bin": "marron",
+    "rule": "Vegetable waste goes in the brown bin"
+  },
+  {
+    "id": "r41",
+    "item": "Dry leaves",
+    "emoji": "🍃",
+    "bin": "organico",
+    "rule": "Garden waste goes in the organic bin"
+  },
+  {
+    "id": "r42",
+    "item": "Pruning waste",
+    "emoji": "🌿",
+    "bin": "organico",
+    "rule": "Plants go in the organic bin"
+  },
+  {
+    "id": "r43",
+    "item": "Flower stems",
+    "emoji": "🌻",
+    "bin": "organico",
+    "rule": "Garden waste goes in the organic bin"
+  },
+  {
+    "id": "r44",
+    "item": "Potting soil",
+    "emoji": "🪴",
+    "bin": "organico",
+    "rule": "Garden waste goes in the organic bin"
+  },
+  {
+    "id": "r45",
+    "item": "Cut grass",
+    "emoji": "🌾",
+    "bin": "organico",
+    "rule": "Garden waste goes in the organic bin"
+  },
+  {
+    "id": "r46",
+    "item": "Wilted lettuce leaves",
+    "emoji": "🥬",
+    "bin": "organico",
+    "rule": "Garden waste goes in the organic bin"
+  },
+  {
+    "id": "r47",
+    "item": "Corn husks",
+    "emoji": "🌽",
+    "bin": "organico",
+    "rule": "Garden waste goes in the organic bin"
+  },
+  {
+    "id": "r48",
+    "item": "Watermelon rind",
+    "emoji": "🍉",
+    "bin": "organico",
+    "rule": "Garden waste goes in the organic bin"
+  }
+]

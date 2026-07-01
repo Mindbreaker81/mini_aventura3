@@ -5,6 +5,9 @@ import esMapamundiTasks from './locales/es/mapamundi-tasks.json';
 import esMuseoEvents from './locales/es/museo-events.json';
 import esPuertoWords from './locales/es/puerto-words.json';
 import esSteamTasks from './locales/es/steam-tasks.json';
+import esFabricaReciclajeItems from './locales/es/fabrica-reciclaje-items.json';
+import esTallerOrtografiaItems from './locales/es/taller-ortografia-items.json';
+import esPlanetarioBodies from './locales/es/planetario-bodies.json';
 
 import caBoscPassages from './locales/ca/bosc-passages.json';
 import caMercadoTasks from './locales/ca/mercado-tasks.json';
@@ -13,6 +16,9 @@ import caMapamundiTasks from './locales/ca/mapamundi-tasks.json';
 import caMuseoEvents from './locales/ca/museo-events.json';
 import caPuertoWords from './locales/ca/puerto-words.json';
 import caSteamTasks from './locales/ca/steam-tasks.json';
+import caFabricaReciclajeItems from './locales/ca/fabrica-reciclaje-items.json';
+import caTallerOrtografiaItems from './locales/ca/taller-ortografia-items.json';
+import caPlanetarioBodies from './locales/ca/planetario-bodies.json';
 
 import enBoscPassages from './locales/en/bosc-passages.json';
 import enMercadoTasks from './locales/en/mercado-tasks.json';
@@ -21,6 +27,9 @@ import enMapamundiTasks from './locales/en/mapamundi-tasks.json';
 import enMuseoEvents from './locales/en/museo-events.json';
 import enPuertoWords from './locales/en/puerto-words.json';
 import enSteamTasks from './locales/en/steam-tasks.json';
+import enFabricaReciclajeItems from './locales/en/fabrica-reciclaje-items.json';
+import enTallerOrtografiaItems from './locales/en/taller-ortografia-items.json';
+import enPlanetarioBodies from './locales/en/planetario-bodies.json';
 
 export type GameDataLocale = 'es' | 'ca' | 'en';
 
@@ -32,6 +41,9 @@ export const GAME_DATA_KEYS = [
   'museo-events',
   'puerto-words',
   'steam-tasks',
+  'fabrica-reciclaje-items',
+  'taller-ortografia-items',
+  'planetario-bodies',
 ] as const;
 
 export type GameDataKey = (typeof GAME_DATA_KEYS)[number];
@@ -45,6 +57,9 @@ const registry = {
     'museo-events': esMuseoEvents,
     'puerto-words': esPuertoWords,
     'steam-tasks': esSteamTasks,
+    'fabrica-reciclaje-items': esFabricaReciclajeItems,
+    'taller-ortografia-items': esTallerOrtografiaItems,
+    'planetario-bodies': esPlanetarioBodies,
   },
   ca: {
     'bosc-passages': caBoscPassages,
@@ -54,6 +69,9 @@ const registry = {
     'museo-events': caMuseoEvents,
     'puerto-words': caPuertoWords,
     'steam-tasks': caSteamTasks,
+    'fabrica-reciclaje-items': caFabricaReciclajeItems,
+    'taller-ortografia-items': caTallerOrtografiaItems,
+    'planetario-bodies': caPlanetarioBodies,
   },
   en: {
     'bosc-passages': enBoscPassages,
@@ -63,6 +81,9 @@ const registry = {
     'museo-events': enMuseoEvents,
     'puerto-words': enPuertoWords,
     'steam-tasks': enSteamTasks,
+    'fabrica-reciclaje-items': enFabricaReciclajeItems,
+    'taller-ortografia-items': enTallerOrtografiaItems,
+    'planetario-bodies': enPlanetarioBodies,
   },
 } as const;
 
