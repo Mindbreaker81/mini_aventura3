@@ -27,6 +27,25 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [3.2.1] - Julio 2026 — Fase 3 (deuda menor)
+
+### ♻️ Calidad
+
+#### Añadido
+- `shared/keyboard.ts` — helpers `chainKeyboardHandler` / `handleActivationKeys`
+- Tests de teclado en `shared/__tests__/keyboard.test.ts`
+
+#### Cambiado
+- Puerto Palabras y Fábrica Reciclaje: `onKeyDown` explícito en ítems arrastrables
+- `package.json` raíz simplificado (scripts de conveniencia hacia `aventura-multimateria/`)
+
+#### Documentación
+- `STEAM_GAME_DOCS.md` — sección ejecución con `new Function()` y sandbox futuro
+- `CORRECTION_PLAN.md` — Fase 3 completada
+- `README.md` raíz — aclaración del `package.json` legacy
+
+---
+
 ## [Unreleased]
 
 ### 📋 Próximos pasos

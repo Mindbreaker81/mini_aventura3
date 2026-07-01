@@ -2,7 +2,7 @@
 
 Plan de trabajo derivado de la revisión técnica de julio 2026. Complementa [GAME_ARCHITECTURE.md](./GAME_ARCHITECTURE.md), que define el **contrato objetivo**; este documento define el **orden y alcance de implementación**.
 
-**Estado:** ✅ Fases 0–7 implementadas (v3.2.0)  
+**Estado:** ✅ Fases 0–7 implementadas · ✅ Fase 3 deuda menor (v3.2.1)  
 **Alcance actual:** 10 juegos
 
 ---
@@ -135,16 +135,16 @@ Botón explícito **«Nueva partida»** en victoria/derrota/instrucciones → s�
 
 ---
 
-## Fase 3 — Calidad y deuda menor
+## Fase 3 — Calidad y deuda menor ✅
 
-| Área | Tarea |
-|------|-------|
-| ESLint | Quitar `CardFooter` no usado en `error.tsx` |
-| Next.js | `outputFileTracingRoot` en `next.config.js` (warning lockfiles) |
-| Repo raíz | Documentar/eliminar `package.json` duplicado en `/workspace` |
-| Accesibilidad | `onKeyDown` donde hay `tabIndex={0}` |
-| Shuffle | Fisher-Yates en todos los stores (vía `shared/random.ts`) |
-| STEAM | Documentar uso de `new Function()`; valorar sandbox futuro |
+| Área | Tarea | Estado |
+|------|-------|--------|
+| ESLint | Quitar `CardFooter` no usado en `error.tsx` | ✅ Ya aplicado (v3.1.x) |
+| Next.js | `outputFileTracingRoot` en `next.config.js` | ✅ Configurado |
+| Repo raíz | Documentar `package.json` duplicado | ✅ README raíz + scripts mínimos |
+| Accesibilidad | `onKeyDown` donde hay `tabIndex={0}` | ✅ Puerto, Reciclaje, Flip (`shared/keyboard.ts`) |
+| Shuffle | Fisher-Yates en stores vía `shared/random.ts` | ✅ Todos los stores |
+| STEAM | Documentar `new Function()` | ✅ `STEAM_GAME_DOCS.md` § Ejecución |
 
 ---
 

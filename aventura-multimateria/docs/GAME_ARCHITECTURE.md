@@ -467,8 +467,9 @@ Implementados en v3.0.0:
 src/app/world/shared/
 ├── types.ts           # BaseGameState, GameStatus, GameFeedback
 ├── random.ts          # shuffle, selectRandom (Fisher-Yates)
+├── keyboard.ts        # chainKeyboardHandler, handleActivationKeys
 ├── gameSession.ts     # hasActiveSession()
-└── __tests__/shared.test.ts
+└── __tests__/         # shared.test.ts, keyboard.test.ts
 
 src/app/hooks/useGameSession.ts  # Hook de montaje seguro
 ```

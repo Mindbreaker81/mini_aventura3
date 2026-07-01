@@ -8,6 +8,10 @@ npm install
 npm run dev
 ```
 
+### `package.json` en la raíz
+
+El archivo `/package.json` del repositorio es un **contenedor legacy** con scripts de conveniencia (`npm run dev` redirige al subproyecto). **No instala dependencias de la app.** Siempre usa `aventura-multimateria/` como directorio de trabajo (CI, Vercel, desarrollo).
+
 ## Documentación
 
 | Documento | Descripción |
