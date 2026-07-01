@@ -76,11 +76,10 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
 
   // Función para obtener el estilo de una región
   const getRegionStyle = (geo: { properties?: { cod_ccaa?: string } }) => {
-    if (!geo || !geo.properties) return {};
+    if (!geo?.properties?.cod_ccaa) return {};
 
-    const codCcaa = geo.properties.cod_ccaa;
-    if (!codCcaa) return {};
-    const regionId = COD_CCAA_TO_CODE[codCcaa];
+    const regionId = COD_CCAA_TO_CODE[geo.properties.cod_ccaa];
+    if (!regionId) return {};
 
     const isSelected = selectedRegion === regionId;
     // Eliminadas las pistas visuales (isTarget) para evitar dar la respuesta
@@ -164,15 +163,21 @@ export default function SpainMap({ selectedRegion, onRegionClick }: MapComponent
           <ZoomableGroup zoom={1} maxZoom={4} minZoom={0.8}>
             <Geographies geography={geography}>
               {({ geographies }: { geographies: { rsmKey: string; properties?: { NAME?: string; name?: string; cod_ccaa?: string } }[] }) =>
-                geographies.map((geo) => (
+                geographies.map((geo) => {
+                  const regionId = geo.properties?.cod_ccaa
+                    ? COD_CCAA_TO_CODE[geo.properties.cod_ccaa]
+                    : undefined;
+                  return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
+                    data-region-id={regionId || undefined}
                     onClick={() => handleRegionClick(geo)}
                     style={getRegionStyle(geo)}
                     title={geo.properties?.NAME || geo.properties?.name || t('mapamundi.maps.community')}
                   />
-                ))
+                  );
+                })
               }
             </Geographies>
           </ZoomableGroup>

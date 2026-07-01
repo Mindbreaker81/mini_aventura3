@@ -46,6 +46,17 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [3.3.2] - Julio 2026 — Mapamundi testeable (data-region-id)
+
+### 🗺️ Mapamundi
+
+#### Cambiado
+- `WorldMap.tsx` / `SpainMap.tsx`: atributo `data-region-id` en zonas clicables (continente, océano, CCAA)
+- `useMapamundiV2Store`: persiste `selectedRegion` en sesión
+- Test UI Mapamundi: clic directo por región; eliminado fallback `map-svg`
+
+---
+
 ## [3.3.1] - Julio 2026 — Tests UI puros + ortografía B/V G/J
 
 ### 🧪 Tests UI
@@ -54,7 +65,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - `scripts/test-all-games-ui.mjs`: victoria/derrota por interacción real en Museo, Planetario, Mapamundi y Mercado (sin fallback `localStorage`)
 - Selectores drag-and-drop actualizados a `data-rfd-*` (@hello-pangea/dnd v18)
 - STEAM documentado como excepción `blockly` (Blockly no automatizable de forma fiable)
-- Mapamundi victoria: intento UI por sellos + fallback `map-svg` (SVG sin metadatos en DOM)
+- Mapamundi: `data-region-id` en zonas del mapa + victoria/derrota 100 % UI (sin fallback `map-svg`)
 - Flip: botón «Ir al quiz» cuando el vídeo no carga + flujo UI sin parchear `videoWatched`
 
 ### 📚 Taller de Ortografía

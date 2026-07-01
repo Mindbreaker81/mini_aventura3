@@ -451,6 +451,48 @@ async function solveMercadoTask(page, pickCorrect = true) {
   return true;
 }
 
+async function clickMapRegion(page, targetId, mode) {
+  const selector =
+    mode === 'ocean'
+      ? `circle[data-region-id="${targetId}"]`
+      : `[data-region-id="${targetId}"]`;
+  const regions = page.locator(selector);
+  const count = await regions.count();
+  if (count === 0) return false;
+
+  for (let i = 0; i < count; i++) {
+    await regions.nth(i).click({ force: true, timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(200);
+    const state = await getStoreState(page, STORAGE_KEYS.mapamundi);
+    if (state?.selectedRegion === targetId) return true;
+  }
+
+  return false;
+}
+
+async function clickWrongMapRegion(page, targetId) {
+  const wrongRegions = page.locator(`[data-region-id]:not([data-region-id="${targetId}"])`);
+  const count = await wrongRegions.count();
+  if (count === 0) return false;
+
+  for (let i = 0; i < count; i++) {
+    await wrongRegions.nth(i).click({ force: true, timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(200);
+    const state = await getStoreState(page, STORAGE_KEYS.mapamundi);
+    if (state?.selectedRegion && state.selectedRegion !== targetId) return true;
+  }
+
+  return false;
+}
+
+async function confirmMapAnswer(page) {
+  const confirm = page.getByRole('button', { name: /Confirmar|Confirm/i });
+  if (!(await confirm.isEnabled().catch(() => false))) return false;
+  await confirm.click({ timeout: 8000 });
+  await page.waitForTimeout(2400);
+  return true;
+}
+
 async function dismissMapamundiFeedback(page) {
   const body = await bodyText(page);
   if (/Correcto|Incorrecto|Correct|Incorrect/i.test(body)) {
@@ -463,52 +505,37 @@ async function solveMapamundiTaskCorrect(page) {
   const task = before?.tasks?.[before.currentTask];
   if (!task) return false;
 
-  const confirm = page.getByRole('button', { name: /Confirmar|Confirm/i });
+  await dismissMapamundiFeedback(page);
+  await page.waitForSelector(`[data-region-id="${task.targetId}"], circle[data-region-id="${task.targetId}"]`, {
+    timeout: 20000,
+  });
 
-  for (let i = 0; i < 40; i++) {
-    await dismissMapamundiFeedback(page);
-    const paths = page.locator('path.rsm-geography');
-    if (i >= (await paths.count())) break;
-    await paths.nth(i).click({ force: true, timeout: 5000 }).catch(() => {});
-    await page.waitForTimeout(180);
-    if (!(await confirm.isEnabled().catch(() => false))) continue;
+  const clicked = await clickMapRegion(page, task.targetId, before.mode);
+  if (!clicked) return false;
 
-    await confirm.click({ timeout: 5000 }).catch(() => {});
-    await page.waitForTimeout(2400);
-    await dismissMapamundiFeedback(page);
+  await confirmMapAnswer(page);
+  await dismissMapamundiFeedback(page);
 
-    const after = await getStoreState(page, STORAGE_KEYS.mapamundi);
-    if ((after?.completedStamps ?? 0) > (before.completedStamps ?? 0)) return true;
-    if (after?.gameStatus === 'completed') return true;
-  }
-
-  return false;
+  const after = await getStoreState(page, STORAGE_KEYS.mapamundi);
+  return (after?.completedStamps ?? 0) > (before.completedStamps ?? 0) || after?.gameStatus === 'completed';
 }
 
 async function solveMapamundiTaskWrong(page) {
   const before = await getStoreState(page, STORAGE_KEYS.mapamundi);
-  if (!before?.tasks?.[before.currentTask]) return false;
+  const task = before?.tasks?.[before.currentTask];
+  if (!task) return false;
 
-  const confirm = page.getByRole('button', { name: /Confirmar|Confirm/i });
+  await dismissMapamundiFeedback(page);
+  await page.waitForSelector('[data-region-id]', { timeout: 20000 });
 
-  for (let i = 0; i < 40; i++) {
-    await dismissMapamundiFeedback(page);
-    const paths = page.locator('path.rsm-geography');
-    if (i >= (await paths.count())) break;
-    await paths.nth(i).click({ force: true, timeout: 5000 }).catch(() => {});
-    await page.waitForTimeout(180);
-    if (!(await confirm.isEnabled().catch(() => false))) continue;
+  const clicked = await clickWrongMapRegion(page, task.targetId);
+  if (!clicked) return false;
 
-    await confirm.click({ timeout: 5000 }).catch(() => {});
-    await page.waitForTimeout(2400);
-    await dismissMapamundiFeedback(page);
+  await confirmMapAnswer(page);
+  await dismissMapamundiFeedback(page);
 
-    const after = await getStoreState(page, STORAGE_KEYS.mapamundi);
-    if ((after?.lives ?? before.lives) < (before.lives ?? 5)) return true;
-    if (after?.gameStatus === 'gameOver') return true;
-  }
-
-  return false;
+  const after = await getStoreState(page, STORAGE_KEYS.mapamundi);
+  return (after?.lives ?? before.lives) < (before.lives ?? 5) || after?.gameStatus === 'gameOver';
 }
 
 async function playMapamundiUntilVictory(page, maxTasks = 12) {
@@ -880,21 +907,8 @@ async function testMapamundi(page) {
       return (await p.locator('svg.rsm-svg').count()) > 0;
     },
     victory: async (p) => {
-      const uiOk = await playMapamundiUntilVictory(p);
-      if (uiOk) return { ok: true, mode: 'ui' };
-
-      // Excepción: el SVG no expone ISO en DOM y selectedRegion no persiste en localStorage
-      const state = await getStoreState(p, STORAGE_KEYS.mapamundi);
-      await patchStoreState(p, STORAGE_KEYS.mapamundi, {
-        completedStamps: state?.maxQuestions ?? 7,
-        gameStatus: 'completed',
-      });
-      await p.reload({ waitUntil: 'networkidle' });
-      await dismissConsent(p);
-      return {
-        ok: VICTORY_PATTERNS.test(await bodyText(p)),
-        mode: 'map-svg',
-      };
+      const ok = await playMapamundiUntilVictory(p);
+      return { ok, mode: 'ui' };
     },
     defeat: async (p) => {
       const ok = await playMapamundiUntilDefeat(p);

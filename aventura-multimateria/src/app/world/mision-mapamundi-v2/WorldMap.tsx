@@ -80,6 +80,32 @@ const OCEAN_CENTROIDS: { [key: string]: [number, number] } = {
   "ANT": [0, -60]      // Océano Antártico - alrededor de Antártida
 };
 
+const OCEAN_NAME_TO_CODE: { [key: string]: string } = {
+  "Atlantic Ocean": "ATL",
+  "Pacific Ocean": "PAC",
+  "Indian Ocean": "IND",
+  "Arctic Ocean": "ARC",
+  "Southern Ocean": "ANT",
+};
+
+type WorldGeo = { properties?: { name?: string; NAME?: string } };
+
+function resolveWorldRegionId(geo: WorldGeo, isContinentQuestion: boolean, isOceanQuestion: boolean): string {
+  if (!geo?.properties) return "";
+
+  if (isContinentQuestion) {
+    const countryName = geo.properties.name;
+    return countryName ? COUNTRY_TO_CONTINENT[countryName] || "" : "";
+  }
+
+  if (isOceanQuestion) {
+    const oceanName = geo.properties.name || geo.properties.NAME;
+    return oceanName ? OCEAN_NAME_TO_CODE[oceanName] || "" : "";
+  }
+
+  return "";
+}
+
 
 export default function WorldMap({ task, selectedRegion, onRegionClick }: MapComponentProps) {
   const { t } = useTranslation('common');
@@ -118,34 +144,8 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
   useEffect(() => { loadMapData(); }, [isOceanQuestion]);
 
   // Función para manejar clic en región
-  const handleRegionClick = (geo: { properties?: { name?: string; NAME?: string } }) => {
-    if (!geo || !geo.properties) return;
-
-    let regionId = "";
-    
-    if (isContinentQuestion) {
-      // Para continentes, mapear país a continente
-      const countryName = geo.properties.name;
-      if (countryName) {
-        regionId = COUNTRY_TO_CONTINENT[countryName] || "";
-      }
-    } else if (isOceanQuestion) {
-      // Para océanos, usar el nombre o código del geojson
-      // oceans.geojson no tiene OCEAN_ID, así que usar 'name' o 'NAME' y mapear a código
-      const oceanName = geo.properties.name || geo.properties.NAME;
-      // Mapeo de nombre a código
-      const OCEAN_NAME_TO_CODE: { [key: string]: string } = {
-        "Atlantic Ocean": "ATL",
-        "Pacific Ocean": "PAC",
-        "Indian Ocean": "IND",
-        "Arctic Ocean": "ARC",
-        "Southern Ocean": "ANT"
-      };
-      if (oceanName) {
-        regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
-      }
-    }
-
+  const handleRegionClick = (geo: WorldGeo) => {
+    const regionId = resolveWorldRegionId(geo, isContinentQuestion, isOceanQuestion);
     if (regionId) {
       onRegionClick(regionId);
     }
@@ -159,30 +159,8 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
   };
 
   // Función para obtener el estilo de una región
-  const getRegionStyle = (geo: { properties?: { name?: string; NAME?: string } }) => {
-    if (!geo || !geo.properties) return {};
-
-    let regionId = "";
-    
-    if (isContinentQuestion) {
-      const countryName = geo.properties.name;
-      if (countryName) {
-        regionId = COUNTRY_TO_CONTINENT[countryName] || "";
-      }
-    } else if (isOceanQuestion) {
-      const oceanName = geo.properties.name || geo.properties.NAME;
-      const OCEAN_NAME_TO_CODE: { [key: string]: string } = {
-        "Atlantic Ocean": "ATL",
-        "Pacific Ocean": "PAC",
-        "Indian Ocean": "IND",
-        "Arctic Ocean": "ARC",
-        "Southern Ocean": "ANT"
-      };
-      if (oceanName) {
-        regionId = OCEAN_NAME_TO_CODE[oceanName] || "";
-      }
-    }
-
+  const getRegionStyle = (geo: WorldGeo) => {
+    const regionId = resolveWorldRegionId(geo, isContinentQuestion, isOceanQuestion);
     const isSelected = selectedRegion === regionId;
 
     return {
@@ -264,10 +242,13 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
           <ZoomableGroup zoom={1} maxZoom={3} minZoom={0.8}>
             <Geographies geography={geography}>
               {({ geographies }: { geographies: { rsmKey: string; properties?: { name?: string; NAME?: string } }[] }) =>
-                geographies.map((geo) => (
+                geographies.map((geo) => {
+                  const regionId = resolveWorldRegionId(geo, isContinentQuestion, isOceanQuestion);
+                  return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
+                    data-region-id={regionId || undefined}
                     onClick={isOceanQuestion ? undefined : () => handleRegionClick(geo)}
                     style={isOceanQuestion ? {
                       default: { fill: "#bae6fd", stroke: "#FFFFFF", strokeWidth: 0.5, outline: "none" },
@@ -276,7 +257,8 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
                     } : getRegionStyle(geo)}
                     title={isOceanQuestion ? (geo.properties?.name || geo.properties?.NAME || t('mapamundi.maps.ocean')) : (geo.properties?.NAME || geo.properties?.name || t('mapamundi.maps.region'))}
                   />
-                ))
+                  );
+                })
               }
             </Geographies>
             
@@ -289,6 +271,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
                       {/* Círculo principal */}
                       <circle
                         r="12"
+                        data-region-id={oceanCode}
                         fill={selectedRegion === oceanCode ? "#1e40af" : "#3b82f6"}
                         stroke="#ffffff"
                         strokeWidth="3"
@@ -299,6 +282,7 @@ export default function WorldMap({ task, selectedRegion, onRegionClick }: MapCom
                       {/* Efecto hover */}
                       <circle
                         r="18"
+                        data-region-id={oceanCode}
                         fill="transparent"
                         stroke={selectedRegion === oceanCode ? "#1e40af" : "#3b82f6"}
                         strokeWidth="2"

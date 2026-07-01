@@ -160,6 +160,7 @@ export const useMapamundiV2Store = create<MapamundiV2Store>()(
         mode: state.mode,
         maxQuestions: state.maxQuestions,
         gameStatus: state.gameStatus,
+        selectedRegion: state.selectedRegion,
       }),
     }
   )
